@@ -41,6 +41,7 @@ import Switch from '@mui/material/Switch' */
 import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
+import { useTheme } from '@emotion/react'
 
 /* function createData(name, calories, fat, carbs, protein) {
   return {
@@ -111,7 +112,139 @@ const headCells = [
 		id: 'g',
 		numeric: true,
 		disablePadding: false,
-		label: 'Games Played',
+		label: 'GP',
+	},
+	{
+		id: 'mp',
+		numeric: true,
+		disablePadding: false,
+		label: 'MP',
+	},
+	{
+		id: 'fg',
+		numeric: true,
+		disablePadding: false,
+		label: 'FG',
+	},
+	{
+		id: 'fga',
+		numeric: true,
+		disablePadding: false,
+		label: 'FGA',
+	},
+	{
+		id: 'fgPer',
+		numeric: true,
+		disablePadding: false,
+		label: 'FG%',
+	},
+	{
+		id: '$3p',
+		numeric: true,
+		disablePadding: false,
+		label: '3P',
+	},
+	{
+		id: '$3pA',
+		numeric: true,
+		disablePadding: false,
+		label: '3PA',
+	},
+	{
+		id: '$3pPer',
+		numeric: true,
+		disablePadding: false,
+		label: '3P%',
+	},
+	{
+		id: '$2p',
+		numeric: true,
+		disablePadding: false,
+		label: '2P',
+	},
+	{
+		id: '$3pA',
+		numeric: true,
+		disablePadding: false,
+		label: '3PA',
+	},
+	{
+		id: '$2pPer',
+		numeric: true,
+		disablePadding: false,
+		label: '2P%',
+	},
+	{
+		id: 'ft',
+		numeric: true,
+		disablePadding: false,
+		label: 'FT',
+	},
+	{
+		id: 'fta',
+		numeric: true,
+		disablePadding: false,
+		label: 'FTA',
+	},
+	{
+		id: 'ftPer',
+		numeric: true,
+		disablePadding: false,
+		label: 'FT%',
+	},
+	{
+		id: 'orb',
+		numeric: true,
+		disablePadding: false,
+		label: 'ORB',
+	},
+	{
+		id: 'drb',
+		numeric: true,
+		disablePadding: false,
+		label: 'DRB',
+	},
+	{
+		id: 'trb',
+		numeric: true,
+		disablePadding: false,
+		label: 'TRB',
+	},
+	{
+		id: 'ast',
+		numeric: true,
+		disablePadding: false,
+		label: 'AST',
+	},
+	{
+		id: 'stl',
+		numeric: true,
+		disablePadding: false,
+		label: 'STL',
+	},
+	{
+		id: 'blk',
+		numeric: true,
+		disablePadding: false,
+		label: 'BLK',
+	},
+	{
+		id: 'tov',
+		numeric: true,
+		disablePadding: false,
+		label: 'TOV',
+	},
+	{
+		id: 'pf',
+		numeric: true,
+		disablePadding: false,
+		label: 'PF',
+	},
+	{
+		id: 'pts',
+		numeric: true,
+		disablePadding: false,
+		label: 'PTS',
 	},
 	/* {
     id: 'fat',
@@ -251,12 +384,15 @@ EnhancedTableToolbar.propTypes = {
 }
 
 export default function EnhancedTable({ teamsPerGameStatistics }) {
+	const theme = useTheme()
+	const { league } = theme.palette
+
 	const [order, setOrder] = React.useState('asc')
 	const [orderBy, setOrderBy] = React.useState('calories')
 	const [selected, setSelected] = React.useState([])
 	const [page, setPage] = React.useState(0)
 	const [dense, setDense] = React.useState(false)
-	const [rowsPerPage, setRowsPerPage] = React.useState(5)
+	const [rowsPerPage, setRowsPerPage] = React.useState(30)
 
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === 'asc'
@@ -384,17 +520,19 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 				return 'Toronto Raptors'
 			case 'uta':
 				return 'Utah Jazz'
-			case 'was':
+			case 'wsh':
 				return 'Washington Wizards'
 		}
 	}
-	console.log(fullTeamNames('bkn'))
 
 	return (
-		<Box sx={{ width: '100%' }}>
+		<Box sx={{ width: '100%', backgroundColor: league.nbaBackground }}>
 			<Paper sx={{ width: '100%', mb: 2 }}>
 				<EnhancedTableToolbar numSelected={selected.length} />
-				<TableContainer>
+				<TableContainer
+					sx={{
+						backgroundColor: league.nbaBackground,
+					}}>
 					<Table
 						sx={{ minWidth: 750 }}
 						aria-labelledby='tableTitle'
@@ -432,16 +570,128 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 											/>
 										</TableCell>
 										<TableCell
+											sx={{ color: league.nbaWhite }}
 											component='th'
 											id={labelId}
 											scope='row'
 											padding='none'>
 											{fullTeamNames(row.team)}
 										</TableCell>
-										<TableCell align='right'>{row.calories}</TableCell>
-										<TableCell align='right'>{row.fat}</TableCell>
-										<TableCell align='right'>{row.carbs}</TableCell>
-										<TableCell align='right'>{row.protein}</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.g}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.mp}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.fg}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.fga}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.fgPer}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.$3p}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.$3pA}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.$3pPer}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.$2p}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.$2pA}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.$2pPer}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.ft}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.fta}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.ftPer}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.orb}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.drb}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.trb}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.ast}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.stl}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.blk}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.tov}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.pf}
+										</TableCell>
+										<TableCell
+											sx={{ color: league.nbaWhite }}
+											align='right'>
+											{row.pts}
+										</TableCell>
 									</TableRow>
 								)
 							})}

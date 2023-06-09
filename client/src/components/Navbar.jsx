@@ -34,7 +34,7 @@ const Navbar = () => {
 					}}>
 					<NBALogo
 						width={80}
-						height={'auto'}
+						height='auto'
 					/>
 					<Typography variant='h6'>
 						<Link to='/stats/teams'>Teams</Link>

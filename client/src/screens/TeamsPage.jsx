@@ -28,7 +28,7 @@ const TeamsPage = () => {
 	console.log(teamsPerGameStatistics)
 
 	return (
-		<main>
+		<main style={{ backgroundColor: league.nbaBackground }}>
 			<TeamsStatsTable teamsPerGameStatistics={teamsPerGameStatistics} />
 			{/* {teamsPerGameStatistics.map(({_id,id,team,g,mp,fg,fga,fgPer,$3p,
 		$3pA,$3pPer,$2p,$2pA,$2pPer,ft,fta,
