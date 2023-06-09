@@ -1,4 +1,5 @@
 import { Container, Box, Typography } from '@mui/material'
+import { Link } from 'react-router-dom'
 // import { ReactComponent as NbaLogo } from '../../public/images/logo-nba.svg'
 import { useTheme } from '@mui/material/styles'
 // Images
@@ -35,7 +36,9 @@ const Navbar = () => {
 						width={80}
 						height={'auto'}
 					/>
-					<Typography variant='h6'>Teams</Typography>
+					<Typography variant='h6'>
+						<Link to='/stats/teams'>Teams</Link>
+					</Typography>
 					<Typography variant='h6'>Players</Typography>
 				</Box>
 				<Box
@@ -48,7 +51,9 @@ const Navbar = () => {
 						width={80}
 						height={'auto'}
 					/>
-					<Typography>Teams</Typography>
+					<Typography>
+						<Link to='/stats/teams'>Teams</Link>
+					</Typography>
 					<Typography>Players</Typography>
 				</Box>
 			</Box>
