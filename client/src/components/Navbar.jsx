@@ -3,6 +3,7 @@ import { Container, Box, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 // Images
 import NBALogo from '../../public/images/svgs/NBALogo'
+import nbaLogoSrc from '../../public/images/svgs/logo-nba.svg'
 
 const Navbar = () => {
 	const theme = useTheme()
@@ -28,7 +29,7 @@ const Navbar = () => {
 						height: '100%',
 						display: 'flex',
 						alignItems: 'center',
-						gap: '8px',
+						gap: '12px',
 					}}>
 					<NBALogo
 						width={80}

@@ -1,58 +1,38 @@
-import { Container, Grid, Typography } from '@mui/material'
+import { Container, Grid, Box, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
+import backgroundKawhi from '../../public/images/kawhi-leonard.jpg'
 
 const HomePage = () => {
 	const theme = useTheme()
 	const { league } = theme.palette
 
 	return (
-		<Container
-			sx={{ backgroundColor: league.nbaBlue, height: '100vh' }}
-			maxWidth='100%'>
+		<main
+			style={{
+				backgroundColor: league.nbaBackground,
+				height: 'calc(100vh - 100px)',
+				width: '100vw',
+				padding: '0',
+			}}>
 			<Grid
 				container
-				spacing={3}
-				columns={12}
-				direction='row'
-				sx={{ backgroundColor: league.nbaBlue }}>
-				<Grid
-					item
-					xs={3}>
-					<Typography
-						variant='h5'
-						sx={{ color: league.nbaWhite, backgroundColor: league.nbaRed }}>
-						NBA Stats App
-					</Typography>
-				</Grid>
-				<Grid
-					item
-					xs={3}>
-					<Typography
-						variant='h5'
-						sx={{ color: league.nbaBlack, backgroundColor: league.nbaRed }}>
-						NBA Stats App
-					</Typography>
-				</Grid>
-				<Grid
-					item
-					xs={3}>
-					<Typography
-						variant='h5'
-						sx={{ color: league.nbaWhite, backgroundColor: league.nbaRed }}>
-						NBA Stats App
-					</Typography>
-				</Grid>
-				<Grid
-					item
-					xs={3}>
-					<Typography
-						variant='h5'
-						sx={{ color: league.nbaBlack, backgroundColor: league.nbaRed }}>
-						NBA Stats App
-					</Typography>
-				</Grid>
+				columns={6}
+				height='100%'>
+				<Box
+					sx={{
+						width: '100vw',
+						height: '50%',
+						backgroundImage: 'url(../../public/images/kawhi-leonard.jpg)',
+						backgroundPosition: 'center',
+						backgroundSize: 'cover',
+						color: league.nbaWhite,
+					}}
+					backgroundColor={league.nbaRed}>
+					<Typography variant='h3'>Team Stats</Typography>
+				</Box>
+				<Box></Box>
 			</Grid>
-		</Container>
+		</main>
 	)
 }
 

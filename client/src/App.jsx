@@ -1,13 +1,13 @@
 import { CssBaseline } from '@mui/material'
-// import HomePage from './screens/HomePage'
 import Navbar from './components/Navbar'
+import HomePage from './screens/HomePage'
 
 function App() {
 	return (
 		<>
 			<CssBaseline />
 			<Navbar />
-			{/* <HomePage /> */}
+			<HomePage />
 		</>
 	)
 }

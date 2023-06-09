@@ -10,6 +10,7 @@ import connectDB from './config/database.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 // Files
 import playersRoutes from './routes/playersRoutes.js'
+import teamsRoutes from './routes/teamsRoutes.js'
 // Enable .env
 dotenv.config()
 // Connect to Mongo
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
 // Routes
 app.use('/stats/players', playersRoutes)
+app.use('/stats/teams', teamsRoutes)
 // index
 app.get('/', (req, res) => res.send('NBA Stats App'))
 
