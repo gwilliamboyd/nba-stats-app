@@ -26,6 +26,7 @@ import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import { useTheme } from '@emotion/react'
 import fullTeamNames from '../hooks/fullTeamNames'
+import HeadCellsTeams from './tables/HeadCellsTeams'
 
 function descendingComparator(a, b, orderBy) {
 	if (b[orderBy] < a[orderBy]) {
@@ -53,218 +54,6 @@ function stableSort(array, comparator) {
 		return a[1] - b[1]
 	})
 	return stabilizedThis.map(el => el[0])
-}
-
-const headCells = [
-	{
-		id: 'team',
-		numeric: false,
-		disablePadding: true,
-		label: 'Team',
-	},
-	{
-		id: 'g',
-		numeric: true,
-		disablePadding: false,
-		label: 'GP',
-	},
-	{
-		id: 'mp',
-		numeric: true,
-		disablePadding: false,
-		label: 'MP',
-	},
-	{
-		id: 'fg',
-		numeric: true,
-		disablePadding: false,
-		label: 'FG',
-	},
-	{
-		id: 'fga',
-		numeric: true,
-		disablePadding: false,
-		label: 'FGA',
-	},
-	{
-		id: 'fgPer',
-		numeric: true,
-		disablePadding: false,
-		label: 'FG%',
-	},
-	{
-		id: '$3p',
-		numeric: true,
-		disablePadding: false,
-		label: '3P',
-	},
-	{
-		id: '$3pA',
-		numeric: true,
-		disablePadding: false,
-		label: '3PA',
-	},
-	{
-		id: '$3pPer',
-		numeric: true,
-		disablePadding: false,
-		label: '3P%',
-	},
-	{
-		id: '$2p',
-		numeric: true,
-		disablePadding: false,
-		label: '2P',
-	},
-	{
-		id: '$3pA',
-		numeric: true,
-		disablePadding: false,
-		label: '3PA',
-	},
-	{
-		id: '$2pPer',
-		numeric: true,
-		disablePadding: false,
-		label: '2P%',
-	},
-	{
-		id: 'ft',
-		numeric: true,
-		disablePadding: false,
-		label: 'FT',
-	},
-	{
-		id: 'fta',
-		numeric: true,
-		disablePadding: false,
-		label: 'FTA',
-	},
-	{
-		id: 'ftPer',
-		numeric: true,
-		disablePadding: false,
-		label: 'FT%',
-	},
-	{
-		id: 'orb',
-		numeric: true,
-		disablePadding: false,
-		label: 'ORB',
-	},
-	{
-		id: 'drb',
-		numeric: true,
-		disablePadding: false,
-		label: 'DRB',
-	},
-	{
-		id: 'trb',
-		numeric: true,
-		disablePadding: false,
-		label: 'TRB',
-	},
-	{
-		id: 'ast',
-		numeric: true,
-		disablePadding: false,
-		label: 'AST',
-	},
-	{
-		id: 'stl',
-		numeric: true,
-		disablePadding: false,
-		label: 'STL',
-	},
-	{
-		id: 'blk',
-		numeric: true,
-		disablePadding: false,
-		label: 'BLK',
-	},
-	{
-		id: 'tov',
-		numeric: true,
-		disablePadding: false,
-		label: 'TOV',
-	},
-	{
-		id: 'pf',
-		numeric: true,
-		disablePadding: false,
-		label: 'PF',
-	},
-	{
-		id: 'pts',
-		numeric: true,
-		disablePadding: false,
-		label: 'PTS',
-	},
-]
-
-function EnhancedTableHead(props) {
-	const {
-		onSelectAllClick,
-		order,
-		orderBy,
-		numSelected,
-		rowCount,
-		onRequestSort,
-	} = props
-	const createSortHandler = property => event => {
-		onRequestSort(event, property)
-	}
-
-	return (
-		<TableHead>
-			<TableRow>
-				<TableCell padding='checkbox'>
-					<Checkbox
-						sx={{ color: '#FFF' }}
-						indeterminate={numSelected > 0 && numSelected < rowCount}
-						checked={rowCount > 0 && numSelected === rowCount}
-						onChange={onSelectAllClick}
-						inputProps={{
-							'aria-label': 'select all desserts',
-						}}
-					/>
-				</TableCell>
-				{headCells.map(headCell => (
-					<TableCell
-						key={headCell.id}
-						align={headCell.numeric ? 'right' : 'left'}
-						padding={headCell.disablePadding ? 'none' : 'normal'}
-						sortDirection={orderBy === headCell.id ? order : false}
-						sx={{ color: '#B52532', p: '2px' }}>
-						<TableSortLabel
-							active={orderBy === headCell.id}
-							direction={orderBy === headCell.id ? order : 'asc'}
-							hideSortIcon
-							onClick={createSortHandler(headCell.id)}
-							sx={{ width: '100%' }}>
-							{headCell.label}
-							{orderBy === headCell.id ? (
-								<Box
-									component='span'
-									sx={visuallyHidden}>
-									{order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-								</Box>
-							) : null}
-						</TableSortLabel>
-					</TableCell>
-				))}
-			</TableRow>
-		</TableHead>
-	)
-}
-
-EnhancedTableHead.propTypes = {
-	numSelected: PropTypes.number.isRequired,
-	onRequestSort: PropTypes.func.isRequired,
-	onSelectAllClick: PropTypes.func.isRequired,
-	order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-	orderBy: PropTypes.string.isRequired,
-	rowCount: PropTypes.number.isRequired,
 }
 
 export default function EnhancedTable({ teamsPerGameStatistics }) {
@@ -328,12 +117,6 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 
 	const isSelected = team => selected.indexOf(team) !== -1
 
-	// Avoid a layout jump when reaching the last page with empty rows.
-	/* const emptyRows =
-		page > 0
-			? Math.max(0, (1 + page) * rowsPerPage - teamsPerGameStatistics.length)
-			: 0 */
-
 	teamsPerGameStatistics = React.useMemo(
 		() =>
 			stableSort(teamsPerGameStatistics, getComparator(order, orderBy)).slice(
@@ -360,7 +143,7 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 						sx={{ minWidth: 750 }}
 						aria-labelledby='tableTitle'
 						size={dense ? 'small' : 'small'}>
-						<EnhancedTableHead
+						<HeadCellsTeams
 							numSelected={selected.length}
 							order={order}
 							orderBy={orderBy}
