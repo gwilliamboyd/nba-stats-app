@@ -32,9 +32,14 @@ const Navbar = () => {
 						alignItems: 'center',
 						gap: '12px',
 					}}>
-					<NBALogo
+					{/* <NBALogo
 						width={80}
 						height='auto'
+					/> */}
+					<img
+						src={nbaLogoSrc}
+						width={120}
+						alt='NBA Logo'
 					/>
 					<Typography variant='h6'>
 						<Link to='/stats/teams'>Teams</Link>

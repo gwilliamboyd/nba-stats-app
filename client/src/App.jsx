@@ -6,7 +6,7 @@ import TeamsPage from './screens/TeamsPage'
 
 function App() {
 	return (
-		<>
+		<main>
 			<BrowserRouter>
 				<CssBaseline />
 				<Navbar />
@@ -21,7 +21,7 @@ function App() {
 					/>
 				</Routes>
 			</BrowserRouter>
-		</>
+		</main>
 	)
 }
 

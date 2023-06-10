@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles'
 
 const theme = createTheme({
 	typography: {
-		fontFamily: '"Open Sans", sans-serif',
+		fontFamily: ['Open Sans', 'sans-serif'].join(','),
 		fontSize: 16,
 		fontWeightLight: 300,
 		fontWeightRegular: 400,
