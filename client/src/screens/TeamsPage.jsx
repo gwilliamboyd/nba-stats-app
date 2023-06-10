@@ -1,7 +1,10 @@
-import { useEffect } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Box, Typography, ButtonGroup, Button } from '@mui/material'
 import { setTeamsPerGameStats } from '../slices/teamsPerGameSlice'
+import { setTeamsTotalStats } from '../slices/teamsTotalSlice'
+import { setTeamsAdvancedStats } from '../slices/teamsAdvancedSlice'
 import { useTheme } from '@mui/material/styles'
 import TeamsStatsTable from '../components/TeamsStatsTable'
 
@@ -12,21 +15,78 @@ const TeamsPage = () => {
 	// state
 	const dispatch = useDispatch()
 	const teamsPerGameStats = useSelector(state => state.teamsPerGameStats)
+	const teamsTotalStats = useSelector(state => state.teamsTotalStats)
+	const teamsAdvancedStats = useSelector(state => state.teamsAdvancedStats)
+
+	const [statsType, setStatsType] = useState('perGame')
 
 	const getTeamsPerGame = async () => {
-		const response = await fetch(`http://localhost:5000/stats/teams`, {
+		const response = await fetch(`http://localhost:5000/stats/teams/per-game`, {
 			method: 'GET',
 		})
 		const data = await response.json()
 		dispatch(setTeamsPerGameStats({ teamsPerGameStats: data }))
+		console.log(data)
+	}
+	const getTeamsTotal = async () => {
+		const response = await fetch(`http://localhost:5000/stats/teams/total`, {
+			method: 'GET',
+		})
+		const data = await response.json()
+		dispatch(setTeamsTotalStats({ teamsTotalStats: data }))
+		console.log(data)
+	}
+	const getTeamsAdvanced = async () => {
+		const response = await fetch(`http://localhost:5000/stats/teams/advanced`, {
+			method: 'GET',
+		})
+		const data = await response.json()
+		dispatch(setTeamsAdvancedStats({ teamsAdvancedStats: data }))
+		console.log(data)
+	}
+
+	/* const getStatsType = statsType => {
+		if (statsType === 'perGame') {
+			getTeamsPerGame()
+			console.log('per game')
+		}
+		if (statsType === 'total') {
+			getTeamsTotal()
+			console.log('total')
+		}
+		if (statsType === 'advanced') {
+			getTeamsAdvanced()
+			console.log('advanced')
+		}
+	} */
+
+	const getStatsType = statsType => {
+		switch (statsType) {
+			case 'perGame':
+				getTeamsPerGame()
+				console.log('Per Game')
+				break
+			case 'total':
+				getTeamsTotal()
+				console.log('Total')
+				break
+			case 'advanced':
+				getTeamsAdvanced()
+				console.log('Advanced')
+				break
+		}
 	}
 
 	useEffect(() => {
-		getTeamsPerGame()
-	}, [])
+		getStatsType(statsType)
+	}, [statsType])
 
 	const teamsPerGameStatistics = Object.values(teamsPerGameStats)[0]
+	const teamsTotalStatistics = Object.values(teamsTotalStats)[0]
+	const teamsAdvancedStatistics = Object.values(teamsAdvancedStats)[0]
 	console.log(teamsPerGameStatistics)
+	// console.log(teamsTotalStatistics)
+	// console.log(teamsAdvancedStatistics)
 
 	return (
 		<Container
@@ -66,16 +126,24 @@ const TeamsPage = () => {
 					aria-label='text button group'
 					size='large'
 					sx={{ marginRight: '5rem' }}>
-					<Button>Per-Game</Button>
-					<Button>Totals</Button>
-					<Button>Advanced</Button>
+					<Button onClick={() => setStatsType('perGame')}>Per-Game</Button>
+					<Button onClick={() => setStatsType('total')}>Totals</Button>
+					<Button onClick={() => setStatsType('advanced')}>Advanced</Button>
 				</ButtonGroup>
 			</Box>
 
-			<TeamsStatsTable teamsPerGameStatistics={teamsPerGameStatistics} />
-			{/* {teamsPerGameStatistics.map(({_id,id,team,g,mp,fg,fga,fgPer,$3p,
-		$3pA,$3pPer,$2p,$2pA,$2pPer,ft,fta,
-		ftPer,orb,drb,trb,ast,stl,blk,tov,pf}) => (<TeamStatsDisplay />))} */}
+			<TeamsStatsTable
+				// statistics={teamsPerGameStatistics}
+				statistics={
+					statsType === 'perGame'
+						? teamsPerGameStatistics
+						: statsType === 'total'
+						? teamsTotalStatistics
+						: statsType === 'advanced'
+						? teamsAdvancedStatistics
+						: null
+				}
+			/>
 		</Container>
 	)
 }

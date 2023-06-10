@@ -1,8 +1,14 @@
 import express from 'express'
-import { getTeamsPerGame } from '../controllers/teamsController.js'
+import {
+	getTeamsPerGame,
+	getTeamsTotal,
+	getTeamsAdvanced,
+} from '../controllers/teamsController.js'
 
 const router = express.Router()
 
-router.get('/', getTeamsPerGame)
+router.get('/per-game', getTeamsPerGame)
+router.get('/total', getTeamsTotal)
+router.get('/advanced', getTeamsAdvanced)
 
 export default router

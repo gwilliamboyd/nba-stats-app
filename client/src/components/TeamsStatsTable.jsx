@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react'
-import PropTypes from 'prop-types'
-import { alpha } from '@mui/material/styles'
 import {
 	Box,
 	Table,
@@ -21,43 +19,39 @@ import {
 	FormControlLabel,
 	Switch,
 } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete'
-import FilterListIcon from '@mui/icons-material/FilterList'
-import { visuallyHidden } from '@mui/utils'
 import { useTheme } from '@emotion/react'
 import fullTeamNames from '../hooks/fullTeamNames'
 import HeadCellsTeams from './tables/HeadCellsTeams'
 import { teamsPerGameHeadCells } from '../data/headCells/teamsHeadCells'
 
-function descendingComparator(a, b, orderBy) {
-	if (b[orderBy] < a[orderBy]) {
-		return -1
-	}
-	if (b[orderBy] > a[orderBy]) {
-		return 1
-	}
-	return 0
-}
-
-function getComparator(order, orderBy) {
-	return order === 'desc'
-		? (a, b) => descendingComparator(a, b, orderBy)
-		: (a, b) => -descendingComparator(a, b, orderBy)
-}
-
-function stableSort(array, comparator) {
-	const stabilizedThis = array.map((el, index) => [el, index])
-	stabilizedThis.sort((a, b) => {
-		const order = comparator(a[0], b[0])
-		if (order !== 0) {
-			return order
+export default function EnhancedTable({ statistics }) {
+	function descendingComparator(a, b, orderBy) {
+		if (b[orderBy] < a[orderBy]) {
+			return -1
 		}
-		return a[1] - b[1]
-	})
-	return stabilizedThis.map(el => el[0])
-}
+		if (b[orderBy] > a[orderBy]) {
+			return 1
+		}
+		return 0
+	}
 
-export default function EnhancedTable({ teamsPerGameStatistics }) {
+	function getComparator(order, orderBy) {
+		return order === 'desc'
+			? (a, b) => descendingComparator(a, b, orderBy)
+			: (a, b) => -descendingComparator(a, b, orderBy)
+	}
+
+	function stableSort(array, comparator) {
+		const stabilizedThis = array?.map((el, index) => [el, index])
+		stabilizedThis.sort((a, b) => {
+			const order = comparator(a[0], b[0])
+			if (order !== 0) {
+				return order
+			}
+			return a[1] - b[1]
+		})
+		return stabilizedThis.map(el => el[0])
+	}
 	const theme = useTheme()
 	const { league } = theme.palette
 
@@ -72,15 +66,6 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 		const isAsc = orderBy === property && order === 'asc'
 		setOrder(isAsc ? 'desc' : 'asc')
 		setOrderBy(property)
-	}
-
-	const handleSelectAllClick = event => {
-		if (event.target.checked) {
-			const newSelected = teamsPerGameStatistics.map(n => n.team)
-			setSelected(newSelected)
-			return
-		}
-		setSelected([])
 	}
 
 	const handleClick = (event, team) => {
@@ -103,28 +88,15 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 		setSelected(newSelected)
 	}
 
-	const handleChangePage = (event, newPage) => {
-		setPage(newPage)
-	}
-
-	const handleChangeRowsPerPage = event => {
-		setRowsPerPage(parseInt(event.target.value, 10))
-		setPage(0)
-	}
-
-	const handleChangeDense = event => {
-		setDense(event.target.checked)
-	}
-
 	const isSelected = team => selected.indexOf(team) !== -1
 
-	teamsPerGameStatistics = React.useMemo(
+	statistics = React.useMemo(
 		() =>
-			stableSort(teamsPerGameStatistics, getComparator(order, orderBy)).slice(
+			stableSort(statistics, getComparator(order, orderBy)).slice(
 				page * rowsPerPage,
 				page * rowsPerPage + rowsPerPage
 			),
-		[order, orderBy, page, rowsPerPage, teamsPerGameStatistics]
+		[order, orderBy, page, rowsPerPage, statistics]
 	)
 
 	return (
@@ -145,16 +117,13 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 						aria-labelledby='tableTitle'
 						size={dense ? 'small' : 'small'}>
 						<HeadCellsTeams
-							numSelected={selected.length}
 							headCells={teamsPerGameHeadCells}
 							order={order}
 							orderBy={orderBy}
-							onSelectAllClick={handleSelectAllClick}
 							onRequestSort={handleRequestSort}
-							rowCount={teamsPerGameStatistics.length}
 						/>
 						<TableBody>
-							{teamsPerGameStatistics.map((row, index) => {
+							{statistics.map((row, index) => {
 								const isItemSelected = isSelected(row.team)
 								const labelId = `enhanced-table-checkbox-${index}`
 
@@ -309,25 +278,7 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 						</TableBody>
 					</Table>
 				</TableContainer>
-				<TablePagination
-					rowsPerPageOptions={[5, 10, 25]}
-					component='div'
-					count={teamsPerGameStatistics.length}
-					rowsPerPage={rowsPerPage}
-					page={page}
-					onPageChange={handleChangePage}
-					onRowsPerPageChange={handleChangeRowsPerPage}
-				/>
 			</Paper>
-			<FormControlLabel
-				control={
-					<Switch
-						checked={dense}
-						onChange={handleChangeDense}
-					/>
-				}
-				label='Dense padding'
-			/>
 		</Box>
 	)
 }
