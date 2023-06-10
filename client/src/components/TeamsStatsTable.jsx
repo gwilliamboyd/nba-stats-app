@@ -27,6 +27,7 @@ import { visuallyHidden } from '@mui/utils'
 import { useTheme } from '@emotion/react'
 import fullTeamNames from '../hooks/fullTeamNames'
 import HeadCellsTeams from './tables/HeadCellsTeams'
+import { teamsPerGameHeadCells } from '../data/headCells/teamsHeadCells'
 
 function descendingComparator(a, b, orderBy) {
 	if (b[orderBy] < a[orderBy]) {
@@ -145,6 +146,7 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 						size={dense ? 'small' : 'small'}>
 						<HeadCellsTeams
 							numSelected={selected.length}
+							headCells={teamsPerGameHeadCells}
 							order={order}
 							orderBy={orderBy}
 							onSelectAllClick={handleSelectAllClick}

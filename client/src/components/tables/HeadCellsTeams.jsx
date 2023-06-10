@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import PropTypes from 'prop-types'
 import {
 	Box,
@@ -16,8 +17,9 @@ const HeadCellsTeams = ({
 	numSelected,
 	rowCount,
 	onRequestSort,
+	headCells,
 }) => {
-	const headCells = [
+	/* const headCells = [
 		{
 			id: 'team',
 			numeric: false,
@@ -162,7 +164,7 @@ const HeadCellsTeams = ({
 			disablePadding: false,
 			label: 'PTS',
 		},
-	]
+	] */
 
 	const createSortHandler = property => event => {
 		onRequestSort(event, property)
