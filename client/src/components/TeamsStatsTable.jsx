@@ -25,7 +25,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import { useTheme } from '@emotion/react'
-import HeadCellsTeams from './tables/HeadCellsTeams'
+import fullTeamNames from '../hooks/fullTeamNames'
 
 function descendingComparator(a, b, orderBy) {
 	if (b[orderBy] < a[orderBy]) {
@@ -55,7 +55,7 @@ function stableSort(array, comparator) {
 	return stabilizedThis.map(el => el[0])
 }
 
-/* const headCells = [
+const headCells = [
 	{
 		id: 'team',
 		numeric: false,
@@ -211,7 +211,6 @@ function EnhancedTableHead(props) {
 		rowCount,
 		onRequestSort,
 	} = props
-
 	const createSortHandler = property => event => {
 		onRequestSort(event, property)
 	}
@@ -266,9 +265,9 @@ EnhancedTableHead.propTypes = {
 	order: PropTypes.oneOf(['asc', 'desc']).isRequired,
 	orderBy: PropTypes.string.isRequired,
 	rowCount: PropTypes.number.isRequired,
-} */
+}
 
-/* function EnhancedTableToolbar(props) {
+function EnhancedTableToolbar(props) {
 	const { numSelected } = props
 
 	return (
@@ -321,7 +320,7 @@ EnhancedTableHead.propTypes = {
 
 EnhancedTableToolbar.propTypes = {
 	numSelected: PropTypes.number.isRequired,
-} */
+}
 
 export default function EnhancedTable({ teamsPerGameStatistics }) {
 	const theme = useTheme()
@@ -399,72 +398,6 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 		[order, orderBy, page, rowsPerPage, teamsPerGameStatistics]
 	)
 
-	const fullTeamNames = teamName => {
-		// const expression = teamName
-		switch (teamName) {
-			case 'atl':
-				return 'Atlanta Hawks'
-			case 'bos':
-				return 'Boston Celtics'
-			case 'bkn':
-				return 'Brooklyn Nets'
-			case 'cha':
-				return 'Charlotte Hornets'
-			case 'chi':
-				return 'Chicago Bulls'
-			case 'cle':
-				return 'Cleveland Cavaliers'
-			case 'dal':
-				return 'Dallas Mavericks'
-			case 'den':
-				return 'Denver Nuggets'
-			case 'det':
-				return 'Detroit Pistons'
-			case 'gsw':
-				return 'Golden State Warriors'
-			case 'hou':
-				return 'Houston Rockets'
-			case 'ind':
-				return 'Indiana Pacers'
-			case 'lac':
-				return 'Los Angeles Clippers'
-			case 'lak':
-				return 'Los Angeles Lakers'
-			case 'mem':
-				return 'Memphis Grizzlies'
-			case 'mia':
-				return 'Miami Heat'
-			case 'mil':
-				return 'Milwaukee Bucks'
-			case 'min':
-				return 'Minnesota Timberwolves'
-			case 'nop':
-				return 'New Orleans Pelicans'
-			case 'nyk':
-				return 'New York Knicks'
-			case 'okc':
-				return 'Oklahoma City Thunder'
-			case 'orl':
-				return 'Orlando Magic'
-			case 'phi':
-				return 'Philadelphia 76ers'
-			case 'phx':
-				return 'Phoenix Suns'
-			case 'por':
-				return 'Portland Trail Blazers'
-			case 'sac':
-				return 'Sacramento Kings'
-			case 'sas':
-				return 'San Antonio Spurs'
-			case 'tor':
-				return 'Toronto Raptors'
-			case 'uta':
-				return 'Utah Jazz'
-			case 'wsh':
-				return 'Washington Wizards'
-		}
-	}
-
 	return (
 		<Box
 			sx={{
@@ -474,7 +407,7 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 				padding: '0',
 			}}>
 			<Paper sx={{ width: '100%', mb: 2, border: '1px solid white' }}>
-				{/* <EnhancedTableToolbar numSelected={selected.length} /> */}
+				<EnhancedTableToolbar numSelected={selected.length} />
 				<TableContainer
 					sx={{
 						backgroundColor: league.nbaBackground,
@@ -483,7 +416,7 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 						sx={{ minWidth: 750 }}
 						aria-labelledby='tableTitle'
 						size={dense ? 'small' : 'small'}>
-						<HeadCellsTeams
+						<EnhancedTableHead
 							numSelected={selected.length}
 							order={order}
 							orderBy={orderBy}
