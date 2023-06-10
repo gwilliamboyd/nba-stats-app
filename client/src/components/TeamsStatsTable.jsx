@@ -267,61 +267,6 @@ EnhancedTableHead.propTypes = {
 	rowCount: PropTypes.number.isRequired,
 }
 
-function EnhancedTableToolbar(props) {
-	const { numSelected } = props
-
-	return (
-		<Toolbar
-			sx={{
-				pl: { sm: 2 },
-				pr: { xs: 1, sm: 1 },
-				...(numSelected > 0 && {
-					bgcolor: theme =>
-						alpha(
-							theme.palette.primary.main,
-							theme.palette.action.activatedOpacity
-						),
-				}),
-			}}>
-			{numSelected > 0 ? (
-				<Typography
-					sx={{ flex: '1 1 100%' }}
-					color='inherit'
-					variant='subtitle1'
-					component='div'>
-					{numSelected} selected
-				</Typography>
-			) : (
-				<Typography
-					sx={{ flex: '1 1 100%' }}
-					variant='h6'
-					id='tableTitle'
-					component='div'>
-					Team Stats
-				</Typography>
-			)}
-
-			{numSelected > 0 ? (
-				<Tooltip title='Delete'>
-					<IconButton>
-						<DeleteIcon />
-					</IconButton>
-				</Tooltip>
-			) : (
-				<Tooltip title='Filter list'>
-					<IconButton>
-						<FilterListIcon />
-					</IconButton>
-				</Tooltip>
-			)}
-		</Toolbar>
-	)
-}
-
-EnhancedTableToolbar.propTypes = {
-	numSelected: PropTypes.number.isRequired,
-}
-
 export default function EnhancedTable({ teamsPerGameStatistics }) {
 	const theme = useTheme()
 	const { league } = theme.palette
@@ -384,12 +329,12 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 	const isSelected = team => selected.indexOf(team) !== -1
 
 	// Avoid a layout jump when reaching the last page with empty rows.
-	const emptyRows =
+	/* const emptyRows =
 		page > 0
 			? Math.max(0, (1 + page) * rowsPerPage - teamsPerGameStatistics.length)
-			: 0
+			: 0 */
 
-	const visibleRows = React.useMemo(
+	teamsPerGameStatistics = React.useMemo(
 		() =>
 			stableSort(teamsPerGameStatistics, getComparator(order, orderBy)).slice(
 				page * rowsPerPage,
@@ -407,7 +352,6 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 				padding: '0',
 			}}>
 			<Paper sx={{ width: '100%', mb: 2, border: '1px solid white' }}>
-				<EnhancedTableToolbar numSelected={selected.length} />
 				<TableContainer
 					sx={{
 						backgroundColor: league.nbaBackground,
@@ -425,7 +369,7 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 							rowCount={teamsPerGameStatistics.length}
 						/>
 						<TableBody>
-							{visibleRows.map((row, index) => {
+							{teamsPerGameStatistics.map((row, index) => {
 								const isItemSelected = isSelected(row.team)
 								const labelId = `enhanced-table-checkbox-${index}`
 
@@ -577,14 +521,6 @@ export default function EnhancedTable({ teamsPerGameStatistics }) {
 									</TableRow>
 								)
 							})}
-							{emptyRows > 0 && (
-								<TableRow
-									style={{
-										height: (dense ? 33 : 53) * emptyRows,
-									}}>
-									<TableCell colSpan={6} />
-								</TableRow>
-							)}
 						</TableBody>
 					</Table>
 				</TableContainer>
