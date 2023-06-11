@@ -104,6 +104,7 @@ export default function EnhancedTable({ loading, statsType, statistics }) {
 				<TableContainer
 					sx={{
 						backgroundColor: '#18264a',
+						p: '0 8px',
 					}}>
 					<Table
 						sx={{ minWidth: 750 }}
@@ -433,7 +434,7 @@ export default function EnhancedTable({ loading, statsType, statistics }) {
 												<TableCell
 													sx={{
 														color: league.nbaWhite,
-														padding: '2px 4px 2px 2px',
+														padding: '2px',
 													}}
 													align='right'>
 													{row.pts}
