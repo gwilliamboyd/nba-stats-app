@@ -29,10 +29,14 @@ export const getTeamsAdvanced = async (req, res) => {
 
 export const getIndivTeamStats = async (req, res) => {
 	try {
-		const { team } = req.params
-		const teamIndivPerGame = await TeamsPerGame.findOne(team)
-		const teamIndivTotal = await TeamsTotal.findOne(team)
-		const teamIndivAdvanced = await TeamsAdvanced.findOne(team)
+		const team = 'lac'
+		const teamIndivPerGame = await TeamsPerGame.find({
+			team: `${team}`,
+		})
+		const teamIndivTotal = await TeamsTotal.find({ team: `${team}` })
+		const teamIndivAdvanced = await TeamsAdvanced.find({
+			team: `${team}`,
+		})
 		const teamIndivStats = [teamIndivPerGame, teamIndivTotal, teamIndivAdvanced]
 		res.status(200).json(teamIndivStats)
 	} catch (err) {

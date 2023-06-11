@@ -97,7 +97,7 @@ export default function EnhancedTable({ loading, statsType, statistics }) {
 	return (
 		<Box
 			sx={{
-				width: '91%',
+				width: '82%',
 				backgroundColor: league.nbaBackground,
 			}}>
 			<Paper sx={{ width: '100%', mb: 2, border: '1px solid white' }}>
