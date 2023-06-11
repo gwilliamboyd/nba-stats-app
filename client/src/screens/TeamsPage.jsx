@@ -31,6 +31,7 @@ const TeamsPage = () => {
 	const teamsAdvancedStats = useSelector(state => state.teamsAdvancedStats)
 
 	const [statsType, setStatsType] = useState('perGame')
+	const [loading, setLoading] = useState(true)
 
 	const getTeamsPerGame = async () => {
 		const response = await fetch(`http://localhost:5000/stats/teams/per-game`, {
@@ -38,6 +39,7 @@ const TeamsPage = () => {
 		})
 		const data = await response.json()
 		dispatch(setTeamsPerGameStats({ teamsPerGameStats: data }))
+		setLoading(false)
 	}
 	const getTeamsTotal = async () => {
 		const response = await fetch(`http://localhost:5000/stats/teams/total`, {
@@ -45,6 +47,7 @@ const TeamsPage = () => {
 		})
 		const data = await response.json()
 		dispatch(setTeamsTotalStats({ teamsTotalStats: data }))
+		setLoading(false)
 	}
 	const getTeamsAdvanced = async () => {
 		const response = await fetch(`http://localhost:5000/stats/teams/advanced`, {
@@ -52,6 +55,7 @@ const TeamsPage = () => {
 		})
 		const data = await response.json()
 		dispatch(setTeamsAdvancedStats({ teamsAdvancedStats: data }))
+		setLoading(false)
 	}
 
 	const getStatsType = statsType => {
@@ -121,13 +125,36 @@ const TeamsPage = () => {
 						aria-label='text button group'
 						size='large'
 						sx={{ marginRight: '5rem' }}>
-						<Button onClick={() => setStatsType('perGame')}>Per-Game</Button>
-						<Button onClick={() => setStatsType('total')}>Totals</Button>
-						<Button onClick={() => setStatsType('advanced')}>Advanced</Button>
+						<Button
+							onClick={() => setStatsType('perGame')}
+							sx={{
+								color: league.nbaWhite,
+								'&:hover': { color: league.nbaRed },
+							}}>
+							Per-Game
+						</Button>
+						<Button
+							onClick={() => setStatsType('total')}
+							sx={{
+								color: league.nbaWhite,
+								'&:hover': { color: league.nbaRed },
+							}}>
+							Totals
+						</Button>
+						<Button
+							onClick={() => setStatsType('advanced')}
+							sx={{
+								color: league.nbaWhite,
+								'&:hover': { color: league.nbaRed },
+							}}>
+							Advanced
+						</Button>
 					</ButtonGroup>
 				</Box>
 				<Suspense fallback={<LoadingScreenBlank />}>
 					<TeamsStatsTable
+						loading={loading}
+						statsType={statsType}
 						statistics={
 							statsType === 'perGame'
 								? teamsPerGameStatistics

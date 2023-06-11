@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import React from 'react'
@@ -9,13 +10,17 @@ import {
 	TableContainer,
 	TableRow,
 	Paper,
+	Skeleton,
 } from '@mui/material'
 import { useTheme } from '@emotion/react'
 import fullTeamNames from '../hooks/fullTeamNames'
 import HeadCellsTeams from './tables/HeadCellsTeams'
-import { teamsPerGameHeadCells } from '../data/headCells/teamsHeadCells'
+import {
+	teamsAdvancedHeadCells,
+	teamsPerGameHeadCells,
+} from '../data/headCells/teamsHeadCells'
 
-export default function EnhancedTable({ statistics }) {
+export default function EnhancedTable({ loading, statsType, statistics }) {
 	function descendingComparator(a, b, orderBy) {
 		if (b[orderBy] < a[orderBy]) {
 			return -1
@@ -98,171 +103,336 @@ export default function EnhancedTable({ statistics }) {
 			<Paper sx={{ width: '100%', mb: 2, border: '1px solid white' }}>
 				<TableContainer
 					sx={{
-						backgroundColor: league.nbaBlue,
+						backgroundColor: '#18264a',
 					}}>
 					<Table
 						sx={{ minWidth: 750 }}
 						aria-labelledby='tableTitle'
 						size='small'>
 						<HeadCellsTeams
-							headCells={teamsPerGameHeadCells}
+							headCells={
+								statsType === 'advanced'
+									? teamsAdvancedHeadCells
+									: teamsPerGameHeadCells
+							}
 							order={order}
 							orderBy={orderBy}
 							onRequestSort={handleRequestSort}
 						/>
 						<TableBody>
-							{statistics.map((row, index) => {
-								const isItemSelected = isSelected(row.team)
-								const labelId = `enhanced-table-checkbox-${index}`
+							{statsType === 'advanced'
+								? statistics.map((row, index) => {
+										const isItemSelected = isSelected(row.team)
+										const labelId = `enhanced-table-checkbox-${index}`
 
-								return (
-									<TableRow
-										hover
-										onClick={event => handleClick(event, row.team)}
-										aria-checked={isItemSelected}
-										tabIndex={-1}
-										key={row.team}
-										selected={isItemSelected}
-										sx={{ cursor: 'pointer' }}>
-										<TableCell sx={{ padding: '4px' }}>
-											<img
-												src={`../../public/images/svgs/team-logos/${row.team}.svg`}
-												alt={`${row.team} logo`}
-												width={30}
-											/>
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											component='th'
-											id={labelId}
-											scope='row'
-											padding='none'>
-											{fullTeamNames(row.team)}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.g}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.mp}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.fg}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.fga}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.fgPer}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.$3p}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.$3pA}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.$3pPer}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.$2p}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.$2pA}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.$2pPer}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.ft}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.fta}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.ftPer}
-										</TableCell>
-										<TableCell
-											sx={{
-												color: league.nbaWhite,
-												padding: '2px',
-											}}
-											align='right'>
-											{row.orb}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.drb}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.trb}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.ast}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.stl}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.blk}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.tov}
-										</TableCell>
-										<TableCell
-											sx={{ color: league.nbaWhite, padding: '2px' }}
-											align='right'>
-											{row.pf}
-										</TableCell>
-										<TableCell
-											sx={{
-												color: league.nbaWhite,
-												padding: '2px 4px 2px 2px',
-											}}
-											align='right'>
-											{row.pts}
-										</TableCell>
-									</TableRow>
-								)
-							})}
+										return (
+											<TableRow
+												hover
+												onClick={event => handleClick(event, row.team)}
+												aria-checked={isItemSelected}
+												tabIndex={-1}
+												key={row.team}
+												selected={isItemSelected}
+												sx={{ cursor: 'pointer' }}>
+												{loading ? (
+													<Skeleton variant='rectangular' />
+												) : (
+													<TableCell sx={{ padding: '4px' }}>
+														<img
+															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+															alt={`${row.team} logo`}
+															width={30}
+														/>
+													</TableCell>
+												)}
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													component='th'
+													id={labelId}
+													scope='row'
+													padding='none'>
+													{fullTeamNames(row.team)}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.age}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.w}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.l}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.pw}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.pl}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.mov}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.sos}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.srs}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.ortg}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.drtg}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.nrtg}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.pace}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.ftr}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.$3par}
+												</TableCell>
+												<TableCell
+													sx={{
+														color: league.nbaWhite,
+														padding: '2px',
+													}}
+													align='right'>
+													{row.tsPer}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.offeFGPer}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.offtovPer}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.offorbPer}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.offftFGA}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.dffeFGPer}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.dfftovPer}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.dffdrbPer}
+												</TableCell>
+												<TableCell
+													sx={{
+														color: league.nbaWhite,
+														padding: '2px 4px 2px 2px',
+													}}
+													align='right'>
+													{row.dffftFGA}
+												</TableCell>
+											</TableRow>
+										)
+								  })
+								: statistics.map((row, index) => {
+										const isItemSelected = isSelected(row.team)
+										const labelId = `enhanced-table-checkbox-${index}`
+
+										return (
+											<TableRow
+												hover
+												onClick={event => handleClick(event, row.team)}
+												aria-checked={isItemSelected}
+												tabIndex={-1}
+												key={row.team}
+												selected={isItemSelected}
+												sx={{ cursor: 'pointer' }}>
+												{loading ? (
+													<Skeleton variant='rectangular' />
+												) : (
+													<TableCell sx={{ padding: '4px' }}>
+														<img
+															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+															alt={`${row.team} logo`}
+															width={30}
+														/>
+													</TableCell>
+												)}
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													component='th'
+													id={labelId}
+													scope='row'
+													padding='none'>
+													{fullTeamNames(row.team)}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.g}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.mp}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.fg}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.fga}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.fgPer}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.$3p}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.$3pA}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.$3pPer}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.$2p}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.$2pA}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.$2pPer}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.ft}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.fta}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.ftPer}
+												</TableCell>
+												<TableCell
+													sx={{
+														color: league.nbaWhite,
+														padding: '2px',
+													}}
+													align='right'>
+													{row.orb}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.drb}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.trb}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.ast}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.stl}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.blk}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.tov}
+												</TableCell>
+												<TableCell
+													sx={{ color: league.nbaWhite, padding: '2px' }}
+													align='right'>
+													{row.pf}
+												</TableCell>
+												<TableCell
+													sx={{
+														color: league.nbaWhite,
+														padding: '2px 4px 2px 2px',
+													}}
+													align='right'>
+													{row.pts}
+												</TableCell>
+											</TableRow>
+										)
+								  })}
 						</TableBody>
 					</Table>
 				</TableContainer>

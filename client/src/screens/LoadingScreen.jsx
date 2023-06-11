@@ -18,11 +18,11 @@ const LoadingScreen = () => {
 				justifyContent: 'flex-start',
 				mt: '3rem',
 			}}>
-			<Typography
+			{/* <Typography
 				variant='h3'
 				sx={{ color: league.nbaWhite }}>
 				Loading
-			</Typography>
+			</Typography> */}
 			<CircularProgress />
 		</Box>
 	)

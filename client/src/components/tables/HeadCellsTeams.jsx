@@ -26,6 +26,8 @@ const HeadCellsTeams = ({ order, orderBy, onRequestSort, headCells }) => {
 						padding={headCell.disablePadding ? 'none' : 'normal'}
 						sortDirection={orderBy === headCell.id ? order : false}
 						sx={{
+							fontSize: '14px',
+							fontWeight: '500',
 							color: '#B52532',
 							p: '2px',
 						}}>
