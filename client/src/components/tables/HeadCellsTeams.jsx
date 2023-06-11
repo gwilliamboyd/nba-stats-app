@@ -2,7 +2,6 @@
 import PropTypes from 'prop-types'
 import {
 	Box,
-	Checkbox,
 	TableCell,
 	TableHead,
 	TableRow,
@@ -14,23 +13,30 @@ const HeadCellsTeams = ({ order, orderBy, onRequestSort, headCells }) => {
 	const createSortHandler = property => event => {
 		onRequestSort(event, property)
 	}
+	// console.log(headCells)
 
 	return (
 		<TableHead>
 			<TableRow>
+				<TableCell sx={{ p: '4px' }}></TableCell>
 				{headCells.map(headCell => (
 					<TableCell
 						key={headCell.id}
 						align={headCell.numeric ? 'right' : 'left'}
 						padding={headCell.disablePadding ? 'none' : 'normal'}
 						sortDirection={orderBy === headCell.id ? order : false}
-						sx={{ color: '#B52532', p: '2px' }}>
+						sx={{
+							color: '#B52532',
+							p: '2px',
+						}}>
 						<TableSortLabel
 							active={orderBy === headCell.id}
 							direction={orderBy === headCell.id ? order : 'asc'}
 							hideSortIcon
 							onClick={createSortHandler(headCell.id)}
-							sx={{ width: '100%' }}>
+							sx={{
+								width: '100%',
+							}}>
 							{headCell.label}
 							{orderBy === headCell.id ? (
 								<Box

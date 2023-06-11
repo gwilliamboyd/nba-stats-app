@@ -1,23 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import * as React from 'react'
+import React from 'react'
 import {
 	Box,
 	Table,
 	TableBody,
 	TableCell,
 	TableContainer,
-	TableHead,
-	TablePagination,
 	TableRow,
-	TableSortLabel,
-	Toolbar,
-	Typography,
 	Paper,
-	Checkbox,
-	IconButton,
-	Tooltip,
-	FormControlLabel,
-	Switch,
 } from '@mui/material'
 import { useTheme } from '@emotion/react'
 import fullTeamNames from '../hooks/fullTeamNames'
@@ -59,7 +50,6 @@ export default function EnhancedTable({ statistics }) {
 	const [orderBy, setOrderBy] = React.useState('calories')
 	const [selected, setSelected] = React.useState([])
 	const [page, setPage] = React.useState(0)
-	const [dense, setDense] = React.useState(false)
 	const [rowsPerPage, setRowsPerPage] = React.useState(30)
 
 	const handleRequestSort = (event, property) => {
@@ -104,18 +94,16 @@ export default function EnhancedTable({ statistics }) {
 			sx={{
 				width: '91%',
 				backgroundColor: league.nbaBackground,
-				margin: '0',
-				padding: '0',
 			}}>
 			<Paper sx={{ width: '100%', mb: 2, border: '1px solid white' }}>
 				<TableContainer
 					sx={{
-						backgroundColor: league.nbaBackground,
+						backgroundColor: league.nbaBlue,
 					}}>
 					<Table
 						sx={{ minWidth: 750 }}
 						aria-labelledby='tableTitle'
-						size={dense ? 'small' : 'small'}>
+						size='small'>
 						<HeadCellsTeams
 							headCells={teamsPerGameHeadCells}
 							order={order}
@@ -131,16 +119,16 @@ export default function EnhancedTable({ statistics }) {
 									<TableRow
 										hover
 										onClick={event => handleClick(event, row.team)}
-										// role='checkbox'
 										aria-checked={isItemSelected}
 										tabIndex={-1}
 										key={row.team}
 										selected={isItemSelected}
 										sx={{ cursor: 'pointer' }}>
-										<TableCell sx={{ padding: '8px' }}>
+										<TableCell sx={{ padding: '4px' }}>
 											<img
 												src={`../../public/images/svgs/team-logos/${row.team}.svg`}
 												alt={`${row.team} logo`}
+												width={30}
 											/>
 										</TableCell>
 										<TableCell

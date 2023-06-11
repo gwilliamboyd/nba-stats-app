@@ -60,10 +60,10 @@ export const teamsPerGameHeadCells = [
 		label: '2P',
 	},
 	{
-		id: '$3pA',
+		id: '$2pA',
 		numeric: true,
 		disablePadding: false,
-		label: '3PA',
+		label: '2PA',
 	},
 	{
 		id: '$2pPer',
@@ -207,10 +207,10 @@ export const teamsTotalsHeadCells = [
 		label: '2P',
 	},
 	{
-		id: '$3pA',
+		id: '$2pA',
 		numeric: true,
 		disablePadding: false,
-		label: '3PA',
+		label: '2PA',
 	},
 	{
 		id: '$2pPer',
