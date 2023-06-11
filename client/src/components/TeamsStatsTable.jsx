@@ -146,7 +146,11 @@ export default function EnhancedTable({ loading, statsType, statistics }) {
 													</TableCell>
 												)}
 												<TableCell
-													sx={{ color: league.nbaWhite, padding: '2px' }}
+													sx={{
+														color: league.nbaWhite,
+														padding: '2px',
+														fontSize: '16px',
+													}}
 													component='th'
 													id={labelId}
 													scope='row'
@@ -302,7 +306,11 @@ export default function EnhancedTable({ loading, statsType, statistics }) {
 													</TableCell>
 												)}
 												<TableCell
-													sx={{ color: league.nbaWhite, padding: '2px' }}
+													sx={{
+														color: league.nbaWhite,
+														padding: '2px',
+														fontSize: '16px',
+													}}
 													component='th'
 													id={labelId}
 													scope='row'
