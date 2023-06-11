@@ -55,20 +55,17 @@ const TeamIndivPage = () => {
 				) : (
 					<>
 						<TeamIndivStatsRow
-							theme={theme}
-							teams={teams}
+							statsType={'perGame'}
 							loading={loading}
 							statistics={teamIndivStatistics[0]}
 						/>
 						<TeamIndivStatsRow
-							theme={theme}
-							teams={teams}
+							statsType={'total'}
 							loading={loading}
 							statistics={teamIndivStatistics[1]}
 						/>
 						<TeamIndivStatsRow
-							theme={theme}
-							teams={teams}
+							statsType={'advanced'}
 							loading={loading}
 							statistics={teamIndivStatistics[2]}
 						/>

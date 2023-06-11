@@ -119,6 +119,7 @@ export default function EnhancedTable({ loading, statsType, statistics }) {
 							order={order}
 							orderBy={orderBy}
 							onRequestSort={handleRequestSort}
+							fontColor='#B52532'
 						/>
 						<TableBody>
 							{statsType === 'advanced'

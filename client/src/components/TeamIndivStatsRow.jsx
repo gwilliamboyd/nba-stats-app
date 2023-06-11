@@ -9,6 +9,7 @@ import {
 	TableCell,
 	TableContainer,
 	TableRow,
+	Typography,
 } from '@mui/material'
 import fullTeamNames from '../hooks/fullTeamNames'
 import { useTheme } from '@emotion/react'
@@ -18,7 +19,7 @@ import {
 } from '../data/headCells/teamsHeadCells'
 import HeadCellsTeams from './tables/HeadCellsTeams'
 
-const TeamIndivStatsRow = ({ loading, statistics }) => {
+const TeamIndivStatsRow = ({ statsType, loading, statistics }) => {
 	const theme = useTheme()
 	const { teams } = theme.palette
 	return (
@@ -27,17 +28,36 @@ const TeamIndivStatsRow = ({ loading, statistics }) => {
 				width: '82%',
 				backgroundColor: teams.chi.primary,
 			}}>
-			<Paper sx={{ width: '100%', mb: 2, border: '1px solid white' }}>
+			<Paper
+				sx={{
+					width: '100%',
+					mb: 2,
+					border: '1px solid white',
+					backgroundColor: teams.chi.primary,
+				}}>
+				<Typography sx={{ color: teams.chi.tertiary }}>
+					{statsType === 'perGame'
+						? 'Per-Game'
+						: statsType === 'total'
+						? 'Totals'
+						: statsType === 'advanced'
+						? 'Advanced'
+						: null}
+				</Typography>
 				<TableContainer
 					sx={{
-						backgroundColor: '#18264a',
+						backgroundColor: teams.chi.primary,
 						p: '0 8px',
+						border: '1px solid white',
 					}}>
 					<Table
 						sx={{ minWidth: 750 }}
 						aria-labelledby='tableTitle'
 						size='small'>
-						<HeadCellsTeams headCells={teamsPerGameHeadCells} />
+						<HeadCellsTeams
+							headCells={teamsPerGameHeadCells}
+							fontColor={teams.chi.secondary}
+						/>
 						<TableBody>
 							{statistics.map(row => {
 								return (

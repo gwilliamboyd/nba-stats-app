@@ -9,7 +9,13 @@ import {
 } from '@mui/material'
 import { visuallyHidden } from '@mui/utils'
 
-const HeadCellsTeams = ({ order, orderBy, onRequestSort, headCells }) => {
+const HeadCellsTeams = ({
+	order,
+	orderBy,
+	onRequestSort,
+	headCells,
+	fontColor,
+}) => {
 	const createSortHandler = property => event => {
 		onRequestSort(event, property)
 	}
@@ -28,7 +34,7 @@ const HeadCellsTeams = ({ order, orderBy, onRequestSort, headCells }) => {
 						sx={{
 							fontSize: '18px',
 							fontWeight: '500',
-							color: '#B52532',
+							color: fontColor,
 							p: '2px',
 						}}>
 						<TableSortLabel

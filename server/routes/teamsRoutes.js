@@ -11,6 +11,6 @@ const router = express.Router()
 router.get('/per-game', getTeamsPerGame)
 router.get('/total', getTeamsTotal)
 router.get('/advanced', getTeamsAdvanced)
-router.get('/:team', getIndivTeamStats)
+router.get('/:id', getIndivTeamStats)
 
 export default router
