@@ -29,7 +29,7 @@ export const getTeamsAdvanced = async (req, res) => {
 
 export const getIndivTeamStats = async (req, res) => {
 	try {
-		const team = 'lac'
+		const team = 'chi'
 		const teamIndivPerGame = await TeamsPerGame.find({
 			team: `${team}`,
 		})

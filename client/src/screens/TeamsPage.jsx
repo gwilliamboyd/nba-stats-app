@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, lazy, Suspense } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {
 	Container,
 	Box,
@@ -118,6 +119,11 @@ const TeamsPage = () => {
 							variant='h5'
 							sx={{ fontWeight: '600', opacity: '90%' }}>
 							2022-23 Season
+						</Typography>
+						<Typography
+							variant='h6'
+							sx={{ fontWeight: '600', opacity: '90%' }}>
+							<Link to='/stats/teams/chi'>Chicago Bulls Test Page</Link>
 						</Typography>
 					</Box>
 					<ButtonGroup

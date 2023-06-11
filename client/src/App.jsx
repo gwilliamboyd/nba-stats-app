@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import HomePage from './screens/HomePage'
 import { Suspense, lazy } from 'react'
 import LoadingScreen from './screens/LoadingScreen'
+import TeamIndivPage from './screens/TeamIndivPage'
 const TeamsPage = lazy(() => import('./screens/TeamsPage'))
 
 function App() {
@@ -21,6 +22,10 @@ function App() {
 						<Route
 							path='/stats/teams'
 							element={<TeamsPage />}
+						/>
+						<Route
+							path='/stats/teams/chi'
+							element={<TeamIndivPage />}
 						/>
 					</Routes>
 				</Suspense>
