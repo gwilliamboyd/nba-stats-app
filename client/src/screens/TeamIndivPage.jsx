@@ -1,11 +1,12 @@
 import { useTheme } from '@emotion/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setTeamIndivStats } from '../slices/teamIndivSlice'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Container, Grid, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import TeamIndivStatsRow from '../components/TeamIndivStatsRow'
 import LoadingScreenBlank from './LoadingScreenBlank'
 import fullTeamNames from '../hooks/fullTeamNames'
+import QuickStat from '../components/stats-pages/QuickStat'
 
 const TeamIndivPage = () => {
 	const theme = useTheme()
@@ -29,7 +30,15 @@ const TeamIndivPage = () => {
 		setLoading(false)
 	}
 	const teamIndivStatistics = Object.values(teamIndivStats)[0]
-	console.log(teamIndivStatistics[0])
+	const quickStatsArray = Object.entries(teamIndivStatistics[0][0])
+	console.log(quickStatsArray)
+
+	const statsPts = quickStatsArray[25][1]
+	const statsTrb = quickStatsArray[19][1]
+	const statsAst = quickStatsArray[20][1]
+	const statsFg = quickStatsArray[5][1]
+	const statsFgPer = quickStatsArray[7][1]
+	const stats3pPer = quickStatsArray[10][1]
 
 	useEffect(() => {
 		getTeamIndivStats()
@@ -50,16 +59,70 @@ const TeamIndivPage = () => {
 					alignItems: 'center',
 					gap: '3rem',
 				}}>
-				<img
-					src={`../../public/images/svgs/team-logos/${team}.svg`}
-					width={200}
-					alt='Chicago Bulls logo'
-				/>
-				<Typography
-					variant='h3'
-					sx={{ color: tertiaryColor }}>
-					{fullTeamNames(team)}
-				</Typography>
+				<Box
+					sx={{
+						marginTop: '3rem',
+						width: '85%',
+						display: 'flex',
+						flexDirection: 'row',
+						justifyContent: 'space-between',
+					}}>
+					<Box sx={{ display: 'flex', alignItems: 'flex-start', gap: '2rem' }}>
+						<img
+							src={`../../public/images/svgs/team-logos/${team}.svg`}
+							width={200}
+							alt='Chicago Bulls logo'
+						/>
+						<Typography
+							variant='h3'
+							sx={{ color: tertiaryColor, marginTop: '2rem' }}>
+							{fullTeamNames(team)}
+						</Typography>
+					</Box>
+					<Grid
+						container
+						columns={6}
+						columnSpacing={4}
+						rowSpacing={2}
+						sx={{ width: '28%', marginTop: '1rem' }}>
+						<QuickStat
+							heading='PTS'
+							featuredStat={statsPts}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+						<QuickStat
+							heading='TRB'
+							featuredStat={statsTrb}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+						<QuickStat
+							heading='AST'
+							featuredStat={statsAst}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+						<QuickStat
+							heading='FG'
+							featuredStat={statsFg}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+						<QuickStat
+							heading='FG%'
+							featuredStat={statsFgPer}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+						<QuickStat
+							heading='3P%'
+							featuredStat={stats3pPer}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+					</Grid>
+				</Box>
 				{loading ? (
 					<LoadingScreenBlank />
 				) : (

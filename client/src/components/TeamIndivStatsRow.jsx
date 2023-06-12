@@ -12,7 +12,6 @@ import {
 	Typography,
 } from '@mui/material'
 import fullTeamNames from '../hooks/fullTeamNames'
-// import { useTheme } from '@emotion/react'
 import {
 	teamsPerGameHeadCells,
 	teamsAdvancedHeadCells,
@@ -28,8 +27,6 @@ const TeamIndivStatsRow = ({
 	loading,
 	statistics,
 }) => {
-	// const theme = useTheme()
-	// const { teams } = theme.palette
 	return (
 		<Box
 			sx={{
@@ -74,11 +71,7 @@ const TeamIndivStatsRow = ({
 							{statsType === 'advanced'
 								? statistics.map(row => {
 										return (
-											<TableRow
-												hover
-												tabIndex={-1}
-												key={row.team}
-												sx={{ cursor: 'pointer' }}>
+											<TableRow key={row.team}>
 												{loading ? (
 													<Skeleton variant='rectangular' />
 												) : (
@@ -97,7 +90,6 @@ const TeamIndivStatsRow = ({
 														fontSize: '16px',
 													}}
 													component='th'
-													// id={labelId}
 													scope='row'
 													padding='none'>
 													{fullTeamNames(row.team)}
@@ -228,11 +220,7 @@ const TeamIndivStatsRow = ({
 								  })
 								: statistics.map(row => {
 										return (
-											<TableRow
-												hover
-												tabIndex={-1}
-												key={row.team}
-												sx={{ cursor: 'pointer' }}>
+											<TableRow key={row.team}>
 												{loading ? (
 													<Skeleton variant='rectangular' />
 												) : (
