@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {
 	Box,
 	Table,
@@ -317,7 +318,9 @@ export default function EnhancedTable({ loading, statsType, statistics }) {
 													id={labelId}
 													scope='row'
 													padding='none'>
-													{fullTeamNames(row.team)}
+													<Link to={`/stats/teams/${row.team}`}>
+														{fullTeamNames(row.team)}
+													</Link>
 												</TableCell>
 												<TableCell
 													sx={{ color: league.nbaWhite, padding: '2px' }}

@@ -24,7 +24,7 @@ function App() {
 							element={<TeamsPage />}
 						/>
 						<Route
-							path='/stats/teams/chi'
+							path={`stats/teams/:team`}
 							element={<TeamIndivPage />}
 						/>
 					</Routes>

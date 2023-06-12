@@ -19,23 +19,31 @@ import {
 } from '../data/headCells/teamsHeadCells'
 import HeadCellsTeams from './tables/HeadCellsTeams'
 
-const TeamIndivStatsRow = ({ statsType, loading, statistics }) => {
+const TeamIndivStatsRow = ({
+	team,
+	primaryColor,
+	secondaryColor,
+	tertiaryColor,
+	statsType,
+	loading,
+	statistics,
+}) => {
 	const theme = useTheme()
 	const { teams } = theme.palette
 	return (
 		<Box
 			sx={{
 				width: '82%',
-				backgroundColor: teams.chi.primary,
+				backgroundColor: primaryColor,
 			}}>
 			<Paper
 				sx={{
 					width: '100%',
 					mb: 2,
 					border: '1px solid white',
-					backgroundColor: teams.chi.primary,
+					backgroundColor: primaryColor,
 				}}>
-				<Typography sx={{ color: teams.chi.tertiary }}>
+				<Typography sx={{ color: tertiaryColor }}>
 					{statsType === 'perGame'
 						? 'Per-Game'
 						: statsType === 'total'
@@ -46,7 +54,7 @@ const TeamIndivStatsRow = ({ statsType, loading, statistics }) => {
 				</Typography>
 				<TableContainer
 					sx={{
-						backgroundColor: teams.chi.primary,
+						backgroundColor: primaryColor,
 						p: '0 8px',
 						border: '1px solid white',
 					}}>
@@ -56,7 +64,7 @@ const TeamIndivStatsRow = ({ statsType, loading, statistics }) => {
 						size='small'>
 						<HeadCellsTeams
 							headCells={teamsPerGameHeadCells}
-							fontColor={teams.chi.secondary}
+							fontColor={secondaryColor}
 						/>
 						<TableBody>
 							{statistics.map(row => {
@@ -71,7 +79,7 @@ const TeamIndivStatsRow = ({ statsType, loading, statistics }) => {
 										) : (
 											<TableCell sx={{ padding: '4px' }}>
 												<img
-													src={`../../public/images/svgs/team-logos/chi.svg`}
+													src={`../../public/images/svgs/team-logos/${team}.svg`}
 													alt={`${row.team} logo`}
 													width={30}
 												/>
@@ -79,7 +87,7 @@ const TeamIndivStatsRow = ({ statsType, loading, statistics }) => {
 										)}
 										<TableCell
 											sx={{
-												color: teams.chi.tertiary,
+												color: tertiaryColor,
 												padding: '2px',
 												fontSize: '16px',
 											}}
@@ -87,124 +95,124 @@ const TeamIndivStatsRow = ({ statsType, loading, statistics }) => {
 											// id={labelId}
 											scope='row'
 											padding='none'>
-											{fullTeamNames(row.team)}
+											{fullTeamNames(team)}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.g}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.mp}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.fg}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.fga}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.fgPer}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.$3p}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.$3pA}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.$3pPer}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.$2p}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.$2pA}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.$2pPer}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.ft}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.fta}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.ftPer}
 										</TableCell>
 										<TableCell
 											sx={{
-												color: teams.chi.tertiary,
+												color: tertiaryColor,
 												padding: '2px',
 											}}
 											align='right'>
 											{row.orb}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.drb}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.trb}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.ast}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.stl}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.blk}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.tov}
 										</TableCell>
 										<TableCell
-											sx={{ color: teams.chi.tertiary, padding: '2px' }}
+											sx={{ color: tertiaryColor, padding: '2px' }}
 											align='right'>
 											{row.pf}
 										</TableCell>
 										<TableCell
 											sx={{
-												color: teams.chi.tertiary,
+												color: tertiaryColor,
 												padding: '2px',
 											}}
 											align='right'>
