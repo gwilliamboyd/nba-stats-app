@@ -13,7 +13,6 @@ const TeamIndivPage = () => {
 	const dispatch = useDispatch()
 	const teamIndivStats = useSelector(state => state.teamIndivStats)
 	const team = window.location.href.slice(-3)
-	console.log(team)
 	// const { teams } = theme.palette
 	const primaryColor = eval(`theme.palette.teams.${team}.primary`)
 	const secondaryColor = eval(`theme.palette.teams.${team}.secondary`)
@@ -31,7 +30,7 @@ const TeamIndivPage = () => {
 	}
 	const teamIndivStatistics = Object.values(teamIndivStats)[0]
 	const quickStatsArray = Object.entries(teamIndivStatistics[0][0])
-	console.log(quickStatsArray)
+	// console.log(quickStatsArray)
 
 	const statsPts = quickStatsArray[25][1]
 	const statsTrb = quickStatsArray[19][1]
