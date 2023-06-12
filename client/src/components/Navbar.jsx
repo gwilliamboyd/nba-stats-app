@@ -36,14 +36,18 @@ const Navbar = () => {
 						width={80}
 						height='auto'
 					/> */}
-					<img
-						src={nbaLogoSrc}
-						width={120}
-						alt='NBA Logo'
-					/>
-					<Typography variant='h6'>
-						<Link to='/stats/teams'>Teams</Link>
-					</Typography>
+					<Link to='/'>
+						<img
+							src={nbaLogoSrc}
+							width={120}
+							alt='NBA Logo'
+						/>
+					</Link>
+
+					<Link to='/stats/teams'>
+						<Typography variant='h6'>Teams</Typography>
+					</Link>
+
 					<Typography variant='h6'>Players</Typography>
 				</Box>
 				<Box
@@ -52,14 +56,13 @@ const Navbar = () => {
 						display: 'flex',
 						gap: '8px',
 					}}>
-					<NBALogo
-						width={80}
-						height={'auto'}
-					/>
-					<Typography>
-						<Link to='/stats/teams'>Teams</Link>
-					</Typography>
-					<Typography>Players</Typography>
+					<Link to='/login'>
+						<Typography>Login</Typography>
+					</Link>
+
+					<Link to='/register'>
+						<Typography>Register</Typography>
+					</Link>
 				</Box>
 			</Box>
 		</Container>

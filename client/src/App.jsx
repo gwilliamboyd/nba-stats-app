@@ -5,6 +5,8 @@ import HomePage from './screens/HomePage'
 import { Suspense, lazy } from 'react'
 import LoadingScreen from './screens/LoadingScreen'
 import TeamIndivPage from './screens/TeamIndivPage'
+import LoginPage from './screens/LoginPage'
+import RegisterPage from './screens/RegisterPage'
 const TeamsPage = lazy(() => import('./screens/TeamsPage'))
 
 function App() {
@@ -20,12 +22,20 @@ function App() {
 							element={<HomePage />}
 						/>
 						<Route
-							path='/stats/teams'
+							path='stats/teams'
 							element={<TeamsPage />}
 						/>
 						<Route
 							path={`stats/teams/:team`}
 							element={<TeamIndivPage />}
+						/>
+						<Route
+							path={`register`}
+							element={<RegisterPage />}
+						/>
+						<Route
+							path={`login`}
+							element={<LoginPage />}
 						/>
 					</Routes>
 				</Suspense>
