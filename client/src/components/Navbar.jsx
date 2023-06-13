@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { logout } from '../slices/authentication/authSlice'
 import { useLogoutMutation } from '../slices/authentication/usersApiSlice'
 // Images
-import NBALogo from '../../public/images/svgs/NBALogo'
+// import NBALogo from '../../public/images/svgs/NBALogo'
 import nbaLogoSrc from '../../public/images/svgs/logo-nba.svg'
 
 const Navbar = () => {
@@ -85,6 +85,7 @@ const Navbar = () => {
 					<Link to='/register'>
 						<Typography>Register</Typography>
 					</Link>
+
 					<Link
 						to='/logout'
 						onClick={logoutHandler}>

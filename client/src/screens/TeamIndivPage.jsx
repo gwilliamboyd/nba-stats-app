@@ -12,6 +12,7 @@ const TeamIndivPage = () => {
 	const theme = useTheme()
 	const dispatch = useDispatch()
 	const teamIndivStats = useSelector(state => state.teamIndivStats)
+	// console.log(teamIndivStats)
 	const team = window.location.href.slice(-3)
 	// const { teams } = theme.palette
 	const primaryColor = eval(`theme.palette.teams.${team}.primary`)
@@ -28,16 +29,18 @@ const TeamIndivPage = () => {
 		dispatch(setTeamIndivStats({ teamIndivStats: data }))
 		setLoading(false)
 	}
+	console.log(teamIndivStats)
 	const teamIndivStatistics = Object.values(teamIndivStats)[0]
-	const quickStatsArray = Object.entries(teamIndivStatistics[0][0])
+	console.log(teamIndivStatistics)
+	// const quickStatsArray = Object.entries(teamIndivStatistics[0])
 	// console.log(quickStatsArray)
 
-	const statsPts = quickStatsArray[25][1]
-	const statsTrb = quickStatsArray[19][1]
-	const statsAst = quickStatsArray[20][1]
-	const statsFg = quickStatsArray[5][1]
-	const statsFgPer = quickStatsArray[7][1]
-	const stats3pPer = quickStatsArray[10][1]
+	// const statsPts = quickStatsArray[25][1]
+	// const statsTrb = quickStatsArray[19][1]
+	// const statsAst = quickStatsArray[20][1]
+	// const statsFg = quickStatsArray[5][1]
+	// const statsFgPer = quickStatsArray[7][1]
+	// const stats3pPer = quickStatsArray[10][1]
 
 	useEffect(() => {
 		getTeamIndivStats()
@@ -86,37 +89,37 @@ const TeamIndivPage = () => {
 						sx={{ width: '28%', marginTop: '1rem' }}>
 						<QuickStat
 							heading='PTS'
-							featuredStat={statsPts}
+							// featuredStat={statsPts}
 							secondaryColor={secondaryColor}
 							tertiaryColor={tertiaryColor}
 						/>
 						<QuickStat
 							heading='TRB'
-							featuredStat={statsTrb}
+							// featuredStat={statsTrb}
 							secondaryColor={secondaryColor}
 							tertiaryColor={tertiaryColor}
 						/>
 						<QuickStat
 							heading='AST'
-							featuredStat={statsAst}
+							// featuredStat={statsAst}
 							secondaryColor={secondaryColor}
 							tertiaryColor={tertiaryColor}
 						/>
 						<QuickStat
 							heading='FG'
-							featuredStat={statsFg}
+							// featuredStat={statsFg}
 							secondaryColor={secondaryColor}
 							tertiaryColor={tertiaryColor}
 						/>
 						<QuickStat
 							heading='FG%'
-							featuredStat={statsFgPer}
+							// featuredStat={statsFgPer}
 							secondaryColor={secondaryColor}
 							tertiaryColor={tertiaryColor}
 						/>
 						<QuickStat
 							heading='3P%'
-							featuredStat={stats3pPer}
+							// featuredStat={stats3pPer}
 							secondaryColor={secondaryColor}
 							tertiaryColor={tertiaryColor}
 						/>
