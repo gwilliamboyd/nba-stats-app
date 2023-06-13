@@ -11,6 +11,10 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 // Files
 import playersRoutes from './routes/playersRoutes.js'
 import teamsRoutes from './routes/teamsRoutes.js'
+import registrationRoute from './routes/registrationRoute.js'
+import loginRoute from './routes/loginRoute.js'
+import logoutRoute from './routes/logoutRoute.js'
+import userRoute from './routes/userRoute.js'
 // Enable .env
 dotenv.config()
 // Connect to Mongo
@@ -24,12 +28,17 @@ app.use(express.json())
 app.use(helmet())
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }))
 app.use(cors())
+app.use(cookieParser())
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
 // Routes
 app.use('/stats/players', playersRoutes)
 app.use('/stats/teams', teamsRoutes)
+app.use('/register', registrationRoute)
+app.use('/login', loginRoute)
+app.use('/logout', logoutRoute)
+app.use('/users', userRoute)
 // index
 app.get('/', (req, res) => res.send('NBA Stats App'))
 
