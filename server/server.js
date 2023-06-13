@@ -35,9 +35,9 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 // Routes
 app.use('/stats/players', playersRoutes)
 app.use('/stats/teams', teamsRoutes)
-app.use('/register', registrationRoute)
-app.use('/login', loginRoute)
-app.use('/logout', logoutRoute)
+app.use('/users/register', registrationRoute)
+app.use('/users/login', loginRoute)
+app.use('/users/logout', logoutRoute)
 app.use('/users', userRoute)
 // index
 app.get('/', (req, res) => res.send('NBA Stats App'))

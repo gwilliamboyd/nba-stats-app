@@ -3,6 +3,8 @@ import teamsPerGameReducer from './slices/teamsPerGameSlice'
 import teamsTotalReducer from './slices/teamsTotalSlice'
 import teamsAdvancedReducer from './slices/teamsAdvancedSlice'
 import teamIndivReducer from './slices/teamIndivSlice'
+import authReducer from './slices/authentication/authSlice'
+import { apiSlice } from './slices/authentication/apiSlice'
 
 const store = configureStore({
 	reducer: {
@@ -10,8 +12,11 @@ const store = configureStore({
 		teamsTotalStats: teamsTotalReducer,
 		teamsAdvancedStats: teamsAdvancedReducer,
 		teamIndivStats: teamIndivReducer,
+		auth: authReducer,
+		[apiSlice.reducerPath]: apiSlice.reducer,
 	},
-	middleware: getDefaultMiddleware => getDefaultMiddleware(),
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware().concat(apiSlice.middleware),
 	devTools: true,
 })
 
