@@ -6,7 +6,7 @@ import asyncHandler from 'express-async-handler'
 
 export const registerUser = asyncHandler(async (req, res) => {
 	try {
-		const { name, email, password, favoriteTeams } = req.body
+		const { name, email, password, avatar, favoriteTeams } = req.body
 
 		const salt = await bcrypt.genSalt()
 		const passwordHash = await bcrypt.hash(password, salt)
@@ -15,6 +15,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 			name,
 			email,
 			password: passwordHash,
+			avatar,
 			favoriteTeams,
 		})
 		if (newUser) {
@@ -23,6 +24,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 				_id: newUser._id,
 				name: newUser.name,
 				email: newUser.email,
+				avatar: newUser.avatar,
 			})
 		} else {
 			res.status(400)
@@ -54,6 +56,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 			_id: user._id,
 			name: user.name,
 			email: user.email,
+			avatar: user.avatar,
 		})
 	} catch (err) {
 		res.status(500).json({ message: err.message })

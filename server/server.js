@@ -5,6 +5,9 @@ import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import helmet from 'helmet'
+import multer from 'multer'
+import path from 'path'
+import { fileURLToPath } from 'url'
 // Middleware
 import connectDB from './config/database.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
@@ -15,6 +18,10 @@ import registrationRoute from './routes/registrationRoute.js'
 import loginRoute from './routes/loginRoute.js'
 import logoutRoute from './routes/logoutRoute.js'
 import userRoute from './routes/userRoute.js'
+
+// Configure dir/file for image upload
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 // Enable .env
 dotenv.config()
 // Connect to Mongo
@@ -31,11 +38,22 @@ app.use(cors())
 app.use(cookieParser())
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
+app.use('/assets', express.static(path.join(__dirname, 'public/assets')))
+// Image upload
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, 'public/assets')
+	},
+	filename: function (req, file, cb) {
+		cb(null, file.originalname)
+	},
+})
+const upload = multer({ storage })
 
 // Routes
 app.use('/stats/players', playersRoutes)
 app.use('/stats/teams', teamsRoutes)
-app.use('/users/register', registrationRoute)
+app.use('/users/register', upload.single('avatar'), registrationRoute)
 app.use('/users/login', loginRoute)
 app.use('/users/logout', logoutRoute)
 app.use('/users', userRoute)

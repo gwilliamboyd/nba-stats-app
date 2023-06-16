@@ -89,8 +89,13 @@ const TeamIndivPage = () => {
 							alt='Chicago Bulls logo'
 						/>
 						<Typography
+							fontWeight={700}
 							variant='h3'
-							sx={{ color: tertiaryColor, marginTop: '2rem' }}>
+							sx={{
+								color: tertiaryColor,
+								marginTop: '2rem',
+								letterSpacing: '-2.5px',
+							}}>
 							{fullTeamNames(team)}
 						</Typography>
 					</Box>

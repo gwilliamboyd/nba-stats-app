@@ -9,6 +9,7 @@ import { useLogoutMutation } from '../slices/authentication/usersApiSlice'
 // Images
 // import NBALogo from '../../public/images/svgs/NBALogo'
 import nbaLogoSrc from '../../public/images/svgs/logo-nba.svg'
+import UserAvatar from './UserAvatar'
 
 const Navbar = () => {
 	const theme = useTheme()
@@ -77,10 +78,14 @@ const Navbar = () => {
 						height: '100%',
 						display: 'flex',
 						alignItems: 'center',
-						gap: '8px',
+						gap: '20px',
 					}}>
 					{userInfo ? (
 						<>
+							<UserAvatar
+								avatar={userInfo.avatar}
+								dimensions={50}
+							/>
 							<Link to='/profile'>
 								<Typography>{userInfo.name}</Typography>
 							</Link>

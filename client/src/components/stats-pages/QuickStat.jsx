@@ -28,7 +28,7 @@ const QuickStat = ({
 				</Typography>
 				<Typography
 					variant='h5'
-					fontWeight={800}
+					fontWeight={700}
 					color={tertiaryColor}>
 					{featuredStat}
 				</Typography>

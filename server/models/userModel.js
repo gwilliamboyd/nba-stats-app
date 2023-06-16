@@ -15,6 +15,10 @@ const UserSchema = mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		avatar: {
+			type: String,
+			default: '',
+		},
 		favoriteTeams: {
 			type: Array,
 			default: [],
