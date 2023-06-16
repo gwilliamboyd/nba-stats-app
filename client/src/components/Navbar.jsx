@@ -76,21 +76,30 @@ const Navbar = () => {
 					sx={{
 						height: '100%',
 						display: 'flex',
+						alignItems: 'center',
 						gap: '8px',
 					}}>
-					<Link to='/login'>
-						<Typography>Login</Typography>
-					</Link>
-
-					<Link to='/register'>
-						<Typography>Register</Typography>
-					</Link>
-
-					<Link
-						to='/logout'
-						onClick={logoutHandler}>
-						<Typography>Logout</Typography>
-					</Link>
+					{userInfo ? (
+						<>
+							<Link to='/profile'>
+								<Typography>{userInfo.name}</Typography>
+							</Link>
+							<Link
+								to='/logout'
+								onClick={logoutHandler}>
+								<Typography>Logout</Typography>
+							</Link>
+						</>
+					) : (
+						<>
+							<Link to='/login'>
+								<Typography>Login</Typography>
+							</Link>
+							<Link to='/register'>
+								<Typography>Register</Typography>
+							</Link>
+						</>
+					)}
 				</Box>
 			</Box>
 		</Container>

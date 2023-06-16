@@ -2,6 +2,7 @@
 import { useTheme } from '@emotion/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setTeamIndivStats } from '../slices/teamIndivSlice'
+import { setTeamsPerGameStats } from '../slices/teamsPerGameSlice'
 import { Box, Container, Grid, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import TeamIndivStatsRow from '../components/TeamIndivStatsRow'
@@ -11,10 +12,11 @@ import QuickStat from '../components/stats-pages/QuickStat'
 
 const TeamIndivPage = () => {
 	// not an error, eslint doesn't recognize the theme
-	// call in the eval function
+	// call in the eval
 	const theme = useTheme()
 	const dispatch = useDispatch()
 	const teamIndivStats = useSelector(state => state.teamIndivStats)
+	const teamsPerGameStats = useSelector(state => state.teamsPerGameStats)
 	const team = window.location.href.slice(-3)
 	// const { teams } = theme.palette
 	const primaryColor = eval(`theme.palette.teams.${team}.primary`)
@@ -24,28 +26,39 @@ const TeamIndivPage = () => {
 	const [loading, setLoading] = useState(true)
 
 	const getTeamIndivStats = async () => {
-		const response = await fetch(`http://localhost:5000/stats/teams/${team}`, {
-			method: 'GET',
-		})
-		const data = await response.json()
-		dispatch(setTeamIndivStats({ teamIndivStats: data }))
+		const [teamIndivResponse, quickStatsResponse] = await Promise.all([
+			fetch(`http://localhost:5000/stats/teams/${team}`, {
+				method: 'GET',
+			}),
+			fetch(`http://localhost:5000/stats/teams/per-game`, {
+				method: 'GET',
+			}),
+		])
+		const indivData = await teamIndivResponse.json()
+		const quickData = await quickStatsResponse.json()
+		dispatch(setTeamIndivStats({ teamIndivStats: indivData }))
+		dispatch(setTeamsPerGameStats({ teamsPerGameStats: quickData }))
 		setLoading(false)
 	}
-	console.log(teamIndivStats)
-	const teamIndivStatistics = Object.values(teamIndivStats)[0]
-	// returns an array, [0] is object, so this returns object directly
-	const quickStatsArray = teamIndivStatistics[0][0]
-
-	const statsPts = quickStatsArray.pts
-	const statsTrb = quickStatsArray.trb
-	const statsAst = quickStatsArray.ast
-	const statsFg = quickStatsArray.fg
-	const statsFgPer = quickStatsArray.fgPer
-	const stats3pPer = quickStatsArray.$3pPer
-
 	useEffect(() => {
 		getTeamIndivStats()
 	}, [])
+	const teamIndivStatistics = Object.values(teamIndivStats)[0]
+	const quickStatsTeam = Object.values(teamsPerGameStats)
+	console.log(quickStatsTeam)
+	const qs = Object.values(quickStatsTeam)
+	const qsArray = qs[0]
+	// console.log(qs[0][1])
+	const quickStat = qsArray.find(q => q.team === `${team}`)
+	console.log(quickStat)
+
+	const statsPts = quickStat.pts
+	console.log(statsPts)
+	const statsTrb = quickStat.trb
+	const statsAst = quickStat.ast
+	const statsFg = quickStat.fg
+	const statsFgPer = quickStat.fgPer
+	const stats3pPer = quickStat.$3pPer
 
 	return (
 		<Container
@@ -137,7 +150,7 @@ const TeamIndivPage = () => {
 							tertiaryColor={tertiaryColor}
 							statsType={'perGame'}
 							loading={loading}
-							statistics={teamIndivStatistics[0]}
+							statistics={teamIndivStats && teamIndivStatistics[0]}
 						/>
 						<TeamIndivStatsRow
 							team={team}
@@ -146,7 +159,7 @@ const TeamIndivPage = () => {
 							tertiaryColor={tertiaryColor}
 							statsType={'total'}
 							loading={loading}
-							statistics={teamIndivStatistics[1]}
+							statistics={teamIndivStats && teamIndivStatistics[1]}
 						/>
 						<TeamIndivStatsRow
 							team={team}
@@ -155,7 +168,7 @@ const TeamIndivPage = () => {
 							tertiaryColor={tertiaryColor}
 							statsType={'advanced'}
 							loading={loading}
-							statistics={teamIndivStatistics[2]}
+							statistics={teamIndivStats && teamIndivStatistics[2]}
 						/>
 					</>
 				)}

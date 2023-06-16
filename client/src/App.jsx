@@ -7,6 +7,7 @@ import LoadingScreen from './screens/LoadingScreen'
 import TeamIndivPage from './screens/TeamIndivPage'
 import LoginPage from './screens/LoginPage'
 import RegisterPage from './screens/RegisterPage'
+import UserProfilePage from './screens/UserProfilePage'
 const TeamsPage = lazy(() => import('./screens/TeamsPage'))
 
 function App() {
@@ -36,6 +37,10 @@ function App() {
 						<Route
 							path={`login`}
 							element={<LoginPage />}
+						/>
+						<Route
+							path={`/profile`}
+							element={<UserProfilePage />}
 						/>
 					</Routes>
 				</Suspense>

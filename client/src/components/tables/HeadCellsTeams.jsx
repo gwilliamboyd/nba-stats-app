@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import {
 	Box,
 	TableCell,
@@ -61,10 +61,10 @@ const HeadCellsTeams = ({
 	)
 }
 
-HeadCellsTeams.propTypes = {
+/* HeadCellsTeams.propTypes = {
 	onRequestSort: PropTypes.func.isRequired,
 	order: PropTypes.oneOf(['asc', 'desc']).isRequired,
 	orderBy: PropTypes.string.isRequired,
-}
+} */
 
 export default HeadCellsTeams
