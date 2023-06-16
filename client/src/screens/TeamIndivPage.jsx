@@ -48,17 +48,16 @@ const TeamIndivPage = () => {
 	console.log(quickStatsTeam)
 	const qs = Object.values(quickStatsTeam)
 	const qsArray = qs[0]
-	// console.log(qs[0][1])
 	const quickStat = qsArray.find(q => q.team === `${team}`)
 	console.log(quickStat)
 
-	const statsPts = quickStat.pts
+	const statsPts = quickStat?.pts
 	console.log(statsPts)
-	const statsTrb = quickStat.trb
-	const statsAst = quickStat.ast
-	const statsFg = quickStat.fg
-	const statsFgPer = quickStat.fgPer
-	const stats3pPer = quickStat.$3pPer
+	const statsTrb = quickStat?.trb
+	const statsAst = quickStat?.ast
+	const statsFg = quickStat?.fg
+	const statsFgPer = quickStat?.fgPer
+	const stats3pPer = quickStat?.$3pPer
 
 	return (
 		<Container
