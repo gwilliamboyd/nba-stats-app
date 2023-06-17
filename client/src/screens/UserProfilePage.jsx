@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Box, Container, Typography, Modal, Button, Grid } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
@@ -7,18 +7,36 @@ import AddFavoriteTeams from '../components/user-profile/AddFavoriteTeams'
 import HomeTeamCard from '../components/HomeTeamCard'
 import { Link } from 'react-router-dom'
 import teams from '../data/teams-perGame.json'
+import { useUpdateUserMutation } from '../slices/authentication/usersApiSlice'
 
 const UserProfilePage = () => {
+	// theme
 	const theme = useTheme()
 	const { league } = theme.palette
 
+	const dispatch = useDispatch()
+
+	// sort teams alphabetically
 	const sortedTeams = teams.sort((a, b) => a.team.localeCompare(b.team))
 
 	const { userInfo } = useSelector(state => state.auth)
 	const [modalOpen, setModalOpen] = useState(false)
-
+	// favorite teams
+	const favTeams = []
+	const [favoriteTeams, setFavoriteTeams] = useState([])
+	// open and close modal
 	const handleOpen = () => setModalOpen(true)
 	const handleClose = () => setModalOpen(false)
+
+	const [updateUser, { isLoading }] = useUpdateUserMutation()
+
+	const addFavoriteTeam = e => {
+		setFavoriteTeams([...favoriteTeams, e.team])
+	}
+
+	useEffect(() => {
+		console.log(favoriteTeams)
+	}, [favoriteTeams])
 
 	return (
 		<Container
@@ -114,16 +132,24 @@ const UserProfilePage = () => {
 												boxShadow: '0px 0px 20px black',
 											},
 										}}>
-										<Link to={`http://localhost:3000/stats/teams/${team.team}`}>
+										<Box onClick={() => addFavoriteTeam(team)}>
 											<HomeTeamCard
 												width={60}
 												team={team.team}
 											/>
-										</Link>
+										</Box>
 									</Grid>
 								)
 							})}
 						</Grid>
+						<Button
+							onClick={() => {
+								setFavoriteTeams([...favTeams])
+								console.log(favoriteTeams)
+							}}
+							sx={{ margin: '-3rem 0 0' }}>
+							Save Favorite Teams
+						</Button>
 					</Box>
 				</Modal>
 			</Box>

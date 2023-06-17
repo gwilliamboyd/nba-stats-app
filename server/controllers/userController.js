@@ -6,6 +6,8 @@ export const getUser = asyncHandler(async (req, res) => {
 		_id: req.user._id,
 		name: req.user.name,
 		email: req.user.email,
+		avatar: req.user.avatar,
+		favoriteTeams: req.user.favoriteTeams,
 	}
 	res.status(200).json(user)
 })
@@ -15,6 +17,8 @@ export const updateUser = asyncHandler(async (req, res) => {
 	if (user) {
 		user.name = req.body.name || user.name
 		user.email = req.body.email || user.email
+		user.avatar = req.body.avatar || user.avatar
+		user.favoriteTeams = req.body.favoriteTeams || user.favoriteTeams
 		if (req.body.password) {
 			user.password = req.body.password
 		}
@@ -24,6 +28,8 @@ export const updateUser = asyncHandler(async (req, res) => {
 			_id: updateUser._id,
 			name: updateUser.name,
 			email: updateUser.email,
+			avatar: req.user.avatar,
+			favoriteTeams: req.user.favoriteTeams,
 		})
 	} else {
 		res.status(404)
