@@ -56,7 +56,10 @@ const HomePage = () => {
 										item
 										xs={1}>
 										<Link to={`http://localhost:3000/stats/teams/${team.team}`}>
-											<HomeTeamCard team={team.team} />
+											<HomeTeamCard
+												width={120}
+												team={team.team}
+											/>
 										</Link>
 									</Grid>
 								)

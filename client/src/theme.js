@@ -18,6 +18,9 @@ const theme = createTheme({
 			nbaWhite: '#FFFFFF',
 			nbaBlack: '#000000',
 		},
+		button: {
+			nbaWhite: '#FFFFFF',
+		},
 		teams: {
 			atl: {
 				primary: '#C8102E',
