@@ -9,7 +9,6 @@ const HomeTeamCard = ({ team, width }) => {
 		<Box
 			sx={{
 				margin: '0',
-				padding: '1rem 0.75rem',
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',

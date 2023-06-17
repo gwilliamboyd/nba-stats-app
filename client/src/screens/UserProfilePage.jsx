@@ -104,6 +104,7 @@ const UserProfilePage = () => {
 										item
 										xs={1}
 										sx={{
+											padding: '1rem 0.75rem',
 											borderRadius: '4px',
 											outline: '0',
 											outlineOffset: '-2px',
