@@ -10,7 +10,8 @@ const HomeTeamCard = ({ team }) => {
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
-				gap: '12px',
+				gap: '4px',
+				textAlign: 'center',
 			}}>
 			<img
 				src={`../../public/images/svgs/team-logos/${team}.svg`}
@@ -19,7 +20,8 @@ const HomeTeamCard = ({ team }) => {
 			/>
 			<Typography
 				variant='overline'
-				fontWeight={500}>
+				fontWeight={500}
+				lineHeight={1.5}>
 				{fullTeamNames(team)}
 			</Typography>
 		</Box>

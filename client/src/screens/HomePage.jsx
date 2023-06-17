@@ -1,4 +1,4 @@
-import { Container, Grid, Box, Typography } from '@mui/material'
+import { Grid, Box, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
 // import backgroundKawhi from '../../public/images/kawhi-leonard.jpg'
@@ -19,7 +19,7 @@ const HomePage = () => {
 			style={{
 				backgroundColor: league.nbaBackground,
 				height: 'calc(100vh - 100px)',
-				width: '100vw',
+				width: 'calc(100vw - 17px)',
 				padding: '0',
 			}}>
 			<Grid
@@ -48,7 +48,7 @@ const HomePage = () => {
 							container
 							columns={10}
 							columnSpacing={6}
-							rowSpacing={12}>
+							rowSpacing={4}>
 							{sortedTeams.map(team => {
 								return (
 									<Grid
