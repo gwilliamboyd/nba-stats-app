@@ -4,6 +4,6 @@ import { protect } from '../middleware/userAuthMiddleware.js'
 
 const router = express.Router()
 
-router.route('/profile', protect).get(getUser).put(updateUser)
+router.route('/profile').get(protect, getUser).put(protect, updateUser)
 
 export default router

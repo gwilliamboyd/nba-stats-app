@@ -8,6 +8,8 @@ import HomeTeamCard from '../components/HomeTeamCard'
 import { Link } from 'react-router-dom'
 import teams from '../data/teams-perGame.json'
 import { useUpdateUserMutation } from '../slices/authentication/usersApiSlice'
+import { setFavoriteTeams } from '../slices/authentication/favoriteTeamsSlice'
+import { setCredentials } from '../slices/authentication/authSlice'
 
 const UserProfilePage = () => {
 	// theme
@@ -18,25 +20,57 @@ const UserProfilePage = () => {
 
 	// sort teams alphabetically
 	const sortedTeams = teams.sort((a, b) => a.team.localeCompare(b.team))
-
+	// redux state
 	const { userInfo } = useSelector(state => state.auth)
-	const [modalOpen, setModalOpen] = useState(false)
+	// const { favoriteTeams } = useSelector(state => state.favoriteTeams)
+
+	// component state
+	const [name, setName] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [confirmPassword, setConfirmPassword] = useState('')
 	// favorite teams
-	const favTeams = []
-	const [favoriteTeams, setFavoriteTeams] = useState([])
+	const [modalOpen, setModalOpen] = useState(false)
+	const [favTeams, setFavTeams] = useState([])
 	// open and close modal
 	const handleOpen = () => setModalOpen(true)
 	const handleClose = () => setModalOpen(false)
-
+	// update user info
 	const [updateUser, { isLoading }] = useUpdateUserMutation()
 
 	const addFavoriteTeam = e => {
-		setFavoriteTeams([...favoriteTeams, e.team])
+		setFavTeams([...favTeams, e.team])
+	}
+	useEffect(() => {
+		console.log(userInfo._id)
+	}, [])
+
+	useEffect(() => {
+		setName(userInfo.name)
+		setEmail(userInfo.email)
+	}, [userInfo.name, userInfo.email])
+
+	const saveProfileUpdate = async () => {
+		try {
+			const res = await updateUser({
+				_id: userInfo._id,
+				name,
+				email,
+				password,
+				favoriteTeams: favTeams,
+			}).unwrap()
+			dispatch(setCredentials({ ...res }))
+		} catch (err) {
+			console.log(err?.data?.message || err.error)
+		}
 	}
 
 	useEffect(() => {
+		console.log(favTeams)
+	}, [favTeams])
+	/* 	useEffect(() => {
 		console.log(favoriteTeams)
-	}, [favoriteTeams])
+	}, [favoriteTeams]) */
 
 	return (
 		<Container
@@ -143,10 +177,7 @@ const UserProfilePage = () => {
 							})}
 						</Grid>
 						<Button
-							onClick={() => {
-								setFavoriteTeams([...favTeams])
-								console.log(favoriteTeams)
-							}}
+							onClick={saveProfileUpdate}
 							sx={{ margin: '-3rem 0 0' }}>
 							Save Favorite Teams
 						</Button>

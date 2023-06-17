@@ -38,6 +38,7 @@ app.use(cors())
 app.use(cookieParser())
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
+app.use(express.urlencoded({ extended: true }))
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')))
 // Image upload
 const storage = multer.diskStorage({
