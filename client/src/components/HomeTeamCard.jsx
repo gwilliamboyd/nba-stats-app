@@ -15,14 +15,6 @@ const HomeTeamCard = ({ team, width }) => {
 				alignItems: 'center',
 				gap: '4px',
 				textAlign: 'center',
-				borderRadius: '4px',
-				outline: '0',
-				outlineOffset: '-2px',
-				'&:hover': {
-					// backgroundColor: 'rgba(34, 34, 34, 0.3)',
-					outline: '2px solid white',
-					boxShadow: '0px 0px 20px black',
-				},
 			}}>
 			<img
 				src={`../../public/images/svgs/team-logos/${team}.svg`}

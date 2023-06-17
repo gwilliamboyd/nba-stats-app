@@ -102,7 +102,17 @@ const UserProfilePage = () => {
 									<Grid
 										key={team.id}
 										item
-										xs={1}>
+										xs={1}
+										sx={{
+											borderRadius: '4px',
+											outline: '0',
+											outlineOffset: '-2px',
+											'&:hover': {
+												// backgroundColor: 'rgba(34, 34, 34, 0.3)',
+												outline: '2px solid white',
+												boxShadow: '0px 0px 20px black',
+											},
+										}}>
 										<Link to={`http://localhost:3000/stats/teams/${team.team}`}>
 											<HomeTeamCard
 												width={60}
