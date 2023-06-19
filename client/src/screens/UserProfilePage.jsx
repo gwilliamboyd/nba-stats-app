@@ -39,6 +39,7 @@ const UserProfilePage = () => {
 	const [confirmPassword, setConfirmPassword] = useState('')
 	const [avatar, setAvatar] = useState('')
 	const [favTeams, setFavTeams] = useState([])
+	const [activeFavTeams, setActiveFavTeams] = useState(false)
 
 	// open and close modal
 	const [modalOpen, setModalOpen] = useState(false)
@@ -53,9 +54,14 @@ const UserProfilePage = () => {
 
 	const addFavoriteTeam = e => {
 		setFavTeams([...favTeams, e.team])
+		setActiveFavTeams(true)
 	}
 	const removeFavoriteTeam = e => {
 		setFavTeams(favTeams.filter(tm => tm !== e.team))
+	}
+
+	const handleTeamSelectOutline = e => {
+		userInfo.favoriteTeams.includes(e)
 	}
 
 	useEffect(() => {
@@ -88,6 +94,8 @@ const UserProfilePage = () => {
 		console.log(favoriteTeams)
 	}, [favoriteTeams])
 
+	let isOutlined = false
+
 	return (
 		<Container
 			disableGutters
@@ -106,18 +114,18 @@ const UserProfilePage = () => {
 					avatar={userInfo.avatar}
 					dimensions={140}
 				/>
-				<Typography>Name</Typography>
-				<TextField
-					required
-					id='outlined-required'
-					label='Required'
-					type='name'
-					onChange={e => setName(e.target.value)}
-					placeholder='Name'
-					sx={{ input: { color: '#FFF' }, label: { color: '#FFF' } }}
-					value={name}
-				/>
-				<Button onClick={saveProfileUpdate}>Change Name</Button>
+				<Box sx={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+					<Typography>Name</Typography>
+					<TextField
+						id='outlined'
+						type='name'
+						onChange={e => setName(e.target.value)}
+						placeholder='Name'
+						sx={{ input: { color: '#FFF' }, label: { color: '#FFF' } }}
+						value={name}
+					/>
+					<Button onClick={saveProfileUpdate}>Change Name</Button>
+				</Box>
 				<Button
 					sx={{ color: '#FFF', borderColor: '#FFF' }}
 					onClick={() => {
@@ -125,9 +133,9 @@ const UserProfilePage = () => {
 						handleOpen()
 					}}
 					variant='outlined'>
-					Add Favorite Teams
+					Edit <span style={{ fontWeight: 700 }}>Favorite Teams</span>
 				</Button>
-				<Typography>Favorite Teams: </Typography>
+				<Typography>Favorite Teams:</Typography>
 				<Box sx={{ display: 'flex', gap: '12px' }}>
 					{favoriteTeams.map(tm => {
 						return (
@@ -190,6 +198,10 @@ const UserProfilePage = () => {
 							columnSpacing={0}
 							rowSpacing={0}>
 							{sortedTeams.map(team => {
+								if (favTeams.includes(team.team)) {
+									isOutlined = true
+									console.log('true')
+								} else isOutlined = false
 								return (
 									<Grid
 										key={team.id}
@@ -198,7 +210,10 @@ const UserProfilePage = () => {
 										sx={{
 											padding: '1rem 0.75rem',
 											borderRadius: '4px',
-											outline: '0',
+											outline: isOutlined
+												? `2px solid ${league.nbaRed}`
+												: 'none',
+
 											outlineOffset: '-2px',
 											'&:hover': {
 												// backgroundColor: 'rgba(34, 34, 34, 0.3)',
@@ -212,7 +227,15 @@ const UserProfilePage = () => {
 											}}>
 											X
 										</Button>
-										<Box onClick={() => addFavoriteTeam(team)}>
+										<Box
+											onClick={() => {
+												if (favTeams.includes(team)) {
+													removeFavoriteTeam(team)
+												} else {
+													addFavoriteTeam(team)
+												}
+												handleTeamSelectOutline(team)
+											}}>
 											<HomeTeamCard
 												width={40}
 												team={team.team}
@@ -223,7 +246,10 @@ const UserProfilePage = () => {
 							})}
 						</Grid>
 						<Button
-							onClick={saveProfileUpdate}
+							onClick={() => {
+								saveProfileUpdate()
+								handleClose()
+							}}
 							sx={{ margin: '-3rem 0 0' }}>
 							Save Favorite Teams
 						</Button>
