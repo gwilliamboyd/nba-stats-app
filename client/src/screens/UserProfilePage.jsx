@@ -149,7 +149,10 @@ const UserProfilePage = () => {
 				</Box>
 				<Modal
 					open={modalOpen}
-					onClose={handleClose}
+					onClose={() => {
+						handleClose()
+						saveProfileUpdate()
+					}}
 					component='section'>
 					<Box
 						width='70%'
@@ -161,7 +164,7 @@ const UserProfilePage = () => {
 							top: '50%',
 							left: '50%',
 							transform: 'translate(-50%, -50%)',
-							backgroundColor: 'rgba(13, 22, 44, 0.85)',
+							backgroundColor: 'rgba(13, 22, 44, 0.95)',
 							display: 'flex',
 							flexDirection: 'column',
 							alignItems: 'center',
@@ -219,17 +222,18 @@ const UserProfilePage = () => {
 												// backgroundColor: 'rgba(34, 34, 34, 0.3)',
 												outline: '2px solid white',
 												boxShadow: '0px 0px 20px black',
+												cursor: 'pointer',
 											},
 										}}>
-										<Button
+										{/* <Button
 											onClick={() => {
 												removeFavoriteTeam(team)
 											}}>
 											X
-										</Button>
+										</Button> */}
 										<Box
 											onClick={() => {
-												if (favTeams.includes(team)) {
+												if (favTeams.includes(team.team)) {
 													removeFavoriteTeam(team)
 												} else {
 													addFavoriteTeam(team)
@@ -237,7 +241,7 @@ const UserProfilePage = () => {
 												handleTeamSelectOutline(team)
 											}}>
 											<HomeTeamCard
-												width={40}
+												width={60}
 												team={team.team}
 											/>
 										</Box>
