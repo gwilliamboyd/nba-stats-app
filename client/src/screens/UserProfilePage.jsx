@@ -37,6 +37,7 @@ const UserProfilePage = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [confirmPassword, setConfirmPassword] = useState('')
+	const [avatar, setAvatar] = useState('')
 	// favorite teams
 	const [modalOpen, setModalOpen] = useState(false)
 	const [favTeams, setFavTeams] = useState([])
@@ -49,24 +50,21 @@ const UserProfilePage = () => {
 	const addFavoriteTeam = e => {
 		setFavTeams([...favTeams, e.team])
 	}
-	useEffect(() => {
-		console.log(userInfo._id)
-		console.log(userInfo.cookies)
-	}, [])
 
 	useEffect(() => {
 		setName(userInfo.name)
 		setEmail(userInfo.email)
-	}, [userInfo.name, userInfo.email])
+		setAvatar(userInfo.avatar)
+	}, [userInfo.name, userInfo.email, userInfo.avatar])
 
 	const saveProfileUpdate = async () => {
 		try {
 			const res = await updateUser({
 				_id: userInfo._id,
-				name: userInfo.name,
-				email: userInfo.email,
-				password: userInfo.password,
-				avatar: userInfo.avatar,
+				name: name,
+				email: email,
+				password: password,
+				avatar: avatar || userInfo.avatar,
 				favoriteTeams: favTeams,
 			}).unwrap()
 			dispatch(setCredentials({ ...res }))

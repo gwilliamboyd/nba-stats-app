@@ -95,17 +95,19 @@ export const updateUser = asyncHandler(async (req, res) => {
 	if (user) {
 		user.name = req.body.name || user.name
 		user.email = req.body.email || user.email
+		user.avatar = req.body.avatar || user.avatar
+		user.favoriteTeams = req.body.favoriteTeams || user.favoriteTeams
 		if (req.body.password) {
 			user.password = req.body.password
 		}
-		user.avatar = req.body.avatar || user.avatar
-		user.favoriteTeams = req.body.favoriteTeams || user.favoriteTeams
 		const updatedUser = await user.save()
 
 		res.status(200).json({
 			_id: updatedUser._id,
 			name: updatedUser.name,
 			email: updatedUser.email,
+			avatar: updatedUser.avatar,
+			favoriteTeams: updatedUser.favoriteTeams,
 		})
 	} else {
 		res.status(404)

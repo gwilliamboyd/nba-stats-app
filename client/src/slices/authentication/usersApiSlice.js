@@ -29,12 +29,14 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 			query: () => ({
 				url: `${USERS_URL}/profile`,
 				method: 'GET',
+				credentials: 'include',
 			}),
 		}),
 		updateUser: builder.mutation({
 			query: data => ({
 				url: `${USERS_URL}/profile`,
 				method: 'PUT',
+				credentials: 'include',
 				body: data,
 			}),
 		}),
