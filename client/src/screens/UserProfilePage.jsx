@@ -11,12 +11,12 @@ import {
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import UserAvatar from '../components/UserAvatar'
-import AddFavoriteTeams from '../components/user-profile/AddFavoriteTeams'
+// import AddFavoriteTeams from '../components/user-profile/AddFavoriteTeams'
 import HomeTeamCard from '../components/HomeTeamCard'
 import { Link } from 'react-router-dom'
 import teams from '../data/teams-perGame.json'
 import { useUpdateUserMutation } from '../slices/authentication/usersApiSlice'
-import { setFavoriteTeams } from '../slices/authentication/favoriteTeamsSlice'
+// import { setFavoriteTeams } from '../slices/authentication/favoriteTeamsSlice'
 import { setCredentials } from '../slices/authentication/authSlice'
 
 const UserProfilePage = () => {
@@ -38,24 +38,32 @@ const UserProfilePage = () => {
 	const [password, setPassword] = useState('')
 	const [confirmPassword, setConfirmPassword] = useState('')
 	const [avatar, setAvatar] = useState('')
-	// favorite teams
-	const [modalOpen, setModalOpen] = useState(false)
 	const [favTeams, setFavTeams] = useState([])
+
 	// open and close modal
+	const [modalOpen, setModalOpen] = useState(false)
 	const handleOpen = () => setModalOpen(true)
 	const handleClose = () => setModalOpen(false)
+
 	// update user info
 	const [updateUser, { isLoading }] = useUpdateUserMutation()
 
+	// favorite teams
+	const favoriteTeams = userInfo.favoriteTeams
+
 	const addFavoriteTeam = e => {
 		setFavTeams([...favTeams, e.team])
+	}
+	const removeFavoriteTeam = e => {
+		setFavTeams(favTeams.filter(tm => tm !== e.team))
 	}
 
 	useEffect(() => {
 		setName(userInfo.name)
 		setEmail(userInfo.email)
 		setAvatar(userInfo.avatar)
-	}, [userInfo.name, userInfo.email, userInfo.avatar])
+		setFavTeams(userInfo.favoriteTeams)
+	}, [userInfo.name, userInfo.email, userInfo.avatar, userInfo.favoriteTeams])
 
 	const saveProfileUpdate = async () => {
 		try {
@@ -76,9 +84,9 @@ const UserProfilePage = () => {
 	useEffect(() => {
 		console.log(favTeams)
 	}, [favTeams])
-	/* 	useEffect(() => {
+	useEffect(() => {
 		console.log(favoriteTeams)
-	}, [favoriteTeams]) */
+	}, [favoriteTeams])
 
 	return (
 		<Container
@@ -119,6 +127,18 @@ const UserProfilePage = () => {
 					variant='outlined'>
 					Add Favorite Teams
 				</Button>
+				<Typography>Favorite Teams: </Typography>
+				<Box sx={{ display: 'flex', gap: '12px' }}>
+					{favoriteTeams.map(tm => {
+						return (
+							<HomeTeamCard
+								key={tm}
+								width={60}
+								team={tm}
+							/>
+						)
+					})}
+				</Box>
 				<Modal
 					open={modalOpen}
 					onClose={handleClose}
@@ -186,9 +206,15 @@ const UserProfilePage = () => {
 												boxShadow: '0px 0px 20px black',
 											},
 										}}>
+										<Button
+											onClick={() => {
+												removeFavoriteTeam(team)
+											}}>
+											X
+										</Button>
 										<Box onClick={() => addFavoriteTeam(team)}>
 											<HomeTeamCard
-												width={60}
+												width={40}
 												team={team.team}
 											/>
 										</Box>
