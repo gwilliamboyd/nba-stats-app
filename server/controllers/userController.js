@@ -9,7 +9,8 @@ export const getUser = asyncHandler(async (req, res) => {
 		avatar: req.user.avatar,
 		favoriteTeams: req.user.favoriteTeams,
 	}
-	res.status(200).json(user)
+	console.log(req)
+	// res.status(200).json(user)
 })
 
 export const updateUser = asyncHandler(async (req, res) => {
@@ -20,6 +21,8 @@ export const updateUser = asyncHandler(async (req, res) => {
 		if (req.body.password) {
 			user.password = req.body.password
 		}
+		user.avatar = req.body.avatar || user.avatar
+		user.favoriteTeams = req.body.favoriteTeams || user.favoriteTeams
 		const updatedUser = await user.save()
 
 		res.status(200).json({

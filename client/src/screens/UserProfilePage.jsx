@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, Container, Typography, Modal, Button, Grid } from '@mui/material'
+import {
+	Box,
+	Container,
+	Typography,
+	Modal,
+	Button,
+	Grid,
+	TextField,
+} from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import UserAvatar from '../components/UserAvatar'
 import AddFavoriteTeams from '../components/user-profile/AddFavoriteTeams'
@@ -43,6 +51,7 @@ const UserProfilePage = () => {
 	}
 	useEffect(() => {
 		console.log(userInfo._id)
+		console.log(userInfo.cookies)
 	}, [])
 
 	useEffect(() => {
@@ -54,9 +63,10 @@ const UserProfilePage = () => {
 		try {
 			const res = await updateUser({
 				_id: userInfo._id,
-				name,
-				email,
-				password,
+				name: userInfo.name,
+				email: userInfo.email,
+				password: userInfo.password,
+				avatar: userInfo.avatar,
 				favoriteTeams: favTeams,
 			}).unwrap()
 			dispatch(setCredentials({ ...res }))
@@ -90,6 +100,18 @@ const UserProfilePage = () => {
 					avatar={userInfo.avatar}
 					dimensions={140}
 				/>
+				<Typography>Name</Typography>
+				<TextField
+					required
+					id='outlined-required'
+					label='Required'
+					type='name'
+					onChange={e => setName(e.target.value)}
+					placeholder='Name'
+					sx={{ input: { color: '#FFF' }, label: { color: '#FFF' } }}
+					value={name}
+				/>
+				<Button onClick={saveProfileUpdate}>Change Name</Button>
 				<Button
 					sx={{ color: '#FFF', borderColor: '#FFF' }}
 					onClick={() => {

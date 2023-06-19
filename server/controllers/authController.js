@@ -19,7 +19,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 			favoriteTeams,
 		})
 		if (newUser) {
-			generateToken(res, newUser._id)
+			// generateToken(res, newUser._id)
 			res.status(201).json({
 				_id: newUser._id,
 				name: newUser.name,
@@ -37,33 +37,79 @@ export const registerUser = asyncHandler(async (req, res) => {
 })
 
 export const loginUser = asyncHandler(async (req, res) => {
-	try {
-		const { email, password } = req.body
+	const { email, password } = req.body
 
-		const user = await User.findOne({ email: email })
-		if (!user) {
-			return res.status(400).json({ message: 'User does not exist' })
-		}
-
-		const isMatch = await bcrypt.compare(password, user.password)
-		if (!isMatch) {
-			return res.status(400).json({ message: 'Invalid email or password' })
-		}
-
-		generateToken(res, user._id)
-		delete user.password
-		res.status(200).json({
-			_id: user._id,
-			name: user.name,
-			email: user.email,
-			avatar: user.avatar,
-		})
-	} catch (err) {
-		res.status(500).json({ message: err.message })
+	const user = await User.findOne({ email: email })
+	if (!user) {
+		return res.status(400).json({ message: 'User does not exist' })
 	}
+
+	const isMatch = await bcrypt.compare(password, user.password)
+	if (!isMatch) {
+		return res.status(400).json({ message: 'Invalid email or password' })
+	}
+	delete user.password
+
+	const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '8h' })
+
+	res.cookie('token', token, {
+		httpOnly: true,
+	})
+	res.status(200).json({
+		_id: user._id,
+		name: user.name,
+		email: user.email,
+		avatar: user.avatar,
+		favoriteTeams: user.favoriteTeams,
+	})
+	// return res.redirect('/')
 })
 
 export const logoutUser = (req, res) => {
 	res.cookie('jwt', '', { httpOnly: true, expires: new Date(0) })
 	res.status(200).json({ message: 'Logged out successfully' })
 }
+export const getUser = asyncHandler(async (req, res) => {
+	// TRAVERSY METHOD
+	const user = {
+		_id: req.user._id,
+		name: req.user.name,
+		email: req.user.email,
+		avatar: req.user.avatar,
+		favoriteTeams: req.user.favoriteTeams,
+	}
+	// console.log(req)
+	res.status(200).json(user)
+	// ED ROH METHOD
+	/* try {
+		const { id } = req.params
+		const user = await User.findById(id)
+		res.status(200).json(user)
+	} catch (err) {
+		res.status(404).json({ message: err.message })
+	} */
+})
+
+export const updateUser = asyncHandler(async (req, res) => {
+	const user = await User.findById(req.user._id)
+	if (user) {
+		user.name = req.body.name || user.name
+		user.email = req.body.email || user.email
+		if (req.body.password) {
+			user.password = req.body.password
+		}
+		user.avatar = req.body.avatar || user.avatar
+		user.favoriteTeams = req.body.favoriteTeams || user.favoriteTeams
+		const updatedUser = await user.save()
+
+		res.status(200).json({
+			_id: updatedUser._id,
+			name: updatedUser.name,
+			email: updatedUser.email,
+		})
+	} else {
+		res.status(404)
+		throw new Error('User not found')
+	}
+	res.status(200).json({ message: 'Updated profile' })
+})
