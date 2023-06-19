@@ -8,6 +8,7 @@ import {
 	TableSortLabel,
 } from '@mui/material'
 import { visuallyHidden } from '@mui/utils'
+import { useTheme } from '@emotion/react'
 
 const HeadCellsTeams = ({
 	order,
@@ -19,12 +20,14 @@ const HeadCellsTeams = ({
 	const createSortHandler = property => event => {
 		onRequestSort(event, property)
 	}
-	// console.log(headCells)
+
+	const theme = useTheme()
+	const { league } = theme.palette
 
 	return (
 		<TableHead>
 			<TableRow>
-				<TableCell sx={{ p: '4px' }}></TableCell>
+				<TableCell sx={{ p: '4px', backgroundColor: '#18264a' }}></TableCell>
 				{headCells.map(headCell => (
 					<TableCell
 						key={headCell.id}
@@ -36,6 +39,7 @@ const HeadCellsTeams = ({
 							fontWeight: '500',
 							color: fontColor,
 							p: '2px',
+							backgroundColor: '#18264a',
 						}}>
 						<TableSortLabel
 							active={orderBy === headCell.id}

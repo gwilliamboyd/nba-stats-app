@@ -101,16 +101,29 @@ export default function EnhancedTable({ loading, statsType, statistics }) {
 				width: '82%',
 				backgroundColor: league.nbaBackground,
 			}}>
-			<Paper sx={{ width: '100%', mb: 2, border: '1px solid white' }}>
+			<Paper
+				sx={{
+					width: '100%',
+					mb: 2,
+					border: '1px solid white',
+					overflow: 'hidden',
+				}}>
 				<TableContainer
 					sx={{
 						backgroundColor: '#18264a',
 						p: '0 8px',
+						maxHeight: 680,
 					}}>
 					<Table
-						sx={{ minWidth: 750 }}
+						// aria-label='sticky table'
+						sx={{
+							minWidth: 750,
+							scrollbarColor: 'green',
+							'&::webkit-scrollbar': { outline: '1px solid red' },
+						}}
 						aria-labelledby='tableTitle'
-						size='small'>
+						size='small'
+						stickyHeader>
 						<HeadCellsTeams
 							headCells={
 								statsType === 'advanced'

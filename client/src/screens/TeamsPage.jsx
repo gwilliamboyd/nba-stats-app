@@ -25,6 +25,9 @@ const TeamsPage = () => {
 	// theme
 	const theme = useTheme()
 	const { league } = theme.palette
+
+	const { userInfo } = useSelector(state => state.auth)
+
 	// state
 	const dispatch = useDispatch()
 	const teamsPerGameStats = useSelector(state => state.teamsPerGameStats)
@@ -93,6 +96,7 @@ const TeamsPage = () => {
 				disableGutters
 				maxWidth='100%'
 				style={{
+					height: 'calc(100vh - 100px)',
 					backgroundColor: league.nbaBackground,
 					display: 'flex',
 					flexDirection: 'column',
@@ -152,7 +156,7 @@ const TeamsPage = () => {
 						</Button>
 					</ButtonGroup>
 				</Box>
-				<Suspense fallback={<LoadingScreenBlank />}>
+				<Suspense fallback={<LoadingScreen />}>
 					<TeamsStatsTable
 						loading={loading}
 						statsType={statsType}
