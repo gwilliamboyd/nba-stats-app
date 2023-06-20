@@ -37,16 +37,17 @@ const theme = createTheme({
 				tertiary: '#FFFFFF',
 			},
 			bkn: {
-				primary: '#000000',
+				primary: '#050505',
 				// vintage gray
-				secondary: '#C6CFD4',
+				secondary: '#9fa7ab',
 				tertiary: '#FFFFFF',
 			},
 			cha: {
 				primary: '#1D1160',
 				secondary: '#00788C',
 				// lighter gray
-				tertiary: '#d7d9db',
+				// tertiary: '#d7d9db',
+				tertiary: '#e6e8eb',
 			},
 			chi: {
 				primary: '#CD1F43',
@@ -55,25 +56,32 @@ const theme = createTheme({
 			},
 			cle: {
 				primary: '#860038',
-				secondary: '#041E42',
-				tertiary: '#FDBB30',
+				// secondary: '#041E42',
+				secondary: '#FDBB30',
+				// tertiary: '#FDBB30',
+				tertiary: '#ffc13d',
 			},
 			dal: {
 				primary: '#00538C',
 				// might need to lighten
 				secondary: '#002B5E',
 				// might need to lighten
-				tertiary: '#B8C4CA',
+				// tertiary: '#B8C4CA',
+				tertiary: '#f0f9ff',
 			},
 			den: {
 				primary: '#0E2240',
 				secondary: '#FEC524',
-				tertiary: '#8B2131',
+				// tertiary: '#8B2131',
+				tertiary: '#c42f46',
 			},
 			det: {
-				primary: '#C8102E',
+				// primary: '#C8102E',
+				primary: '#a30d26',
 				secondary: '#1D42BA',
-				tertiary: '#BEC0C2',
+				// secondary: '#10266b',
+				// tertiary: '#BEC0C2',
+				tertiary: '#e8ebed',
 			},
 			gsw: {
 				primary: '#1D428A',
@@ -82,20 +90,26 @@ const theme = createTheme({
 			},
 			// logo blends in to background
 			hou: {
-				primary: '#CE1141',
-				secondary: '#000000',
+				// primary: '#CE1141',
+				primary: '#000000',
+				secondary: '#CE1141',
 				tertiary: '#C4CED4',
 			},
 			ind: {
 				primary: '#002D62',
 				secondary: '#FDBB30',
-				tertiary: '#BEC0C2',
+				// tertiary: '#BEC0C2',
+				tertiary: '#e8ebed',
 			},
 			lac: {
-				primary: '#C8102E',
-				secondary: '#1D428A',
+				// primary: '#C8102E',
+				// primary: '#a10d25',
+				primary: '#2450a6',
+				secondary: '#a10d25',
+				// secondary: '#1D428A',
 				// lighter gray
-				tertiary: '#d7d9db',
+				// tertiary: '#d7d9db',
+				tertiary: '#e8ebed',
 			},
 			lak: {
 				primary: '#552583',
@@ -124,22 +138,26 @@ const theme = createTheme({
 				primary: '#0C2340',
 				secondary: '#236192',
 				// might need to lighten
-				tertiary: '#9EA2A2',
+				// tertiary: '#9EA2A2',
+				tertiary: '#c0c4c4',
 			},
 			nop: {
 				primary: '#0C2340',
 				secondary: '#C8102E',
-				tertiary: '#85714D',
+				// tertiary: '#85714D',
+				tertiary: '#a1895d',
 			},
 			nyk: {
 				primary: '#006BB6',
 				secondary: '#F58426',
-				tertiary: '#BEC0C2',
+				// tertiary: '#BEC0C2',
+				tertiary: '#e3e6e8',
 			},
 			okc: {
 				primary: '#007AC1',
 				secondary: '#EF3B24',
-				tertiary: '#002D62',
+				// tertiary: '#002D62',
+				tertiary: '#012045',
 			},
 			orl: {
 				primary: '#0077C0',
@@ -148,7 +166,7 @@ const theme = createTheme({
 			},
 			phi: {
 				primary: '#006BB6',
-				secondary: '#ED174C',
+				secondary: '#bd133d',
 				// real tertiary is 002B5C
 				tertiary: '#FFFFFF',
 			},
@@ -165,7 +183,8 @@ const theme = createTheme({
 			},
 			sac: {
 				primary: '#5A2D81',
-				secondary: '#63727A',
+				// secondary: '#63727A',
+				secondary: '#7a8d96',
 				// real tertiary is black
 				tertiary: '#FFFFFF',
 			},
@@ -197,7 +216,8 @@ const theme = createTheme({
 				// technically is tertiary
 				secondary: '#E31837',
 				// original green: 00471B
-				tertiary: '#C4CED4',
+				// tertiary: '#C4CED4',
+				tertiary: '#e8f5fc',
 			},
 		},
 	},

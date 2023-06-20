@@ -50,7 +50,6 @@ const TeamIndivPage = () => {
 	const qsArray = qs[0]
 	const quickStat = qsArray.find(q => q.team === `${team}`)
 	console.log(quickStat)
-	console.log(quickStat.arena)
 
 	const statsPts = quickStat?.pts
 	console.log(statsPts)
@@ -59,6 +58,8 @@ const TeamIndivPage = () => {
 	const statsFg = quickStat?.fg
 	const statsFgPer = quickStat?.fgPer
 	const stats3pPer = quickStat?.$3pPer
+	const arena = quickStat?.arena
+	const home = quickStat?.home
 
 	return (
 		<Container
@@ -89,7 +90,7 @@ const TeamIndivPage = () => {
 							display: 'flex',
 							alignItems: 'flex-start',
 							gap: '2rem',
-							minWidth: '600px',
+							minWidth: '680px',
 							// flex: '1 0 0',
 						}}>
 						<img
@@ -135,7 +136,7 @@ const TeamIndivPage = () => {
 										sx={{
 											letterSpacing: '-2.5px',
 										}}>
-										{quickStat.home}
+										{home}
 									</Typography>
 								</Box>
 								<Box
@@ -158,7 +159,7 @@ const TeamIndivPage = () => {
 											color: tertiaryColor,
 											letterSpacing: '-2.5px',
 										}}>
-										{quickStat.arena}
+										{arena}
 									</Typography>
 								</Box>
 							</Box>
