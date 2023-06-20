@@ -10,7 +10,8 @@ import {
 import { visuallyHidden } from '@mui/utils'
 import { useTheme } from '@emotion/react'
 
-const HeadCellsTeams = ({
+const HeadCellsTeamsIndivRow = ({
+	statsType,
 	order,
 	orderBy,
 	onRequestSort,
@@ -28,12 +29,12 @@ const HeadCellsTeams = ({
 	return (
 		<TableHead>
 			<TableRow>
-				<TableCell
+				{/* <TableCell
 					sx={{
 						p: '4px',
 						backgroundColor: backgroundColor,
 						opacity: '1',
-					}}></TableCell>
+					}}></TableCell> */}
 				{headCells.map(headCell => (
 					<TableCell
 						key={headCell.id}
@@ -41,8 +42,12 @@ const HeadCellsTeams = ({
 						padding={headCell.disablePadding ? 'none' : 'normal'}
 						sortDirection={orderBy === headCell.id ? order : false}
 						sx={{
-							fontSize: '18px',
+							// fontSize: '18px',
 							fontWeight: '500',
+							...(statsType === 'advanced'
+								? { fontSize: '14px' }
+								: { fontSize: '18px' }),
+							// fontSize: {statsType === 'advanced' ? (`${fontSize}`) : ('18px')},
 							color: fontColor,
 							p: '2px',
 							backgroundColor: backgroundColor,
@@ -101,10 +106,10 @@ const HeadCellsTeams = ({
 	)
 }
 
-/* HeadCellsTeams.propTypes = {
+/* HeadCellsTeamsIndivRow.propTypes = {
 	onRequestSort: PropTypes.func.isRequired,
 	order: PropTypes.oneOf(['asc', 'desc']).isRequired,
 	orderBy: PropTypes.string.isRequired,
 } */
 
-export default HeadCellsTeams
+export default HeadCellsTeamsIndivRow

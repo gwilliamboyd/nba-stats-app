@@ -169,6 +169,9 @@ const TeamsPage = () => {
 								? teamsAdvancedStatistics
 								: null
 						}
+						primaryColor={'#18264a'}
+						secondaryColor={league.nbaBackground}
+						tertiaryColor={league.nbaWhite}
 					/>
 				</Suspense>
 			</Container>

@@ -1,4 +1,5 @@
-import { Container, Box, Typography } from '@mui/material'
+import { useState } from 'react'
+import { Container, Box, Typography, MenuItem, Menu } from '@mui/material'
 import { Link } from 'react-router-dom'
 // import { ReactComponent as NbaLogo } from '../../public/images/logo-nba.svg'
 import { useTheme } from '@mui/material/styles'
@@ -19,6 +20,15 @@ const Navbar = () => {
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+
+	const [menuOpen, setMenuOpen] = useState(false)
+
+	const handleOpen = () => {
+		setMenuOpen(true)
+	}
+	const handleClose = () => {
+		setMenuOpen(false)
+	}
 
 	// Logout mutation
 	const [logoutApiCall] = useLogoutMutation()
@@ -74,14 +84,20 @@ const Navbar = () => {
 					<Typography variant='h6'>Players</Typography>
 				</Box>
 				<Box
+					onMouseOver={handleOpen}
+					onMouseLeave={handleClose}
 					sx={{
 						height: '100%',
 						display: 'flex',
-						alignItems: 'center',
-						gap: '20px',
 					}}>
 					{userInfo ? (
-						<>
+						<Box
+							sx={{
+								position: 'relative',
+								display: 'flex',
+								alignItems: 'center',
+								gap: '20px',
+							}}>
 							<UserAvatar
 								avatar={userInfo.avatar}
 								dimensions={50}
@@ -94,7 +110,22 @@ const Navbar = () => {
 								onClick={logoutHandler}>
 								<Typography>Logout</Typography>
 							</Link>
-						</>
+							{menuOpen && (
+								<Menu
+									id='basic-menu'
+									anchorEl={true}
+									open={menuOpen}
+									onClose={handleClose}
+									MenuListProps={{
+										'aria-labelledby': 'basic-button',
+									}}
+									sx={{ position: 'absolute' }}>
+									<MenuItem>Profile</MenuItem>
+									<MenuItem>My account</MenuItem>
+									<MenuItem>Logout</MenuItem>
+								</Menu>
+							)}
+						</Box>
 					) : (
 						<>
 							<Link to='/login'>

@@ -197,6 +197,36 @@ const theme = createTheme({
 			},
 		},
 	},
+	MuiTableSortLabel: {
+		root: {
+			// NBA red
+			color: '#B52532',
+
+			// if you want to have icons visible permanently
+			// '& $icon': {
+			//   opacity: 1,
+			//   color: primaryMain
+			// },
+
+			'&:hover': {
+				color: '#FFFFFF',
+
+				/* '&& $icon': {
+					opacity: 1,
+					color: '#FFFFFF',
+				}, */
+			},
+			'&$active': {
+				color: '#FFFFFF',
+
+				// && instead of & is a workaround for https://github.com/cssinjs/jss/issues/1045
+				'&& $icon': {
+					opacity: 1,
+					color: '#FFFFFF',
+				},
+			},
+		},
+	},
 })
 
 export default theme

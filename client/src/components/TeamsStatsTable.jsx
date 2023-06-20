@@ -21,7 +21,14 @@ import {
 	teamsPerGameHeadCells,
 } from '../data/headCells/teamsHeadCells'
 
-export default function EnhancedTable({ loading, statsType, statistics }) {
+export default function EnhancedTable({
+	loading,
+	statsType,
+	statistics,
+	primaryColor,
+	secondaryColor,
+	tertiaryColor,
+}) {
 	function descendingComparator(a, b, orderBy) {
 		if (b[orderBy] < a[orderBy]) {
 			return -1
@@ -115,11 +122,8 @@ export default function EnhancedTable({ loading, statsType, statistics }) {
 						maxHeight: 680,
 					}}>
 					<Table
-						// aria-label='sticky table'
 						sx={{
 							minWidth: 750,
-							scrollbarColor: 'green',
-							'&::webkit-scrollbar': { outline: '1px solid red' },
 						}}
 						aria-labelledby='tableTitle'
 						size='small'
@@ -133,6 +137,7 @@ export default function EnhancedTable({ loading, statsType, statistics }) {
 							order={order}
 							orderBy={orderBy}
 							onRequestSort={handleRequestSort}
+							backgroundColor='#18264a'
 							fontColor='#B52532'
 						/>
 						<TableBody>
