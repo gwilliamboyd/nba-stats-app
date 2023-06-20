@@ -110,7 +110,7 @@ const Navbar = () => {
 								onClick={logoutHandler}>
 								<Typography>Logout</Typography>
 							</Link>
-							{menuOpen && (
+							{/* {menuOpen && (
 								<Menu
 									id='basic-menu'
 									anchorEl={true}
@@ -124,7 +124,7 @@ const Navbar = () => {
 									<MenuItem>My account</MenuItem>
 									<MenuItem>Logout</MenuItem>
 								</Menu>
-							)}
+							)} */}
 						</Box>
 					) : (
 						<>

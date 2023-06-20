@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
+/* Helps to emulate Open Sans Condensed since it
+isn't readily available online or from Google Fonts */
+/* Originally found it in Figma */
 body {
 	letter-spacing: -1px;
 }
 
+/* CHROME/SAFARI Scrollbar */
 ::-webkit-scrollbar {
 	width: 0.5em;
 }
@@ -16,21 +20,30 @@ body {
 	outline: 1px solid #999;
 	border-radius: 6px;
 }
-
-/* body {
-	width: 20%;
-	height: 100px;
-	border: 1px solid grey;
-	overflow: scroll;
-	display: inline-block;
-} */
-
+/* FIREFOX Scrollbar */
 body {
 	scrollbar-color: orange lightyellow;
 	scrollbar-width: thin;
 }
 
+/* Remove default link styling */
 a {
 	text-decoration: none;
 	color: inherit;
+}
+
+/* Hides sort arrow when sorting team stats table */
+#root
+	> main
+	> div.MuiContainer-root.MuiContainer-maxWidth100\%.MuiContainer-disableGutters.css-tco0qi-MuiContainer-root
+	> div.MuiBox-root.css-105xb36
+	> div
+	> div
+	> table
+	> thead
+	> tr
+	> th
+	> span
+	> svg {
+	display: none;
 }
