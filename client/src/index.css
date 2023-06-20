@@ -22,7 +22,7 @@ body {
 }
 /* FIREFOX Scrollbar */
 body {
-	scrollbar-color: orange lightyellow;
+	scrollbar-color: #999 #555;
 	scrollbar-width: thin;
 }
 
@@ -45,5 +45,7 @@ a {
 	> th
 	> span
 	> svg {
-	display: none;
+	width: 14px;
+	height: 14px;
+	margin-right: 0px;
 }

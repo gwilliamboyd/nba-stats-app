@@ -19,7 +19,6 @@ const TeamIndivPage = () => {
 	const teamIndivStats = useSelector(state => state.teamIndivStats)
 	const teamsPerGameStats = useSelector(state => state.teamsPerGameStats)
 	const team = window.location.href.slice(-3)
-	// const { teams } = theme.palette
 	const primaryColor = eval(`theme.palette.teams.${team}.primary`)
 	const secondaryColor = eval(`theme.palette.teams.${team}.secondary`)
 	const tertiaryColor = eval(`theme.palette.teams.${team}.tertiary`)
@@ -51,6 +50,7 @@ const TeamIndivPage = () => {
 	const qsArray = qs[0]
 	const quickStat = qsArray.find(q => q.team === `${team}`)
 	console.log(quickStat)
+	console.log(quickStat.arena)
 
 	const statsPts = quickStat?.pts
 	console.log(statsPts)
@@ -79,26 +79,90 @@ const TeamIndivPage = () => {
 					sx={{
 						marginTop: '3rem',
 						width: '85%',
+
 						display: 'flex',
 						flexDirection: 'row',
 						justifyContent: 'space-between',
 					}}>
-					<Box sx={{ display: 'flex', alignItems: 'flex-start', gap: '2rem' }}>
+					<Box
+						sx={{
+							display: 'flex',
+							alignItems: 'flex-start',
+							gap: '2rem',
+							minWidth: '600px',
+							// flex: '1 0 0',
+						}}>
 						<img
 							src={`../../public/images/svgs/team-logos/${team}.svg`}
 							width={200}
-							alt='Chicago Bulls logo'
+							alt={`${team} logo`}
 						/>
-						<Typography
-							fontWeight={700}
-							variant='h3'
+						<Box
 							sx={{
-								color: tertiaryColor,
-								marginTop: '2rem',
-								letterSpacing: '-2.5px',
+								display: 'flex',
+								flexDirection: 'column',
+								gap: '16px',
+								flex: 1,
 							}}>
-							{fullTeamNames(team)}
-						</Typography>
+							<Typography
+								color={tertiaryColor}
+								fontWeight={800}
+								variant='h3'
+								sx={{
+									marginTop: '2rem',
+									letterSpacing: '-2.5px',
+								}}>
+								{fullTeamNames(team)}
+							</Typography>
+							<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+								<Box
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										// gap: '6px',
+									}}>
+									<Typography
+										color={secondaryColor}
+										marginLeft={'0.2rem'}
+										variant='body2'
+										fontWeight={700}>
+										HOMETOWN
+									</Typography>
+									<Typography
+										color={tertiaryColor}
+										fontWeight={600}
+										variant='h5'
+										sx={{
+											letterSpacing: '-2.5px',
+										}}>
+										{quickStat.home}
+									</Typography>
+								</Box>
+								<Box
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										// gap: '6px',
+									}}>
+									<Typography
+										color={secondaryColor}
+										marginLeft={'0.2rem'}
+										variant='body2'
+										fontWeight={700}>
+										ARENA
+									</Typography>
+									<Typography
+										fontWeight={600}
+										variant='h5'
+										sx={{
+											color: tertiaryColor,
+											letterSpacing: '-2.5px',
+										}}>
+										{quickStat.arena}
+									</Typography>
+								</Box>
+							</Box>
+						</Box>
 					</Box>
 					<Grid
 						container

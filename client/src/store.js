@@ -3,7 +3,7 @@ import teamsPerGameReducer from './slices/teamsPerGameSlice'
 import teamsTotalReducer from './slices/teamsTotalSlice'
 import teamsAdvancedReducer from './slices/teamsAdvancedSlice'
 import teamIndivReducer from './slices/teamIndivSlice'
-import favoriteTeamsReducer from './slices/authentication/favoriteTeamsSlice'
+// import favoriteTeamsReducer from './slices/authentication/favoriteTeamsSlice'
 import authReducer from './slices/authentication/authSlice'
 import { apiSlice } from './slices/authentication/apiSlice'
 
@@ -13,7 +13,7 @@ const store = configureStore({
 		teamsTotalStats: teamsTotalReducer,
 		teamsAdvancedStats: teamsAdvancedReducer,
 		teamIndivStats: teamIndivReducer,
-		favoriteTeams: favoriteTeamsReducer,
+		// favoriteTeams: favoriteTeamsReducer,
 		auth: authReducer,
 		[apiSlice.reducerPath]: apiSlice.reducer,
 	},

@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-// import PropTypes from 'prop-types'
 import {
 	Box,
 	TableCell,
@@ -46,15 +45,6 @@ const HeadCellsTeams = ({
 							color: fontColor,
 							p: '2px',
 							backgroundColor: backgroundColor,
-							/* '&:hover': {
-								color: 'white',
-							},
-							'&:focus': {
-								color: 'white',
-							},
-							'&:active': {
-								color: 'white',
-							}, */
 						}}>
 						<TableSortLabel
 							active={orderBy === headCell.id}
@@ -75,15 +65,6 @@ const HeadCellsTeams = ({
 								'& .MuiTableSortLabel-icon': {
 									color: `${league.nbaWhite} !important`,
 								},
-								/* '&:hover': {
-									color: 'white',
-								},
-								'&:focus': {
-									color: 'white',
-								},
-								'&$active': {
-									color: 'white',
-								}, */
 							}}>
 							{headCell.label}
 							{orderBy === headCell.id ? (

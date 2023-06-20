@@ -24,14 +24,6 @@ const RegisterPage = () => {
 	const [avatar, setAvatar] = useState('')
 
 	const [register, { isLoading }] = useRegisterMutation()
-	// Get user info
-	/* 	const { userInfo } = useSelector(state => state.auth)
-
-	useEffect(() => {
-		if (userInfo) {
-			navigate('/')
-		}
-	}, [navigate, userInfo]) */
 
 	const submitHandler = async e => {
 		e.preventDefault()

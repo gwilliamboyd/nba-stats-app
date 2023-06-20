@@ -14,9 +14,9 @@ import {
 import { setTeamsPerGameStats } from '../slices/teamsPerGameSlice'
 import { setTeamsTotalStats } from '../slices/teamsTotalSlice'
 import { setTeamsAdvancedStats } from '../slices/teamsAdvancedSlice'
-import { useTheme } from '@mui/material/styles'
+import { useTheme, createTheme } from '@mui/material/styles'
 import LoadingScreen from './LoadingScreen'
-import LoadingScreenBlank from './LoadingScreenBlank'
+// import LoadingScreenBlank from './LoadingScreenBlank'
 const TeamsStatsTable = lazy(() =>
 	testDelay(import('../components/TeamsStatsTable'))
 )
@@ -27,6 +27,15 @@ const TeamsPage = () => {
 	const { league } = theme.palette
 
 	const { userInfo } = useSelector(state => state.auth)
+
+	// Button group to change stats table type on teams and players page
+	const buttonGroupTheme = createTheme({
+		palette: {
+			primary: {
+				main: '#B52532',
+			},
+		},
+	})
 
 	// state
 	const dispatch = useDispatch()
@@ -126,9 +135,10 @@ const TeamsPage = () => {
 						</Typography>
 					</Box>
 					<ButtonGroup
-						variant='text'
-						aria-label='text button group'
-						size='large'
+						// variant='text'
+						aria-label='medium button group'
+						color={'primary'}
+						size='medium'
 						sx={{ marginRight: '5rem' }}>
 						<Button
 							onClick={() => setStatsType('perGame')}

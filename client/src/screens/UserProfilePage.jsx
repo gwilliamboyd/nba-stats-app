@@ -11,12 +11,10 @@ import {
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import UserAvatar from '../components/UserAvatar'
-// import AddFavoriteTeams from '../components/user-profile/AddFavoriteTeams'
 import HomeTeamCard from '../components/HomeTeamCard'
 import { Link } from 'react-router-dom'
 import teams from '../data/teams-perGame.json'
 import { useUpdateUserMutation } from '../slices/authentication/usersApiSlice'
-// import { setFavoriteTeams } from '../slices/authentication/favoriteTeamsSlice'
 import { setCredentials } from '../slices/authentication/authSlice'
 
 const UserProfilePage = () => {
@@ -30,8 +28,6 @@ const UserProfilePage = () => {
 	const sortedTeams = teams.sort((a, b) => a.team.localeCompare(b.team))
 	// redux state
 	const { userInfo } = useSelector(state => state.auth)
-	// const { favoriteTeams } = useSelector(state => state.favoriteTeams)
-
 	// component state
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
@@ -219,18 +215,11 @@ const UserProfilePage = () => {
 
 											outlineOffset: '-2px',
 											'&:hover': {
-												// backgroundColor: 'rgba(34, 34, 34, 0.3)',
 												outline: '2px solid white',
 												boxShadow: '0px 0px 20px black',
 												cursor: 'pointer',
 											},
 										}}>
-										{/* <Button
-											onClick={() => {
-												removeFavoriteTeam(team)
-											}}>
-											X
-										</Button> */}
 										<Box
 											onClick={() => {
 												if (favTeams.includes(team.team)) {

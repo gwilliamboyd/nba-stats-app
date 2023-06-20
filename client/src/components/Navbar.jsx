@@ -1,14 +1,12 @@
 import { useState } from 'react'
 import { Container, Box, Typography, MenuItem, Menu } from '@mui/material'
 import { Link } from 'react-router-dom'
-// import { ReactComponent as NbaLogo } from '../../public/images/logo-nba.svg'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../slices/authentication/authSlice'
 import { useLogoutMutation } from '../slices/authentication/usersApiSlice'
 // Images
-// import NBALogo from '../../public/images/svgs/NBALogo'
 import nbaLogoSrc from '../../public/images/svgs/logo-nba.svg'
 import UserAvatar from './UserAvatar'
 
@@ -65,10 +63,6 @@ const Navbar = () => {
 						alignItems: 'center',
 						gap: '12px',
 					}}>
-					{/* <NBALogo
-						width={80}
-						height='auto'
-					/> */}
 					<Link to='/'>
 						<img
 							src={nbaLogoSrc}

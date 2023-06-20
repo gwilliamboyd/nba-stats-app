@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-// import PropTypes from 'prop-types'
 import {
 	Box,
 	TableCell,
@@ -42,24 +41,14 @@ const HeadCellsTeamsIndivRow = ({
 						padding={headCell.disablePadding ? 'none' : 'normal'}
 						sortDirection={orderBy === headCell.id ? order : false}
 						sx={{
-							// fontSize: '18px',
-							fontWeight: '500',
+							fontWeight: '700',
 							...(statsType === 'advanced'
 								? { fontSize: '14px' }
 								: { fontSize: '18px' }),
-							// fontSize: {statsType === 'advanced' ? (`${fontSize}`) : ('18px')},
 							color: fontColor,
 							p: '2px',
 							backgroundColor: backgroundColor,
-							/* '&:hover': {
-								color: 'white',
-							},
-							'&:focus': {
-								color: 'white',
-							},
-							'&:active': {
-								color: 'white',
-							}, */
+							border: 0,
 						}}>
 						<TableSortLabel
 							active={orderBy === headCell.id}
@@ -80,15 +69,6 @@ const HeadCellsTeamsIndivRow = ({
 								'& .MuiTableSortLabel-icon': {
 									color: `${league.nbaWhite} !important`,
 								},
-								/* '&:hover': {
-									color: 'white',
-								},
-								'&:focus': {
-									color: 'white',
-								},
-								'&$active': {
-									color: 'white',
-								}, */
 							}}>
 							{headCell.label}
 							{orderBy === headCell.id ? (
@@ -105,11 +85,5 @@ const HeadCellsTeamsIndivRow = ({
 		</TableHead>
 	)
 }
-
-/* HeadCellsTeamsIndivRow.propTypes = {
-	onRequestSort: PropTypes.func.isRequired,
-	order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-	orderBy: PropTypes.string.isRequired,
-} */
 
 export default HeadCellsTeamsIndivRow

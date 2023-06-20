@@ -21,6 +21,10 @@ const theme = createTheme({
 		button: {
 			nbaWhite: '#FFFFFF',
 		},
+		primary: {
+			main: '#B52532',
+		},
+		// Team colors
 		teams: {
 			atl: {
 				primary: '#C8102E',
@@ -197,6 +201,8 @@ const theme = createTheme({
 			},
 		},
 	},
+
+	// Restyles arrow icons in table sorting
 	MuiTableSortLabel: {
 		root: {
 			// NBA red
@@ -225,6 +231,11 @@ const theme = createTheme({
 					color: '#FFFFFF',
 				},
 			},
+		},
+	},
+	overrides: {
+		MuiButtonGroup: {
+			primary: '#B52532',
 		},
 	},
 })
