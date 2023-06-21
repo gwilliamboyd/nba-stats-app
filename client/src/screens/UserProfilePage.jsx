@@ -135,14 +135,20 @@ const UserProfilePage = () => {
 				<Box sx={{ display: 'flex', gap: '12px' }}>
 					{favoriteTeams.map(tm => {
 						return (
-							<HomeTeamCard
-								key={tm}
-								width={60}
-								team={tm}
-							/>
+							<Link
+								to={`http://localhost:3000/stats/teams/${tm}`}
+								key={tm}>
+								<HomeTeamCard
+									width={60}
+									team={tm}
+								/>
+							</Link>
 						)
 					})}
 				</Box>
+				<Link to={'http://localhost:3000/stats/teams/favorite-teams'}>
+					<Typography>Favorite Teams Stats</Typography>
+				</Link>
 				<Modal
 					open={modalOpen}
 					onClose={() => {

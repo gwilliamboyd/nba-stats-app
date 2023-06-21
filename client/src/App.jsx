@@ -8,6 +8,7 @@ import TeamIndivPage from './screens/TeamIndivPage'
 import LoginPage from './screens/LoginPage'
 import RegisterPage from './screens/RegisterPage'
 import UserProfilePage from './screens/UserProfilePage'
+import FavoriteTeamsStats from './screens/FavoriteTeamsStats'
 const TeamsPage = lazy(() => import('./screens/TeamsPage'))
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
 						<Route
 							path={`stats/teams/:team`}
 							element={<TeamIndivPage />}
+						/>
+						<Route
+							path={`stats/teams/favorite-teams`}
+							element={<FavoriteTeamsStats />}
 						/>
 						<Route
 							path={`register`}
