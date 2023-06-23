@@ -38,8 +38,8 @@ const UserProfilePage = () => {
 		console.log(trbSorted)
 		return trbSorted
 	}
-	const sortByAssists = t => {
-		const astSorted = t.sort((a, b) => b.ast - a.ast)
+	const sortByFieldGoalPer = t => {
+		const astSorted = t.sort((a, b) => b.fgPer - a.fgPer)
 		console.log(astSorted)
 		return astSorted
 	}
@@ -50,12 +50,39 @@ const UserProfilePage = () => {
 	}
 
 	const findRanking = (team, sortingFunction) => {
+		// get proper suffix when printing final result
+		const getNumericalSuffix = a => {
+			let b = a % 10
+			let c = a % 100
+
+			if (b == 1 && c != 11) {
+				return a + 'st'
+			}
+			if (b == 2 && c != 12) {
+				return a + 'nd'
+			}
+			if (b == 3 && c != 13) {
+				return a + 'rd'
+			}
+			return a + 'th'
+		}
+		// finds passed-in team name in sorting function of choice
 		const rankingMatch = sortingFunction => sortingFunction.team === team
+		// get ranking (index)
 		const ranking = sortingFunction.findIndex(rankingMatch)
 		console.log(ranking)
+		// add 1 to index to get true ranking
+		let finalRanking = ranking + 1
+		// test log
+		console.log(
+			`The ${fullTeamNames(team)} are ${getNumericalSuffix(
+				finalRanking
+			)} in the NBA in this stat.`
+		)
+		return finalRanking
 	}
 	useEffect(() => {
-		findRanking('dal', sortByAssists(sortedTeams))
+		findRanking('mem', sortByTotalRebounds(sortedTeams))
 	}, [sortedTeams])
 
 	// redux state
