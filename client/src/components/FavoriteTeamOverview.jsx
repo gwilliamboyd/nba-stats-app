@@ -2,10 +2,19 @@ import { useTheme } from '@emotion/react'
 import { Box, Container, Grid, Typography } from '@mui/material'
 import fullTeamNames from '../hooks/fullTeamNames'
 import TeamIndivStatsRow from './TeamIndivStatsRow'
+import QuickStat from './stats-pages/QuickStat'
 
 /* eslint-disable react/prop-types */
 const FavoriteTeamOverview = ({ team }) => {
 	const theme = useTheme()
+
+	// Quick stats overview
+	const statsPts = team.pts
+	const statsTrb = team.trb
+	const statsAst = team.ast
+	const statsFg = team.fg
+	const statsFgPer = team.fgPer
+	const stats3pPer = team.$3pPer
 
 	const primaryColor = eval(`theme.palette.teams.${team.team}.primary`)
 	const secondaryColor = eval(`theme.palette.teams.${team.team}.secondary`)
@@ -17,6 +26,7 @@ const FavoriteTeamOverview = ({ team }) => {
 			maxWidth='100%'
 			sx={{
 				backgroundColor: primaryColor,
+				paddingBottom: '3rem',
 			}}>
 			<Box
 				sx={{
@@ -45,79 +55,67 @@ const FavoriteTeamOverview = ({ team }) => {
 							width={200}
 							alt={`${team.team} logo`}
 						/>
-						<Box
+						<Typography
+							color={tertiaryColor}
+							fontWeight={800}
+							variant='h3'
 							sx={{
-								display: 'flex',
-								flexDirection: 'column',
-								gap: '16px',
-								flex: 1,
+								marginTop: '4rem',
+								letterSpacing: '-2.5px',
 							}}>
-							<Typography
-								color={tertiaryColor}
-								fontWeight={800}
-								variant='h3'
-								sx={{
-									marginTop: '2rem',
-									letterSpacing: '-2.5px',
-								}}>
-								{fullTeamNames(team.team)}
-							</Typography>
-							<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-								<Box
-									sx={{
-										display: 'flex',
-										flexDirection: 'column',
-										// gap: '6px',
-									}}>
-									<Typography
-										color={secondaryColor}
-										marginLeft={'0.2rem'}
-										variant='body2'
-										fontWeight={700}>
-										HOMETOWN
-									</Typography>
-									<Typography
-										color={tertiaryColor}
-										fontWeight={600}
-										variant='h5'
-										sx={{
-											letterSpacing: '-2.5px',
-										}}>
-										{team.home}
-									</Typography>
-								</Box>
-								<Box
-									sx={{
-										display: 'flex',
-										flexDirection: 'column',
-										// gap: '6px',
-									}}>
-									<Typography
-										color={secondaryColor}
-										marginLeft={'0.2rem'}
-										variant='body2'
-										fontWeight={700}>
-										ARENA
-									</Typography>
-									<Typography
-										fontWeight={600}
-										variant='h5'
-										sx={{
-											color: tertiaryColor,
-											letterSpacing: '-2.5px',
-										}}>
-										{team.arena}
-									</Typography>
-								</Box>
-							</Box>
-						</Box>
+							{fullTeamNames(team.team)}
+						</Typography>
 					</Box>
+				</Box>
+				<Box
+					sx={{
+						display: 'flex',
+						flexDirection: 'column',
+					}}>
+					<Typography variant='h6'>At A Glance</Typography>
 					<Grid
 						container
 						columns={6}
 						columnSpacing={4}
 						rowSpacing={2}
-						sx={{ width: '28%', marginTop: '1rem' }}></Grid>
+						sx={{ width: '100%', marginTop: '1rem' }}>
+						<QuickStat
+							heading='PTS'
+							featuredStat={statsPts}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+						<QuickStat
+							heading='TRB'
+							featuredStat={statsTrb}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+						<QuickStat
+							heading='AST'
+							featuredStat={statsAst}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+						<QuickStat
+							heading='FG'
+							featuredStat={statsFg}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+						<QuickStat
+							heading='FG%'
+							featuredStat={statsFgPer}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+						<QuickStat
+							heading='3P%'
+							featuredStat={stats3pPer}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
+					</Grid>
 				</Box>
 			</Box>
 		</Container>

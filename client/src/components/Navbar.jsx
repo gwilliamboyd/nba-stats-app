@@ -44,6 +44,8 @@ const Navbar = () => {
 	return (
 		<Container
 			sx={{
+				display: 'flex',
+				justifyContent: 'center',
 				backgroundColor: league.nbaBlue,
 				color: league.nbaWhite,
 				height: '100px',
@@ -51,6 +53,7 @@ const Navbar = () => {
 			maxWidth='100%'>
 			<Box
 				sx={{
+					width: '85%',
 					backgroundColor: league.nbaBlue,
 					height: '100px',
 					display: 'flex',

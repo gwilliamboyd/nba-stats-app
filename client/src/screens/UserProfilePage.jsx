@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom'
 import teams from '../data/teams-perGame.json'
 import { useUpdateUserMutation } from '../slices/authentication/usersApiSlice'
 import { setCredentials } from '../slices/authentication/authSlice'
+import fullTeamNames from '../hooks/fullTeamNames'
 
 const UserProfilePage = () => {
 	// theme
@@ -26,6 +27,37 @@ const UserProfilePage = () => {
 
 	// sort teams alphabetically
 	const sortedTeams = teams.sort((a, b) => a.team.localeCompare(b.team))
+	console.log(sortedTeams)
+	const sortByPoints = t => {
+		const ptsSorted = t.sort((a, b) => b.pts - a.pts)
+		console.log(ptsSorted)
+		return ptsSorted
+	}
+	const sortByTotalRebounds = t => {
+		const trbSorted = t.sort((a, b) => b.trb - a.trb)
+		console.log(trbSorted)
+		return trbSorted
+	}
+	const sortByAssists = t => {
+		const astSorted = t.sort((a, b) => b.ast - a.ast)
+		console.log(astSorted)
+		return astSorted
+	}
+	const sortBy3PtPer = t => {
+		const $3pSorted = t.sort((a, b) => b.$3pPer - a.$3pPer)
+		console.log($3pSorted)
+		return $3pSorted
+	}
+
+	const findRanking = (team, sortingFunction) => {
+		const rankingMatch = sortingFunction => sortingFunction.team === team
+		const ranking = sortingFunction.findIndex(rankingMatch)
+		console.log(ranking)
+	}
+	useEffect(() => {
+		findRanking('dal', sortByAssists(sortedTeams))
+	}, [sortedTeams])
+
 	// redux state
 	const { userInfo } = useSelector(state => state.auth)
 	// component state
@@ -83,12 +115,12 @@ const UserProfilePage = () => {
 		}
 	}
 
-	useEffect(() => {
+	/* useEffect(() => {
 		console.log(favTeams)
 	}, [favTeams])
 	useEffect(() => {
 		console.log(favoriteTeams)
-	}, [favoriteTeams])
+	}, [favoriteTeams]) */
 
 	let isOutlined = false
 
@@ -125,7 +157,6 @@ const UserProfilePage = () => {
 				<Button
 					sx={{ color: '#FFF', borderColor: '#FFF' }}
 					onClick={() => {
-						console.log('Modal open')
 						handleOpen()
 					}}
 					variant='outlined'>
@@ -205,7 +236,6 @@ const UserProfilePage = () => {
 							{sortedTeams.map(team => {
 								if (favTeams.includes(team.team)) {
 									isOutlined = true
-									console.log('true')
 								} else isOutlined = false
 								return (
 									<Grid

@@ -21,6 +21,16 @@ import FavoriteTeamOverview from '../components/FavoriteTeamOverview'
 const FavoriteTeamsStatsTable = lazy(() =>
 	testDelay(import('../components/FavoriteTeamsStatsTable'))
 )
+// recharts
+import {
+	Radar,
+	RadarChart,
+	PolarGrid,
+	Legend,
+	PolarAngleAxis,
+	PolarRadiusAxis,
+	ResponsiveContainer,
+} from 'recharts'
 
 const FavoriteTeamsStats = () => {
 	// theme
@@ -140,9 +150,14 @@ const FavoriteTeamsStats = () => {
 							display: 'flex',
 							flexDirection: 'column',
 							alignItems: 'center',
+							gap: '12px',
 						}}>
-						<Typography variant='h3'>Favorite Teams</Typography>
-						<Typography variant='h3'>Team-by Team Overview</Typography>
+						<Typography
+							fontWeight={800}
+							variant='h3'>
+							Favorite Teams
+						</Typography>
+						<Typography variant='h5'>Team-by Team Overview</Typography>
 					</Box>
 				</Box>
 				<Suspense fallback={<LoadingScreen />}>
@@ -154,6 +169,59 @@ const FavoriteTeamsStats = () => {
 							/>
 						)
 					})}
+					{/* <ResponsiveContainer
+						width='100%'
+						height='100%'>
+						<RadarChart
+							cx='50%'
+							cy='50%'
+							outerRadius='80%'
+							data={teamOverviewStats}>
+							<PolarGrid />
+							<PolarAngleAxis dataKey='team' />
+							<PolarRadiusAxis
+								angle={30}
+								domain={[0, 150]}
+							/>
+							<Radar
+								key={teamOverviewStats[0].id}
+								name='team'
+								dataKey='pts'
+								stroke='#8884d8'
+								fill='red'
+								fillOpacity={0.6}
+							/>
+							<Radar
+								key={teamOverviewStats[0].id}
+								name='team'
+								dataKey='trb'
+								stroke='#8884d8'
+								fill='blue'
+								fillOpacity={0.6}
+							/>
+							<Radar
+								key={teamOverviewStats[0].id}
+								name='team'
+								dataKey='ast'
+								stroke='#8884d8'
+								fill='green'
+								fillOpacity={0.6}
+							/>
+							{teamOverviewStats.map(tm => {
+								return (
+									<Radar
+										key={`${tm.id}`}
+										name={`${tm.team}`}
+										dataKey={`${tm.pts}`}
+										stroke='#8884d8'
+										fill='#8884d8'
+										fillOpacity={0.6}
+									/>
+								)
+							})}
+							<Legend />
+						</RadarChart>
+					</ResponsiveContainer> */}
 					<FavoriteTeamsStatsTable
 						fTeams={fTeams}
 						loading={loading}

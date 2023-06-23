@@ -1,6 +1,7 @@
 import TeamsPerGame from '../models/teamsPerGameModel.js'
 import TeamsTotal from '../models/teamsTotalModel.js'
 import TeamsAdvanced from '../models/teamsAdvancedModel.js'
+import Standings from '../models/standingsModel.js'
 
 export const getTeamsPerGame = async (req, res) => {
 	try {
@@ -39,6 +40,15 @@ export const getIndivTeamStats = async (req, res) => {
 		})
 		const teamIndivStats = [teamIndivPerGame, teamIndivTotal, teamIndivAdvanced]
 		res.status(200).json(teamIndivStats)
+	} catch (err) {
+		res.status(404).json({ message: err.message })
+	}
+}
+
+export const getStandings = async (req, res) => {
+	try {
+		const standings = await Standings.find()
+		res.status(200).json(standings)
 	} catch (err) {
 		res.status(404).json({ message: err.message })
 	}
