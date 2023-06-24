@@ -130,16 +130,22 @@ const FavoriteTeamOverview = ({ team, allTeams, leagueStandings }) => {
 						}}>
 						<img
 							src={`../../public/images/svgs/team-logos/${team.team}.svg`}
-							width={200}
+							width={320}
 							alt={`${team.team} logo`}
 						/>
-						<Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+								gap: '24px',
+							}}>
 							<Typography
 								color={tertiaryColor}
 								fontWeight={800}
 								variant='h3'
 								sx={{
-									marginTop: '2.5rem',
+									marginTop: '6rem',
 									letterSpacing: '-2.5px',
 								}}>
 								{fullTeamNames(team.team)}
