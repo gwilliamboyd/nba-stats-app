@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import Dropzone from 'react-dropzone'
-import { useRegisterMutation } from '../slices/authentication/usersApiSlice'
-import { setCredentials } from '../slices/authentication/authSlice'
+import { useRegisterMutation } from '../../slices/authentication/usersApiSlice'
+import { setCredentials } from '../../slices/authentication/authSlice'
 
 const RegisterPage = () => {
 	const theme = useTheme()

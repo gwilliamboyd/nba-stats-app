@@ -4,12 +4,12 @@ import Navbar from './components/Navbar'
 import HomePage from './screens/HomePage'
 import { Suspense, lazy } from 'react'
 import LoadingScreen from './screens/utility/LoadingScreen'
-import TeamIndivPage from './screens/TeamIndivPage'
-import LoginPage from './screens/LoginPage'
-import RegisterPage from './screens/RegisterPage'
-import UserProfilePage from './screens/UserProfilePage'
+import TeamIndivPage from './screens/teams/TeamIndivPage'
+import LoginPage from './screens/users/LoginPage'
+import RegisterPage from './screens/users/RegisterPage'
+import UserProfilePage from './screens/users/UserProfilePage'
 import FavoriteTeamsStats from './screens/FavoriteTeamsStats'
-const TeamsPage = lazy(() => import('./screens/TeamsPage'))
+const TeamsPage = lazy(() => import('./screens/teams/TeamsPage'))
 
 function App() {
 	return (

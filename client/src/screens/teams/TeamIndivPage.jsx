@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useTheme } from '@emotion/react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setTeamIndivStats } from '../slices/teamIndivSlice'
-import { setTeamsPerGameStats } from '../slices/teamsPerGameSlice'
+import { setTeamIndivStats } from '../../slices/teamIndivSlice'
+import { setTeamsPerGameStats } from '../../slices/teamsPerGameSlice'
 import { Box, Container, Grid, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
-import TeamIndivStatsRow from '../components/stats-pages/TeamIndivStatsRow'
-import LoadingScreenBlank from './utility/LoadingScreenBlank'
-import fullTeamNames from '../hooks/fullTeamNames'
-import QuickStat from '../components/stats-pages/QuickStat'
+import TeamIndivStatsRow from '../../components/stats-pages/TeamIndivStatsRow'
+import LoadingScreenBlank from '../utility/LoadingScreenBlank'
+import fullTeamNames from '../../hooks/fullTeamNames'
+import QuickStat from '../../components/stats-pages/QuickStat'
 
 const TeamIndivPage = () => {
 	// not an error, eslint doesn't recognize the theme
@@ -43,16 +43,17 @@ const TeamIndivPage = () => {
 	useEffect(() => {
 		getTeamIndivStats()
 	}, [])
+	// parse indiv stats from fetch
 	const teamIndivStatistics = Object.values(teamIndivStats)[0]
+	// get quick stats from indiv stats fetch
 	const quickStatsTeam = Object.values(teamsPerGameStats)
-	console.log(quickStatsTeam)
 	const qs = Object.values(quickStatsTeam)
 	const qsArray = qs[0]
+	// find quick stat for given team
 	const quickStat = qsArray.find(q => q.team === `${team}`)
-	console.log(quickStat)
 
+	// quick stats variables
 	const statsPts = quickStat?.pts
-	console.log(statsPts)
 	const statsTrb = quickStat?.trb
 	const statsAst = quickStat?.ast
 	const statsFg = quickStat?.fg

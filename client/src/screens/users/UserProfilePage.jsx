@@ -10,13 +10,13 @@ import {
 	TextField,
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import UserAvatar from '../components/UserAvatar'
-import HomeTeamCard from '../components/user-profile/HomeTeamCard'
+import UserAvatar from '../../components/UserAvatar'
+import HomeTeamCard from '../../components/user-profile/HomeTeamCard'
 import { Link } from 'react-router-dom'
-import teams from '../data/teams-perGame.json'
-import { useUpdateUserMutation } from '../slices/authentication/usersApiSlice'
-import { setCredentials } from '../slices/authentication/authSlice'
-import fullTeamNames from '../hooks/fullTeamNames'
+import teams from '../../data/teams-perGame.json'
+import { useUpdateUserMutation } from '../../slices/authentication/usersApiSlice'
+import { setCredentials } from '../../slices/authentication/authSlice'
+import fullTeamNames from '../../hooks/fullTeamNames'
 
 const UserProfilePage = () => {
 	// theme

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { useTheme } from '@emotion/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
-import { useLoginMutation } from '../slices/authentication/usersApiSlice'
-import { setCredentials } from '../slices/authentication/authSlice'
+import { useLoginMutation } from '../../slices/authentication/usersApiSlice'
+import { setCredentials } from '../../slices/authentication/authSlice'
 // mui
 import { Box, Container, TextField } from '@mui/material'
 
