@@ -8,7 +8,7 @@ const QuickStat = ({
 	tertiaryColor,
 }) => {
 	// const stats = statistics[0]
-	console.log(featuredStat)
+	// console.log(featuredStat)
 
 	return (
 		<Grid

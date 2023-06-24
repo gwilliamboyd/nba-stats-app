@@ -14,6 +14,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 // Files
 import playersRoutes from './routes/playersRoutes.js'
 import teamsRoutes from './routes/teamsRoutes.js'
+import standingsRoutes from './routes/standingsRoute.js'
 import registrationRoute from './routes/registrationRoute.js'
 import loginRoute from './routes/loginRoute.js'
 import logoutRoute from './routes/logoutRoute.js'
@@ -54,6 +55,7 @@ const upload = multer({ storage })
 // Routes
 app.use('/stats/players', playersRoutes)
 app.use('/stats/teams', teamsRoutes)
+app.use('/standings', standingsRoutes)
 app.use('/users/register', upload.single('avatar'), registrationRoute)
 app.use('/users/login', loginRoute)
 app.use('/users/logout', logoutRoute)

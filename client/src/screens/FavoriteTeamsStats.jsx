@@ -31,24 +31,29 @@ import {
 	PolarRadiusAxis,
 	ResponsiveContainer,
 } from 'recharts'
+import fullTeamNames from '../hooks/fullTeamNames'
+import { setLeagueStandings } from '../slices/standingsSlice'
 
 const FavoriteTeamsStats = () => {
 	// theme
 	const theme = useTheme()
 	const { league } = theme.palette
 
+	// get favorite teams from credentials
 	const { userInfo } = useSelector(state => state.auth)
 	const fTeams = userInfo.favoriteTeams
 
-	// state
+	// reduxstate
 	const dispatch = useDispatch()
 	const teamsPerGameStats = useSelector(state => state.teamsPerGameStats)
 	const teamsTotalStats = useSelector(state => state.teamsTotalStats)
 	const teamsAdvancedStats = useSelector(state => state.teamsAdvancedStats)
-
+	const leagueStandings = useSelector(state => state.leagueStandings)
+	// component state
 	const [statsType, setStatsType] = useState('perGame')
 	const [loading, setLoading] = useState(true)
 
+	// per-game stats
 	const getTeamsPerGame = async () => {
 		const response = await fetch(`http://localhost:5000/stats/teams/per-game`, {
 			method: 'GET',
@@ -57,6 +62,7 @@ const FavoriteTeamsStats = () => {
 		dispatch(setTeamsPerGameStats({ teamsPerGameStats: data }))
 		setLoading(false)
 	}
+	// totals stats
 	const getTeamsTotal = async () => {
 		const response = await fetch(`http://localhost:5000/stats/teams/total`, {
 			method: 'GET',
@@ -65,6 +71,7 @@ const FavoriteTeamsStats = () => {
 		dispatch(setTeamsTotalStats({ teamsTotalStats: data }))
 		setLoading(false)
 	}
+	// advanced stats
 	const getTeamsAdvanced = async () => {
 		const response = await fetch(`http://localhost:5000/stats/teams/advanced`, {
 			method: 'GET',
@@ -73,7 +80,18 @@ const FavoriteTeamsStats = () => {
 		dispatch(setTeamsAdvancedStats({ teamsAdvancedStats: data }))
 		setLoading(false)
 	}
-
+	// LEAGUE STANDINGS
+	const getLeagueStandings = async () => {
+		const response = await fetch(
+			`http://localhost:5000/stats/teams/standings`,
+			{
+				method: 'GET',
+			}
+		)
+		const data = await response.json()
+		dispatch(setLeagueStandings({ leagueStandings: data }))
+		setLoading(false)
+	}
 	const getStatsType = statsType => {
 		switch (statsType) {
 			case 'perGame':
@@ -93,6 +111,7 @@ const FavoriteTeamsStats = () => {
 
 	useEffect(() => {
 		getStatsType(statsType)
+		getLeagueStandings()
 	}, [statsType])
 
 	// TEAM OVERVIEW - Use Quick Stats
@@ -114,13 +133,14 @@ const FavoriteTeamsStats = () => {
 	const quickStatsTeam = Object.values(teamsPerGameStats)
 	const qs = Object.values(quickStatsTeam)
 	const qsArray = qs[0]
-	console.log(qsArray)
+	// console.log(qsArray)
 	const teamOverviewStats = qsArray.filter(q => fTeams.includes(q.team))
-	console.log(teamOverviewStats)
+	// console.log(teamOverviewStats)
 	// const quickStat = qsArray.find(q => q.team === `lak`)
 	// console.log(quickStat)
 
 	const teamsPerGameStatistics = Object.values(teamsPerGameStats)[0]
+	console.log(teamsPerGameStatistics)
 	const teamsTotalStatistics = Object.values(teamsTotalStats)[0]
 	const teamsAdvancedStatistics = Object.values(teamsAdvancedStats)[0]
 
@@ -166,6 +186,7 @@ const FavoriteTeamsStats = () => {
 							<FavoriteTeamOverview
 								key={team}
 								team={team}
+								leagueStandings={leagueStandings}
 							/>
 						)
 					})}
