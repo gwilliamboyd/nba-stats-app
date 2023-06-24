@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const PlayersTotalsSchema = mongoose.Schema({
+const PlayersPerGameSchema = mongoose.Schema({
 	id: {
 		type: Number,
 		required: true,
@@ -129,5 +129,5 @@ const PlayersTotalsSchema = mongoose.Schema({
 	},
 })
 
-const PlayersTotal = mongoose.model('PlayersTotal', PlayersTotalsSchema)
-export default PlayersTotal
+const PlayersPerGame = mongoose.model('PlayersPerGame', PlayersPerGameSchema)
+export default PlayersPerGame

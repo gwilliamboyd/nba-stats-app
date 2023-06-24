@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const PlayersTotalsSchema = mongoose.Schema({
+const PlayersAdvancedSchema = mongoose.Schema({
 	id: {
 		type: Number,
 		required: true,
@@ -26,99 +26,87 @@ const PlayersTotalsSchema = mongoose.Schema({
 		type: Number,
 		required: true,
 	},
-	gs: {
-		type: Number,
-		required: true,
-	},
 	mp: {
 		type: Number,
 		required: true,
 	},
-	fg: {
+	per: {
 		type: Number,
 		required: true,
 	},
-	fga: {
+	tsPer: {
 		type: Number,
 		required: true,
 	},
-	fgPer: {
+	$3pAr: {
 		type: Number,
 		required: true,
 	},
-	$3p: {
+	ftr: {
 		type: Number,
 		required: true,
 	},
-	$3pA: {
+	orbPer: {
 		type: Number,
 		required: true,
 	},
-	$3pPer: {
+	drbPer: {
 		type: Number,
 		required: true,
 	},
-	$2p: {
+	trbPer: {
 		type: Number,
 		required: true,
 	},
-	$2pA: {
+	astPer: {
 		type: Number,
 		required: true,
 	},
-	$2pPer: {
+	stlPer: {
 		type: Number,
 		required: true,
 	},
-	eFgPer: {
+	blkPer: {
 		type: Number,
 		required: true,
 	},
-	ft: {
+	tovPer: {
 		type: Number,
 		required: true,
 	},
-	fta: {
+	usgPer: {
 		type: Number,
 		required: true,
 	},
-	ftPer: {
+	ows: {
 		type: Number,
 		required: true,
 	},
-	orb: {
+	dws: {
 		type: Number,
 		required: true,
 	},
-	drb: {
+	ws: {
 		type: Number,
 		required: true,
 	},
-	trb: {
+	ws48: {
 		type: Number,
 		required: true,
 	},
-	ast: {
+	obpm: {
 		type: Number,
 		required: true,
 	},
-	stl: {
+	dbpm: {
 		type: Number,
 		required: true,
 	},
-	blk: {
+	bpm: {
 		type: Number,
 		required: true,
 	},
-	tov: {
-		type: Number,
-		required: true,
-	},
-	pf: {
-		type: Number,
-		required: true,
-	},
-	pts: {
+	worp: {
 		type: Number,
 		required: true,
 	},
@@ -129,5 +117,5 @@ const PlayersTotalsSchema = mongoose.Schema({
 	},
 })
 
-const PlayersTotal = mongoose.model('PlayersTotal', PlayersTotalsSchema)
-export default PlayersTotal
+const PlayersAdvanced = mongoose.model('PlayersAdvanced', PlayersAdvancedSchema)
+export default PlayersAdvanced

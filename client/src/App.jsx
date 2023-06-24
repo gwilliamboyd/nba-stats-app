@@ -9,6 +9,7 @@ import LoginPage from './screens/users/LoginPage'
 import RegisterPage from './screens/users/RegisterPage'
 import UserProfilePage from './screens/users/UserProfilePage'
 import FavoriteTeamsStats from './screens/FavoriteTeamsStats'
+import PlayersPage from './screens/players/PlayersPage'
 const TeamsPage = lazy(() => import('./screens/teams/TeamsPage'))
 
 function App() {
@@ -26,6 +27,10 @@ function App() {
 						<Route
 							path='stats/teams'
 							element={<TeamsPage />}
+						/>
+						<Route
+							path='stats/players'
+							element={<PlayersPage />}
 						/>
 						<Route
 							path={`stats/teams/:team`}

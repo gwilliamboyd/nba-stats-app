@@ -78,7 +78,9 @@ const Navbar = () => {
 						<Typography variant='h6'>Teams</Typography>
 					</Link>
 
-					<Typography variant='h6'>Players</Typography>
+					<Link to='/stats/players'>
+						<Typography variant='h6'>Players</Typography>
+					</Link>
 				</Box>
 				<Box
 					onMouseOver={handleOpen}

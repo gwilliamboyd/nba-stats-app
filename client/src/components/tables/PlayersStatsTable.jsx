@@ -29,6 +29,7 @@ export default function EnhancedTable({
 	secondaryColor,
 	tertiaryColor,
 }) {
+	console.log(statistics)
 	function descendingComparator(a, b, orderBy) {
 		if (b[orderBy] < a[orderBy]) {
 			return -1
@@ -254,7 +255,10 @@ export default function EnhancedTable({
 													{row.$3par}
 												</TableCell>
 												<TableCell
-													sx={tableCellStyle}
+													sx={{
+														color: league.nbaWhite,
+														padding: '2px',
+													}}
 													align='right'>
 													{row.tsPer}
 												</TableCell>
@@ -322,7 +326,7 @@ export default function EnhancedTable({
 												) : (
 													<TableCell sx={{ padding: '4px' }}>
 														<img
-															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+															src={`../../public/images/players/player-placeholder.png`}
 															alt={`${row.team} logo`}
 															width={30}
 														/>

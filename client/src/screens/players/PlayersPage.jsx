@@ -11,14 +11,14 @@ import {
 	Skeleton,
 	CircularProgress,
 } from '@mui/material'
-import { setTeamsPerGameStats } from '../../slices/teamsPerGameSlice'
-import { setTeamsTotalStats } from '../../slices/teamsTotalSlice'
-import { setTeamsAdvancedStats } from '../../slices/teamsAdvancedSlice'
+import { setPlayersPerGameStats } from '../../slices/players-stats/playersPerGameSlice'
+import { setPlayersTotalStats } from '../../slices/players-stats/playersTotalSlice'
+// import { setPlayersAdvancedStats } from '../../slices/playersAdvancedSlice'
 import { useTheme, createTheme } from '@mui/material/styles'
 import LoadingScreen from '../utility/LoadingScreen'
 // import LoadingScreenBlank from './LoadingScreenBlank'
-const TeamsStatsTable = lazy(() =>
-	testDelay(import('../../components/tables/TeamsStatsTable'))
+const PlayersStatsTable = lazy(() =>
+	testDelay(import('../../components/tables/PlayersStatsTable'))
 )
 
 const PlayersPage = () => {
@@ -39,52 +39,55 @@ const PlayersPage = () => {
 
 	// state
 	const dispatch = useDispatch()
-	const teamsPerGameStats = useSelector(state => state.teamsPerGameStats)
-	const teamsTotalStats = useSelector(state => state.teamsTotalStats)
-	const teamsAdvancedStats = useSelector(state => state.teamsAdvancedStats)
+	const playersPerGameStats = useSelector(state => state.playersPerGameStats)
+	const playersTotalStats = useSelector(state => state.playersTotalStats)
+	// const playersAdvancedStats = useSelector(state => state.playersAdvancedStats)
 
 	const [statsType, setStatsType] = useState('perGame')
 	const [loading, setLoading] = useState(true)
 
-	const getTeamsPerGame = async () => {
-		const response = await fetch(`http://localhost:5000/stats/teams/per-game`, {
+	const getPlayersPerGame = async () => {
+		const response = await fetch(
+			`http://localhost:5000/stats/players/per-game`,
+			{
+				method: 'GET',
+			}
+		)
+		const data = await response.json()
+		dispatch(setPlayersPerGameStats({ playersPerGameStats: data }))
+		setLoading(false)
+	}
+	const getPlayersTotal = async () => {
+		const response = await fetch(`http://localhost:5000/stats/players/total`, {
 			method: 'GET',
 		})
 		const data = await response.json()
-		dispatch(setTeamsPerGameStats({ teamsPerGameStats: data }))
+		dispatch(setPlayersTotalStats({ playersTotalStats: data }))
 		setLoading(false)
 	}
-	const getTeamsTotal = async () => {
-		const response = await fetch(`http://localhost:5000/stats/teams/total`, {
+	/* const getPlayersAdvanced = async () => {
+		const response = await fetch(`http://localhost:5000/stats/players/advanced`, {
 			method: 'GET',
 		})
 		const data = await response.json()
-		dispatch(setTeamsTotalStats({ teamsTotalStats: data }))
+		dispatch(setPlayersAdvancedStats({ playersAdvancedStats: data }))
 		setLoading(false)
-	}
-	const getTeamsAdvanced = async () => {
-		const response = await fetch(`http://localhost:5000/stats/teams/advanced`, {
-			method: 'GET',
-		})
-		const data = await response.json()
-		dispatch(setTeamsAdvancedStats({ teamsAdvancedStats: data }))
-		setLoading(false)
-	}
+	} */
 
 	const getStatsType = statsType => {
 		switch (statsType) {
 			case 'perGame':
-				getTeamsPerGame()
+				getPlayersPerGame()
 				console.log('Per Game')
 				break
 			case 'total':
-				getTeamsTotal()
+				getPlayersTotal()
 				console.log('Total')
 				break
-			case 'advanced':
-				getTeamsAdvanced()
+			/* case 'advanced':
+				getPlayersAdvanced()
 				console.log('Advanced')
-				break
+				break */
 		}
 	}
 
@@ -95,9 +98,9 @@ const PlayersPage = () => {
 	// Test loading components
 	// setTimeout(getTeamsPerGame, 5000)
 
-	const teamsPerGameStatistics = Object.values(teamsPerGameStats)[0]
-	const teamsTotalStatistics = Object.values(teamsTotalStats)[0]
-	const teamsAdvancedStatistics = Object.values(teamsAdvancedStats)[0]
+	const playersPerGameStatistics = Object.values(playersPerGameStats)[0]
+	const playersTotalStatistics = Object.values(playersTotalStats)[0]
+	// const playersAdvancedStatistics = Object.values(playersAdvancedStats)[0]
 
 	return (
 		<Suspense fallback={<LoadingScreen />}>
@@ -127,7 +130,7 @@ const PlayersPage = () => {
 							gap: '3rem',
 							marginLeft: '5rem',
 						}}>
-						<Typography variant='h3'>Team Stats</Typography>
+						<Typography variant='h3'>Player Stats</Typography>
 						<Typography
 							variant='h5'
 							sx={{ fontWeight: '600', opacity: '90%' }}>
@@ -167,17 +170,17 @@ const PlayersPage = () => {
 					</ButtonGroup>
 				</Box>
 				<Suspense fallback={<LoadingScreen />}>
-					<TeamsStatsTable
+					<PlayersStatsTable
 						loading={loading}
 						statsType={statsType}
 						statistics={
 							statsType === 'perGame'
-								? teamsPerGameStatistics
+								? playersPerGameStatistics
 								: statsType === 'total'
-								? teamsTotalStatistics
-								: statsType === 'advanced'
-								? teamsAdvancedStatistics
-								: null
+								? playersTotalStatistics
+								: /* statsType === 'advanced'
+								? playersAdvancedStatistics
+								: */ null
 						}
 						primaryColor={'#18264a'}
 						secondaryColor={league.nbaBackground}
