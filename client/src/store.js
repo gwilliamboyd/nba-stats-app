@@ -1,21 +1,30 @@
 import { configureStore } from '@reduxjs/toolkit'
-import teamsPerGameReducer from './slices/teamsPerGameSlice'
-import teamsTotalReducer from './slices/teamsTotalSlice'
-import teamsAdvancedReducer from './slices/teamsAdvancedSlice'
-import teamIndivReducer from './slices/teamIndivSlice'
+// team stats
+import teamsPerGameReducer from './slices/team-stats/teamsPerGameSlice'
+import teamsTotalReducer from './slices/team-stats/teamsTotalSlice'
+import teamsAdvancedReducer from './slices/team-stats/teamsAdvancedSlice'
+import teamIndivReducer from './slices/team-stats/teamIndivSlice'
+// players stats
+import playersPerGameReducer from './slices/players-stats/playersPerGameSlice'
+import playersTotalReducer from './slices/players-stats/playersTotalSlice'
+// standings
 import leagueStandingsReducer from './slices/standingsSlice'
-// import favoriteTeamsReducer from './slices/authentication/favoriteTeamsSlice'
 import authReducer from './slices/authentication/authSlice'
 import { apiSlice } from './slices/authentication/apiSlice'
 
 const store = configureStore({
 	reducer: {
+		// teams
 		teamsPerGameStats: teamsPerGameReducer,
 		teamsTotalStats: teamsTotalReducer,
 		teamsAdvancedStats: teamsAdvancedReducer,
 		teamIndivStats: teamIndivReducer,
+		// players
+		playersPerGameStats: playersPerGameReducer,
+		playersTotalStats: playersTotalReducer,
+		// standings
 		leagueStandings: leagueStandingsReducer,
-		// favoriteTeams: favoriteTeamsReducer,
+		// users/authentication
 		auth: authReducer,
 		[apiSlice.reducerPath]: apiSlice.reducer,
 	},

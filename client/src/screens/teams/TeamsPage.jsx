@@ -11,9 +11,9 @@ import {
 	Skeleton,
 	CircularProgress,
 } from '@mui/material'
-import { setTeamsPerGameStats } from '../../slices/teamsPerGameSlice'
-import { setTeamsTotalStats } from '../../slices/teamsTotalSlice'
-import { setTeamsAdvancedStats } from '../../slices/teamsAdvancedSlice'
+import { setTeamsPerGameStats } from '../../slices/team-stats/teamsPerGameSlice'
+import { setTeamsTotalStats } from '../../slices/team-stats/teamsTotalSlice'
+import { setTeamsAdvancedStats } from '../../slices/team-stats/teamsAdvancedSlice'
 import { useTheme, createTheme } from '@mui/material/styles'
 import LoadingScreen from '../utility/LoadingScreen'
 // import LoadingScreenBlank from './LoadingScreenBlank'

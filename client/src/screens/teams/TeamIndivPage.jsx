@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useTheme } from '@emotion/react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setTeamIndivStats } from '../../slices/teamIndivSlice'
-import { setTeamsPerGameStats } from '../../slices/teamsPerGameSlice'
+import { setTeamIndivStats } from '../../slices/team-stats/teamIndivSlice'
+import { setTeamsPerGameStats } from '../../slices/team-stats/teamsPerGameSlice'
 import { Box, Container, Grid, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import TeamIndivStatsRow from '../../components/stats-pages/TeamIndivStatsRow'
