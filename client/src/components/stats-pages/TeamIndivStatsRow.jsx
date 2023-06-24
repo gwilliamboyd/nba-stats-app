@@ -11,13 +11,13 @@ import {
 	TableRow,
 	Typography,
 } from '@mui/material'
-import fullTeamNames from '../hooks/fullTeamNames'
+import fullTeamNames from '../../hooks/fullTeamNames'
 import {
 	teamsPerGameHeadCells,
 	teamsAdvancedHeadCells,
-} from '../data/headCells/teamsHeadCellsIndivRow'
-import HeadCellsTeams from './tables/HeadCellsTeams'
-import HeadCellsTeamsIndivRow from './tables/HeadCellsTeamsIndivRow'
+} from '../../data/headCells/teamsHeadCellsIndivRow'
+import HeadCellsTeams from '../tables/HeadCellsTeams'
+import HeadCellsTeamsIndivRow from '../tables/HeadCellsTeamsIndivRow'
 
 const TeamIndivStatsRow = ({
 	team,

@@ -15,11 +15,11 @@ import { setTeamsPerGameStats } from '../slices/teamsPerGameSlice'
 import { setTeamsTotalStats } from '../slices/teamsTotalSlice'
 import { setTeamsAdvancedStats } from '../slices/teamsAdvancedSlice'
 import { useTheme, createTheme } from '@mui/material/styles'
-import LoadingScreen from './LoadingScreen'
+import LoadingScreen from './utility/LoadingScreen'
 import FavoriteTeamOverview from '../components/FavoriteTeamOverview'
 // import LoadingScreenBlank from './LoadingScreenBlank'
 const FavoriteTeamsStatsTable = lazy(() =>
-	testDelay(import('../components/FavoriteTeamsStatsTable'))
+	testDelay(import('../components/tables/FavoriteTeamsStatsTable'))
 )
 // recharts
 import {

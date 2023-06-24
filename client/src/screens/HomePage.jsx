@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // Getting data from data folder seems easier since I'm only
 // trying to map over them to get the logo images, not any stats
 import teams from '../data/teams-perGame.json'
-import HomeTeamCard from '../components/HomeTeamCard'
+import HomeTeamCard from '../components/user-profile/HomeTeamCard'
 
 const HomePage = () => {
 	const theme = useTheme()

@@ -14,12 +14,12 @@ import {
 	Skeleton,
 } from '@mui/material'
 import { useTheme } from '@emotion/react'
-import fullTeamNames from '../hooks/fullTeamNames'
-import HeadCellsTeams from './tables/HeadCellsTeams'
+import fullTeamNames from '../../hooks/fullTeamNames'
+import HeadCellsTeams from './HeadCellsTeams'
 import {
 	teamsAdvancedHeadCells,
 	teamsPerGameHeadCells,
-} from '../data/headCells/teamsHeadCells'
+} from '../../data/headCells/teamsHeadCells'
 
 export default function EnhancedTable({
 	loading,

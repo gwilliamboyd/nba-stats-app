@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react'
 import { Box, Container, Grid, Typography } from '@mui/material'
 import fullTeamNames from '../hooks/fullTeamNames'
-import TeamIndivStatsRow from './TeamIndivStatsRow'
+import TeamIndivStatsRow from './stats-pages/TeamIndivStatsRow'
 import QuickStat from './stats-pages/QuickStat'
 import { useEffect } from 'react'
 import allTeams from '../data/teams-perGame.json'

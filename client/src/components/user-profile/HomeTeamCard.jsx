@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useTheme } from '@emotion/react'
 import { Typography, Box } from '@mui/material'
-import fullTeamNames from '../hooks/fullTeamNames'
+import fullTeamNames from '../../hooks/fullTeamNames'
 const HomeTeamCard = ({ team, width }) => {
 	const theme = useTheme()
 	const { league } = theme.palette

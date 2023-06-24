@@ -15,10 +15,10 @@ import { setTeamsPerGameStats } from '../slices/teamsPerGameSlice'
 import { setTeamsTotalStats } from '../slices/teamsTotalSlice'
 import { setTeamsAdvancedStats } from '../slices/teamsAdvancedSlice'
 import { useTheme, createTheme } from '@mui/material/styles'
-import LoadingScreen from './LoadingScreen'
+import LoadingScreen from './utility/LoadingScreen'
 // import LoadingScreenBlank from './LoadingScreenBlank'
 const TeamsStatsTable = lazy(() =>
-	testDelay(import('../components/TeamsStatsTable'))
+	testDelay(import('../components/tables/TeamsStatsTable'))
 )
 
 const TeamsPage = () => {

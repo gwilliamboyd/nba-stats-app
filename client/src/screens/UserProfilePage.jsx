@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import UserAvatar from '../components/UserAvatar'
-import HomeTeamCard from '../components/HomeTeamCard'
+import HomeTeamCard from '../components/user-profile/HomeTeamCard'
 import { Link } from 'react-router-dom'
 import teams from '../data/teams-perGame.json'
 import { useUpdateUserMutation } from '../slices/authentication/usersApiSlice'
@@ -141,13 +141,6 @@ const UserProfilePage = () => {
 			console.log(err?.data?.message || err.error)
 		}
 	}
-
-	/* useEffect(() => {
-		console.log(favTeams)
-	}, [favTeams])
-	useEffect(() => {
-		console.log(favoriteTeams)
-	}, [favoriteTeams]) */
 
 	let isOutlined = false
 
