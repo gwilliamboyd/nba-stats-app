@@ -82,12 +82,9 @@ const FavoriteTeamsStats = () => {
 	}
 	// LEAGUE STANDINGS
 	const getLeagueStandings = async () => {
-		const response = await fetch(
-			`http://localhost:5000/stats/teams/standings`,
-			{
-				method: 'GET',
-			}
-		)
+		const response = await fetch(`http://localhost:5000/standings`, {
+			method: 'GET',
+		})
 		const data = await response.json()
 		dispatch(setLeagueStandings({ leagueStandings: data }))
 		setLoading(false)
@@ -140,7 +137,7 @@ const FavoriteTeamsStats = () => {
 	// console.log(quickStat)
 
 	const teamsPerGameStatistics = Object.values(teamsPerGameStats)[0]
-	console.log(teamsPerGameStatistics)
+	// console.log(teamsPerGameStatistics)
 	const teamsTotalStatistics = Object.values(teamsTotalStats)[0]
 	const teamsAdvancedStatistics = Object.values(teamsAdvancedStats)[0]
 
@@ -186,6 +183,7 @@ const FavoriteTeamsStats = () => {
 							<FavoriteTeamOverview
 								key={team}
 								team={team}
+								allTeams={teamsPerGameStatistics}
 								leagueStandings={leagueStandings}
 							/>
 						)

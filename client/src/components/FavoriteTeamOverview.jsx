@@ -5,10 +5,15 @@ import TeamIndivStatsRow from './TeamIndivStatsRow'
 import QuickStat from './stats-pages/QuickStat'
 import { useEffect } from 'react'
 import allTeams from '../data/teams-perGame.json'
+import SlashIcon from '../../public/images/svgs/SlashIcon'
 
 /* eslint-disable react/prop-types */
-const FavoriteTeamOverview = ({ team, leagueStandings }) => {
+const FavoriteTeamOverview = ({ team, allTeams, leagueStandings }) => {
+	// extract array of team objects from passed-in standings object
+	leagueStandings = Object.values(leagueStandings)[0]
 	console.log(leagueStandings)
+
+	// theme
 	const theme = useTheme()
 
 	// Quick stats overview
@@ -26,23 +31,23 @@ const FavoriteTeamOverview = ({ team, leagueStandings }) => {
 	// STAT RANKINGS LEAGUE-WIDE
 	const sortByPoints = t => {
 		const ptsSorted = t.sort((a, b) => b.pts - a.pts)
-		// console.log(ptsSorted)
 		return ptsSorted
 	}
 	const sortByTotalRebounds = t => {
 		const trbSorted = t.sort((a, b) => b.trb - a.trb)
-		// console.log(trbSorted)
 		return trbSorted
 	}
 	const sortByFieldGoalPer = t => {
 		const astSorted = t.sort((a, b) => b.fgPer - a.fgPer)
-		// console.log(astSorted)
 		return astSorted
 	}
 	const sortBy3PtPer = t => {
 		const $3pSorted = t.sort((a, b) => b.$3pPer - a.$3pPer)
-		// console.log($3pSorted)
 		return $3pSorted
+	}
+	const sortByWins = t => {
+		const winsSorted = t.sort((a, b) => b.w - a.w)
+		return winsSorted
 	}
 
 	const findRanking = (team, sortingFunction) => {
@@ -70,7 +75,27 @@ const FavoriteTeamOverview = ({ team, leagueStandings }) => {
 		// add 1 to index to get true ranking
 		let finalRanking = ranking + 1
 
+		console.log(getNumericalSuffix(finalRanking))
 		return getNumericalSuffix(finalRanking)
+	}
+
+	// search for team in standings to get wins and losses
+	const foundTeam = leagueStandings.find(tm => tm.team === team.team)
+
+	// get conference ranking
+	const rankByWinsConference = () => {
+		const result = leagueStandings.filter(
+			s => s.conference === foundTeam.conference
+		)
+		console.log(result)
+		return findRanking(team.team, sortByWins(result))
+	}
+	// get league-wide ranking
+	const rankByWinsLeague = () => {
+		// waits for get leagueStandings before executing sortByWins()
+		const league = [...leagueStandings]
+		const leagueRank = findRanking(team.team, sortByWins(league))
+		return leagueRank
 	}
 
 	return (
@@ -108,18 +133,98 @@ const FavoriteTeamOverview = ({ team, leagueStandings }) => {
 							width={200}
 							alt={`${team.team} logo`}
 						/>
-						<Typography
-							color={tertiaryColor}
-							fontWeight={800}
-							variant='h3'
-							sx={{
-								marginTop: '4rem',
-								letterSpacing: '-2.5px',
-							}}>
-							{fullTeamNames(team.team)}
-						</Typography>
+						<Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+							<Typography
+								color={tertiaryColor}
+								fontWeight={800}
+								variant='h3'
+								sx={{
+									marginTop: '2.5rem',
+									letterSpacing: '-2.5px',
+								}}>
+								{fullTeamNames(team.team)}
+							</Typography>
+							<Box
+								sx={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+								{/* WINS */}
+								<Box
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										justifyContent: 'baseline',
+										alignItems: 'center',
+									}}>
+									<Typography
+										color={secondaryColor}
+										variant='body2'
+										fontWeight={900}>
+										WINS
+									</Typography>
+									<Typography variant='h4'>{foundTeam?.w}</Typography>
+								</Box>
+								<SlashIcon
+									height={72}
+									fill={secondaryColor}
+								/>
+								{/* LOSSES */}
+								<Box
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										justifyContent: 'baseline',
+										alignItems: 'center',
+									}}>
+									<Typography
+										color={secondaryColor}
+										variant='body2'
+										fontWeight={900}>
+										LOSSES
+									</Typography>
+									<Typography variant='h4'>{foundTeam?.l}</Typography>
+								</Box>
+								<SlashIcon
+									height={72}
+									fill={secondaryColor}
+								/>
+								<Box
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										justifyContent: 'baseline',
+										alignItems: 'center',
+									}}>
+									<Typography
+										color={secondaryColor}
+										variant='body2'
+										fontWeight={900}>
+										CONFERENCE
+									</Typography>
+									<Typography variant='h4'>{rankByWinsConference()}</Typography>
+								</Box>
+								<SlashIcon
+									height={72}
+									fill={secondaryColor}
+								/>
+								<Box
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										justifyContent: 'baseline',
+										alignItems: 'center',
+									}}>
+									<Typography
+										color={secondaryColor}
+										variant='body2'
+										fontWeight={900}>
+										LEAGUE
+									</Typography>
+									<Typography variant='h4'>{rankByWinsLeague()}</Typography>
+								</Box>
+							</Box>
+						</Box>
 					</Box>
 				</Box>
+
 				<Box
 					sx={{
 						display: 'flex',

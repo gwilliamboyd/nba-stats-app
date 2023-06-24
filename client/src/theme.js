@@ -114,7 +114,7 @@ const theme = createTheme({
 			lak: {
 				primary: '#552583',
 				secondary: '#f9a01b',
-				tertiary: '#000000',
+				tertiary: '#FFFFFF',
 			},
 			mem: {
 				primary: '#5D76A9',
