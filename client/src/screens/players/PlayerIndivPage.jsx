@@ -43,13 +43,10 @@ const PlayerIndivPage = () => {
 	}
 	useEffect(() => {
 		getPlayerIndivStats()
-		// getPlayerInfo()
 	}, [])
 	console.log(playerIndivStats)
-	console.log(playersPerGameStats)
 	const playerIndivStatistics = Object.values(playerIndivStats)[0]
 	console.log(playerIndivStatistics)
-	// console.log(playerIndivStatistics[0])
 	const player = playerIndivStatistics[0]
 	console.log(player)
 
@@ -72,8 +69,6 @@ const PlayerIndivPage = () => {
 	const statsFg = quickStat?.fg
 	const statsFgPer = quickStat?.fgPer
 	const stats3pPer = quickStat?.$3pPer
-	const arena = quickStat?.arena
-	const home = quickStat?.home
 
 	return (
 		<Container
@@ -156,7 +151,7 @@ const PlayerIndivPage = () => {
 									color={tertiaryColor}
 									variant='h5'
 									fontWeight={700}>
-									{player.pos}
+									{player?.pos}
 								</Typography>
 							</Box>
 						</Box>
