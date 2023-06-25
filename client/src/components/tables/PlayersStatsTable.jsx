@@ -368,7 +368,7 @@ export default function EnhancedTable({
 													id={labelId}
 													scope='row'
 													padding='none'>
-													<Link to={`/stats/teams/${row.team}`}>
+													<Link to={`/stats/players/${row.id}`}>
 														{row.player}
 													</Link>
 												</TableCell>

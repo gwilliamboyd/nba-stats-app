@@ -28,3 +28,25 @@ export const getPlayersAdvanced = async (req, res) => {
 		res.status(404).json({ message: err.message })
 	}
 }
+
+export const getIndivPlayerStats = async (req, res) => {
+	try {
+		const { id } = req.params
+		console.log(id)
+		const playerIndivPerGame = await PlayersPerGame.find({
+			id: id,
+		})
+		const playerIndivTotal = await PlayersTotal.find({ id: id })
+		const playerIndivAdvanced = await PlayersAdvanced.find({
+			id: id,
+		})
+		const playerIndivStats = [
+			...playerIndivPerGame,
+			...playerIndivTotal,
+			...playerIndivAdvanced,
+		]
+		res.status(200).json(playerIndivStats)
+	} catch (err) {
+		res.status(404).json({ message: err.message })
+	}
+}
