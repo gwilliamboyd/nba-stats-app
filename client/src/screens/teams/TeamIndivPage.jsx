@@ -3,12 +3,26 @@ import { useTheme } from '@emotion/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setTeamIndivStats } from '../../slices/team-stats/teamIndivSlice'
 import { setTeamsPerGameStats } from '../../slices/team-stats/teamsPerGameSlice'
-import { Box, Container, Grid, Typography } from '@mui/material'
-import { useEffect, useState } from 'react'
+import {
+	Box,
+	Button,
+	ButtonGroup,
+	Container,
+	Grid,
+	Typography,
+} from '@mui/material'
+import { Suspense, lazy, useEffect, useState } from 'react'
 import TeamIndivStatsRow from '../../components/stats-pages/TeamIndivStatsRow'
 import LoadingScreenBlank from '../utility/LoadingScreenBlank'
 import fullTeamNames from '../../hooks/fullTeamNames'
 import QuickStat from '../../components/stats-pages/QuickStat'
+import LoadingScreen from '../utility/LoadingScreen'
+import { setPlayersPerGameStats } from '../../slices/players-stats/playersPerGameSlice'
+import { setPlayersTotalStats } from '../../slices/players-stats/playersTotalSlice'
+import { setPlayersAdvancedStats } from '../../slices/players-stats/playersAdvancedSlice'
+const PlayersStatsTable = lazy(() =>
+	testDelay(import('../../components/tables/PlayersStatsTable'))
+)
 
 const TeamIndivPage = () => {
 	// not an error, eslint doesn't recognize the theme
@@ -62,12 +76,89 @@ const TeamIndivPage = () => {
 	const arena = quickStat?.arena
 	const home = quickStat?.home
 
+	// Player stats table
+	// state
+	const playersPerGameStats = useSelector(state => state.playersPerGameStats)
+	const playersTotalStats = useSelector(state => state.playersTotalStats)
+	const playersAdvancedStats = useSelector(state => state.playersAdvancedStats)
+
+	const [statsType, setStatsType] = useState('perGame')
+	const [includePagination, setIncludePagination] = useState(false)
+
+	const getPlayersPerGame = async () => {
+		const response = await fetch(
+			`http://localhost:5000/stats/players/per-game`,
+			{
+				method: 'GET',
+			}
+		)
+		const data = await response.json()
+		dispatch(setPlayersPerGameStats({ playersPerGameStats: data }))
+		setLoading(false)
+	}
+	const getPlayersTotal = async () => {
+		const response = await fetch(`http://localhost:5000/stats/players/total`, {
+			method: 'GET',
+		})
+		const data = await response.json()
+		dispatch(setPlayersTotalStats({ playersTotalStats: data }))
+		setLoading(false)
+	}
+	const getPlayersAdvanced = async () => {
+		const response = await fetch(
+			`http://localhost:5000/stats/players/advanced`,
+			{
+				method: 'GET',
+			}
+		)
+		const data = await response.json()
+		dispatch(setPlayersAdvancedStats({ playersAdvancedStats: data }))
+		setLoading(false)
+	}
+
+	const getStatsType = statsType => {
+		switch (statsType) {
+			case 'perGame':
+				getPlayersPerGame()
+				console.log('Per Game')
+				break
+			case 'total':
+				getPlayersTotal()
+				console.log('Total')
+				break
+			case 'advanced':
+				getPlayersAdvanced()
+				console.log('Advanced')
+				break
+		}
+	}
+
+	useEffect(() => {
+		getStatsType(statsType)
+	}, [statsType])
+
+	// Test loading components
+	// setTimeout(getTeamsPerGame, 5000)
+
+	const playersPerGameStatistics = Object.values(playersPerGameStats)[0]
+	const filteredPerGameStatistics = playersPerGameStatistics.filter(
+		player => team === player.team
+	)
+	const playersTotalStatistics = Object.values(playersTotalStats)[0]
+	const filteredTotalStatistics = playersTotalStatistics.filter(
+		player => team === player.team
+	)
+	const playersAdvancedStatistics = Object.values(playersAdvancedStats)[0]
+	const filteredAdvancedStatistics = playersAdvancedStatistics.filter(
+		player => team === player.team
+	)
+
 	return (
 		<Container
 			disableGutters
 			maxWidth='100%'
 			sx={{
-				height: 'calc(100vh - 100px)',
+				// height: 'calc(100vh - 100px)',
 				backgroundColor: primaryColor,
 			}}>
 			<Box
@@ -295,9 +386,87 @@ const TeamIndivPage = () => {
 						</Box>
 					</Box>
 				)}
+				<Box
+					sx={{
+						display: 'flex',
+						alignItems: 'baseline',
+						gap: '3rem',
+						marginLeft: '5rem',
+					}}>
+					<Typography
+						color={tertiaryColor}
+						variant='h3'>
+						Player Stats
+					</Typography>
+					<Typography
+						color={secondaryColor}
+						variant='h5'
+						sx={{ fontWeight: '600', opacity: '90%' }}>
+						2022-23 Season
+					</Typography>
+
+					<ButtonGroup
+						// variant='text'
+						aria-label='medium button group'
+						color={'primary'}
+						size='medium'
+						sx={{ marginRight: '5rem' }}>
+						<Button
+							onClick={() => setStatsType('perGame')}
+							sx={{
+								color: league.nbaWhite,
+								'&:hover': { color: league.nbaRed },
+							}}>
+							Per-Game
+						</Button>
+						<Button
+							onClick={() => setStatsType('total')}
+							sx={{
+								color: league.nbaWhite,
+								'&:hover': { color: league.nbaRed },
+							}}>
+							Totals
+						</Button>
+						<Button
+							onClick={() => setStatsType('advanced')}
+							sx={{
+								color: league.nbaWhite,
+								'&:hover': { color: league.nbaRed },
+							}}>
+							Advanced
+						</Button>
+					</ButtonGroup>
+				</Box>
+
+				<Suspense fallback={<LoadingScreen />}>
+					<PlayersStatsTable
+						loading={loading}
+						statsType={statsType}
+						statistics={
+							statsType === 'perGame'
+								? filteredPerGameStatistics
+								: statsType === 'total'
+								? filteredTotalStatistics
+								: statsType === 'advanced'
+								? filteredAdvancedStatistics
+								: null
+						}
+						primaryColor={primaryColor}
+						secondaryColor={secondaryColor}
+						tertiaryColor={tertiaryColor}
+						includePagination={includePagination}
+						playersPerPage={25}
+					/>
+				</Suspense>
 			</Box>
 		</Container>
 	)
 }
 
 export default TeamIndivPage
+const testDelay = async promise => {
+	await new Promise(resolve => {
+		setTimeout(resolve, 1000)
+	})
+	return promise
+}

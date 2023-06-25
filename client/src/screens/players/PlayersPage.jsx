@@ -44,6 +44,7 @@ const PlayersPage = () => {
 	const playersAdvancedStats = useSelector(state => state.playersAdvancedStats)
 
 	const [statsType, setStatsType] = useState('perGame')
+	const [includePagination, setIncludePagination] = useState(true)
 	const [loading, setLoading] = useState(true)
 
 	const getPlayersPerGame = async () => {
@@ -185,9 +186,12 @@ const PlayersPage = () => {
 								? playersAdvancedStatistics
 								: null
 						}
+						containerBackground={league.nbaBackground}
 						primaryColor={'#18264a'}
-						secondaryColor={league.nbaBackground}
+						secondaryColor={league.nbaRed}
 						tertiaryColor={league.nbaWhite}
+						includePagination={includePagination}
+						playersPerPage={10}
 					/>
 				</Suspense>
 			</Container>

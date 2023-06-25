@@ -25,9 +25,12 @@ export default function EnhancedTable({
 	loading,
 	statsType,
 	statistics,
+	containerBackground,
 	primaryColor,
 	secondaryColor,
 	tertiaryColor,
+	includePagination,
+	playersPerPage,
 }) {
 	console.log(statistics)
 	function descendingComparator(a, b, orderBy) {
@@ -64,7 +67,7 @@ export default function EnhancedTable({
 	const [orderBy, setOrderBy] = React.useState('calories')
 	const [selected, setSelected] = React.useState([])
 	const [page, setPage] = React.useState(0)
-	const [rowsPerPage, setRowsPerPage] = React.useState(5)
+	const [rowsPerPage, setRowsPerPage] = React.useState(playersPerPage)
 
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === 'asc'
@@ -96,10 +99,10 @@ export default function EnhancedTable({
 		setPage(newPage)
 	}
 
-	const handleChangeRowsPerPage = event => {
+	/* const handleChangeRowsPerPage = event => {
 		setRowsPerPage(parseInt(event.target.value, 10))
 		setPage(0)
-	}
+	} */
 
 	const isSelected = player => selected.indexOf(player) !== -1
 
@@ -125,18 +128,18 @@ export default function EnhancedTable({
 		<Box
 			sx={{
 				width: '82%',
-				backgroundColor: league.nbaBackground,
+				backgroundColor: containerBackground || primaryColor,
 			}}>
 			<Paper
 				sx={{
 					width: '100%',
 					mb: 2,
-					border: '1px solid white',
+					border: `2px solid ${secondaryColor}`,
 					overflow: 'hidden',
 				}}>
 				<TableContainer
 					sx={{
-						backgroundColor: '#18264a',
+						backgroundColor: primaryColor,
 						p: '0 8px',
 						maxHeight: 680,
 					}}>
@@ -156,8 +159,8 @@ export default function EnhancedTable({
 							order={order}
 							orderBy={orderBy}
 							onRequestSort={handleRequestSort}
-							backgroundColor='#18264a'
-							fontColor='#B52532'
+							backgroundColor={primaryColor}
+							fontColor={secondaryColor}
 						/>
 						<TableBody>
 							{statsType === 'advanced'
@@ -179,7 +182,7 @@ export default function EnhancedTable({
 												) : (
 													<TableCell sx={{ padding: '4px' }}>
 														<img
-															src={`../../public/images/players/player-placeholder.png`}
+															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
 															alt={`${row.team} logo`}
 															width={30}
 														/>
@@ -187,7 +190,7 @@ export default function EnhancedTable({
 												)}
 												<TableCell
 													sx={{
-														color: league.nbaWhite,
+														color: tertiaryColor,
 														padding: '2px',
 														fontSize: '16px',
 													}}
@@ -526,15 +529,17 @@ export default function EnhancedTable({
 						</TableBody>
 					</Table>
 				</TableContainer>
-				<TablePagination
-					rowsPerPageOptions={[5, 10, 25]}
-					component='div'
-					count={statistics.length}
-					rowsPerPage={rowsPerPage}
-					page={page}
-					onPageChange={handleChangePage}
-					onRowsPerPageChange={handleChangeRowsPerPage}
-				/>
+				{includePagination && (
+					<TablePagination
+						rowsPerPageOptions={[5, 10, 25]}
+						component='div'
+						count={statistics.length}
+						rowsPerPage={rowsPerPage}
+						page={page}
+						onPageChange={handleChangePage}
+						// onRowsPerPageChange={handleChangeRowsPerPage}
+					/>
+				)}
 			</Paper>
 		</Box>
 	)
