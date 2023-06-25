@@ -352,9 +352,9 @@ export default function EnhancedTable({
 												) : (
 													<TableCell sx={{ padding: '4px' }}>
 														<img
-															src={playerImgSrc}
+															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
 															alt={`${row.team} logo`}
-															width={70}
+															width={40}
 														/>
 													</TableCell>
 												)}
