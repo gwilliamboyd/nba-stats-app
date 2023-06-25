@@ -13,7 +13,7 @@ import {
 } from '@mui/material'
 import { setPlayersPerGameStats } from '../../slices/players-stats/playersPerGameSlice'
 import { setPlayersTotalStats } from '../../slices/players-stats/playersTotalSlice'
-// import { setPlayersAdvancedStats } from '../../slices/playersAdvancedSlice'
+import { setPlayersAdvancedStats } from '../../slices/players-stats/playersAdvancedSlice'
 import { useTheme, createTheme } from '@mui/material/styles'
 import LoadingScreen from '../utility/LoadingScreen'
 // import LoadingScreenBlank from './LoadingScreenBlank'
@@ -41,7 +41,7 @@ const PlayersPage = () => {
 	const dispatch = useDispatch()
 	const playersPerGameStats = useSelector(state => state.playersPerGameStats)
 	const playersTotalStats = useSelector(state => state.playersTotalStats)
-	// const playersAdvancedStats = useSelector(state => state.playersAdvancedStats)
+	const playersAdvancedStats = useSelector(state => state.playersAdvancedStats)
 
 	const [statsType, setStatsType] = useState('perGame')
 	const [loading, setLoading] = useState(true)
@@ -65,14 +65,17 @@ const PlayersPage = () => {
 		dispatch(setPlayersTotalStats({ playersTotalStats: data }))
 		setLoading(false)
 	}
-	/* const getPlayersAdvanced = async () => {
-		const response = await fetch(`http://localhost:5000/stats/players/advanced`, {
-			method: 'GET',
-		})
+	const getPlayersAdvanced = async () => {
+		const response = await fetch(
+			`http://localhost:5000/stats/players/advanced`,
+			{
+				method: 'GET',
+			}
+		)
 		const data = await response.json()
 		dispatch(setPlayersAdvancedStats({ playersAdvancedStats: data }))
 		setLoading(false)
-	} */
+	}
 
 	const getStatsType = statsType => {
 		switch (statsType) {
@@ -84,10 +87,10 @@ const PlayersPage = () => {
 				getPlayersTotal()
 				console.log('Total')
 				break
-			/* case 'advanced':
+			case 'advanced':
 				getPlayersAdvanced()
 				console.log('Advanced')
-				break */
+				break
 		}
 	}
 
@@ -100,7 +103,7 @@ const PlayersPage = () => {
 
 	const playersPerGameStatistics = Object.values(playersPerGameStats)[0]
 	const playersTotalStatistics = Object.values(playersTotalStats)[0]
-	// const playersAdvancedStatistics = Object.values(playersAdvancedStats)[0]
+	const playersAdvancedStatistics = Object.values(playersAdvancedStats)[0]
 
 	return (
 		<Suspense fallback={<LoadingScreen />}>
@@ -178,9 +181,9 @@ const PlayersPage = () => {
 								? playersPerGameStatistics
 								: statsType === 'total'
 								? playersTotalStatistics
-								: /* statsType === 'advanced'
+								: statsType === 'advanced'
 								? playersAdvancedStatistics
-								: */ null
+								: null
 						}
 						primaryColor={'#18264a'}
 						secondaryColor={league.nbaBackground}

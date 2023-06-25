@@ -7,6 +7,7 @@ import teamIndivReducer from './slices/team-stats/teamIndivSlice'
 // players stats
 import playersPerGameReducer from './slices/players-stats/playersPerGameSlice'
 import playersTotalReducer from './slices/players-stats/playersTotalSlice'
+import playersAdvancedReducer from './slices/players-stats/playersAdvancedSlice'
 // standings
 import leagueStandingsReducer from './slices/standingsSlice'
 import authReducer from './slices/authentication/authSlice'
@@ -22,6 +23,7 @@ const store = configureStore({
 		// players
 		playersPerGameStats: playersPerGameReducer,
 		playersTotalStats: playersTotalReducer,
+		playersAdvancedStats: playersAdvancedReducer,
 		// standings
 		leagueStandings: leagueStandingsReducer,
 		// users/authentication

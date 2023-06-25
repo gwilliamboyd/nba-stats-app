@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import {
 	Box,
@@ -12,14 +12,14 @@ import {
 	TableRow,
 	Paper,
 	Skeleton,
+	TablePagination,
 } from '@mui/material'
 import { useTheme } from '@emotion/react'
-import fullTeamNames from '../../hooks/fullTeamNames'
 import HeadCellsTeams from './HeadCellsTeams'
 import {
-	teamsAdvancedHeadCells,
-	teamsPerGameHeadCells,
-} from '../../data/headCells/teamsHeadCells'
+	playersAdvancedHeadCells,
+	playersPerGameHeadCells,
+} from '../../data/headCells/playersHeadCells'
 
 export default function EnhancedTable({
 	loading,
@@ -64,7 +64,7 @@ export default function EnhancedTable({
 	const [orderBy, setOrderBy] = React.useState('calories')
 	const [selected, setSelected] = React.useState([])
 	const [page, setPage] = React.useState(0)
-	const [rowsPerPage, setRowsPerPage] = React.useState(30)
+	const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === 'asc'
@@ -72,12 +72,12 @@ export default function EnhancedTable({
 		setOrderBy(property)
 	}
 
-	const handleClick = (event, team) => {
-		const selectedIndex = selected.indexOf(team)
+	const handleClick = (event, player) => {
+		const selectedIndex = selected.indexOf(player)
 		let newSelected = []
 
 		if (selectedIndex === -1) {
-			newSelected = newSelected.concat(selected, team)
+			newSelected = newSelected.concat(selected, player)
 		} else if (selectedIndex === 0) {
 			newSelected = newSelected.concat(selected.slice(1))
 		} else if (selectedIndex === selected.length - 1) {
@@ -92,16 +92,29 @@ export default function EnhancedTable({
 		setSelected(newSelected)
 	}
 
-	const isSelected = team => selected.indexOf(team) !== -1
+	const handleChangePage = (event, newPage) => {
+		setPage(newPage)
+	}
 
-	statistics = React.useMemo(
+	const handleChangeRowsPerPage = event => {
+		setRowsPerPage(parseInt(event.target.value, 10))
+		setPage(0)
+	}
+
+	const isSelected = player => selected.indexOf(player) !== -1
+
+	const emptyRows =
+		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - statistics.length) : 0
+
+	const visibleRows = useMemo(
 		() =>
 			stableSort(statistics, getComparator(order, orderBy)).slice(
 				page * rowsPerPage,
 				page * rowsPerPage + rowsPerPage
 			),
-		[order, orderBy, page, rowsPerPage, statistics]
+		[order, orderBy, page, rowsPerPage]
 	)
+	console.log(visibleRows)
 
 	const tableCellStyle = {
 		color: league.nbaWhite,
@@ -137,8 +150,8 @@ export default function EnhancedTable({
 						<HeadCellsTeams
 							headCells={
 								statsType === 'advanced'
-									? teamsAdvancedHeadCells
-									: teamsPerGameHeadCells
+									? playersAdvancedHeadCells
+									: playersPerGameHeadCells
 							}
 							order={order}
 							orderBy={orderBy}
@@ -148,177 +161,17 @@ export default function EnhancedTable({
 						/>
 						<TableBody>
 							{statsType === 'advanced'
-								? statistics.map((row, index) => {
-										const isItemSelected = isSelected(row.team)
+								? visibleRows.map((row, index) => {
+										const isItemSelected = isSelected(row.player)
 										const labelId = `enhanced-table-checkbox-${index}`
 
 										return (
 											<TableRow
 												hover
-												onClick={event => handleClick(event, row.team)}
+												onClick={event => handleClick(event, row.player)}
 												aria-checked={isItemSelected}
 												tabIndex={-1}
-												key={row.team}
-												selected={isItemSelected}
-												sx={{ cursor: 'pointer' }}>
-												{loading ? (
-													<Skeleton variant='rectangular' />
-												) : (
-													<TableCell sx={{ padding: '4px' }}>
-														<img
-															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
-															alt={`${row.team} logo`}
-															width={30}
-														/>
-													</TableCell>
-												)}
-												<TableCell
-													sx={{
-														color: league.nbaWhite,
-														padding: '2px',
-														fontSize: '16px',
-													}}
-													component='th'
-													id={labelId}
-													scope='row'
-													padding='none'>
-													{fullTeamNames(row.team)}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.age}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.w}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.l}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.pw}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.pl}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.mov}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.sos}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.srs}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.ortg}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.drtg}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.nrtg}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.pace}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.ftr}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.$3par}
-												</TableCell>
-												<TableCell
-													sx={{
-														color: league.nbaWhite,
-														padding: '2px',
-													}}
-													align='right'>
-													{row.tsPer}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.offeFGPer}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.offtovPer}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.offorbPer}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.offftFGA}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.dffeFGPer}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.dfftovPer}
-												</TableCell>
-												<TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.dffdrbPer}
-												</TableCell>
-												<TableCell
-													sx={{
-														color: league.nbaWhite,
-														padding: '2px 4px 2px 2px',
-													}}
-													align='right'>
-													{row.dffftFGA}
-												</TableCell>
-											</TableRow>
-										)
-								  })
-								: statistics.map((row, index) => {
-										const isItemSelected = isSelected(row.team)
-										const labelId = `enhanced-table-checkbox-${index}`
-
-										return (
-											<TableRow
-												hover
-												onClick={event => handleClick(event, row.team)}
-												aria-checked={isItemSelected}
-												tabIndex={-1}
-												key={row.team}
+												key={row.player}
 												selected={isItemSelected}
 												sx={{ cursor: 'pointer' }}>
 												{loading ? (
@@ -342,14 +195,207 @@ export default function EnhancedTable({
 													id={labelId}
 													scope='row'
 													padding='none'>
-													<Link to={`/stats/teams/${row.team}`}>
-														{fullTeamNames(row.team)}
-													</Link>
+													{row.player}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.pos}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.age}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.team.toUpperCase()}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
 													align='right'>
 													{row.g}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.mp}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.per}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.tsPer}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.$3pAr}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.ftr}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.orbPer}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.drbPer}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.trbPer}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.astPer}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.stlPer}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.blkPer}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.tovPer}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.usgPer}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.ows}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.dws}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.ws}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.ws48}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.obpm}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.dbpm}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.bpm}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.worp}
+												</TableCell>
+											</TableRow>
+										)
+								  })
+								: visibleRows.map((row, index) => {
+										const isItemSelected = isSelected(row.player)
+										const labelId = `enhanced-table-checkbox-${index}`
+										const playerImgSrc = `../../public/images/players/${row.player}.png`
+
+										const determineImageSrc = () => {
+											let imageSrc
+											playerImgSrc == undefined
+												? imageSrc ===
+												  `../../public/images/players/player-placeholder.png`
+												: imageSrc === playerImgSrc
+										}
+
+										return (
+											<TableRow
+												hover
+												onClick={event => handleClick(event, row.player)}
+												aria-checked={isItemSelected}
+												tabIndex={-1}
+												key={row.player}
+												selected={isItemSelected}
+												sx={{ cursor: 'pointer' }}>
+												{loading ? (
+													<Skeleton variant='rectangular' />
+												) : (
+													<TableCell sx={{ padding: '4px' }}>
+														<img
+															src={playerImgSrc}
+															alt={`${row.team} logo`}
+															width={70}
+														/>
+													</TableCell>
+												)}
+												<TableCell
+													sx={{
+														color: league.nbaWhite,
+														padding: '2px',
+														fontSize: '16px',
+													}}
+													component='th'
+													id={labelId}
+													scope='row'
+													padding='none'>
+													<Link to={`/stats/teams/${row.team}`}>
+														{row.player}
+													</Link>
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.pos}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.age}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.team.toUpperCase()}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.g}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.gs}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
@@ -400,6 +446,11 @@ export default function EnhancedTable({
 													sx={tableCellStyle}
 													align='right'>
 													{row.$2pPer}
+												</TableCell>
+												<TableCell
+													sx={tableCellStyle}
+													align='right'>
+													{row.eFgPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
@@ -464,9 +515,26 @@ export default function EnhancedTable({
 											</TableRow>
 										)
 								  })}
+							{emptyRows > 0 && (
+								<TableRow
+									style={{
+										height: 33 * emptyRows,
+									}}>
+									<TableCell colSpan={6} />
+								</TableRow>
+							)}
 						</TableBody>
 					</Table>
 				</TableContainer>
+				<TablePagination
+					rowsPerPageOptions={[5, 10, 25]}
+					component='div'
+					count={statistics.length}
+					rowsPerPage={rowsPerPage}
+					page={page}
+					onPageChange={handleChangePage}
+					onRowsPerPageChange={handleChangeRowsPerPage}
+				/>
 			</Paper>
 		</Box>
 	)
