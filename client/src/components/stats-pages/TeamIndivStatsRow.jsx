@@ -72,7 +72,7 @@ const TeamIndivStatsRow = ({
 						/>
 						<TableBody>
 							{statsType === 'advanced'
-								? statistics.map(row => {
+								? statistics?.map(row => {
 										return (
 											<TableRow key={row.team}>
 												{loading ? (
@@ -310,7 +310,7 @@ const TeamIndivStatsRow = ({
 											</TableRow>
 										)
 								  })
-								: statistics.map(row => {
+								: statistics?.map(row => {
 										return (
 											<TableRow key={row.team}>
 												{loading ? (
