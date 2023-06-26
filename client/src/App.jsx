@@ -11,6 +11,7 @@ import UserProfilePage from './screens/users/UserProfilePage'
 import FavoriteTeamsStats from './screens/FavoriteTeamsStats'
 import PlayersPage from './screens/players/PlayersPage'
 import PlayerIndivPage from './screens/players/PlayerIndivPage'
+import StandingsPage from './screens/StandingsPage'
 const TeamsPage = lazy(() => import('./screens/teams/TeamsPage'))
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
 						<Route
 							path='/'
 							element={<HomePage />}
+						/>
+						<Route
+							path='standings'
+							element={<StandingsPage />}
 						/>
 						<Route
 							path='stats/teams'

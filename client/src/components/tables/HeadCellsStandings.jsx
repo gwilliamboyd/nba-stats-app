@@ -9,7 +9,7 @@ import {
 import { visuallyHidden } from '@mui/utils'
 import { useTheme } from '@emotion/react'
 
-const HeadCellsTeams = ({
+const HeadCellsStandings = ({
 	order,
 	orderBy,
 	onRequestSort,
@@ -82,4 +82,4 @@ const HeadCellsTeams = ({
 	)
 }
 
-export default HeadCellsTeams
+export default HeadCellsStandings

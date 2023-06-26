@@ -61,7 +61,7 @@ const PlayerIndivPage = () => {
 	const qsArray = qs[0]
 	console.log(qsArray)
 	// find quick stat for given team
-	const quickStat = qsArray.find(q => q.id === player.id)
+	const quickStat = qsArray.find(q => q.id === player?.id)
 
 	// quick stats variables
 	const statsPts = quickStat?.pts

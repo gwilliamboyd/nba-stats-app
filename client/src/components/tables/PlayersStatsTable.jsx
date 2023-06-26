@@ -32,7 +32,6 @@ export default function EnhancedTable({
 	includePagination,
 	playersPerPage,
 }) {
-	console.log(statistics)
 	function descendingComparator(a, b, orderBy) {
 		if (b[orderBy] < a[orderBy]) {
 			return -1
