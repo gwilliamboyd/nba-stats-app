@@ -16,14 +16,14 @@ const PlayerCard = ({ player, width }) => {
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
-				gap: '4px',
+				gap: '8px',
 				textAlign: 'center',
 			}}>
 			<Box
 				sx={{
 					width: width,
 					height: width,
-					border: '1px solid white',
+					border: `2px solid ${league.nbaWhite}`,
 					borderRadius: '100%',
 					backgroundImage: `url(${playerImgSrc})`,
 					backgroundPosition: 'center',

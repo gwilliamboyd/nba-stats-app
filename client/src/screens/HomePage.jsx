@@ -12,6 +12,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPlayersPerGameStats } from '../slices/players-stats/playersPerGameSlice'
 import { topScorers } from '../data/home-page-stats/topScorers'
+import HomePlayersLeaders from '../components/home-page/HomePlayersLeaders'
 
 const HomePage = () => {
 	const theme = useTheme()
@@ -22,7 +23,6 @@ const HomePage = () => {
 	const playersPerGameStats = useSelector(state => state.playersPerGameStats)
 
 	const sortedTeams = teams.sort((a, b) => a.team.localeCompare(b.team))
-	// console.log(sortedTeams)
 
 	const getPlayersPerGame = async () => {
 		const response = await fetch(
@@ -38,40 +38,34 @@ const HomePage = () => {
 		getPlayersPerGame()
 	}, [])
 
-	/* // get 4 random indices from top 10 scorers
-	const getTopStats = () => {
-		let topScorersArr = []
-		for (let i = 0; i < 4; i++) {
-			topScorersArr.push(Math.floor(Math.random(i) * 10))
-			console.log(topScorersArr)
-		}
-		return topScorersArr
-	}
-	const randomTopPlayers = getTopStats()
-	console.log(randomTopPlayers) */
-
-	/* 	function shuffleArray(array) {
-		for (let i = array.length; i > 0; i--) {
-			const j = Math.floor(Math.random() * array.length)
-			;[array[i], array[j]] = [array[j], array[i]]
-		}
-		return array
-	}
-
-	const randomTopPlayers = shuffleArray(topScorers)
-	console.log(randomTopPlayers)
-	const topFourPlayers = randomTopPlayers.slice(0, 4)
-	console.log(topFourPlayers) */
 	const playersPerGameStatistics = Object.values(playersPerGameStats)[0]
-	const sortableStats = [...playersPerGameStatistics]
+	const sortableStatsPts = [...playersPerGameStatistics]
+	const sortableStatsThree = [...playersPerGameStatistics]
+	const sortableStatsTrb = [...playersPerGameStatistics]
 
+	/* // PTS PER GAME
 	const sortByPoints = t => {
 		const ptsSorted = t?.sort((a, b) => b.pts - a.pts)
 		return ptsSorted
 	}
-	const pointsSorted = sortByPoints(sortableStats)
+	const pointsSorted = sortByPoints(sortableStatsPts)
 	console.log(pointsSorted)
+	// 3 POINTERS PER GAME
+	const sortBy3Pt = t => {
+		const $3pSorted = t.sort((a, b) => b.$3p - a.$3p)
+		return $3pSorted
+	}
+	const threePSorted = sortBy3Pt(sortableStatsThree)
+	console.log(threePSorted)
+	// TOTAL REBOUNDS
+	const sortByTotalRebounds = t => {
+		const trbSorted = t.sort((a, b) => b.trb - a.trb)
+		return trbSorted
+	}
+	const trbSorted = sortByTotalRebounds(sortableStatsTrb)
+	console.log(trbSorted) */
 
+	/* // Don't delete yet
 	const createTopTen = array => {
 		let topTen = []
 		for (let i = 0; i < 10; i++) {
@@ -81,44 +75,10 @@ const HomePage = () => {
 	}
 	const topTenScorers = createTopTen(pointsSorted)
 	console.log(topTenScorers)
-
-	let randomTopPlayers = topTenScorers
-		.map(v => ({ v, sort: Math.random() }))
-		.sort((a, b) => a.sort - b.sort)
-		.map(({ v }) => v)
-	// console.log(randomTopPlayers)
-	const topFourPlayers = randomTopPlayers.slice(0, 5)
-
-	// console.log(playersPerGameStatistics)
-
-	/* const findRanking = (team, sortingFunction) => {
-		// get proper suffix when printing final result
-		const getNumericalSuffix = a => {
-			let b = a % 10
-			let c = a % 100
-
-			if (b == 1 && c != 11) {
-				return a + 'st'
-			}
-			if (b == 2 && c != 12) {
-				return a + 'nd'
-			}
-			if (b == 3 && c != 13) {
-				return a + 'rd'
-			}
-			return a + 'th'
-		}
-		// finds passed-in team name in sorting function of choice
-		const rankingMatch = sortingFunction => sortingFunction.team === team
-		// get ranking (index)
-		const ranking = sortingFunction.findIndex(rankingMatch)
-		console.log(ranking)
-		// add 1 to index to get true ranking
-		let finalRanking = ranking + 1
-
-		console.log(getNumericalSuffix(finalRanking))
-		return getNumericalSuffix(finalRanking)
-	} */
+	const topTenThree = createTopTen(threePSorted)
+	console.log(topTenThree)
+	const topTenTrb = createTopTen(trbSorted)
+	console.log(topTenTrb) */
 
 	return (
 		<main
@@ -197,6 +157,7 @@ const HomePage = () => {
 					}}>
 					<Box
 						width='85%'
+						color={league.nbaWhite}
 						sx={{
 							display: 'flex',
 							flexDirection: 'column',
@@ -206,13 +167,52 @@ const HomePage = () => {
 						<Box
 							alignSelf='flex-start'
 							alignItems='baseline'
-							color={league.nbaWhite}
 							sx={{ display: 'flex', gap: '3rem' }}>
-							<Typography variant='h3'>Player Stats</Typography>
+							<Typography
+								fontWeight={900}
+								variant='h3'>
+								Player Stats
+							</Typography>
 							<Link to='/stats/players'>
 								<Typography variant='body1'>See All Players</Typography>
 							</Link>
 						</Box>
+						<Typography
+							variant='h4'
+							fontWeight={700}
+							alignSelf={'flex-start'}>
+							Top Scorers
+						</Typography>
+						<HomePlayersLeaders
+							stat={'pts'}
+							statArray={sortableStatsPts}
+						/>
+						<Typography
+							variant='h4'
+							fontWeight={700}
+							alignSelf={'flex-start'}>
+							Top 3Pt Shooters
+						</Typography>
+						<HomePlayersLeaders
+							stat={'$3p'}
+							statArray={sortableStatsThree}
+						/>
+						<Typography
+							variant='h4'
+							fontWeight={700}
+							alignSelf={'flex-start'}>
+							Most Boards
+						</Typography>
+						<HomePlayersLeaders
+							stat={'trb'}
+							statArray={sortableStatsTrb}
+						/>
+						{/* <Typography
+							variant='h4'
+							fontWeight={700}
+							alignSelf={'flex-start'}>
+							Top Scorers
+						</Typography>
 						<Grid
 							container
 							width='100%'
@@ -251,56 +251,8 @@ const HomePage = () => {
 										</Box>
 									</Box>
 								</Grid>
-							))}
-							{/* <Grid
-								item
-								xs={1}>
-								<PlayerCard
-									player='Lebron James'
-									width={160}
-								/>
-							</Grid>
-							<Grid
-								item
-								xs={1}>
-								<PlayerCard
-									player='Paul George'
-									width={160}
-								/>
-							</Grid>
-							<Grid
-								item
-								xs={1}>
-								<PlayerCard
-									player='Anthony Davis'
-									width={160}
-								/>
-							</Grid>
-							<Grid
-								item
-								xs={1}>
-								<PlayerCard
-									player='Rudy Gobert'
-									width={160}
-								/>
-							</Grid>
-							<Grid
-								item
-								xs={1}>
-								<PlayerCard
-									player='Stephen Curry'
-									width={160}
-								/>
-							</Grid>
-							<Grid
-								item
-								xs={1}>
-								<PlayerCard
-									player='Damian Lillard'
-									width={160}
-								/>
-							</Grid> */}
-						</Grid>
+							))}							
+						</Grid> */}
 					</Box>
 				</Box>
 			</Grid>
