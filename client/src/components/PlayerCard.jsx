@@ -31,8 +31,8 @@ const PlayerCard = ({ player, width }) => {
 				}}></Box>
 			<Typography
 				variant='h6'
-				fontWeight={400}
-				lineHeight={1.5}
+				fontWeight={700}
+				lineHeight={1.25}
 				color={league.nbaWhite}>
 				{player}
 			</Typography>
