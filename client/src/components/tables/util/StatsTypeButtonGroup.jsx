@@ -7,8 +7,7 @@ const StatsTypeButtonGroup = ({ league, setStatsType }) => {
 			// variant='text'
 			aria-label='medium button group'
 			color={'primary'}
-			size='medium'
-			sx={{ marginRight: '5rem' }}>
+			size='medium'>
 			<Button
 				onClick={() => setStatsType('perGame')}
 				sx={{

@@ -15,6 +15,8 @@ import { setPlayersAdvancedStats } from '../../slices/players-stats/playersAdvan
 import { useTheme } from '@mui/material/styles'
 import LoadingScreen from '../utility/LoadingScreen'
 import StatsTypeButtonGroup from '../../components/tables/util/StatsTypeButtonGroup'
+import MainStatsContainer from '../../components/layout/MainStatsContainer'
+import MainStatsBox from '../../components/layout/MainStatsBox'
 // import LoadingScreenBlank from './LoadingScreenBlank'
 const PlayersStatsTable = lazy(() =>
 	testDelay(import('../../components/tables/PlayersStatsTable'))
@@ -98,31 +100,14 @@ const PlayersPage = () => {
 
 	return (
 		<Suspense fallback={<LoadingScreen />}>
-			<Container
-				disableGutters
-				maxWidth='100%'
-				style={{
-					height: 'calc(100vh - 100px)',
-					backgroundColor: league.nbaBackground,
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					color: league.nbaWhite,
-				}}>
-				<Box
-					sx={{
-						display: 'flex',
-						alignSelf: 'flex-start',
-						justifyContent: 'space-between',
-						margin: '3rem 0 1rem',
-						width: '100%',
-					}}>
+			<MainStatsContainer league={league}>
+				<MainStatsBox>
 					<Box
 						sx={{
 							display: 'flex',
 							alignItems: 'baseline',
 							gap: '3rem',
-							marginLeft: '5rem',
+							// marginLeft: '5rem',
 						}}>
 						<Typography variant='h3'>Player Stats</Typography>
 						<Typography
@@ -135,7 +120,7 @@ const PlayersPage = () => {
 						league={league}
 						setStatsType={setStatsType}
 					/>
-				</Box>
+				</MainStatsBox>
 				<Suspense fallback={<LoadingScreen />}>
 					<PlayersStatsTable
 						loading={loading}
@@ -157,7 +142,7 @@ const PlayersPage = () => {
 						playersPerPage={10}
 					/>
 				</Suspense>
-			</Container>
+			</MainStatsContainer>
 		</Suspense>
 	)
 }

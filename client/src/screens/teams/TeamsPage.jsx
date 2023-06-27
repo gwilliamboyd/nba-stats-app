@@ -17,6 +17,11 @@ import { setTeamsAdvancedStats } from '../../slices/team-stats/teamsAdvancedSlic
 import { useTheme, createTheme } from '@mui/material/styles'
 import LoadingScreen from '../utility/LoadingScreen'
 import StatsTypeButtonGroup from '../../components/tables/util/StatsTypeButtonGroup'
+import MainStatsContainer from '../../components/layout/MainStatsContainer'
+/* const MainStatsContainer = lazy(() =>
+	testDelay(import('../../components/layout/MainStatsContainer'))
+) */
+import MainStatsBox from '../../components/layout/MainStatsBox'
 // import LoadingScreenBlank from './LoadingScreenBlank'
 const TeamsStatsTable = lazy(() =>
 	testDelay(import('../../components/tables/TeamsStatsTable'))
@@ -28,15 +33,6 @@ const TeamsPage = () => {
 	const { league } = theme.palette
 
 	const { userInfo } = useSelector(state => state.auth)
-
-	// Button group to change stats table type on teams and players page
-	const buttonGroupTheme = createTheme({
-		palette: {
-			primary: {
-				main: '#B52532',
-			},
-		},
-	})
 
 	// state
 	const dispatch = useDispatch()
@@ -102,31 +98,13 @@ const TeamsPage = () => {
 
 	return (
 		<Suspense fallback={<LoadingScreen />}>
-			<Container
-				disableGutters
-				maxWidth='100%'
-				style={{
-					height: 'calc(100vh - 100px)',
-					backgroundColor: league.nbaBackground,
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					color: league.nbaWhite,
-				}}>
-				<Box
-					sx={{
-						display: 'flex',
-						alignSelf: 'flex-start',
-						justifyContent: 'space-between',
-						margin: '3rem 0 1rem',
-						width: '100%',
-					}}>
+			<MainStatsContainer league={league}>
+				<MainStatsBox>
 					<Box
 						sx={{
 							display: 'flex',
 							alignItems: 'baseline',
 							gap: '3rem',
-							marginLeft: '5rem',
 						}}>
 						<Typography variant='h3'>Team Stats</Typography>
 						<Typography
@@ -139,7 +117,7 @@ const TeamsPage = () => {
 						league={league}
 						setStatsType={setStatsType}
 					/>
-				</Box>
+				</MainStatsBox>
 				<Suspense fallback={<LoadingScreen />}>
 					<TeamsStatsTable
 						loading={loading}
@@ -158,7 +136,7 @@ const TeamsPage = () => {
 						tertiaryColor={league.nbaWhite}
 					/>
 				</Suspense>
-			</Container>
+			</MainStatsContainer>
 		</Suspense>
 	)
 }

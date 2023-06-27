@@ -13,6 +13,8 @@ import {
 } from '@mui/material'
 import LoadingScreen from './utility/LoadingScreen'
 import { setLeagueStandings } from '../slices/standingsSlice'
+import MainStatsContainer from '../components/layout/MainStatsContainer'
+import MainStatsBox from '../components/layout/MainStatsBox'
 // import LoadingScreenBlank from './LoadingScreenBlank'
 const StandingsTable = lazy(() =>
 	testDelay(import('../components/tables/StandingsTable'))
@@ -69,31 +71,15 @@ const StandingsPage = () => {
 
 	return (
 		<Suspense fallback={<LoadingScreen />}>
-			<Container
-				disableGutters
-				maxWidth='100%'
-				style={{
-					height: 'calc(100vh - 100px)',
-					backgroundColor: league.nbaBackground,
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					color: league.nbaWhite,
-				}}>
-				<Box
-					sx={{
-						display: 'flex',
-						alignSelf: 'flex-start',
-						justifyContent: 'space-between',
-						margin: '2rem 0 1rem',
-						width: '100%',
-					}}>
+			<MainStatsContainer league={league}>
+				<MainStatsBox>
 					<Box
 						sx={{
 							display: 'flex',
+							justifySelf: 'center',
 							alignItems: 'baseline',
 							gap: '3rem',
-							marginLeft: '5rem',
+							// marginLeft: '5rem',
 						}}>
 						<Typography variant='h3'>Standings</Typography>
 						<Typography
@@ -102,7 +88,7 @@ const StandingsPage = () => {
 							2022-23 Season
 						</Typography>
 					</Box>
-				</Box>
+				</MainStatsBox>
 				<Suspense fallback={<LoadingScreen />}>
 					<Box
 						width='100%'
@@ -195,7 +181,7 @@ const StandingsPage = () => {
 						</Box>
 					</Box>
 				</Suspense>
-			</Container>
+			</MainStatsContainer>
 		</Suspense>
 	)
 }

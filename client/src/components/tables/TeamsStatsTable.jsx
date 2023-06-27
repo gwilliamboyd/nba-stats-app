@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import {
 	Box,
@@ -12,6 +12,7 @@ import {
 	TableRow,
 	Paper,
 	Skeleton,
+	Stack,
 } from '@mui/material'
 import { useTheme } from '@emotion/react'
 import fullTeamNames from '../../hooks/fullTeamNames'
@@ -160,17 +161,13 @@ export default function EnhancedTable({
 												key={row.team}
 												selected={isItemSelected}
 												sx={{ cursor: 'pointer' }}>
-												{loading ? (
-													<Skeleton variant='rectangular' />
-												) : (
-													<TableCell sx={{ padding: '4px' }}>
-														<img
-															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
-															alt={`${row.team} logo`}
-															width={30}
-														/>
-													</TableCell>
-												)}
+												<TableCell sx={{ padding: '4px' }}>
+													<img
+														src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+														alt={`${row.team} logo`}
+														width={30}
+													/>
+												</TableCell>
 												<TableCell
 													sx={{
 														color: league.nbaWhite,
@@ -317,17 +314,13 @@ export default function EnhancedTable({
 												key={row.team}
 												selected={isItemSelected}
 												sx={{ cursor: 'pointer' }}>
-												{loading ? (
-													<Skeleton variant='rectangular' />
-												) : (
-													<TableCell sx={{ padding: '4px' }}>
-														<img
-															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
-															alt={`${row.team} logo`}
-															width={30}
-														/>
-													</TableCell>
-												)}
+												<TableCell sx={{ padding: '4px' }}>
+													<img
+														src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+														alt={`${row.team} logo`}
+														width={30}
+													/>
+												</TableCell>
 												<TableCell
 													sx={{
 														color: league.nbaWhite,
