@@ -32,6 +32,7 @@ export default function EnhancedTable({
 	includePagination,
 	playersPerPage,
 }) {
+	// Sorting functions
 	function descendingComparator(a, b, orderBy) {
 		if (b[orderBy] < a[orderBy]) {
 			return -1
@@ -59,9 +60,10 @@ export default function EnhancedTable({
 		})
 		return stabilizedThis.map(el => el[0])
 	}
+	// theme
 	const theme = useTheme()
 	const { league } = theme.palette
-
+	// component state
 	const [order, setOrder] = React.useState('asc')
 	const [orderBy, setOrderBy] = React.useState('calories')
 	const [selected, setSelected] = React.useState([])
@@ -98,6 +100,8 @@ export default function EnhancedTable({
 		setPage(newPage)
 	}
 
+	// Probably will delete altogether, since rows per page will likely
+	// remain static at 10 rows per page
 	/* const handleChangeRowsPerPage = event => {
 		setRowsPerPage(parseInt(event.target.value, 10))
 		setPage(0)
@@ -108,16 +112,15 @@ export default function EnhancedTable({
 	const emptyRows =
 		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - statistics.length) : 0
 
-	const visibleRows = useMemo(
-		() =>
-			stableSort(statistics, getComparator(order, orderBy)).slice(
-				page * rowsPerPage,
-				page * rowsPerPage + rowsPerPage
-			),
-		[order, orderBy, page, rowsPerPage]
-	)
+	// using useMemo here causes the stats table
+	// not to change when the stats type changes
+	const visibleRows = stableSort(
+		statistics,
+		getComparator(order, orderBy)
+	).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 	console.log(visibleRows)
 
+	// table cell style object
 	const tableCellStyle = {
 		color: league.nbaWhite,
 		padding: '2px',
@@ -330,15 +333,15 @@ export default function EnhancedTable({
 								: visibleRows.map((row, index) => {
 										const isItemSelected = isSelected(row.player)
 										const labelId = `enhanced-table-checkbox-${index}`
-										const playerImgSrc = `../../public/images/players/${row.player}.png`
+										// const playerImgSrc = `../../public/images/players/${row.player}.png`
 
-										const determineImageSrc = () => {
+										/* const determineImageSrc = () => {
 											let imageSrc
 											playerImgSrc == undefined
 												? imageSrc ===
 												  `../../public/images/players/player-placeholder.png`
 												: imageSrc === playerImgSrc
-										}
+										} */
 
 										return (
 											<TableRow
