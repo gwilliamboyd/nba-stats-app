@@ -8,7 +8,7 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 	const theme = useTheme()
 	const { league } = theme.palette
 
-	console.log(statArray)
+	// console.log(statArray)
 
 	const sortOperation = `b.${stat} - a.${stat}`
 
@@ -21,7 +21,7 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 		return ptsSorted
 	}
 	const sortedStats = sortByPoints(statArray)
-	console.log(sortedStats)
+	// console.log(sortedStats)
 
 	// Don't delete yet
 	const createTopTen = array => {
@@ -32,7 +32,7 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 		return topTen
 	}
 	const topTen = createTopTen(sortedStats)
-	console.log(topTen)
+	// console.log(topTen)
 
 	let randomTopPlayers = topTen
 		?.map(v => ({ v, sort: Math.random() }))

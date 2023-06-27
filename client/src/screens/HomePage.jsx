@@ -41,8 +41,27 @@ const HomePage = () => {
 
 	const playersPerGameStatistics = Object.values(playersPerGameStats)[0]
 	const sortableStatsPts = [...playersPerGameStatistics]
-	const sortableStatsThree = [...playersPerGameStatistics]
+	const sortableStats$3p = [...playersPerGameStatistics]
 	const sortableStatsTrb = [...playersPerGameStatistics]
+
+	const possibleStatCategories = [
+		sortableStatsPts,
+		sortableStats$3p,
+		sortableStatsTrb,
+	]
+	const getRandomStatsLeader = () => {
+		const result = Math.floor(Math.random() * 3)
+		console.log(result)
+		return (
+			<HomePlayersLeaders
+				stat={result === 0 ? 'pts' : result === 1 ? '$3p' : 'trb'}
+				statArray={possibleStatCategories[result]}
+			/>
+		)
+		// console.log(result)
+		// return result
+	}
+	// useEffect(() => getRandomStatsLeader(), [])
 
 	return (
 		// <Suspense fallback={<LoadingScreen />}>
@@ -103,10 +122,7 @@ const HomePage = () => {
 							alignSelf={'flex-start'}>
 							Top Scorers
 						</Typography>
-						<HomePlayersLeaders
-							stat={'pts'}
-							statArray={sortableStatsPts}
-						/>
+						{getRandomStatsLeader()}
 					</HomePageBox>
 					{/* 
 						<Typography
