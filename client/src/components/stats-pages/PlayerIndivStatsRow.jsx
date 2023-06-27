@@ -9,14 +9,12 @@ import {
 	TableCell,
 	TableContainer,
 	TableRow,
-	Typography,
 } from '@mui/material'
-import fullTeamNames from '../../hooks/fullTeamNames'
 import {
 	playersPerGameHeadCells,
 	playersAdvancedHeadCells,
 } from '../../data/headCells/playersHeadCellsIndivRow'
-import HeadCellsPlayers from '../tables/HeadCellsPlayers'
+// import HeadCellsPlayers from '../tables/HeadCellsPlayers'
 import HeadCellsPlayersIndivRow from '../tables/HeadCellsTeamsIndivRow'
 
 const PlayerIndivStatsRow = ({
@@ -28,11 +26,15 @@ const PlayerIndivStatsRow = ({
 	loading,
 	statistics,
 }) => {
-	console.log(statistics)
+	// not an error, used in eval()
+	// eslint-disable-next-line no-unused-vars
 	const perGameStatistics = statistics[0]
+	// eslint-disable-next-line no-unused-vars
 	const totalStatistics = statistics[1]
 	const advancedStatistics = statistics[2]
-	console.log(advancedStatistics)
+
+	const tableCellStyle = { color: tertiaryColor, padding: '2px', border: '0' }
+
 	return (
 		<Box
 			sx={{
@@ -46,15 +48,6 @@ const PlayerIndivStatsRow = ({
 					border: `2px solid ${secondaryColor}`,
 					backgroundColor: primaryColor,
 				}}>
-				{/* <Typography sx={{ color: tertiaryColor }}>
-					{statsType === 'perGame'
-						? 'Per-Game'
-						: statsType === 'total'
-						? 'Totals'
-						: statsType === 'advanced'
-						? 'Advanced'
-						: null}
-				</Typography> */}
 				<TableContainer
 					sx={{
 						backgroundColor: primaryColor,
@@ -78,211 +71,160 @@ const PlayerIndivStatsRow = ({
 						<TableBody>
 							{statsType === 'advanced' ? (
 								<TableRow>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.pos}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.age}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.g}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.mp}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.per}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.tsPer}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.$3pAr}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.ftr}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.orbPer}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.drbPer}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.trbPer}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.astPer}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.stlPer}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.blkPer}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.tovPer}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.usgPer}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.ows}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.dws}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.ws}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.ws48}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.obpm}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.dbpm}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.bpm}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{advancedStatistics.worp}
 									</TableCell>
 								</TableRow>
 							) : (
 								<TableRow>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.pos`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.age`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.g`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.gs`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.mp`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.fg`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.fga`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.fgPer`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.$3p`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.$3pA`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.$3pPer`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.$2p`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.$2pA`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.$2pPer`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.eFgPer`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.ft`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.fta`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.ftPer`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.orb`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.drb`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.trb`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.ast`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.stl`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.blk`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.tov`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.pf`)}
 									</TableCell>
-									<TableCell
-										sx={{ color: tertiaryColor, padding: '2px', border: '0' }}>
+									<TableCell sx={tableCellStyle}>
 										{eval(`${statsType}Statistics.pts`)}
 									</TableCell>
 								</TableRow>

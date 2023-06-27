@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import React, { useMemo } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import {
 	Box,
@@ -68,6 +68,7 @@ export default function EnhancedTable({
 	const [orderBy, setOrderBy] = React.useState('calories')
 	const [selected, setSelected] = React.useState([])
 	const [page, setPage] = React.useState(0)
+	// eslint-disable-next-line no-unused-vars
 	const [rowsPerPage, setRowsPerPage] = React.useState(playersPerPage)
 
 	const handleRequestSort = (event, property) => {
@@ -99,13 +100,6 @@ export default function EnhancedTable({
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage)
 	}
-
-	// Probably will delete altogether, since rows per page will likely
-	// remain static at 10 rows per page
-	/* const handleChangeRowsPerPage = event => {
-		setRowsPerPage(parseInt(event.target.value, 10))
-		setPage(0)
-	} */
 
 	const isSelected = player => selected.indexOf(player) !== -1
 

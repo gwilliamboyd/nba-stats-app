@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, lazy, Suspense } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
 import {
 	Container,
 	Box,
@@ -9,12 +8,11 @@ import {
 	ButtonGroup,
 	Button,
 	Skeleton,
-	CircularProgress,
 } from '@mui/material'
 import { setPlayersPerGameStats } from '../../slices/players-stats/playersPerGameSlice'
 import { setPlayersTotalStats } from '../../slices/players-stats/playersTotalSlice'
 import { setPlayersAdvancedStats } from '../../slices/players-stats/playersAdvancedSlice'
-import { useTheme, createTheme } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles'
 import LoadingScreen from '../utility/LoadingScreen'
 // import LoadingScreenBlank from './LoadingScreenBlank'
 const PlayersStatsTable = lazy(() =>
@@ -27,15 +25,6 @@ const PlayersPage = () => {
 	const { league } = theme.palette
 
 	const { userInfo } = useSelector(state => state.auth)
-
-	// Button group to change stats table type on teams and players page
-	const buttonGroupTheme = createTheme({
-		palette: {
-			primary: {
-				main: '#B52532',
-			},
-		},
-	})
 
 	// state
 	const dispatch = useDispatch()
@@ -188,7 +177,7 @@ const PlayersPage = () => {
 						}
 						containerBackground={league.nbaBackground}
 						primaryColor={'#18264a'}
-						secondaryColor={league.nbaRed}
+						secondaryColor={league.nbaWhite}
 						tertiaryColor={league.nbaWhite}
 						includePagination={includePagination}
 						playersPerPage={10}

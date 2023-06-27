@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react'
 import { useTheme } from '@emotion/react'
+import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import fullTeamNames from '../../hooks/fullTeamNames'
 import { setPlayerIndivStats } from '../../slices/players-stats/playerIndivSlice'
 import { setPlayersPerGameStats } from '../../slices/players-stats/playersPerGameSlice'
 import { Box, Container, Grid, Typography } from '@mui/material'
-import { useEffect, useState } from 'react'
 import PlayerIndivStatsRow from '../../components/stats-pages/PlayerIndivStatsRow'
 import LoadingScreenBlank from '../utility/LoadingScreenBlank'
-import fullTeamNames from '../../hooks/fullTeamNames'
 import QuickStat from '../../components/stats-pages/QuickStat'
-import { useParams } from 'react-router-dom'
 
 const PlayerIndivPage = () => {
 	// not an error, eslint doesn't recognize the theme
@@ -17,13 +17,15 @@ const PlayerIndivPage = () => {
 	const theme = useTheme()
 	const { league } = theme.palette
 	const dispatch = useDispatch()
+	// redux state
 	const playerIndivStats = useSelector(state => state.playerIndivStats)
 	const playersPerGameStats = useSelector(state => state.playersPerGameStats)
+	// grabs id param from url
 	const { id } = useParams()
 	// renaming the id variable more uniquely
 	// to make it less confusing
 	const playerId = id
-
+	// component state
 	const [loading, setLoading] = useState(true)
 
 	const getPlayerIndivStats = async () => {
@@ -44,14 +46,10 @@ const PlayerIndivPage = () => {
 	useEffect(() => {
 		getPlayerIndivStats()
 	}, [])
-	console.log(playerIndivStats)
 	const playerIndivStatistics = Object.values(playerIndivStats)[0]
-	console.log(playerIndivStatistics)
 	const player = playerIndivStatistics[0]
-	console.log(player)
 
 	const team = player?.team
-	console.log(team)
 	const primaryColor = eval(`theme.palette.teams.${team}?.primary`)
 	const secondaryColor = eval(`theme.palette.teams.${team}?.secondary`)
 	const tertiaryColor = eval(`theme.palette.teams.${team}?.tertiary`)
@@ -59,7 +57,6 @@ const PlayerIndivPage = () => {
 	const quickStatsPlayer = Object.values(playersPerGameStats)
 	const qs = Object.values(quickStatsPlayer)
 	const qsArray = qs[0]
-	console.log(qsArray)
 	// find quick stat for given team
 	const quickStat = qsArray.find(q => q.id === player?.id)
 
@@ -90,7 +87,6 @@ const PlayerIndivPage = () => {
 					sx={{
 						marginTop: '3rem',
 						width: '85%',
-
 						display: 'flex',
 						flexDirection: 'row',
 						justifyContent: 'space-between',
@@ -100,8 +96,6 @@ const PlayerIndivPage = () => {
 							display: 'flex',
 							alignItems: 'flex-start',
 							gap: '2rem',
-							// minWidth: '600px',
-							// flex: '1 0 0',
 						}}>
 						<img
 							src={`../../public/images/players/${player?.player}.png`}
@@ -117,7 +111,6 @@ const PlayerIndivPage = () => {
 								display: 'flex',
 								flexDirection: 'column',
 								gap: '16px',
-								// flex: 1,
 							}}>
 							<Typography
 								color={tertiaryColor}
@@ -298,22 +291,3 @@ const PlayerIndivPage = () => {
 }
 
 export default PlayerIndivPage
-
-/*  const getPlayerInfo = async () => {
-		const playerIndivStatistics = Object.values(playerIndivStats)[0]
-		const playerArray = await playerIndivStatistics[0]
-		const result = await playerArray[0]
-		console.log(result)
-		return result
-	}
-	const setPlayerInfo = async () => {
-		const result = await getPlayerInfo()
-		return result
-	}
-	useEffect(() => {
-		// setPlayerInfo()
-	}, []) */
-
-// parse indiv stats from fetch
-// const player = setPlayerInfo
-// console.log(player)

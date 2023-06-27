@@ -234,13 +234,13 @@ const theme = createTheme({
 			//   color: primaryMain
 			// },
 
-			'&:hover': {
+			/* '&:hover': {
 				color: '#FFFFFF',
 
-				/* '&& $icon': {
-					opacity: 1,
-					color: '#FFFFFF',
-				}, */
+				// '&& $icon': {
+				// 	opacity: 1,
+				// 	color: '#FFFFFF',
+				// },
 			},
 			'&$active': {
 				color: '#FFFFFF',
@@ -250,7 +250,7 @@ const theme = createTheme({
 					opacity: 1,
 					color: '#FFFFFF',
 				},
-			},
+			}, */
 		},
 	},
 	overrides: {

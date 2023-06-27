@@ -31,12 +31,6 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
-.css-1jfbprk-MuiGrid-root > .MuiGrid-item {
-	padding-left: 0px;
-}
-.css-1jfbprk-MuiGrid-root > .MuiGrid-item {
-	padding-top: 0px;
-}
 
 /* Hides sort arrow when sorting team stats table */
 #root
