@@ -13,6 +13,12 @@ const RegisterPage = () => {
 	const theme = useTheme()
 	const { league } = theme.palette
 
+	const textFieldStyles = {
+		input: { color: '#FFF' },
+		label: { color: '#FFF' },
+		border: '1px solid white',
+	}
+
 	const navigate = useNavigate()
 	// redux
 	const dispatch = useDispatch()
@@ -49,13 +55,17 @@ const RegisterPage = () => {
 			disableGutters
 			maxWidth='100%'
 			sx={{
+				height: 'calc(100vh - 100px)',
 				display: 'flex',
 				justifyContent: 'center',
+				backgroundImage: 'url(../../public/images/registration-background.jpg)',
+				backgroundPosition: 'center',
+				backgroundSize: 'cover',
 			}}>
 			<Box
 				sx={{
 					marginTop: '3rem',
-					height: 'calc(100vh - 100px)',
+					// height: 'calc(100vh - 100px)',
 					width: '75%',
 					display: 'flex',
 					flexDirection: 'column',
@@ -67,9 +77,12 @@ const RegisterPage = () => {
 						password === confirmPassword ? submitHandler : passwordMatchHandler
 					}
 					style={{
+						padding: '2rem 8rem',
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
+						backgroundColor: 'rgba(37, 59, 115, 0.8)',
+						border: `2px solid ${league.nbaWhite}`,
 					}}>
 					<Typography>Name</Typography>
 					<TextField
@@ -79,7 +92,7 @@ const RegisterPage = () => {
 						type='name'
 						onChange={e => setName(e.target.value)}
 						placeholder='Name'
-						sx={{ input: { color: '#FFF' }, label: { color: '#FFF' } }}
+						sx={textFieldStyles}
 						value={name}
 					/>
 					<Typography>Email</Typography>
@@ -90,7 +103,7 @@ const RegisterPage = () => {
 						type='email'
 						onChange={e => setEmail(e.target.value)}
 						placeholder='Email'
-						sx={{ input: { color: '#FFF' }, label: { color: '#FFF' } }}
+						sx={textFieldStyles}
 						value={email}
 					/>
 					<Typography>Password</Typography>
@@ -101,7 +114,7 @@ const RegisterPage = () => {
 						type='password'
 						onChange={e => setPassword(e.target.value)}
 						placeholder='Password'
-						sx={{ input: { color: '#FFF' }, label: { color: '#FFF' } }}
+						sx={textFieldStyles}
 						value={password}
 					/>
 					<Typography>Confirm Password</Typography>
@@ -112,7 +125,7 @@ const RegisterPage = () => {
 						type='password'
 						onChange={e => setConfirmPassword(e.target.value)}
 						placeholder='Confirm Password'
-						sx={{ input: { color: '#FFF' }, label: { color: '#FFF' } }}
+						sx={textFieldStyles}
 						value={confirmPassword}
 					/>
 					<Typography>Upload Profile Picture</Typography>

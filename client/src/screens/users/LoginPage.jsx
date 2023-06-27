@@ -46,15 +46,17 @@ const LoginPage = () => {
 			disableGutters
 			maxWidth='100%'
 			sx={{
+				height: 'calc(100vh - 100px)',
 				display: 'flex',
 				justifyContent: 'center',
+				backgroundImage: 'url(../../public/images/login-background.jpg)',
+				backgroundPosition: '50% 18%',
+				backgroundSize: 'cover',
 			}}>
 			<Box
 				sx={{
 					marginTop: '3rem',
-					height: 'calc(100vh - 100px)',
 					width: '75%',
-
 					color: league.nbaWhite,
 				}}>
 				<form
