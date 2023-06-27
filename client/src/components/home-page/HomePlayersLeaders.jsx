@@ -2,6 +2,7 @@
 import { Box, Grid, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react'
 import PlayerCard from '../PlayerCard'
+import { Link } from 'react-router-dom'
 
 const HomePlayersLeaders = ({ stat, statArray }) => {
 	const theme = useTheme()
@@ -64,10 +65,12 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 								justifyContent: 'space-between',
 								alignItems: 'center',
 							}}>
-							<PlayerCard
-								width={220}
-								player={p?.player}
-							/>
+							<Link to={`/stats/players/${p?.id}`}>
+								<PlayerCard
+									width={220}
+									player={p?.player}
+								/>
+							</Link>
 							<Box
 								display={'flex'}
 								alignItems={'baseline'}

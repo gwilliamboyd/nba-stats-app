@@ -118,7 +118,6 @@ export default function EnhancedTable({
 		statistics,
 		getComparator(order, orderBy)
 	).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-	console.log(visibleRows)
 
 	// table cell style object
 	const tableCellStyle = {

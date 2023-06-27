@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import allTeams from '../data/teams-perGame.json'
 import SlashIcon from '../../public/images/svgs/SlashIcon'
 import PlayerCard from './PlayerCard'
+import { Link } from 'react-router-dom'
 
 /* eslint-disable react/prop-types */
 const FavoriteTeamOverview = ({
@@ -271,10 +272,12 @@ const FavoriteTeamOverview = ({
 									fontWeight={700}>
 									Top Scorer
 								</Typography>
-								<PlayerCard
-									player={topScorer?.player}
-									width={150}
-								/>
+								<Link to={`/stats/players/${topScorer?.id}`}>
+									<PlayerCard
+										player={topScorer?.player}
+										width={150}
+									/>
+								</Link>
 							</Box>
 							<Box
 								sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -283,10 +286,12 @@ const FavoriteTeamOverview = ({
 									fontWeight={700}>
 									Leader From 3
 								</Typography>
-								<PlayerCard
-									player={topThreePts?.player}
-									width={150}
-								/>
+								<Link to={`/stats/players/${topThreePts?.id}`}>
+									<PlayerCard
+										player={topThreePts?.player}
+										width={150}
+									/>
+								</Link>
 							</Box>
 						</Box>
 					</Box>
@@ -397,50 +402,6 @@ const FavoriteTeamOverview = ({
 							</Grid>
 						</Grid>
 					</Box>
-
-					{/* <Grid
-						container
-						columns={6}
-						columnSpacing={4}
-						rowSpacing={2}
-						sx={{ width: '100%', marginTop: '1rem' }}>
-						<QuickStat
-							heading='PTS'
-							featuredStat={statsPts}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='TRB'
-							featuredStat={statsTrb}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='AST'
-							featuredStat={statsAst}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='FG'
-							featuredStat={statsFg}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='FG%'
-							featuredStat={statsFgPer}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='3P%'
-							featuredStat={stats3pPer}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-					</Grid> */}
 				</Box>
 			</Box>
 		</Container>

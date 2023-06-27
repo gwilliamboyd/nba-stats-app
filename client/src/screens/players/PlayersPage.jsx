@@ -82,15 +82,15 @@ const PlayersPage = () => {
 		switch (statsType) {
 			case 'perGame':
 				getPlayersPerGame()
-				console.log('Per Game')
+				// console.log('Per Game')
 				break
 			case 'total':
 				getPlayersTotal()
-				console.log('Total')
+				// console.log('Total')
 				break
 			case 'advanced':
 				getPlayersAdvanced()
-				console.log('Advanced')
+				// console.log('Advanced')
 				break
 		}
 	}

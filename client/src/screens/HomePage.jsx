@@ -74,9 +74,17 @@ const HomePage = () => {
 							sx={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
 							<Box
 								sx={{ display: 'flex', alignItems: 'baseline', gap: '3rem' }}>
-								<Typography variant='h3'>Team Stats</Typography>
+								<Typography
+									variant='h3'
+									fontWeight={900}>
+									Team Stats
+								</Typography>
 								<Link to='/stats/teams'>
-									<Typography variant='body1'>See All Teams</Typography>
+									<Typography
+										variant='h6'
+										fontWeight={400}>
+										See All Teams
+									</Typography>
 								</Link>
 							</Box>
 							<Grid
@@ -143,7 +151,11 @@ const HomePage = () => {
 									Player Stats
 								</Typography>
 								<Link to='/stats/players'>
-									<Typography variant='body1'>See All Players</Typography>
+									<Typography
+										variant='h6'
+										fontWeight={400}>
+										See All Players
+									</Typography>
 								</Link>
 							</Box>
 							<Typography

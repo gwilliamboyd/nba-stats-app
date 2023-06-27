@@ -8,6 +8,7 @@ import { logout } from '../slices/authentication/authSlice'
 import { useLogoutMutation } from '../slices/authentication/usersApiSlice'
 // Images
 import nbaLogoSrc from '../../public/images/svgs/logo-nba.svg'
+import nbaLogoPng from '../../public/images/svgs/nba-logo.png'
 import UserAvatar from './UserAvatar'
 
 const Navbar = () => {
@@ -64,12 +65,12 @@ const Navbar = () => {
 						height: '100%',
 						display: 'flex',
 						alignItems: 'center',
-						gap: '12px',
+						gap: '24px',
 					}}>
 					<Link to='/'>
 						<img
-							src={nbaLogoSrc}
-							width={120}
+							src={nbaLogoPng}
+							width={200}
 							alt='NBA Logo'
 						/>
 					</Link>
@@ -89,6 +90,8 @@ const Navbar = () => {
 					sx={{
 						height: '100%',
 						display: 'flex',
+						alignItems: 'center',
+						gap: '1rem',
 					}}>
 					{userInfo ? (
 						<Box
