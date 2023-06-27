@@ -14,6 +14,7 @@ import { setPlayersTotalStats } from '../../slices/players-stats/playersTotalSli
 import { setPlayersAdvancedStats } from '../../slices/players-stats/playersAdvancedSlice'
 import { useTheme } from '@mui/material/styles'
 import LoadingScreen from '../utility/LoadingScreen'
+import StatsTypeButtonGroup from '../../components/tables/util/StatsTypeButtonGroup'
 // import LoadingScreenBlank from './LoadingScreenBlank'
 const PlayersStatsTable = lazy(() =>
 	testDelay(import('../../components/tables/PlayersStatsTable'))
@@ -130,37 +131,10 @@ const PlayersPage = () => {
 							2022-23 Season
 						</Typography>
 					</Box>
-					<ButtonGroup
-						// variant='text'
-						aria-label='medium button group'
-						color={'primary'}
-						size='medium'
-						sx={{ marginRight: '5rem' }}>
-						<Button
-							onClick={() => setStatsType('perGame')}
-							sx={{
-								color: league.nbaWhite,
-								'&:hover': { color: league.nbaRed },
-							}}>
-							Per-Game
-						</Button>
-						<Button
-							onClick={() => setStatsType('total')}
-							sx={{
-								color: league.nbaWhite,
-								'&:hover': { color: league.nbaRed },
-							}}>
-							Totals
-						</Button>
-						<Button
-							onClick={() => setStatsType('advanced')}
-							sx={{
-								color: league.nbaWhite,
-								'&:hover': { color: league.nbaRed },
-							}}>
-							Advanced
-						</Button>
-					</ButtonGroup>
+					<StatsTypeButtonGroup
+						league={league}
+						setStatsType={setStatsType}
+					/>
 				</Box>
 				<Suspense fallback={<LoadingScreen />}>
 					<PlayersStatsTable

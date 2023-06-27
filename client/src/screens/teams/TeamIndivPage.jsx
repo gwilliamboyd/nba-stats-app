@@ -20,6 +20,7 @@ import LoadingScreen from '../utility/LoadingScreen'
 import { setPlayersPerGameStats } from '../../slices/players-stats/playersPerGameSlice'
 import { setPlayersTotalStats } from '../../slices/players-stats/playersTotalSlice'
 import { setPlayersAdvancedStats } from '../../slices/players-stats/playersAdvancedSlice'
+import StatsTypeButtonGroup from '../../components/tables/util/StatsTypeButtonGroup'
 const PlayersStatsTable = lazy(() =>
 	testDelay(import('../../components/tables/PlayersStatsTable'))
 )
@@ -405,37 +406,10 @@ const TeamIndivPage = () => {
 						2022-23 Season
 					</Typography>
 
-					<ButtonGroup
-						// variant='text'
-						aria-label='medium button group'
-						color={'primary'}
-						size='medium'
-						sx={{ marginRight: '5rem' }}>
-						<Button
-							onClick={() => setStatsType('perGame')}
-							sx={{
-								color: league.nbaWhite,
-								'&:hover': { color: league.nbaRed },
-							}}>
-							Per-Game
-						</Button>
-						<Button
-							onClick={() => setStatsType('total')}
-							sx={{
-								color: league.nbaWhite,
-								'&:hover': { color: league.nbaRed },
-							}}>
-							Totals
-						</Button>
-						<Button
-							onClick={() => setStatsType('advanced')}
-							sx={{
-								color: league.nbaWhite,
-								'&:hover': { color: league.nbaRed },
-							}}>
-							Advanced
-						</Button>
-					</ButtonGroup>
+					<StatsTypeButtonGroup
+						league={league}
+						setStatsType={setStatsType}
+					/>
 				</Box>
 
 				<Suspense fallback={<LoadingScreen />}>
