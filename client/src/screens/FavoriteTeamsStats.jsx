@@ -33,6 +33,7 @@ import {
 } from 'recharts'
 import fullTeamNames from '../hooks/fullTeamNames'
 import { setLeagueStandings } from '../slices/standingsSlice'
+import { setPlayersPerGameStats } from '../slices/players-stats/playersPerGameSlice'
 
 const FavoriteTeamsStats = () => {
 	// theme
@@ -141,14 +142,52 @@ const FavoriteTeamsStats = () => {
 	const teamsTotalStatistics = Object.values(teamsTotalStats)[0]
 	const teamsAdvancedStatistics = Object.values(teamsAdvancedStats)[0]
 
+	// PLAYER STATS
+	const playersPerGameStats = useSelector(state => state.playersPerGameStats)
+	const getPlayersPerGame = async () => {
+		const response = await fetch(
+			`http://localhost:5000/stats/players/per-game`,
+			{
+				method: 'GET',
+			}
+		)
+		const data = await response.json()
+		dispatch(setPlayersPerGameStats({ playersPerGameStats: data }))
+	}
+	useEffect(() => {
+		getPlayersPerGame()
+	}, [])
+	const playersPerGameStatistics = Object.values(playersPerGameStats)[0]
+	const sortableStatsPts = [...playersPerGameStatistics]
+	const sortableStatsThree = [...playersPerGameStatistics]
+	console.log(sortableStatsPts)
+	console.log(sortableStatsThree)
+
+	/* const sortByPoints = t => {
+		const ptsSorted = t.sort((a, b) => b.pts - a.pts)
+		return ptsSorted
+	}
+	const sortBy3PtPer = t => {
+		const $3pSorted = t.sort((a, b) => b.$3pPer - a.$3pPer)
+		return $3pSorted
+	} */
+	const getPointsLeaders = t => {
+		const teamLeaders = sortableStatsPts?.filter(p => p.team === t)
+		return teamLeaders
+	}
+	const get3PLeaders = t => {
+		const teamLeaders = sortableStatsThree?.filter(p => p.team === t)
+		return teamLeaders
+	}
+
 	return (
 		<Suspense fallback={<LoadingScreen />}>
 			<Container
-				backgroundColor={league.nbaBackground}
+				// backgroundColor={league.nbaBackground}
 				disableGutters
 				maxWidth='100%'
 				sx={{
-					// backgroundColor: league.nbaBackground,
+					backgroundColor: league.nbaBackground,
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
@@ -179,68 +218,19 @@ const FavoriteTeamsStats = () => {
 				</Box>
 				<Suspense fallback={<LoadingScreen />}>
 					{teamOverviewStats.map(team => {
+						const ptsLeaders = getPointsLeaders(team.team)
+						const threePLeaders = get3PLeaders(team.team)
 						return (
 							<FavoriteTeamOverview
 								key={team}
 								team={team}
 								allTeams={teamsPerGameStatistics}
 								leagueStandings={leagueStandings}
+								ptsLeaders={ptsLeaders}
+								threePLeaders={threePLeaders}
 							/>
 						)
 					})}
-					{/* <ResponsiveContainer
-						width='100%'
-						height='100%'>
-						<RadarChart
-							cx='50%'
-							cy='50%'
-							outerRadius='80%'
-							data={teamOverviewStats}>
-							<PolarGrid />
-							<PolarAngleAxis dataKey='team' />
-							<PolarRadiusAxis
-								angle={30}
-								domain={[0, 150]}
-							/>
-							<Radar
-								key={teamOverviewStats[0].id}
-								name='team'
-								dataKey='pts'
-								stroke='#8884d8'
-								fill='red'
-								fillOpacity={0.6}
-							/>
-							<Radar
-								key={teamOverviewStats[0].id}
-								name='team'
-								dataKey='trb'
-								stroke='#8884d8'
-								fill='blue'
-								fillOpacity={0.6}
-							/>
-							<Radar
-								key={teamOverviewStats[0].id}
-								name='team'
-								dataKey='ast'
-								stroke='#8884d8'
-								fill='green'
-								fillOpacity={0.6}
-							/>
-							{teamOverviewStats.map(tm => {
-								return (
-									<Radar
-										key={`${tm.id}`}
-										name={`${tm.team}`}
-										dataKey={`${tm.pts}`}
-										stroke='#8884d8'
-										fill='#8884d8'
-										fillOpacity={0.6}
-									/>
-								)
-							})}
-							<Legend />
-						</RadarChart>
-					</ResponsiveContainer> */}
 					<FavoriteTeamsStatsTable
 						fTeams={fTeams}
 						loading={loading}

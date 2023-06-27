@@ -6,12 +6,20 @@ import QuickStat from './stats-pages/QuickStat'
 import { useEffect } from 'react'
 import allTeams from '../data/teams-perGame.json'
 import SlashIcon from '../../public/images/svgs/SlashIcon'
+import PlayerCard from './PlayerCard'
 
 /* eslint-disable react/prop-types */
-const FavoriteTeamOverview = ({ team, allTeams, leagueStandings }) => {
+const FavoriteTeamOverview = ({
+	team,
+	allTeams,
+	leagueStandings,
+	ptsLeaders,
+	threePLeaders,
+}) => {
 	// extract array of team objects from passed-in standings object
 	leagueStandings = Object.values(leagueStandings)[0]
-	console.log(leagueStandings)
+	console.log(ptsLeaders)
+	console.log(threePLeaders)
 
 	// theme
 	const theme = useTheme()
@@ -30,19 +38,11 @@ const FavoriteTeamOverview = ({ team, allTeams, leagueStandings }) => {
 
 	// STAT RANKINGS LEAGUE-WIDE
 	const sortByPoints = t => {
-		const ptsSorted = t.sort((a, b) => b.pts - a.pts)
+		const ptsSorted = t?.sort((a, b) => b.pts - a.pts)
 		return ptsSorted
 	}
-	const sortByTotalRebounds = t => {
-		const trbSorted = t.sort((a, b) => b.trb - a.trb)
-		return trbSorted
-	}
-	const sortByFieldGoalPer = t => {
-		const astSorted = t.sort((a, b) => b.fgPer - a.fgPer)
-		return astSorted
-	}
-	const sortBy3PtPer = t => {
-		const $3pSorted = t.sort((a, b) => b.$3pPer - a.$3pPer)
+	const sortBy3Pts = t => {
+		const $3pSorted = t.sort((a, b) => b.$3p - a.$3p)
 		return $3pSorted
 	}
 	const sortByWins = t => {
@@ -71,11 +71,9 @@ const FavoriteTeamOverview = ({ team, allTeams, leagueStandings }) => {
 		const rankingMatch = sortingFunction => sortingFunction.team === team
 		// get ranking (index)
 		const ranking = sortingFunction.findIndex(rankingMatch)
-		console.log(ranking)
 		// add 1 to index to get true ranking
 		let finalRanking = ranking + 1
 
-		console.log(getNumericalSuffix(finalRanking))
 		return getNumericalSuffix(finalRanking)
 	}
 
@@ -87,7 +85,6 @@ const FavoriteTeamOverview = ({ team, allTeams, leagueStandings }) => {
 		const result = leagueStandings.filter(
 			s => s.conference === foundTeam.conference
 		)
-		console.log(result)
 		return findRanking(team.team, sortByWins(result))
 	}
 	// get league-wide ranking
@@ -97,6 +94,10 @@ const FavoriteTeamOverview = ({ team, allTeams, leagueStandings }) => {
 		const leagueRank = findRanking(team.team, sortByWins(league))
 		return leagueRank
 	}
+
+	const topScorer = sortByPoints(ptsLeaders)[0]
+	console.log(topScorer)
+	const topThreePts = sortBy3Pts(threePLeaders)[0]
 
 	return (
 		<Container
@@ -143,7 +144,7 @@ const FavoriteTeamOverview = ({ team, allTeams, leagueStandings }) => {
 							<Typography
 								color={tertiaryColor}
 								fontWeight={800}
-								variant='h3'
+								variant='h2'
 								sx={{
 									marginTop: '6rem',
 									letterSpacing: '-2.5px',
@@ -230,14 +231,174 @@ const FavoriteTeamOverview = ({ team, allTeams, leagueStandings }) => {
 						</Box>
 					</Box>
 				</Box>
-
 				<Box
+					width='100%'
 					sx={{
 						display: 'flex',
-						flexDirection: 'column',
+						justifyContent: 'center',
+						gap: '5rem',
 					}}>
-					<Typography variant='h6'>At A Glance</Typography>
-					<Grid
+					{/* STATS LEADERS */}
+					<Box
+						sx={{
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center',
+							gap: '20px',
+						}}>
+						<Typography
+							color={secondaryColor}
+							variant='h2'
+							fontWeight={900}>
+							Leaders
+						</Typography>
+						<Box
+							sx={{
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								gap: '5rem',
+							}}>
+							<Box
+								sx={{
+									display: 'flex',
+									flexDirection: 'column',
+									alignItems: 'center',
+									gap: '8px',
+								}}>
+								<Typography
+									variant='h5'
+									fontWeight={700}>
+									Top Scorer
+								</Typography>
+								<PlayerCard
+									player={topScorer?.player}
+									width={150}
+								/>
+							</Box>
+							<Box
+								sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+								<Typography
+									variant='h5'
+									fontWeight={700}>
+									Leader From 3
+								</Typography>
+								<PlayerCard
+									player={topThreePts?.player}
+									width={150}
+								/>
+							</Box>
+						</Box>
+					</Box>
+					{/* TEAM BREAKDOWN */}
+					<Box
+						sx={{
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center',
+							gap: '20px',
+						}}>
+						<Typography
+							color={secondaryColor}
+							variant='h2'
+							fontWeight={900}>
+							Team Breakdown
+						</Typography>
+						<Grid
+							container
+							columns={2}>
+							<Grid
+								item
+								xs={1}>
+								<Box
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										alignItems: 'center',
+									}}>
+									<Typography
+										variant='h2'
+										fontWeight={800}>
+										{statsPts}
+									</Typography>
+									<Typography
+										color={secondaryColor}
+										variant='h5'
+										fontWeight={500}>
+										Pts/Game
+									</Typography>
+								</Box>
+							</Grid>
+							<Grid
+								item
+								xs={1}>
+								<Box
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										alignItems: 'center',
+									}}>
+									<Typography
+										variant='h2'
+										fontWeight={800}>
+										{stats3pPer}
+									</Typography>
+									<Typography
+										color={secondaryColor}
+										variant='h5'
+										fontWeight={500}>
+										3P%
+									</Typography>
+								</Box>
+							</Grid>
+							<Grid
+								item
+								xs={1}>
+								<Box
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										alignItems: 'center',
+									}}>
+									<Typography
+										variant='h2'
+										fontWeight={800}>
+										{statsTrb}
+									</Typography>
+									<Typography
+										color={secondaryColor}
+										variant='h5'
+										fontWeight={500}>
+										Rebounds/Game
+									</Typography>
+								</Box>
+							</Grid>
+							<Grid
+								item
+								xs={1}>
+								<Box
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										alignItems: 'center',
+									}}>
+									<Typography
+										variant='h2'
+										fontWeight={800}>
+										{statsFgPer}
+									</Typography>
+									<Typography
+										color={secondaryColor}
+										variant='h5'
+										fontWeight={500}>
+										FG%
+									</Typography>
+								</Box>
+							</Grid>
+						</Grid>
+					</Box>
+
+					{/* <Grid
 						container
 						columns={6}
 						columnSpacing={4}
@@ -279,7 +440,7 @@ const FavoriteTeamOverview = ({ team, allTeams, leagueStandings }) => {
 							secondaryColor={secondaryColor}
 							tertiaryColor={tertiaryColor}
 						/>
-					</Grid>
+					</Grid> */}
 				</Box>
 			</Box>
 		</Container>
