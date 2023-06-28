@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import React, { Suspense } from 'react'
+import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import {
 	Box,
@@ -11,8 +11,6 @@ import {
 	TableContainer,
 	TableRow,
 	Paper,
-	Skeleton,
-	Stack,
 } from '@mui/material'
 import { useTheme } from '@emotion/react'
 import fullTeamNames from '../../hooks/fullTeamNames'
@@ -23,12 +21,11 @@ import {
 } from '../../data/headCells/teamsHeadCells'
 
 export default function EnhancedTable({
-	loading,
 	statsType,
 	statistics,
-	primaryColor,
-	secondaryColor,
-	tertiaryColor,
+	// primaryColor,
+	// secondaryColor,
+	// tertiaryColor,
 }) {
 	function descendingComparator(a, b, orderBy) {
 		if (b[orderBy] < a[orderBy]) {
@@ -60,11 +57,13 @@ export default function EnhancedTable({
 	const theme = useTheme()
 	const { league } = theme.palette
 
-	const [order, setOrder] = React.useState('asc')
-	const [orderBy, setOrderBy] = React.useState('calories')
-	const [selected, setSelected] = React.useState([])
-	const [page, setPage] = React.useState(0)
-	const [rowsPerPage, setRowsPerPage] = React.useState(30)
+	const [order, setOrder] = useState('asc')
+	const [orderBy, setOrderBy] = useState('calories')
+	// const [page, setPage] = useState(0)
+	// const [rowsPerPage, setRowsPerPage] = useState(30)
+	// no pagination necessary, so setting values manually
+	const page = 0
+	const rowsPerPage = 30
 
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === 'asc'
@@ -72,29 +71,7 @@ export default function EnhancedTable({
 		setOrderBy(property)
 	}
 
-	const handleClick = (event, team) => {
-		const selectedIndex = selected.indexOf(team)
-		let newSelected = []
-
-		if (selectedIndex === -1) {
-			newSelected = newSelected.concat(selected, team)
-		} else if (selectedIndex === 0) {
-			newSelected = newSelected.concat(selected.slice(1))
-		} else if (selectedIndex === selected.length - 1) {
-			newSelected = newSelected.concat(selected.slice(0, -1))
-		} else if (selectedIndex > 0) {
-			newSelected = newSelected.concat(
-				selected.slice(0, selectedIndex),
-				selected.slice(selectedIndex + 1)
-			)
-		}
-
-		setSelected(newSelected)
-	}
-
-	const isSelected = team => selected.indexOf(team) !== -1
-
-	statistics = React.useMemo(
+	statistics = useMemo(
 		() =>
 			stableSort(statistics, getComparator(order, orderBy)).slice(
 				page * rowsPerPage,
@@ -149,17 +126,17 @@ export default function EnhancedTable({
 						<TableBody>
 							{statsType === 'advanced'
 								? statistics.map((row, index) => {
-										const isItemSelected = isSelected(row.team)
+										// const isItemSelected = isSelected(row.team)
 										const labelId = `enhanced-table-checkbox-${index}`
 
 										return (
 											<TableRow
 												hover
-												onClick={event => handleClick(event, row.team)}
-												aria-checked={isItemSelected}
+												// onClick={event => handleClick(event, row.team)}
+												// aria-checked={isItemSelected}
 												tabIndex={-1}
 												key={row.team}
-												selected={isItemSelected}
+												// selected={isItemSelected}
 												sx={{ cursor: 'pointer' }}>
 												<TableCell sx={{ padding: '4px' }}>
 													<img
@@ -302,17 +279,17 @@ export default function EnhancedTable({
 										)
 								  })
 								: statistics.map((row, index) => {
-										const isItemSelected = isSelected(row.team)
+										// const isItemSelected = isSelected(row.team)
 										const labelId = `enhanced-table-checkbox-${index}`
 
 										return (
 											<TableRow
 												hover
-												onClick={event => handleClick(event, row.team)}
-												aria-checked={isItemSelected}
+												// onClick={event => handleClick(event, row.team)}
+												// aria-checked={isItemSelected}
 												tabIndex={-1}
 												key={row.team}
-												selected={isItemSelected}
+												// selected={isItemSelected}
 												sx={{ cursor: 'pointer' }}>
 												<TableCell sx={{ padding: '4px' }}>
 													<img

@@ -22,7 +22,7 @@ const theme = createTheme({
 			nbaWhite: '#FFFFFF',
 		},
 		primary: {
-			main: '#B52532',
+			main: '#FFFFFF',
 		},
 		// Team colors
 		teams: {
@@ -225,6 +225,7 @@ const theme = createTheme({
 	// Restyles arrow icons in table sorting
 	MuiTableSortLabel: {
 		root: {
+			/*
 			// NBA red
 			color: '#B52532',
 
@@ -234,7 +235,7 @@ const theme = createTheme({
 			//   color: primaryMain
 			// },
 
-			/* '&:hover': {
+			 '&:hover': {
 				color: '#FFFFFF',
 
 				// '&& $icon': {
@@ -254,9 +255,15 @@ const theme = createTheme({
 		},
 	},
 	overrides: {
-		MuiButtonGroup: {
+		/* MuiButtonGroup: {
 			primary: '#B52532',
+		}, */
+		/* MuiFormControl: {
+			primary: '#FFFFFF',
 		},
+		MuiOutlinedInput: {
+			primary: '#26ab49',
+		}, */
 	},
 })
 

@@ -1,34 +1,39 @@
 /* eslint-disable react/prop-types */
 import { Button, ButtonGroup } from '@mui/material'
 
-const StatsTypeButtonGroup = ({ league, setStatsType }) => {
+const StatsTypeButtonGroup = ({
+	league,
+	secondaryColor,
+	tertiaryColor,
+	setStatsType,
+}) => {
 	return (
 		<ButtonGroup
 			// variant='text'
 			aria-label='medium button group'
-			color={'primary'}
+			// color={'primary'}
 			size='medium'>
 			<Button
 				onClick={() => setStatsType('perGame')}
 				sx={{
-					color: league.nbaWhite,
-					'&:hover': { color: league.nbaRed },
+					color: tertiaryColor,
+					'&:hover': { color: secondaryColor },
 				}}>
 				Per-Game
 			</Button>
 			<Button
 				onClick={() => setStatsType('total')}
 				sx={{
-					color: league.nbaWhite,
-					'&:hover': { color: league.nbaRed },
+					color: tertiaryColor,
+					'&:hover': { color: secondaryColor },
 				}}>
 				Totals
 			</Button>
 			<Button
 				onClick={() => setStatsType('advanced')}
 				sx={{
-					color: league.nbaWhite,
-					'&:hover': { color: league.nbaRed },
+					color: tertiaryColor,
+					'&:hover': { color: secondaryColor },
 				}}>
 				Advanced
 			</Button>

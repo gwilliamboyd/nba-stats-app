@@ -3,24 +3,16 @@ import { useTheme } from '@emotion/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setTeamIndivStats } from '../../slices/team-stats/teamIndivSlice'
 import { setTeamsPerGameStats } from '../../slices/team-stats/teamsPerGameSlice'
-import {
-	Box,
-	Button,
-	ButtonGroup,
-	Container,
-	Grid,
-	Typography,
-} from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { Suspense, lazy, useEffect, useState } from 'react'
 import TeamIndivStatsRow from '../../components/stats-pages/TeamIndivStatsRow'
-import LoadingScreenBlank from '../utility/LoadingScreenBlank'
 import fullTeamNames from '../../hooks/fullTeamNames'
-import QuickStat from '../../components/stats-pages/QuickStat'
 import LoadingScreen from '../utility/LoadingScreen'
 import { setPlayersPerGameStats } from '../../slices/players-stats/playersPerGameSlice'
 import { setPlayersTotalStats } from '../../slices/players-stats/playersTotalSlice'
 import { setPlayersAdvancedStats } from '../../slices/players-stats/playersAdvancedSlice'
 import StatsTypeButtonGroup from '../../components/tables/util/StatsTypeButtonGroup'
+import QuickStatsContainer from '../../components/stats-pages/quick-stats/QuickStatsContainer'
 const PlayersStatsTable = lazy(() =>
 	testDelay(import('../../components/tables/PlayersStatsTable'))
 )
@@ -74,6 +66,7 @@ const TeamIndivPage = () => {
 	const statsFg = quickStat?.fg
 	const statsFgPer = quickStat?.fgPer
 	const stats3pPer = quickStat?.$3pPer
+
 	const arena = quickStat?.arena
 	const home = quickStat?.home
 
@@ -84,7 +77,8 @@ const TeamIndivPage = () => {
 	const playersAdvancedStats = useSelector(state => state.playersAdvancedStats)
 
 	const [statsType, setStatsType] = useState('perGame')
-	const [includePagination, setIncludePagination] = useState(false)
+	// const [includePagination, setIncludePagination] = useState(false)
+	const includePagination = false
 
 	const getPlayersPerGame = async () => {
 		const response = await fetch(
@@ -258,52 +252,19 @@ const TeamIndivPage = () => {
 							</Box>
 						</Box>
 					</Box>
-					<Grid
-						container
-						columns={6}
-						columnSpacing={4}
-						rowSpacing={2}
-						sx={{ width: '28%', marginTop: '1rem' }}>
-						<QuickStat
-							heading='PTS'
-							featuredStat={statsPts}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='TRB'
-							featuredStat={statsTrb}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='AST'
-							featuredStat={statsAst}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='FG'
-							featuredStat={statsFg}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='FG%'
-							featuredStat={statsFgPer}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='3P%'
-							featuredStat={stats3pPer}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-					</Grid>
+					<QuickStatsContainer
+						statsPts={statsPts}
+						statsTrb={statsTrb}
+						statsAst={statsAst}
+						statsFg={statsFg}
+						statsFgPer={statsFgPer}
+						stats3pPer={stats3pPer}
+						secondaryColor={secondaryColor}
+						tertiaryColor={tertiaryColor}
+					/>
 				</Box>
 				{loading ? (
-					<LoadingScreenBlank />
+					<LoadingScreen />
 				) : (
 					<Box
 						sx={{
@@ -408,6 +369,8 @@ const TeamIndivPage = () => {
 
 					<StatsTypeButtonGroup
 						league={league}
+						secondaryColor={secondaryColor}
+						tertiaryColor={tertiaryColor}
 						setStatsType={setStatsType}
 					/>
 				</Box>

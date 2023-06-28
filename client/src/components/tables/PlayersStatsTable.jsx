@@ -11,7 +11,6 @@ import {
 	TableContainer,
 	TableRow,
 	Paper,
-	Skeleton,
 	TablePagination,
 } from '@mui/material'
 import { useTheme } from '@emotion/react'
@@ -22,7 +21,6 @@ import {
 } from '../../data/headCells/playersHeadCells'
 
 export default function EnhancedTable({
-	loading,
 	statsType,
 	statistics,
 	containerBackground,
@@ -66,7 +64,6 @@ export default function EnhancedTable({
 	// component state
 	const [order, setOrder] = React.useState('asc')
 	const [orderBy, setOrderBy] = React.useState('calories')
-	const [selected, setSelected] = React.useState([])
 	const [page, setPage] = React.useState(0)
 	// eslint-disable-next-line no-unused-vars
 	const [rowsPerPage, setRowsPerPage] = React.useState(playersPerPage)
@@ -77,31 +74,9 @@ export default function EnhancedTable({
 		setOrderBy(property)
 	}
 
-	const handleClick = (event, player) => {
-		const selectedIndex = selected.indexOf(player)
-		let newSelected = []
-
-		if (selectedIndex === -1) {
-			newSelected = newSelected.concat(selected, player)
-		} else if (selectedIndex === 0) {
-			newSelected = newSelected.concat(selected.slice(1))
-		} else if (selectedIndex === selected.length - 1) {
-			newSelected = newSelected.concat(selected.slice(0, -1))
-		} else if (selectedIndex > 0) {
-			newSelected = newSelected.concat(
-				selected.slice(0, selectedIndex),
-				selected.slice(selectedIndex + 1)
-			)
-		}
-
-		setSelected(newSelected)
-	}
-
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage)
 	}
-
-	const isSelected = player => selected.indexOf(player) !== -1
 
 	const emptyRows =
 		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - statistics.length) : 0
@@ -160,29 +135,21 @@ export default function EnhancedTable({
 						<TableBody>
 							{statsType === 'advanced'
 								? visibleRows.map((row, index) => {
-										const isItemSelected = isSelected(row.player)
 										const labelId = `enhanced-table-checkbox-${index}`
 
 										return (
 											<TableRow
 												hover
-												onClick={event => handleClick(event, row.player)}
-												aria-checked={isItemSelected}
 												tabIndex={-1}
 												key={row.player}
-												selected={isItemSelected}
 												sx={{ cursor: 'pointer' }}>
-												{loading ? (
-													<Skeleton variant='rectangular' />
-												) : (
-													<TableCell sx={{ padding: '4px' }}>
-														<img
-															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
-															alt={`${row.team} logo`}
-															width={30}
-														/>
-													</TableCell>
-												)}
+												<TableCell sx={{ padding: '4px' }}>
+													<img
+														src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+														alt={`${row.team} logo`}
+														width={30}
+													/>
+												</TableCell>
 												<TableCell
 													sx={{
 														color: tertiaryColor,
@@ -324,7 +291,6 @@ export default function EnhancedTable({
 										)
 								  })
 								: visibleRows.map((row, index) => {
-										const isItemSelected = isSelected(row.player)
 										const labelId = `enhanced-table-checkbox-${index}`
 										// const playerImgSrc = `../../public/images/players/${row.player}.png`
 
@@ -339,23 +305,16 @@ export default function EnhancedTable({
 										return (
 											<TableRow
 												hover
-												onClick={event => handleClick(event, row.player)}
-												aria-checked={isItemSelected}
 												tabIndex={-1}
 												key={row.player}
-												selected={isItemSelected}
 												sx={{ cursor: 'pointer' }}>
-												{loading ? (
-													<Skeleton variant='rectangular' />
-												) : (
-													<TableCell sx={{ padding: '4px' }}>
-														<img
-															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
-															alt={`${row.team} logo`}
-															width={40}
-														/>
-													</TableCell>
-												)}
+												<TableCell sx={{ padding: '4px' }}>
+													<img
+														src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+														alt={`${row.team} logo`}
+														width={40}
+													/>
+												</TableCell>
 												<TableCell
 													sx={{
 														color: league.nbaWhite,
@@ -532,7 +491,6 @@ export default function EnhancedTable({
 						rowsPerPage={rowsPerPage}
 						page={page}
 						onPageChange={handleChangePage}
-						// onRowsPerPageChange={handleChangeRowsPerPage}
 					/>
 				)}
 			</Paper>

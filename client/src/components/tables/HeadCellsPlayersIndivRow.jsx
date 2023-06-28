@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
+import { TableCell, TableHead, TableRow } from '@mui/material'
 
 const HeadCellsPlayersIndivRow = ({
 	statsType,
@@ -25,7 +25,6 @@ const HeadCellsPlayersIndivRow = ({
 							border: 0,
 						}}>
 						{headCell.label}
-						{/* <TableSortLabel hideSortIcon></TableSortLabel> */}
 					</TableCell>
 				))}
 			</TableRow>

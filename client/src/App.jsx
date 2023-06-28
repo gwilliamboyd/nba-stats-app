@@ -1,18 +1,33 @@
-import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
+import { Suspense, lazy } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { CssBaseline } from '@mui/material'
 import Navbar from './components/Navbar'
-import HomePage from './screens/HomePage'
-import { Suspense, lazy } from 'react'
 import LoadingScreen from './screens/utility/LoadingScreen'
-import TeamIndivPage from './screens/teams/TeamIndivPage'
-import LoginPage from './screens/users/LoginPage'
-import RegisterPage from './screens/users/RegisterPage'
-import UserProfilePage from './screens/users/UserProfilePage'
+import HomePage from './screens/HomePage'
+const [
+	TeamsPage,
+	PlayersPage,
+	StandingsPage,
+	TeamIndivPage,
+	PlayerIndivPage,
+	LoginPage,
+	RegisterPage,
+	UserProfilePage,
+] = [
+	lazy(() => import('./screens/teams/TeamsPage')),
+	lazy(() => import('./screens/players/PlayersPage')),
+	lazy(() => import('./screens/StandingsPage')),
+	lazy(() => import('./screens/teams/TeamIndivPage')),
+	lazy(() => import('./screens/players/PlayerIndivPage')),
+	lazy(() => import('./screens/users/LoginPage')),
+	lazy(() => import('./screens/users/RegisterPage')),
+	lazy(() => import('./screens/users/UserProfilePage')),
+]
+// import TeamIndivPage from './screens/teams/TeamIndivPage'
+// import LoginPage from './screens/users/LoginPage'
+// import RegisterPage from './screens/users/RegisterPage'
+// import UserProfilePage from './screens/users/UserProfilePage'
 import FavoriteTeamsStats from './screens/FavoriteTeamsStats'
-import PlayersPage from './screens/players/PlayersPage'
-import PlayerIndivPage from './screens/players/PlayerIndivPage'
-import StandingsPage from './screens/StandingsPage'
-const TeamsPage = lazy(() => import('./screens/teams/TeamsPage'))
 
 function App() {
 	return (

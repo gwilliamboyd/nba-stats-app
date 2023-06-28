@@ -1,20 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, lazy, Suspense } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-import {
-	Container,
-	Box,
-	Typography,
-	ButtonGroup,
-	Button,
-	Skeleton,
-	CircularProgress,
-} from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { setTeamsPerGameStats } from '../../slices/team-stats/teamsPerGameSlice'
 import { setTeamsTotalStats } from '../../slices/team-stats/teamsTotalSlice'
 import { setTeamsAdvancedStats } from '../../slices/team-stats/teamsAdvancedSlice'
-import { useTheme, createTheme } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles'
 import LoadingScreen from '../utility/LoadingScreen'
 import StatsTypeButtonGroup from '../../components/tables/util/StatsTypeButtonGroup'
 import MainStatsContainer from '../../components/layout/MainStatsContainer'
@@ -22,7 +13,6 @@ import MainStatsContainer from '../../components/layout/MainStatsContainer'
 	testDelay(import('../../components/layout/MainStatsContainer'))
 ) */
 import MainStatsBox from '../../components/layout/MainStatsBox'
-// import LoadingScreenBlank from './LoadingScreenBlank'
 const TeamsStatsTable = lazy(() =>
 	testDelay(import('../../components/tables/TeamsStatsTable'))
 )
@@ -32,7 +22,8 @@ const TeamsPage = () => {
 	const theme = useTheme()
 	const { league } = theme.palette
 
-	const { userInfo } = useSelector(state => state.auth)
+	// not sure if user info will be necessary after all
+	// const { userInfo } = useSelector(state => state.auth)
 
 	// state
 	const dispatch = useDispatch()
@@ -89,9 +80,6 @@ const TeamsPage = () => {
 		getStatsType(statsType)
 	}, [statsType])
 
-	// Test loading components
-	// setTimeout(getTeamsPerGame, 5000)
-
 	const teamsPerGameStatistics = Object.values(teamsPerGameStats)[0]
 	const teamsTotalStatistics = Object.values(teamsTotalStats)[0]
 	const teamsAdvancedStatistics = Object.values(teamsAdvancedStats)[0]
@@ -115,6 +103,8 @@ const TeamsPage = () => {
 					</Box>
 					<StatsTypeButtonGroup
 						league={league}
+						secondaryColor={league.nbaRed}
+						tertiaryColor={league.nbaWhite}
 						setStatsType={setStatsType}
 					/>
 				</MainStatsBox>
@@ -144,7 +134,7 @@ const TeamsPage = () => {
 export default TeamsPage
 const testDelay = async promise => {
 	await new Promise(resolve => {
-		setTimeout(resolve, 1000)
+		setTimeout(resolve, 700)
 	})
 	return promise
 }

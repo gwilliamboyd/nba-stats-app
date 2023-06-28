@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import React from 'react'
+import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import {
 	Box,
@@ -11,7 +11,6 @@ import {
 	TableContainer,
 	TableRow,
 	Paper,
-	Skeleton,
 } from '@mui/material'
 import { useTheme } from '@emotion/react'
 import fullTeamNames from '../../hooks/fullTeamNames'
@@ -23,12 +22,11 @@ import {
 
 export default function EnhancedTable({
 	fTeams,
-	loading,
 	statsType,
 	statistics,
-	primaryColor,
-	secondaryColor,
-	tertiaryColor,
+	// primaryColor,
+	// secondaryColor,
+	// tertiaryColor,
 }) {
 	function descendingComparator(a, b, orderBy) {
 		if (b[orderBy] < a[orderBy]) {
@@ -60,11 +58,10 @@ export default function EnhancedTable({
 	const theme = useTheme()
 	const { league } = theme.palette
 
-	const [order, setOrder] = React.useState('asc')
-	const [orderBy, setOrderBy] = React.useState('calories')
-	const [selected, setSelected] = React.useState([])
-	const [page, setPage] = React.useState(0)
-	const [rowsPerPage, setRowsPerPage] = React.useState(30)
+	const [order, setOrder] = useState('asc')
+	const [orderBy, setOrderBy] = useState('calories')
+	const page = 0
+	const rowsPerPage = 30
 
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === 'asc'
@@ -72,29 +69,7 @@ export default function EnhancedTable({
 		setOrderBy(property)
 	}
 
-	const handleClick = (event, team) => {
-		const selectedIndex = selected.indexOf(team)
-		let newSelected = []
-
-		if (selectedIndex === -1) {
-			newSelected = newSelected.concat(selected, team)
-		} else if (selectedIndex === 0) {
-			newSelected = newSelected.concat(selected.slice(1))
-		} else if (selectedIndex === selected.length - 1) {
-			newSelected = newSelected.concat(selected.slice(0, -1))
-		} else if (selectedIndex > 0) {
-			newSelected = newSelected.concat(
-				selected.slice(0, selectedIndex),
-				selected.slice(selectedIndex + 1)
-			)
-		}
-
-		setSelected(newSelected)
-	}
-
-	const isSelected = team => selected.indexOf(team) !== -1
-
-	statistics = React.useMemo(
+	statistics = useMemo(
 		() =>
 			stableSort(statistics, getComparator(order, orderBy)).slice(
 				page * rowsPerPage,
@@ -102,6 +77,8 @@ export default function EnhancedTable({
 			),
 		[order, orderBy, page, rowsPerPage, statistics]
 	)
+
+	const tableCellStyles = { color: league.nbaWhite, padding: '2px' }
 
 	return (
 		<Box
@@ -144,29 +121,21 @@ export default function EnhancedTable({
 						<TableBody>
 							{statsType === 'advanced'
 								? statistics.map((row, index) => {
-										const isItemSelected = isSelected(row.team)
 										const labelId = `enhanced-table-checkbox-${index}`
 										if (fTeams.includes(row.team)) {
 											return (
 												<TableRow
 													hover
-													onClick={event => handleClick(event, row.team)}
-													aria-checked={isItemSelected}
 													tabIndex={-1}
 													key={row.team}
-													selected={isItemSelected}
 													sx={{ cursor: 'pointer' }}>
-													{loading ? (
-														<Skeleton variant='rectangular' />
-													) : (
-														<TableCell sx={{ padding: '4px' }}>
-															<img
-																src={`../../public/images/svgs/team-logos/${row.team}.svg`}
-																alt={`${row.team} logo`}
-																width={30}
-															/>
-														</TableCell>
-													)}
+													<TableCell sx={{ padding: '4px' }}>
+														<img
+															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+															alt={`${row.team} logo`}
+															width={30}
+														/>
+													</TableCell>
 													<TableCell
 														sx={{
 															color: league.nbaWhite,
@@ -180,72 +149,72 @@ export default function EnhancedTable({
 														{fullTeamNames(row.team)}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.age}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.w}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.l}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.pw}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.pl}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.mov}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.sos}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.srs}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.ortg}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.drtg}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.nrtg}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.pace}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.ftr}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.$3par}
 													</TableCell>
@@ -258,37 +227,37 @@ export default function EnhancedTable({
 														{row.tsPer}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.offeFGPer}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.offtovPer}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.offorbPer}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.offftFGA}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.dffeFGPer}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.dfftovPer}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.dffdrbPer}
 													</TableCell>
@@ -305,29 +274,21 @@ export default function EnhancedTable({
 										} else return null
 								  })
 								: statistics.map((row, index) => {
-										const isItemSelected = isSelected(row.team)
 										const labelId = `enhanced-table-checkbox-${index}`
 										if (fTeams.includes(row.team)) {
 											return (
 												<TableRow
 													hover
-													onClick={event => handleClick(event, row.team)}
-													aria-checked={isItemSelected}
 													tabIndex={-1}
 													key={row.team}
-													selected={isItemSelected}
 													sx={{ cursor: 'pointer' }}>
-													{loading ? (
-														<Skeleton variant='rectangular' />
-													) : (
-														<TableCell sx={{ padding: '4px' }}>
-															<img
-																src={`../../public/images/svgs/team-logos/${row.team}.svg`}
-																alt={`${row.team} logo`}
-																width={30}
-															/>
-														</TableCell>
-													)}
+													<TableCell sx={{ padding: '4px' }}>
+														<img
+															src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+															alt={`${row.team} logo`}
+															width={30}
+														/>
+													</TableCell>
 													<TableCell
 														sx={{
 															color: league.nbaWhite,
@@ -343,72 +304,72 @@ export default function EnhancedTable({
 														</Link>
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.g}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.mp}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.fg}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.fga}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.fgPer}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.$3p}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.$3pA}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.$3pPer}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.$2p}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.$2pA}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.$2pPer}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.ft}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.fta}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.ftPer}
 													</TableCell>
@@ -421,37 +382,37 @@ export default function EnhancedTable({
 														{row.orb}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.drb}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.trb}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.ast}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.stl}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.blk}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.tov}
 													</TableCell>
 													<TableCell
-														sx={{ color: league.nbaWhite, padding: '2px' }}
+														sx={tableCellStyles}
 														align='right'>
 														{row.pf}
 													</TableCell>

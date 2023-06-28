@@ -7,9 +7,6 @@ const QuickStat = ({
 	secondaryColor,
 	tertiaryColor,
 }) => {
-	// const stats = statistics[0]
-	// console.log(featuredStat)
-
 	return (
 		<Grid
 			item

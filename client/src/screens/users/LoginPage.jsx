@@ -5,7 +5,15 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useLoginMutation } from '../../slices/authentication/usersApiSlice'
 import { setCredentials } from '../../slices/authentication/authSlice'
 // mui
-import { Box, Container, TextField } from '@mui/material'
+import {
+	Box,
+	Container,
+	FormControl,
+	Input,
+	InputLabel,
+	OutlinedInput,
+	TextField,
+} from '@mui/material'
 
 const LoginPage = () => {
 	//theme
@@ -66,6 +74,15 @@ const LoginPage = () => {
 						flexDirection: 'column',
 						alignItems: 'center',
 					}}>
+					<FormControl>
+						<InputLabel htmlFor='component-outlined'>Name</InputLabel>
+						<OutlinedInput
+							color='primary'
+							id='component-outlined'
+							defaultValue='Composed TextField'
+							label='Name'
+						/>
+					</FormControl>
 					<TextField
 						required
 						id='outlined-required'
@@ -73,7 +90,11 @@ const LoginPage = () => {
 						type='email'
 						onChange={e => setEmail(e.target.value)}
 						placeholder='Email'
-						sx={{ input: { color: '#FFF' }, label: { color: '#FFF' } }}
+						sx={{
+							input: { color: '#FFF' },
+							label: { color: '#FFF' },
+							fieldset: { borderColor: 'white' },
+						}}
 						value={email}
 					/>
 					<TextField

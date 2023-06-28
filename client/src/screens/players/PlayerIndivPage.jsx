@@ -9,7 +9,7 @@ import { setPlayersPerGameStats } from '../../slices/players-stats/playersPerGam
 import { Box, Container, Grid, Typography } from '@mui/material'
 import PlayerIndivStatsRow from '../../components/stats-pages/PlayerIndivStatsRow'
 import LoadingScreenBlank from '../utility/LoadingScreenBlank'
-import QuickStat from '../../components/stats-pages/QuickStat'
+import QuickStat from '../../components/stats-pages/quick-stats/QuickStat'
 
 const PlayerIndivPage = () => {
 	// not an error, eslint doesn't recognize the theme

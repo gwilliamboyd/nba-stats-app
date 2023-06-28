@@ -3,7 +3,6 @@
 import {
 	Box,
 	Paper,
-	Skeleton,
 	Table,
 	TableBody,
 	TableCell,
@@ -18,12 +17,10 @@ import {
 import HeadCellsPlayersIndivRow from '../tables/HeadCellsTeamsIndivRow'
 
 const PlayerIndivStatsRow = ({
-	team,
 	primaryColor,
 	secondaryColor,
 	tertiaryColor,
 	statsType,
-	loading,
 	statistics,
 }) => {
 	// not an error, used in eval()
