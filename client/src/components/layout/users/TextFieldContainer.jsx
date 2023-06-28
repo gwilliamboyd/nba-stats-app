@@ -1,7 +1,8 @@
-import { Box } from '@mui/material'
+/* eslint-disable react/prop-types */
+import { Box, TextField, Typography } from '@mui/material'
 
 // eslint-disable-next-line react/prop-types
-const TextFieldContainer = ({ children }) => {
+const TextFieldContainer = ({ heading, onChange, value, textFieldStyles }) => {
 	return (
 		<Box
 			width='60%'
@@ -11,7 +12,29 @@ const TextFieldContainer = ({ children }) => {
 				alignItems: 'baseline',
 				textAlign: 'right',
 			}}>
-			{children}
+			<Box
+				sx={{
+					width: '40%',
+					display: 'flex',
+					justifyContent: 'flex-end',
+				}}>
+				<Typography
+					textAlign='right'
+					tableCellStyles
+					variant='h6'>
+					{heading}
+				</Typography>
+			</Box>
+			<TextField
+				required
+				id='outlined-required'
+				label='Required'
+				type='name'
+				onChange={onChange}
+				placeholder='Name'
+				sx={textFieldStyles}
+				value={value}
+			/>
 		</Box>
 	)
 }

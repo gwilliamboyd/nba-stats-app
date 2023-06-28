@@ -23,6 +23,7 @@ const theme = createTheme({
 		},
 		primary: {
 			main: '#FFFFFF',
+			secondary: '#B52532',
 		},
 		// Team colors
 		teams: {

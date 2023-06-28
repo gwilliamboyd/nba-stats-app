@@ -23,11 +23,6 @@ const RegisterPage = () => {
 				borderColor: 'white',
 			},
 		},
-		'& .MuiOutlinedInput-root.Mui-focused.MuiOutlinedInput-notchedOutline': {
-			'& > fieldset': {
-				borderColor: 'yellow',
-			},
-		},
 	}
 
 	const navigate = useNavigate()
@@ -76,7 +71,6 @@ const RegisterPage = () => {
 			<Box
 				sx={{
 					marginTop: '2rem',
-					// height: 'calc(100vh - 100px)',
 					width: '75%',
 					display: 'flex',
 					flexDirection: 'column',
@@ -106,101 +100,32 @@ const RegisterPage = () => {
 						alignItems: 'center',
 						gap: '2rem',
 						backgroundColor: 'rgba(37, 59, 115, 0.8)',
-						border: `2px solid ${league.nbaWhite}`,
+						// border: `2px solid ${league.nbaWhite}`,
 					}}>
-					<TextFieldContainer>
-						<Box
-							sx={{
-								width: '40%',
-								display: 'flex',
-								justifyContent: 'flex-end',
-							}}>
-							<Typography
-								textAlign='right'
-								tableCellStyles
-								variant='h6'>
-								Name
-							</Typography>
-						</Box>
-						<TextField
-							required
-							id='outlined-required'
-							label='Required'
-							type='name'
-							onChange={e => setName(e.target.value)}
-							placeholder='Name'
-							sx={textFieldStyles}
-							value={name}
-						/>
-					</TextFieldContainer>
-					<TextFieldContainer>
-						<Box
-							sx={{
-								width: '40%',
-								display: 'flex',
-								justifyContent: 'flex-end',
-							}}>
-							<Typography
-								tableCellStyles
-								variant='h6'>
-								Email
-							</Typography>
-						</Box>
-						<TextField
-							required
-							id='outlined-required'
-							label='Required'
-							type='email'
-							onChange={e => setEmail(e.target.value)}
-							placeholder='Email'
-							sx={textFieldStyles}
-							value={email}
-						/>
-					</TextFieldContainer>
-					<TextFieldContainer>
-						<Box
-							sx={{
-								width: '40%',
-								display: 'flex',
-								justifyContent: 'flex-end',
-							}}>
-							<Typography
-								tableCellStyles
-								variant='h6'>
-								Password
-							</Typography>
-						</Box>
-						<TextField
-							required
-							id='outlined-required'
-							label='Required'
-							type='password'
-							onChange={e => setPassword(e.target.value)}
-							placeholder='Password'
-							sx={textFieldStyles}
-							value={password}
-						/>
-					</TextFieldContainer>
-					<TextFieldContainer>
-						<Box
-							sx={{
-								width: '40%',
-								display: 'flex',
-								justifyContent: 'flex-end',
-							}}>
-							<Typography variant='h6'>Confirm Password</Typography>
-						</Box>
-						<TextField
-							required
-							id='outlined-required'
-							label='Required'
-							type='password'
-							onChange={e => setConfirmPassword(e.target.value)}
-							placeholder='Confirm Password'
-							sx={textFieldStyles}
-							value={confirmPassword}
-						/>
-					</TextFieldContainer>
+					<TextFieldContainer
+						heading={'Name'}
+						onChange={e => setName(e.target.value)}
+						value={name}
+						textFieldStyles={textFieldStyles}
+					/>
+					<TextFieldContainer
+						heading={'Email'}
+						onChange={e => setEmail(e.target.value)}
+						value={email}
+						textFieldStyles={textFieldStyles}
+					/>
+					<TextFieldContainer
+						heading={'Password'}
+						onChange={e => setPassword(e.target.value)}
+						value={password}
+						textFieldStyles={textFieldStyles}
+					/>
+					<TextFieldContainer
+						heading={'Confirm Password'}
+						onChange={e => setConfirmPassword(e.target.value)}
+						value={confirmPassword}
+						textFieldStyles={textFieldStyles}
+					/>
 					<Typography>Upload Profile Picture</Typography>
 					<Dropzone
 						onDrop={acceptedFiles => {
