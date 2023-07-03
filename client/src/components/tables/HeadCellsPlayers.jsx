@@ -24,6 +24,17 @@ const HeadCellsPlayers = ({
 	const theme = useTheme()
 	const { league } = theme.palette
 
+	const headCellsStyles = {
+		fontSize: {
+			sm: '14px',
+			lg: '18px',
+		},
+		fontWeight: '500',
+		color: fontColor,
+		p: '2px',
+		backgroundColor: backgroundColor,
+	}
+
 	return (
 		<TableHead>
 			<TableRow>
@@ -39,13 +50,7 @@ const HeadCellsPlayers = ({
 						align={headCell.numeric ? 'right' : 'left'}
 						padding={headCell.disablePadding ? 'none' : 'normal'}
 						sortDirection={orderBy === headCell.id ? order : false}
-						sx={{
-							fontSize: '18px',
-							fontWeight: '500',
-							color: fontColor,
-							p: '2px',
-							backgroundColor: backgroundColor,
-						}}>
+						sx={headCellsStyles}>
 						<TableSortLabel
 							active={orderBy === headCell.id}
 							direction={orderBy === headCell.id ? order : 'asc'}

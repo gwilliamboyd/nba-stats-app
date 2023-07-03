@@ -53,15 +53,24 @@ const HomePage = () => {
 		const result = Math.floor(Math.random() * 3)
 		console.log(result)
 		return (
-			<HomePlayersLeaders
-				stat={result === 0 ? 'pts' : result === 1 ? '$3p' : 'trb'}
-				statArray={possibleStatCategories[result]}
-			/>
+			<>
+				<Typography
+					variant='h4'
+					fontWeight={700}
+					alignSelf={'flex-start'}>
+					{result === 0
+						? 'Top Scorers'
+						: result === 1
+						? 'Leaders From 3'
+						: 'Total Rebounds Per Game'}
+				</Typography>
+				<HomePlayersLeaders
+					stat={result === 0 ? 'pts' : result === 1 ? '$3p' : 'trb'}
+					statArray={possibleStatCategories[result]}
+				/>
+			</>
 		)
-		// console.log(result)
-		// return result
 	}
-	// useEffect(() => getRandomStatsLeader(), [])
 
 	return (
 		// <Suspense fallback={<LoadingScreen />}>
@@ -79,7 +88,8 @@ const HomePage = () => {
 					<HomePageBox
 						league={league}
 						homeHeading={'Team Stats'}
-						linkText={'See All Teams'}>
+						linkText={'See All Teams'}
+						backgroundImage={'url(../../public/images/kawhi-leonard.jpg)'}>
 						<Grid
 							container
 							columns={10}
@@ -115,36 +125,18 @@ const HomePage = () => {
 					<HomePageBox
 						league={league}
 						homeHeading={'Player Stats'}
-						linkText={'See All Players'}>
-						<Typography
+						linkText={'See All Players'}
+						backgroundImage={
+							'url(../../public/images/players-home-background.jpg)'
+						}>
+						{/* <Typography
 							variant='h4'
 							fontWeight={700}
 							alignSelf={'flex-start'}>
 							Top Scorers
-						</Typography>
+						</Typography> */}
 						{getRandomStatsLeader()}
 					</HomePageBox>
-					{/* 
-						<Typography
-							variant='h4'
-							fontWeight={700}
-							alignSelf={'flex-start'}>
-							Top 3Pt Shooters
-						</Typography>
-						<HomePlayersLeaders
-							stat={'$3p'}
-							statArray={sortableStatsThree}
-						/>
-						<Typography
-							variant='h4'
-							fontWeight={700}
-							alignSelf={'flex-start'}>
-							Most Boards
-						</Typography>
-						<HomePlayersLeaders
-							stat={'trb'}
-							statArray={sortableStatsTrb}
-						/> */}
 				</Suspense>
 			</Grid>
 		</main>

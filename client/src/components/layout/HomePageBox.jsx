@@ -2,14 +2,20 @@
 import { Box, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-const HomePageBox = ({ league, homeHeading, linkText, children }) => {
+const HomePageBox = ({
+	league,
+	homeHeading,
+	linkText,
+	backgroundImage,
+	children,
+}) => {
 	return (
 		<Box
 			width='100%'
 			color={league.nbaWhite}
 			sx={{
 				padding: '2rem 0 4rem',
-				backgroundImage: 'url(../../public/images/players-home-background.jpg)',
+				backgroundImage: backgroundImage,
 				backgroundPosition: 'center',
 				backgroundSize: 'cover',
 				display: 'flex',

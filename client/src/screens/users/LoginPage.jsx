@@ -89,72 +89,36 @@ const LoginPage = () => {
 						fontWeight={900}>
 						Login
 					</Typography>
-					<Typography variant='h5'>
-						Sign up for an account to follow your favorite teams!
-					</Typography>
 				</Box>
 				<form
 					onSubmit={submitHandler}
 					style={{
 						padding: '3rem 0',
-						width: '60%',
+						width: '50%',
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
 						gap: '2rem',
 						backgroundColor: 'rgba(37, 59, 115, 0.8)',
 					}}>
-					<TextFieldContainer>
-						<Box
-							sx={{
-								width: '40%',
-								display: 'flex',
-								justifyContent: 'flex-end',
-							}}>
-							<Typography
-								textAlign='right'
-								tableCellStyles
-								variant='h6'>
-								Email
-							</Typography>
-						</Box>
-						<TextField
-							required
-							id='outlined-required'
-							label='Required'
-							type='email'
-							onChange={e => setEmail(e.target.value)}
-							placeholder='Email'
-							sx={textFieldStyles}
-							value={email}
-						/>
-					</TextFieldContainer>
-					<TextFieldContainer>
-						<Box
-							sx={{
-								width: '40%',
-								display: 'flex',
-								justifyContent: 'flex-end',
-							}}>
-							<Typography
-								textAlign='right'
-								tableCellStyles
-								variant='h6'>
-								Password
-							</Typography>
-						</Box>
-						<TextField
-							required
-							id='outlined-required'
-							label='Required'
-							type='password'
-							onChange={e => setPassword(e.target.value)}
-							placeholder='Password'
-							sx={textFieldStyles}
-							value={password}
-						/>
-					</TextFieldContainer>
-					<Button type='submit'>Submit</Button>
+					<TextFieldContainer
+						heading={'Email'}
+						onChange={e => setEmail(e.target.value)}
+						value={email}
+						textFieldStyles={textFieldStyles}
+					/>
+					<TextFieldContainer
+						heading={'Password'}
+						onChange={e => setPassword(e.target.value)}
+						value={password}
+						textFieldStyles={textFieldStyles}
+					/>
+
+					<Button
+						variant='contained'
+						type='submit'>
+						Submit
+					</Button>
 				</form>
 			</Box>
 		</Container>

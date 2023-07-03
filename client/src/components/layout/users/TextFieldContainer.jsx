@@ -31,7 +31,7 @@ const TextFieldContainer = ({ heading, onChange, value, textFieldStyles }) => {
 				label='Required'
 				type='name'
 				onChange={onChange}
-				placeholder='Name'
+				placeholder={heading}
 				sx={textFieldStyles}
 				value={value}
 			/>

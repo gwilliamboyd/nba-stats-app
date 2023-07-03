@@ -86,7 +86,7 @@ const PlayerIndivPage = () => {
 				<Box
 					sx={{
 						marginTop: '3rem',
-						width: '85%',
+						width: '75%',
 						display: 'flex',
 						flexDirection: 'row',
 						justifyContent: 'space-between',

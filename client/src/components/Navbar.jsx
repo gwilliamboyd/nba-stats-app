@@ -1,5 +1,17 @@
-import { useState } from 'react'
-import { Container, Box, Typography, MenuItem, Menu } from '@mui/material'
+import { useRef, useState } from 'react'
+import {
+	Container,
+	Box,
+	Typography,
+	MenuItem,
+	Menu,
+	Grow,
+	Paper,
+	MenuList,
+	ClickAwayListener,
+	Popper,
+	Button,
+} from '@mui/material'
 import { Link } from 'react-router-dom'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,21 +24,37 @@ import nbaLogoPng from '../../public/images/svgs/nba-logo.png'
 import UserAvatar from './UserAvatar'
 
 const Navbar = () => {
+	// theme
 	const theme = useTheme()
 	const { league } = theme.palette
-
+	// user info
 	const { userInfo } = useSelector(state => state.auth)
-
+	// util
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	// component state
+	// const [menuOpen, setMenuOpen] = useState(false)
+	const [open, setOpen] = useState(false)
+	// refs
+	const anchorRef = useRef(null)
 
-	const [menuOpen, setMenuOpen] = useState(false)
+	function handleListKeyDown(event) {
+		if (event.key === 'Tab') {
+			event.preventDefault()
+			setOpen(false)
+		} else if (event.key === 'Escape') {
+			setOpen(false)
+		}
+	}
+	const handleToggle = () => {
+		setOpen(prevOpen => !prevOpen)
+	}
 
 	const handleOpen = () => {
-		setMenuOpen(true)
+		setOpen(true)
 	}
 	const handleClose = () => {
-		setMenuOpen(false)
+		setOpen(false)
 	}
 
 	// Logout mutation
@@ -85,8 +113,6 @@ const Navbar = () => {
 					</Link>
 				</Box>
 				<Box
-					onMouseOver={handleOpen}
-					onMouseLeave={handleClose}
 					sx={{
 						height: '100%',
 						display: 'flex',
@@ -105,29 +131,74 @@ const Navbar = () => {
 								avatar={userInfo.avatar}
 								dimensions={50}
 							/>
-							<Link to='/profile'>
-								<Typography>{userInfo.name}</Typography>
-							</Link>
-							<Link
+							<Box
+								ref={anchorRef}
+								sx={{
+									p: '4px 8px',
+									borderRadius: '6px',
+									'&:hover': {
+										cursor: 'pointer',
+									},
+								}}>
+								<Typography onClick={handleToggle}>{userInfo.name}</Typography>
+							</Box>
+							<Popper
+								open={open}
+								anchorEl={anchorRef.current}
+								// onMouseLeave={handleToggle}
+								role={undefined}
+								placement='bottom-start'
+								transition>
+								{({ TransitionProps, placement }) => (
+									<Grow
+										{...TransitionProps}
+										style={{
+											transformOrigin:
+												placement === 'bottom-start'
+													? 'left top'
+													: 'left bottom',
+										}}>
+										<Paper
+											sx={{
+												// border: `1px solid ${league.nbaWhite}`,
+												width: '140px',
+												boxShadow: '0px 2px 8px black',
+												backgroundColor: league.nbaBlue,
+												color: league.nbaWhite,
+											}}>
+											<ClickAwayListener onClickAway={handleClose}>
+												<MenuList
+													autoFocusItem={open}
+													id='composition-menu'
+													aria-labelledby='composition-button'
+													onKeyDown={handleListKeyDown}
+													sx={{ zIndex: 20 }}>
+													<MenuItem onClick={handleClose}>
+														<Link to={'/profile'}>Profile</Link>
+													</MenuItem>
+													<MenuItem onClick={handleClose}>
+														<Link to={'/stats/teams/favorite-teams'}>
+															Favorite Teams
+														</Link>
+													</MenuItem>
+													<MenuItem
+														onClick={() => {
+															handleClose()
+															logoutHandler()
+														}}>
+														Logout
+													</MenuItem>
+												</MenuList>
+											</ClickAwayListener>
+										</Paper>
+									</Grow>
+								)}
+							</Popper>
+							{/* <Link
 								to='/logout'
 								onClick={logoutHandler}>
 								<Typography>Logout</Typography>
-							</Link>
-							{/* {menuOpen && (
-								<Menu
-									id='basic-menu'
-									anchorEl={true}
-									open={menuOpen}
-									onClose={handleClose}
-									MenuListProps={{
-										'aria-labelledby': 'basic-button',
-									}}
-									sx={{ position: 'absolute' }}>
-									<MenuItem>Profile</MenuItem>
-									<MenuItem>My account</MenuItem>
-									<MenuItem>Logout</MenuItem>
-								</Menu>
-							)} */}
+							</Link> */}
 						</Box>
 					) : (
 						<>

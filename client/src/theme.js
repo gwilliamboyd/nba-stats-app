@@ -222,7 +222,6 @@ const theme = createTheme({
 			},
 		},
 	},
-
 	// Restyles arrow icons in table sorting
 	MuiTableSortLabel: {
 		root: {

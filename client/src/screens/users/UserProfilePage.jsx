@@ -197,7 +197,7 @@ const UserProfilePage = () => {
 						)
 					})}
 				</Box>
-				<Link to={'http://localhost:3000/stats/teams/favorite-teams'}>
+				<Link to={'/stats/teams/favorite-teams'}>
 					<Typography>Favorite Teams Stats</Typography>
 				</Link>
 				<Modal

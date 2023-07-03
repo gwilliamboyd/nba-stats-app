@@ -82,9 +82,10 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 									{eval(statValue)}
 								</Typography>
 								<Typography
-									color={
-										league.nbaRed
-									}>{`${stat.toUpperCase()}/Game`}</Typography>
+									variant='h6'
+									color={league.nbaRed}>
+									/Game
+								</Typography>
 							</Box>
 						</Box>
 					</Grid>

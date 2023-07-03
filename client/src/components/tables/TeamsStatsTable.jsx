@@ -82,7 +82,13 @@ export default function EnhancedTable({
 
 	const tableCellStyle = {
 		color: league.nbaWhite,
-		padding: '2px',
+		padding: { xs: '4px', lg: '2px' },
+		fontSize: {
+			xs: '8px',
+			sm: '12px',
+			md: '14px',
+			lg: theme.typography.fontSize,
+		},
 	}
 
 	return (
@@ -106,7 +112,7 @@ export default function EnhancedTable({
 					}}>
 					<Table
 						sx={{
-							minWidth: 750,
+							minWidth: { lg: 750 },
 						}}
 						aria-labelledby='tableTitle'
 						size='small'

@@ -28,6 +28,7 @@ export default function EnhancedTable({
 	// secondaryColor,
 	// tertiaryColor,
 }) {
+	// set up sorting
 	function descendingComparator(a, b, orderBy) {
 		if (b[orderBy] < a[orderBy]) {
 			return -1
@@ -38,12 +39,14 @@ export default function EnhancedTable({
 		return 0
 	}
 
+	// decide sort asc or desc
 	function getComparator(order, orderBy) {
 		return order === 'desc'
 			? (a, b) => descendingComparator(a, b, orderBy)
 			: (a, b) => -descendingComparator(a, b, orderBy)
 	}
 
+	// sort values function
 	function stableSort(array, comparator) {
 		const stabilizedThis = array?.map((el, index) => [el, index])
 		stabilizedThis.sort((a, b) => {
@@ -55,14 +58,17 @@ export default function EnhancedTable({
 		})
 		return stabilizedThis.map(el => el[0])
 	}
+	// theme
 	const theme = useTheme()
 	const { league } = theme.palette
 
+	// component state
 	const [order, setOrder] = useState('asc')
 	const [orderBy, setOrderBy] = useState('calories')
 	const page = 0
 	const rowsPerPage = 30
 
+	// set sort order onClick
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === 'asc'
 		setOrder(isAsc ? 'desc' : 'asc')
@@ -78,6 +84,7 @@ export default function EnhancedTable({
 		[order, orderBy, page, rowsPerPage, statistics]
 	)
 
+	// styles
 	const tableCellStyles = { color: league.nbaWhite, padding: '2px' }
 
 	return (
