@@ -2,38 +2,21 @@
 import { useEffect, useState, lazy, Suspense } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {
-	Container,
-	Box,
-	Typography,
-	ButtonGroup,
-	Button,
-	Skeleton,
-	CircularProgress,
-} from '@mui/material'
+import { Container, Box, Typography } from '@mui/material'
 import { setTeamsPerGameStats } from '../slices/team-stats/teamsPerGameSlice'
 import { setTeamsTotalStats } from '../slices/team-stats/teamsTotalSlice'
 import { setTeamsAdvancedStats } from '../slices/team-stats/teamsAdvancedSlice'
-import { useTheme, createTheme } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles'
 import LoadingScreen from './utility/LoadingScreen'
 import FavoriteTeamOverview from '../components/FavoriteTeamOverview'
 // import LoadingScreenBlank from './LoadingScreenBlank'
 const FavoriteTeamsStatsTable = lazy(() =>
 	testDelay(import('../components/tables/FavoriteTeamsStatsTable'))
 )
-// recharts
-import {
-	Radar,
-	RadarChart,
-	PolarGrid,
-	Legend,
-	PolarAngleAxis,
-	PolarRadiusAxis,
-	ResponsiveContainer,
-} from 'recharts'
-import fullTeamNames from '../hooks/fullTeamNames'
+// import fullTeamNames from '../hooks/fullTeamNames'
 import { setLeagueStandings } from '../slices/standingsSlice'
 import { setPlayersPerGameStats } from '../slices/players-stats/playersPerGameSlice'
+import StatsTypeButtonGroup from '../components/tables/util/StatsTypeButtonGroup'
 
 const FavoriteTeamsStats = () => {
 	// theme
@@ -232,12 +215,24 @@ const FavoriteTeamsStats = () => {
 							/>
 						)
 					})}
-					<Typography
-						variant='h3'
-						fontWeight={900}
-						m={'3rem'}>
-						Compare Teams
-					</Typography>
+					<Box
+						sx={{
+							width: '75%',
+							display: 'flex',
+							justifyContent: 'space-between',
+							alignItems: 'baseline',
+						}}>
+						<Typography
+							variant='h3'
+							fontWeight={900}
+							m={'3rem 0 2rem'}>
+							Compare Teams
+						</Typography>
+						<StatsTypeButtonGroup
+							league={league}
+							setStatsType={setStatsType}
+						/>
+					</Box>
 					<FavoriteTeamsStatsTable
 						fTeams={fTeams}
 						loading={loading}
