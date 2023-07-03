@@ -65,7 +65,7 @@ const theme = createTheme({
 			dal: {
 				primary: '#00538C',
 				// might need to lighten
-				secondary: '#002B5E',
+				secondary: '#061922',
 				// might need to lighten
 				// tertiary: '#B8C4CA',
 				tertiary: '#f0f9ff',

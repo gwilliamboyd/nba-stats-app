@@ -278,6 +278,22 @@ const FavoriteTeamOverview = ({
 										width={150}
 									/>
 								</Link>
+								<Box
+									alignSelf='center'
+									sx={{ display: 'flex', gap: '8px', alignItems: 'baseline' }}>
+									<Typography
+										variant='h4'
+										fontWeight={900}
+										color={secondaryColor}>
+										{topScorer?.pts}
+									</Typography>
+									<Typography
+										variant='h5'
+										fontWeight={500}
+										color={tertiaryColor}>
+										/ Game
+									</Typography>
+								</Box>
 							</Box>
 							<Box
 								sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -292,6 +308,22 @@ const FavoriteTeamOverview = ({
 										width={150}
 									/>
 								</Link>
+								<Box
+									alignSelf='center'
+									sx={{ display: 'flex', gap: '8px', alignItems: 'baseline' }}>
+									<Typography
+										variant='h4'
+										fontWeight={900}
+										color={secondaryColor}>
+										{topThreePts?.$3p}
+									</Typography>
+									<Typography
+										variant='h5'
+										fontWeight={500}
+										color={tertiaryColor}>
+										/ Game
+									</Typography>
+								</Box>
 							</Box>
 						</Box>
 					</Box>

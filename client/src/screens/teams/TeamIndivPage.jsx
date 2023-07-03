@@ -350,8 +350,10 @@ const TeamIndivPage = () => {
 				)}
 				<Box
 					sx={{
+						width: '75%',
 						display: 'flex',
 						alignItems: 'baseline',
+						justifyContent: 'space-between',
 						gap: '3rem',
 						marginLeft: '5rem',
 					}}>
@@ -360,12 +362,12 @@ const TeamIndivPage = () => {
 						variant='h3'>
 						Player Stats
 					</Typography>
-					<Typography
+					{/* <Typography
 						color={secondaryColor}
 						variant='h5'
 						sx={{ fontWeight: '600', opacity: '90%' }}>
 						2022-23 Season
-					</Typography>
+					</Typography> */}
 
 					<StatsTypeButtonGroup
 						league={league}

@@ -92,6 +92,8 @@ export default function EnhancedTable({
 	const tableCellStyle = {
 		color: league.nbaWhite,
 		padding: '2px',
+		minWidth: '47px',
+		// textAlign: 'right',
 	}
 
 	return (
@@ -172,11 +174,11 @@ export default function EnhancedTable({
 													align='right'>
 													{row.age}
 												</TableCell>
-												<TableCell
+												{/* <TableCell
 													sx={tableCellStyle}
 													align='right'>
 													{row.team.toUpperCase()}
-												</TableCell>
+												</TableCell> */}
 												<TableCell
 													sx={tableCellStyle}
 													align='right'>
@@ -330,8 +332,8 @@ export default function EnhancedTable({
 													</Link>
 												</TableCell>
 												<TableCell
-													sx={tableCellStyle}
-													align='right'>
+													align='right'
+													sx={tableCellStyle}>
 													{row.pos}
 												</TableCell>
 												<TableCell
@@ -339,11 +341,11 @@ export default function EnhancedTable({
 													align='right'>
 													{row.age}
 												</TableCell>
-												<TableCell
+												{/* <TableCell
 													sx={tableCellStyle}
 													align='right'>
 													{row.team.toUpperCase()}
-												</TableCell>
+												</TableCell> */}
 												<TableCell
 													sx={tableCellStyle}
 													align='right'>
@@ -485,12 +487,13 @@ export default function EnhancedTable({
 				</TableContainer>
 				{includePagination && (
 					<TablePagination
-						rowsPerPageOptions={[5, 10, 25]}
+						rowsPerPageOptions={[]}
 						component='div'
 						count={statistics.length}
 						rowsPerPage={rowsPerPage}
 						page={page}
 						onPageChange={handleChangePage}
+						sx={{ backgroundColor: primaryColor, color: tertiaryColor }}
 					/>
 				)}
 			</Paper>

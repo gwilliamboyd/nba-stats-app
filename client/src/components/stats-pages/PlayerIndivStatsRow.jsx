@@ -30,7 +30,14 @@ const PlayerIndivStatsRow = ({
 	const totalStatistics = statistics[1]
 	const advancedStatistics = statistics[2]
 
-	const tableCellStyle = { color: tertiaryColor, padding: '2px', border: '0' }
+	const tableCellStyle = {
+		color: tertiaryColor,
+		padding: '2px',
+		border: '0',
+		textAlign: 'right',
+		// flex: 1,
+		minWidth: '47px',
+	}
 
 	return (
 		<Box
@@ -68,7 +75,13 @@ const PlayerIndivStatsRow = ({
 						<TableBody>
 							{statsType === 'advanced' ? (
 								<TableRow>
-									<TableCell sx={tableCellStyle}>
+									<TableCell
+										sx={{
+											color: tertiaryColor,
+											padding: '2px',
+											border: '0',
+											textAlign: 'left',
+										}}>
 										{advancedStatistics.pos}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
@@ -143,7 +156,13 @@ const PlayerIndivStatsRow = ({
 								</TableRow>
 							) : (
 								<TableRow>
-									<TableCell sx={tableCellStyle}>
+									<TableCell
+										sx={{
+											color: tertiaryColor,
+											padding: '2px',
+											border: '0',
+											textAlign: 'left',
+										}}>
 										{eval(`${statsType}Statistics.pos`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>

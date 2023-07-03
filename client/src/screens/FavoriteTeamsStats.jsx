@@ -192,6 +192,7 @@ const FavoriteTeamsStats = () => {
 					flexDirection: 'column',
 					alignItems: 'center',
 					color: league.nbaWhite,
+					paddingBottom: '3rem',
 				}}>
 				<Box
 					sx={{
@@ -231,6 +232,12 @@ const FavoriteTeamsStats = () => {
 							/>
 						)
 					})}
+					<Typography
+						variant='h3'
+						fontWeight={900}
+						m={'3rem'}>
+						Compare Teams
+					</Typography>
 					<FavoriteTeamsStatsTable
 						fTeams={fTeams}
 						loading={loading}

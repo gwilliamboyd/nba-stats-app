@@ -17,12 +17,12 @@ export const playersPerGameHeadCells = [
 		disablePadding: false,
 		label: 'Age',
 	},
-	{
+	/* {
 		id: 'team',
 		numeric: false,
 		disablePadding: true,
 		label: 'Team',
-	},
+	}, */
 	{
 		id: 'g',
 		numeric: true,
@@ -371,12 +371,12 @@ export const playersAdvancedHeadCells = [
 		disablePadding: false,
 		label: 'Age',
 	},
-	{
+	/* {
 		id: 'team',
 		numeric: false,
 		disablePadding: true,
 		label: 'Team',
-	},
+	}, */
 	{
 		id: 'g',
 		numeric: true,
