@@ -35,13 +35,15 @@ const RegisterPage = () => {
 	const [confirmPassword, setConfirmPassword] = useState('')
 	const [avatar, setAvatar] = useState('')
 
+	const joinDate = new Date()
+
 	const [register, { isLoading }] = useRegisterMutation()
 
 	const submitHandler = async e => {
 		e.preventDefault()
 		try {
-			await register({ name, email, password, avatar }).unwrap()
-			// dispatch(setCredentials({ ...res }))
+			await register({ name, email, password, avatar, joinDate }).unwrap()
+			// dispatch(setCredentials({ ...register }))
 			navigate('/')
 		} catch (err) {
 			console.log(err?.data.message || err?.error)

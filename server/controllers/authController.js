@@ -25,6 +25,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 				name: newUser.name,
 				email: newUser.email,
 				avatar: newUser.avatar,
+				joinDate: new Date(),
 			})
 		} else {
 			res.status(400)
@@ -61,6 +62,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 		email: user.email,
 		avatar: user.avatar,
 		favoriteTeams: user.favoriteTeams,
+		joinDate: user.joinDate,
 	})
 	// return res.redirect('/')
 })

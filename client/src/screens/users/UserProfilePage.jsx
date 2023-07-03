@@ -169,9 +169,10 @@ const UserProfilePage = () => {
 							height: 'calc(100vh - 100px)',
 							display: 'flex',
 							flexDirection: 'column',
-							justifyContent: 'center',
+							justifyContent: 'flex-start',
 							alignItems: 'center',
 							color: league.nbaWhite,
+							p: '8rem 0 0',
 						}}>
 						<UserAvatar
 							avatar={userInfo.avatar}
