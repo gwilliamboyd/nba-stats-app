@@ -30,10 +30,13 @@ const PlayerIndivPage = () => {
 
 	const getPlayerIndivStats = async () => {
 		const [playerIndivResponse, quickStatsResponse] = await Promise.all([
-			fetch(`http://localhost:5000/stats/players/${playerId}`, {
-				method: 'GET',
-			}),
-			fetch(`http://localhost:5000/stats/players/per-game`, {
+			fetch(
+				`https://nba-stats-app-62o4.onrender.com/stats/players/${playerId}`,
+				{
+					method: 'GET',
+				}
+			),
+			fetch(`https://nba-stats-app-62o4.onrender.com/stats/players/per-game`, {
 				method: 'GET',
 			}),
 		])

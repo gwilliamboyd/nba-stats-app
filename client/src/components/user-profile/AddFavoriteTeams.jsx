@@ -25,7 +25,7 @@ const AddFavoriteTeams = ({ modalOpen, setModalOpen }) => {
 							key={team.id}
 							item
 							xs={1}>
-							<Link to={`http://localhost:3000/stats/teams/${team.team}`}>
+							<Link to={`/stats/teams/${team.team}`}>
 								<HomeTeamCard
 									width={60}
 									team={team.team}

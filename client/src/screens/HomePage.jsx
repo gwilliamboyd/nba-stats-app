@@ -27,7 +27,7 @@ const HomePage = () => {
 
 	const getPlayersPerGame = async () => {
 		const response = await fetch(
-			`http://localhost:5000/stats/players/per-game`,
+			`https://nba-stats-app-62o4.onrender.com/stats/players/per-game`,
 			{
 				method: 'GET',
 			}
@@ -109,7 +109,7 @@ const HomePage = () => {
 										sx={{
 											justifySelf: 'center',
 										}}>
-										<Link to={`http://localhost:3000/stats/teams/${team.team}`}>
+										<Link to={`/stats/teams/${team.team}`}>
 											<HomeTeamCard
 												width={120}
 												team={team.team}
