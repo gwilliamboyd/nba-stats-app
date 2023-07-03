@@ -106,7 +106,7 @@ const StandingsPage = () => {
 								alignItems: 'center',
 								gap: '12px',
 							}}>
-							<Typography>Eastern Conference</Typography>
+							<Typography fontWeight={700}>Eastern Conference</Typography>
 							<StandingsTable
 								loading={loading}
 								// statsType={statsType}
@@ -133,7 +133,7 @@ const StandingsPage = () => {
 								alignItems: 'center',
 								gap: '12px',
 							}}>
-							<Typography>Western Conference</Typography>
+							<Typography fontWeight={700}>Western Conference</Typography>
 							<StandingsTable
 								loading={loading}
 								// statsType={statsType}
@@ -160,7 +160,7 @@ const StandingsPage = () => {
 								alignItems: 'center',
 								gap: '12px',
 							}}>
-							<Typography>League-Wide</Typography>
+							<Typography fontWeight={700}>League-Wide</Typography>
 							<StandingsTable
 								loading={loading}
 								// statsType={statsType}

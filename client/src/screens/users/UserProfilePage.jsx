@@ -177,7 +177,11 @@ const UserProfilePage = () => {
 							avatar={userInfo.avatar}
 							dimensions={220}
 						/>
-						<Typography variant='h3'>{userInfo.name}</Typography>
+						<Typography
+							variant='h3'
+							fontWeight={800}>
+							{userInfo.name}
+						</Typography>
 					</Box>
 				</Grid>
 				<Grid
@@ -192,326 +196,331 @@ const UserProfilePage = () => {
 							flexDirection: 'column',
 							justifyContent: 'center',
 							alignItems: 'center',
-							gap: '1rem',
+							gap: '3rem',
 							p: '0 3rem',
 						}}>
-						<Typography
-							variant='h4'
-							fontWeight={900}
-							alignSelf={'flex-start'}
-							marginTop={'3rem'}>
-							Account Info
-						</Typography>
-						<Grid
-							container
-							columns={3}
-							columnSpacing={6}>
-							<Grid
-								item
-								xs={3}
-								md={2}>
-								<Grid
-									container
-									columns={4}
-									columnSpacing={6}
-									rowSpacing={6}>
-									<Grid
-										item
-										xs={4}
-										md={2}>
-										<Box
-											sx={{
-												display: 'flex',
-												flexDirection: 'column',
-												gap: '6px',
-											}}>
-											<Typography>Name</Typography>
-											<TextField
-												id='outlined'
-												type='name'
-												onChange={e => setName(e.target.value)}
-												placeholder='Name'
-												sx={textFieldStyles}
-												value={name}
-											/>
-											<Button
-												sx={buttonStyles}
-												onClick={saveProfileUpdate}>
-												Save
-											</Button>
-										</Box>
-									</Grid>
-									<Grid
-										item
-										xs={4}
-										md={2}>
-										<Box
-											sx={{
-												display: 'flex',
-												flexDirection: 'column',
-												gap: '6px',
-											}}>
-											<Typography>Email</Typography>
-											<TextField
-												id='outlined'
-												type='email'
-												onChange={e => setEmail(e.target.value)}
-												placeholder='Email'
-												sx={textFieldStyles}
-												value={email}
-											/>
-											<Button
-												sx={buttonStyles}
-												onClick={saveProfileUpdate}>
-												Save
-											</Button>
-										</Box>
-									</Grid>
-									<Grid
-										item
-										xs={4}
-										md={2}>
-										<Box
-											sx={{
-												display: 'flex',
-												flexDirection: 'column',
-												gap: '6px',
-											}}>
-											<Typography>Password</Typography>
-											<TextField
-												id='outlined'
-												type='password'
-												onChange={e => setPassword(e.target.value)}
-												placeholder='Password'
-												sx={textFieldStyles}
-												value={password}
-											/>
-											<Button
-												sx={buttonStyles}
-												onClick={saveProfileUpdate}>
-												Save
-											</Button>
-										</Box>
-									</Grid>
-									<Grid
-										item
-										xs={4}
-										md={2}>
-										<Box
-											sx={{
-												display: 'flex',
-												flexDirection: 'column',
-												gap: '6px',
-											}}>
-											<Typography>Confirm Password</Typography>
-											<TextField
-												id='outlined'
-												type='password'
-												onChange={e => setConfirmPassword(e.target.value)}
-												placeholder='Confirm Password'
-												sx={textFieldStyles}
-												value={confirmPassword}
-											/>
-											<Button
-												sx={buttonStyles}
-												onClick={saveProfileUpdate}>
-												Save
-											</Button>
-										</Box>
-									</Grid>
-								</Grid>
-							</Grid>
-							<Grid
-								item
-								xs={3}
-								md={1}>
-								<Box
-									sx={{
-										height: '100%',
-										display: 'flex',
-										flexDirection: 'column',
-										justifyContent: 'center',
-										alignContent: 'flex-start',
-										gap: '8px',
-									}}>
-									<Typography justifySelf={'flex-start'}>Avatar</Typography>
-									<Dropzone
-										onDrop={acceptedFiles => {
-											console.log(acceptedFiles[0].name)
-											setAvatar(acceptedFiles[0].name)
-										}}>
-										{({ getRootProps, getInputProps }) => (
-											<section
-												style={{
-													width: '80%',
-													height: '100%',
-													border: `2px solid ${league.nbaWhite}`,
-													padding: '0 1rem',
-												}}>
-												<div {...getRootProps()}>
-													<input {...getInputProps()} />
-													<p>Drag image here, or click to select file</p>
-												</div>
-											</section>
-										)}
-									</Dropzone>
-								</Box>
-							</Grid>
-						</Grid>
-						<Box
-							sx={{
-								width: '100%',
-								display: 'flex',
-								justifyContent: 'flex-start',
-								alignItems: 'baseline',
-								gap: '3rem',
-							}}>
+						<Box width={'100%'}>
 							<Typography
 								variant='h4'
-								fontWeight={900}>
-								Favorite Teams
+								fontWeight={900}
+								alignSelf={'flex-start'}
+								marginBottom={'1rem'}>
+								Account Info
 							</Typography>
-							<Typography
-								fontWeight={700}
-								sx={{
-									color: league.nbaRed,
-									borderColor: '#FFF',
-									'&:hover': { cursor: 'pointer', color: league.nbaWhite },
-								}}
-								onClick={() => {
-									handleOpen()
-								}}
-								variant='outlined'>
-								Edit Favorite Teams
-							</Typography>
-						</Box>
-						<Grid
-							container
-							columns={5}
-							columnSpacing={2}
-							rowSpacing={2}
-							justifyContent={'center'}>
-							{favoriteTeams.map(tm => {
-								return (
+							<Grid
+								container
+								columns={3}
+								columnSpacing={6}>
+								<Grid
+									item
+									xs={3}
+									md={2}>
 									<Grid
-										key={tm}
-										item
-										xs={5}
-										md={1}>
-										<Link to={`http://localhost:3000/stats/teams/${tm}`}>
-											<HomeTeamCard
-												width={100}
-												team={tm}
-											/>
-										</Link>
+										container
+										columns={4}
+										columnSpacing={6}
+										rowSpacing={2}>
+										<Grid
+											item
+											xs={4}
+											md={2}>
+											<Box
+												sx={{
+													display: 'flex',
+													flexDirection: 'column',
+													gap: '6px',
+												}}>
+												<Typography>Name</Typography>
+												<TextField
+													id='outlined'
+													type='name'
+													onChange={e => setName(e.target.value)}
+													placeholder='Name'
+													sx={textFieldStyles}
+													value={name}
+												/>
+												<Button
+													sx={buttonStyles}
+													onClick={saveProfileUpdate}>
+													Save
+												</Button>
+											</Box>
+										</Grid>
+										<Grid
+											item
+											xs={4}
+											md={2}>
+											<Box
+												sx={{
+													display: 'flex',
+													flexDirection: 'column',
+													gap: '6px',
+												}}>
+												<Typography>Email</Typography>
+												<TextField
+													id='outlined'
+													type='email'
+													onChange={e => setEmail(e.target.value)}
+													placeholder='Email'
+													sx={textFieldStyles}
+													value={email}
+												/>
+												<Button
+													sx={buttonStyles}
+													onClick={saveProfileUpdate}>
+													Save
+												</Button>
+											</Box>
+										</Grid>
+										<Grid
+											item
+											xs={4}
+											md={2}>
+											<Box
+												sx={{
+													display: 'flex',
+													flexDirection: 'column',
+													gap: '6px',
+												}}>
+												<Typography>Password</Typography>
+												<TextField
+													id='outlined'
+													type='password'
+													onChange={e => setPassword(e.target.value)}
+													placeholder='Password'
+													sx={textFieldStyles}
+													value={password}
+												/>
+												<Button
+													sx={buttonStyles}
+													onClick={saveProfileUpdate}>
+													Save
+												</Button>
+											</Box>
+										</Grid>
+										<Grid
+											item
+											xs={4}
+											md={2}>
+											<Box
+												sx={{
+													display: 'flex',
+													flexDirection: 'column',
+													gap: '6px',
+												}}>
+												<Typography>Confirm Password</Typography>
+												<TextField
+													id='outlined'
+													type='password'
+													onChange={e => setConfirmPassword(e.target.value)}
+													placeholder='Confirm Password'
+													sx={textFieldStyles}
+													value={confirmPassword}
+												/>
+												<Button
+													sx={buttonStyles}
+													onClick={saveProfileUpdate}>
+													Save
+												</Button>
+											</Box>
+										</Grid>
 									</Grid>
-								)
-							})}
-						</Grid>
-						<Modal
-							open={modalOpen}
-							onClose={() => {
-								handleClose()
-								saveProfileUpdate()
-							}}
-							component='section'>
+								</Grid>
+								<Grid
+									item
+									xs={3}
+									md={1}>
+									<Box
+										sx={{
+											height: '100%',
+											display: 'flex',
+											flexDirection: 'column',
+											justifyContent: 'center',
+											alignContent: 'flex-start',
+											gap: '8px',
+										}}>
+										<Typography justifySelf={'flex-start'}>Avatar</Typography>
+										<Dropzone
+											onDrop={acceptedFiles => {
+												console.log(acceptedFiles[0].name)
+												setAvatar(acceptedFiles[0].name)
+											}}>
+											{({ getRootProps, getInputProps }) => (
+												<section
+													style={{
+														width: '80%',
+														height: '100%',
+														border: `2px solid ${league.nbaWhite}`,
+														padding: '0 1rem',
+													}}>
+													<div {...getRootProps()}>
+														<input {...getInputProps()} />
+														<p>Drag image here, or click to select file</p>
+													</div>
+												</section>
+											)}
+										</Dropzone>
+									</Box>
+								</Grid>
+							</Grid>
+						</Box>
+						<Box width={'100%'}>
 							<Box
-								width='70%'
-								height='auto'
-								padding='2rem'
 								sx={{
-									color: `${league.nbaWhite}`,
-									position: 'absolute',
-									top: '50%',
-									left: '50%',
-									transform: 'translate(-50%, -50%)',
-									backgroundColor: 'rgba(13, 22, 44, 0.95)',
+									width: '100%',
 									display: 'flex',
-									flexDirection: 'column',
-									alignItems: 'center',
-									gap: '4rem',
-									border: `3px solid ${league.nbaWhite}`,
-									borderRadius: '12px',
+									justifyContent: 'flex-start',
+									alignItems: 'baseline',
+									gap: '3rem',
 								}}>
-								<Button
-									sx={{ alignSelf: 'flex-end', margin: '-1rem 0 -2rem' }}
-									onClick={handleClose}>
-									Close
-								</Button>
-								<Box
+								<Typography
+									variant='h4'
+									fontWeight={900}
+									marginBottom={'1rem'}>
+									Favorite Teams
+								</Typography>
+								<Typography
+									fontWeight={700}
 									sx={{
-										width: '80%',
+										color: league.nbaRed,
+										borderColor: '#FFF',
+										'&:hover': { cursor: 'pointer', color: league.nbaWhite },
+									}}
+									onClick={() => {
+										handleOpen()
+									}}
+									variant='outlined'>
+									Edit
+								</Typography>
+							</Box>
+							<Grid
+								container
+								columns={5}
+								columnSpacing={2}
+								rowSpacing={2}
+								justifyContent={'center'}>
+								{favoriteTeams.map(tm => {
+									return (
+										<Grid
+											key={tm}
+											item
+											xs={5}
+											md={1}>
+											<Link to={`http://localhost:3000/stats/teams/${tm}`}>
+												<HomeTeamCard
+													width={100}
+													team={tm}
+												/>
+											</Link>
+										</Grid>
+									)
+								})}
+							</Grid>
+							<Modal
+								open={modalOpen}
+								onClose={() => {
+									handleClose()
+									saveProfileUpdate()
+								}}
+								component='section'>
+								<Box
+									width='70%'
+									height='auto'
+									padding='2rem'
+									sx={{
+										color: `${league.nbaWhite}`,
+										position: 'absolute',
+										top: '50%',
+										left: '50%',
+										transform: 'translate(-50%, -50%)',
+										backgroundColor: 'rgba(13, 22, 44, 0.95)',
 										display: 'flex',
 										flexDirection: 'column',
 										alignItems: 'center',
-										gap: '20px',
+										gap: '4rem',
+										border: `3px solid ${league.nbaWhite}`,
+										borderRadius: '12px',
 									}}>
-									<Typography
-										variant='h4'
-										fontWeight={900}>
-										Add Teams
-									</Typography>
-									<Typography>
-										Click a team to add it to your{' '}
-										<span style={{ fontWeight: 700 }}>Favorite Teams</span>
-									</Typography>
-								</Box>
-								<Grid
-									container
-									columns={6}
-									columnSpacing={0}
-									rowSpacing={0}>
-									{sortedTeams.map(team => {
-										if (favTeams.includes(team.team)) {
-											isOutlined = true
-										} else isOutlined = false
-										return (
-											<Grid
-												key={team.id}
-												item
-												xs={1}
-												sx={{
-													padding: '1rem 0.75rem',
-													borderRadius: '4px',
-													outline: isOutlined
-														? `2px solid ${league.nbaRed}`
-														: 'none',
+									<Button
+										sx={{ alignSelf: 'flex-end', margin: '-1rem 0 -2rem' }}
+										onClick={handleClose}>
+										Close
+									</Button>
+									<Box
+										sx={{
+											width: '80%',
+											display: 'flex',
+											flexDirection: 'column',
+											alignItems: 'center',
+											gap: '20px',
+										}}>
+										<Typography
+											variant='h4'
+											fontWeight={900}>
+											Add Teams
+										</Typography>
+										<Typography>
+											Click a team to add it to your{' '}
+											<span style={{ fontWeight: 700 }}>Favorite Teams</span>
+										</Typography>
+									</Box>
+									<Grid
+										container
+										columns={6}
+										columnSpacing={0}
+										rowSpacing={0}>
+										{sortedTeams.map(team => {
+											if (favTeams.includes(team.team)) {
+												isOutlined = true
+											} else isOutlined = false
+											return (
+												<Grid
+													key={team.id}
+													item
+													xs={1}
+													sx={{
+														padding: '1rem 0.75rem',
+														borderRadius: '4px',
+														outline: isOutlined
+															? `2px solid ${league.nbaRed}`
+															: 'none',
 
-													outlineOffset: '-2px',
-													'&:hover': {
-														outline: '2px solid white',
-														boxShadow: '0px 0px 20px black',
-														cursor: 'pointer',
-													},
-												}}>
-												<Box
-													onClick={() => {
-														if (favTeams.includes(team.team)) {
-															removeFavoriteTeam(team)
-														} else {
-															addFavoriteTeam(team)
-														}
-														handleTeamSelectOutline(team)
+														outlineOffset: '-2px',
+														'&:hover': {
+															outline: '2px solid white',
+															boxShadow: '0px 0px 20px black',
+															cursor: 'pointer',
+														},
 													}}>
-													<HomeTeamCard
-														width={60}
-														team={team.team}
-													/>
-												</Box>
-											</Grid>
-										)
-									})}
-								</Grid>
-								<Button
-									onClick={() => {
-										saveProfileUpdate()
-										handleClose()
-									}}
-									sx={{ margin: '-3rem 0 0' }}>
-									Save Favorite Teams
-								</Button>
-							</Box>
-						</Modal>
+													<Box
+														onClick={() => {
+															if (favTeams.includes(team.team)) {
+																removeFavoriteTeam(team)
+															} else {
+																addFavoriteTeam(team)
+															}
+															handleTeamSelectOutline(team)
+														}}>
+														<HomeTeamCard
+															width={60}
+															team={team.team}
+														/>
+													</Box>
+												</Grid>
+											)
+										})}
+									</Grid>
+									<Button
+										onClick={() => {
+											saveProfileUpdate()
+											handleClose()
+										}}
+										sx={{ margin: '-3rem 0 0' }}>
+										Save Favorite Teams
+									</Button>
+								</Box>
+							</Modal>
+						</Box>
 					</Box>
 				</Grid>
 			</Grid>

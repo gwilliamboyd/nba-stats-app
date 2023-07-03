@@ -18,7 +18,7 @@ export const standingsHeadCells = [
 		label: 'Losses',
 	},
 	{
-		id: 'winPer',
+		id: 'wPer',
 		numeric: true,
 		disablePadding: false,
 		label: 'Win %',

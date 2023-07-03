@@ -3,180 +3,210 @@
 		"team": "mil",
 		"conference": "East",
 		"w": 58,
-		"l": 24
+		"l": 24,
+		"wPer": 0.707
 	},
 	{
 		"team": "bos",
 		"conference": "East",
 		"w": 57,
-		"l": 25
+		"l": 25,
+		"wPer": 0.695
 	},
 	{
 		"team": "phi",
 		"conference": "East",
 		"w": 54,
-		"l": 28
+		"l": 28,
+		"wPer": 0.659
 	},
 	{
 		"team": "den",
 		"conference": "West",
 		"w": 53,
-		"l": 29
+		"l": 29,
+		"wPer": 0.646
 	},
 	{
 		"team": "cle",
 		"conference": "East",
 		"w": 51,
-		"l": 31
+		"l": 31,
+		"wPer": 0.622
 	},
 	{
 		"team": "mem",
 		"conference": "West",
 		"w": 51,
-		"l": 31
+		"l": 31,
+		"wPer": 0.622
 	},
 	{
 		"team": "sac",
 		"conference": "West",
 		"w": 48,
-		"l": 34
+		"l": 34,
+		"wPer": 0.585
 	},
 	{
 		"team": "nyk",
 		"conference": "East",
 		"w": 47,
-		"l": 35
+		"l": 35,
+		"wPer": 0.573
 	},
 	{
 		"team": "bkn",
 		"conference": "East",
 		"w": 45,
-		"l": 37
+		"l": 37,
+		"wPer": 0.549
 	},
 	{
 		"team": "phx",
 		"conference": "West",
 		"w": 45,
-		"l": 37
+		"l": 37,
+		"wPer": 0.549
 	},
 	{
 		"team": "lac",
 		"conference": "West",
 		"w": 44,
-		"l": 38
+		"l": 38,
+		"wPer": 0.537
 	},
 	{
 		"team": "gsw",
 		"conference": "West",
 		"w": 44,
-		"l": 38
+		"l": 38,
+		"wPer": 0.537
 	},
 	{
 		"team": "mia",
 		"conference": "East",
 		"w": 44,
-		"l": 38
+		"l": 38,
+		"wPer": 0.537
 	},
 	{
 		"team": "lak",
 		"conference": "West",
 		"w": 43,
-		"l": 39
+		"l": 39,
+		"wPer": 0.524
 	},
 	{
 		"team": "min",
 		"conference": "West",
 		"w": 42,
-		"l": 40
+		"l": 40,
+		"wPer": 0.512
 	},
 	{
 		"team": "nop",
 		"conference": "West",
 		"w": 42,
-		"l": 40
+		"l": 40,
+		"wPer": 0.512
 	},
 	{
 		"team": "atl",
 		"conference": "East",
 		"w": 41,
-		"l": 41
+		"l": 41,
+		"wPer": 0.5
 	},
 	{
 		"team": "tor",
 		"conference": "East",
 		"w": 41,
-		"l": 41
+		"l": 41,
+		"wPer": 0.5
 	},
 	{
 		"team": "chi",
 		"conference": "East",
 		"w": 40,
-		"l": 42
+		"l": 42,
+		"wPer": 0.488
 	},
 	{
 		"team": "okc",
 		"conference": "West",
 		"w": 40,
-		"l": 42
+		"l": 42,
+		"wPer": 0.488
 	},
 	{
 		"team": "dal",
 		"conference": "West",
 		"w": 38,
-		"l": 44
+		"l": 44,
+		"wPer": 0.463
 	},
 	{
 		"team": "uta",
 		"conference": "West",
 		"w": 37,
-		"l": 45
+		"l": 45,
+		"wPer": 0.451
 	},
 	{
 		"team": "ind",
 		"conference": "East",
 		"w": 35,
-		"l": 47
+		"l": 47,
+		"wPer": 0.427
 	},
 	{
 		"team": "wsh",
 		"conference": "East",
 		"w": 35,
-		"l": 47
+		"l": 47,
+		"wPer": 0.427
 	},
 	{
 		"team": "orl",
 		"conference": "East",
 		"w": 34,
-		"l": 48
+		"l": 48,
+		"wPer": 0.415
 	},
 	{
 		"team": "por",
 		"conference": "West",
 		"w": 33,
-		"l": 49
+		"l": 49,
+		"wPer": 0.402
 	},
 	{
 		"team": "cha",
 		"conference": "East",
 		"w": 27,
-		"l": 55
+		"l": 55,
+		"wPer": 0.329
 	},
 	{
 		"team": "hou",
 		"conference": "West",
 		"w": 22,
-		"l": 60
+		"l": 60,
+		"wPer": 0.268
 	},
 	{
 		"team": "sas",
 		"conference": "West",
 		"w": 22,
-		"l": 60
+		"l": 60,
+		"wPer": 0.268
 	},
 	{
 		"team": "det",
 		"conference": "East",
 		"w": 17,
-		"l": 65
+		"l": 65,
+		"wPer": 0.207
 	}
 ]

@@ -186,7 +186,7 @@ export default function EnhancedTable({
 										<TableCell
 											sx={tableCellStyle}
 											align='right'>
-											{(row.w / 82).toFixed(3)}
+											{row.wPer.toFixed(3)}
 										</TableCell>
 									</TableRow>
 								)
