@@ -74,7 +74,7 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 							<Box
 								display={'flex'}
 								alignItems={'baseline'}
-								gap={'12px'}>
+								gap={'4px'}>
 								<Typography
 									variant='h6'
 									fontSize={32}

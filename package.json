@@ -8,7 +8,8 @@
 		"start": "nodemon server/server.js",
 		"server": "nodemon server/server.js",
 		"client": "npm run dev --prefix client",
-		"dev": "concurrently \"npm run server\" \"npm run client\""
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"build": "npm i"
 	},
 	"author": "G William Boyd",
 	"license": "ISC",

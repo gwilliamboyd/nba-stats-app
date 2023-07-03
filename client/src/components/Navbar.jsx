@@ -93,7 +93,7 @@ const Navbar = () => {
 						height: '100%',
 						display: 'flex',
 						alignItems: 'center',
-						gap: '24px',
+						gap: '72px',
 					}}>
 					<Link to='/'>
 						<img
@@ -102,15 +102,17 @@ const Navbar = () => {
 							alt='NBA Logo'
 						/>
 					</Link>
-					<Link to='/standings'>
-						<Typography variant='h6'>Standings</Typography>
-					</Link>
-					<Link to='/stats/teams'>
-						<Typography variant='h6'>Teams</Typography>
-					</Link>
-					<Link to='/stats/players'>
-						<Typography variant='h6'>Players</Typography>
-					</Link>
+					<Box sx={{ display: 'flex', gap: '36px' }}>
+						<Link to='/standings'>
+							<Typography variant='h6'>Standings</Typography>
+						</Link>
+						<Link to='/stats/teams'>
+							<Typography variant='h6'>Teams</Typography>
+						</Link>
+						<Link to='/stats/players'>
+							<Typography variant='h6'>Players</Typography>
+						</Link>
+					</Box>
 				</Box>
 				<Box
 					sx={{
