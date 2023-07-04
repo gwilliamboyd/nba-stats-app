@@ -53,7 +53,7 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 				const statValue = `p?.${stat}`
 				return (
 					<Grid
-						key={p?.id}
+						key={p?.player}
 						item
 						color={league.nbaWhite}
 						// xs={10}

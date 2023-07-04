@@ -175,35 +175,52 @@ const Navbar = () => {
 												id='composition-menu'
 												aria-labelledby='composition-button'
 												onKeyDown={handleListKeyDown}>
-												<MenuItem divider>
-													<Box
-														onClick={handleSubMenu}
-														ref={subMenuRef}
-														sx={{
-															position: 'relative',
-															display: 'flex',
-															alignItems: 'center',
-															gap: '12px',
-															p: '1rem',
-														}}>
-														<UserAvatar
-															avatar={userInfo.avatar}
-															dimensions={70}
-														/>
+												{userInfo ? (
+													<MenuItem divider>
 														<Box
+															onClick={handleSubMenu}
+															ref={subMenuRef}
 															sx={{
-																p: '4px 8px',
-																borderRadius: '6px',
-																'&:hover': {
-																	cursor: 'pointer',
-																},
+																position: 'relative',
+																display: 'flex',
+																alignItems: 'center',
+																gap: '12px',
+																p: '1rem',
 															}}>
-															<Typography sx={{ fontSize: '1.7rem' }}>
-																{userInfo.name}
-															</Typography>
+															<UserAvatar
+																avatar={userInfo?.avatar}
+																dimensions={70}
+															/>
+															<Box
+																sx={{
+																	p: '4px 8px',
+																	borderRadius: '6px',
+																	'&:hover': {
+																		cursor: 'pointer',
+																	},
+																}}>
+																<Typography sx={{ fontSize: '1.7rem' }}>
+																	{userInfo.name}
+																</Typography>
+															</Box>
 														</Box>
-													</Box>
-												</MenuItem>
+													</MenuItem>
+												) : (
+													<>
+														<MenuItem
+															divider
+															sx={{ p: '1rem', fontSize: '2rem' }}
+															onClick={handleMobileClose}>
+															<Link to={'/login'}>Login</Link>
+														</MenuItem>
+														<MenuItem
+															divider
+															sx={{ p: '1rem', fontSize: '2rem' }}
+															onClick={handleMobileClose}>
+															<Link to={'/register'}>Register</Link>
+														</MenuItem>
+													</>
+												)}
 												<MenuItem
 													divider
 													sx={{ p: '1rem', fontSize: '2rem' }}
