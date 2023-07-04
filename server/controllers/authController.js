@@ -54,9 +54,10 @@ export const loginUser = asyncHandler(async (req, res) => {
 	const token = jwt.sign({ user }, 'Toolfan123458', { expiresIn: '8h' })
 
 	res.cookie('token', token, {
+		domain: '',
 		httpOnly: true,
-		// secure: true,
-		sameSite: 'lax',
+		secure: true,
+		sameSite: 'none',
 	})
 	res.status(200).json({
 		_id: user._id,
