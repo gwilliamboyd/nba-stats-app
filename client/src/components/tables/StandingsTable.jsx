@@ -57,37 +57,14 @@ export default function EnhancedTable({
 
 	const [order, setOrder] = React.useState('asc')
 	const [orderBy, setOrderBy] = React.useState('calories')
-	const [selected, setSelected] = React.useState([])
-	const [page, setPage] = React.useState(0)
-	const [rowsPerPage, setRowsPerPage] = React.useState(30)
+	const page = 0
+	const rowsPerPage = 30
 
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === 'asc'
 		setOrder(isAsc ? 'desc' : 'asc')
 		setOrderBy(property)
 	}
-
-	const handleClick = (event, team) => {
-		const selectedIndex = selected.indexOf(team)
-		let newSelected = []
-
-		if (selectedIndex === -1) {
-			newSelected = newSelected.concat(selected, team)
-		} else if (selectedIndex === 0) {
-			newSelected = newSelected.concat(selected.slice(1))
-		} else if (selectedIndex === selected.length - 1) {
-			newSelected = newSelected.concat(selected.slice(0, -1))
-		} else if (selectedIndex > 0) {
-			newSelected = newSelected.concat(
-				selected.slice(0, selectedIndex),
-				selected.slice(selectedIndex + 1)
-			)
-		}
-
-		setSelected(newSelected)
-	}
-
-	const isSelected = team => selected.indexOf(team) !== -1
 
 	statistics = React.useMemo(
 		() =>
@@ -138,17 +115,13 @@ export default function EnhancedTable({
 						/>
 						<TableBody>
 							{statistics.map((row, index) => {
-								const isItemSelected = isSelected(row.team)
 								const labelId = `enhanced-table-checkbox-${index}`
 
 								return (
 									<TableRow
 										hover
-										onClick={event => handleClick(event, row.team)}
-										aria-checked={isItemSelected}
 										tabIndex={-1}
 										key={row.team}
-										selected={isItemSelected}
 										sx={{ cursor: 'pointer' }}>
 										{loading ? (
 											<Skeleton variant='rectangular' />
@@ -171,7 +144,9 @@ export default function EnhancedTable({
 											id={labelId}
 											scope='row'
 											padding='none'>
-											{fullTeamNames(row.team)}
+											<Link to={`/stats/teams/${row.team}`}>
+												{fullTeamNames(row.team)}
+											</Link>
 										</TableCell>
 										<TableCell
 											sx={tableCellStyle}
