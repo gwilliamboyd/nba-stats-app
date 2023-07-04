@@ -10,6 +10,7 @@ import { Box, Container, Grid, Typography } from '@mui/material'
 import PlayerIndivStatsRow from '../../components/stats-pages/PlayerIndivStatsRow'
 import LoadingScreenBlank from '../utility/LoadingScreenBlank'
 import QuickStat from '../../components/stats-pages/quick-stats/QuickStat'
+import PlayerAvatar from '../../components/stats-pages/PlayerAvatar'
 
 const PlayerIndivPage = () => {
 	// not an error, eslint doesn't recognize the theme
@@ -89,30 +90,42 @@ const PlayerIndivPage = () => {
 				<Box
 					sx={{
 						marginTop: '3rem',
-						width: '75%',
+						width: { xs: '95%', lg: '75%' },
 						display: 'flex',
-						flexDirection: 'row',
+						flexDirection: { xs: 'column', lg: 'row' },
 						justifyContent: 'space-between',
+						alignItems: 'center',
 					}}>
 					<Box
 						sx={{
+							width: '100%',
 							display: 'flex',
-							alignItems: 'flex-start',
+							flexDirection: { xs: 'column', md: 'row' },
+							justifyContent: { xs: 'center', lg: 'flex-start' },
+							alignItems: { xs: 'center', md: 'flex-start' },
 							gap: '2rem',
 						}}>
-						<img
+						<PlayerAvatar
+							team={team}
 							src={`/images/players/${player?.player}.png`}
-							width={200}
+							secondaryColor={secondaryColor}
+						/>
+						{/* <img
+							// width={50}
+							src={`/images/players/${player?.player}.png`}
 							alt={`${team} logo`}
 							style={{
 								border: `2px solid ${secondaryColor}`,
 								borderRadius: '12px',
+								width: '40%',
 							}}
-						/>
+						/> */}
 						<Box
 							sx={{
 								display: 'flex',
 								flexDirection: 'column',
+								alignItems: { xs: 'center', md: 'flex-start' },
+								justifyContent: { xs: 'center', md: 'flex-start' },
 								gap: '16px',
 							}}>
 							<Typography
@@ -120,7 +133,8 @@ const PlayerIndivPage = () => {
 								fontWeight={800}
 								variant='h3'
 								sx={{
-									marginTop: '2rem',
+									fontSize: { xs: '2.5rem', md: '3.2rem' },
+									marginTop: { xs: '0', md: '2rem' },
 									letterSpacing: '-2.5px',
 								}}>
 								{player?.player}
@@ -152,19 +166,26 @@ const PlayerIndivPage = () => {
 								</Typography>
 							</Box>
 						</Box>
-						<img
-							src={`/images/svgs/team-logos/${team}.svg`}
-							alt={`${team} logo`}
-							width={100}
-							style={{ marginLeft: '-1rem' }}
-						/>
+						<Box sx={{ display: { xs: 'none', md: 'block' } }}>
+							<img
+								src={`/images/svgs/team-logos/${team}.svg`}
+								alt={`${team} logo`}
+								width={100}
+								style={{
+									marginLeft: '-1rem',
+								}}
+							/>
+						</Box>
 					</Box>
 					<Grid
 						container
 						columns={6}
 						columnSpacing={4}
 						rowSpacing={2}
-						sx={{ width: '28%', marginTop: '1rem' }}>
+						sx={{
+							width: { xs: '90%', sm: '75%', md: '60%', lg: '35%' },
+							marginTop: '1rem',
+						}}>
 						<QuickStat
 							heading='PTS'
 							featuredStat={statsPts}

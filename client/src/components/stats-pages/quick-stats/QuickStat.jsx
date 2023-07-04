@@ -10,7 +10,7 @@ const QuickStat = ({
 	return (
 		<Grid
 			item
-			sm={3}>
+			xs={3}>
 			<Box
 				sx={{
 					borderBottom: `3px solid ${secondaryColor}`,
