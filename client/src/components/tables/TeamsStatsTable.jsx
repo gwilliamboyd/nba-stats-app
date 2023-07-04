@@ -19,6 +19,7 @@ import {
 	teamsAdvancedHeadCells,
 	teamsPerGameHeadCells,
 } from '../../data/headCells/teamsHeadCells'
+// import teamLogo from `../../public/images/svgs/team-logos/${row.team}.svg`
 
 export default function EnhancedTable({
 	statsType,
@@ -146,7 +147,7 @@ export default function EnhancedTable({
 												sx={{ cursor: 'pointer' }}>
 												<TableCell sx={{ padding: '4px' }}>
 													<img
-														src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+														src={`/images/svgs/team-logos/${row.team}.svg`}
 														alt={`${row.team} logo`}
 														width={30}
 													/>
@@ -299,7 +300,7 @@ export default function EnhancedTable({
 												sx={{ cursor: 'pointer' }}>
 												<TableCell sx={{ padding: '4px' }}>
 													<img
-														src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+														src={`/images/svgs/team-logos/${row.team}.svg`}
 														alt={`${row.team} logo`}
 														width={30}
 													/>

@@ -69,7 +69,7 @@ const LoginPage = () => {
 				height: 'calc(100vh - 100px)',
 				display: 'flex',
 				justifyContent: 'center',
-				backgroundImage: 'url(../../public/images/login-background.jpg)',
+				backgroundImage: 'url(/login-background.jpg)',
 				backgroundPosition: '50% 18%',
 				backgroundSize: 'cover',
 			}}>
