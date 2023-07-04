@@ -31,12 +31,16 @@ const HomePageBox = ({
 					gap: '3.5rem',
 				}}>
 				<Box
-					alignSelf='flex-start'
+					// alignSelf='flex-start'
 					alignItems='baseline'
-					sx={{ display: 'flex', gap: '3rem' }}>
+					sx={{
+						display: 'flex',
+						gap: '3rem',
+						alignSelf: { xs: 'center', md: 'flex-start' },
+					}}>
 					<Typography
 						fontWeight={900}
-						variant='h3'>
+						variant={'h3'}>
 						{homeHeading}
 					</Typography>
 					<Link to='/stats/players'>

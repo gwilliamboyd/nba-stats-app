@@ -46,8 +46,9 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 			container
 			width='100%'
 			justifyContent='center'
+			justifySelf={'center'}
 			columns={10}
-			columnSpacing={18}>
+			columnSpacing={{ xs: 8, md: 10, lg: 18 }}>
 			{topFourPlayers?.map(p => {
 				const statValue = `p?.${stat}`
 				return (
@@ -55,7 +56,9 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 						key={p?.id}
 						item
 						color={league.nbaWhite}
-						xs={2}>
+						// xs={10}
+						md={5}
+						lg={2}>
 						<Box
 							sx={{
 								width: 'fit-content',

@@ -53,7 +53,7 @@ const HomePage = () => {
 		const result = Math.floor(Math.random() * 3)
 		console.log(result)
 		return (
-			<>
+			<Box justifyContent={'center'}>
 				<Typography
 					variant='h4'
 					fontWeight={700}
@@ -68,7 +68,7 @@ const HomePage = () => {
 					stat={result === 0 ? 'pts' : result === 1 ? '$3p' : 'trb'}
 					statArray={possibleStatCategories[result]}
 				/>
-			</>
+			</Box>
 		)
 	}
 
@@ -105,7 +105,9 @@ const HomePage = () => {
 										key={team.id}
 										item
 										alignSelf='center'
-										xs={1}
+										xs={5}
+										md={3}
+										lg={1}
 										sx={{
 											justifySelf: 'center',
 										}}>
