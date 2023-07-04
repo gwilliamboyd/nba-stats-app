@@ -81,7 +81,7 @@ const TeamIndivStatsRow = ({
 													<>
 														{/* <TableCell sx={{ padding: '4px' }}>
 															<img
-																src={`../../public/images/svgs/team-logos/${team}.svg`}
+																src={`/images/svgs/team-logos/${team}.svg`}
 																alt={`${row.team} logo`}
 																width={30}
 															/>
@@ -319,7 +319,7 @@ const TeamIndivStatsRow = ({
 													<>
 														{/* <TableCell sx={{ padding: '4px' }}>
 															<img
-																src={`../../public/images/svgs/team-logos/${team}.svg`}
+																src={`/images/svgs/team-logos/${team}.svg`}
 																alt={`${row.team} logo`}
 																width={30}
 															/>

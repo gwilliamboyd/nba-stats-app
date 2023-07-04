@@ -7,7 +7,7 @@ const PlayerCard = ({ player, width }) => {
 	const theme = useTheme()
 	const { league } = theme.palette
 
-	const playerImgSrc = `"../../../public/images/players/${player}.png"`
+	const playerImgSrc = `"/images/players/${player}.png"`
 
 	return (
 		<Box

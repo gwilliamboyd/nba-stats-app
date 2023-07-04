@@ -147,7 +147,7 @@ export default function EnhancedTable({
 												sx={{ cursor: 'pointer' }}>
 												<TableCell sx={{ padding: '4px' }}>
 													<img
-														src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+														src={`/images/svgs/team-logos/${row.team}.svg`}
 														alt={`${row.team} logo`}
 														width={30}
 													/>
@@ -294,13 +294,13 @@ export default function EnhancedTable({
 								  })
 								: visibleRows.map((row, index) => {
 										const labelId = `enhanced-table-checkbox-${index}`
-										// const playerImgSrc = `../../public/images/players/${row.player}.png`
+										// const playerImgSrc = `/images/players/${row.player}.png`
 
 										/* const determineImageSrc = () => {
 											let imageSrc
 											playerImgSrc == undefined
 												? imageSrc ===
-												  `../../public/images/players/player-placeholder.png`
+												  `/images/players/player-placeholder.png`
 												: imageSrc === playerImgSrc
 										} */
 
@@ -312,7 +312,7 @@ export default function EnhancedTable({
 												sx={{ cursor: 'pointer' }}>
 												<TableCell sx={{ padding: '4px' }}>
 													<img
-														src={`../../public/images/svgs/team-logos/${row.team}.svg`}
+														src={`/images/svgs/team-logos/${row.team}.svg`}
 														alt={`${row.team} logo`}
 														width={40}
 													/>

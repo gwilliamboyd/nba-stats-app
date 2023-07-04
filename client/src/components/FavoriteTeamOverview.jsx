@@ -131,7 +131,7 @@ const FavoriteTeamOverview = ({
 							// flex: '1 0 0',
 						}}>
 						<img
-							src={`../../public/images/svgs/team-logos/${team.team}.svg`}
+							src={`/images/svgs/team-logos/${team.team}.svg`}
 							width={320}
 							alt={`${team.team} logo`}
 						/>

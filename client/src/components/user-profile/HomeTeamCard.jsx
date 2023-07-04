@@ -16,7 +16,7 @@ const HomeTeamCard = ({ team, width }) => {
 				textAlign: 'center',
 			}}>
 			<img
-				src={`../../public/images/svgs/team-logos/${team}.svg`}
+				src={`/images/svgs/team-logos/${team}.svg`}
 				alt={`${team} logo`}
 				width={width}
 			/>
