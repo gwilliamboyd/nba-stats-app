@@ -10,6 +10,7 @@ import {
 	ButtonGroup,
 	Button,
 	Skeleton,
+	Grid,
 } from '@mui/material'
 import LoadingScreen from './utility/LoadingScreen'
 import { setLeagueStandings } from '../slices/standingsSlice'
@@ -93,7 +94,9 @@ const StandingsPage = () => {
 					</Box>
 				</MainStatsBox>
 				<Suspense fallback={<LoadingScreen />}>
-					<Box
+					<Grid
+						container
+						columns={3}
 						width='100%'
 						sx={{
 							padding: '0 2rem',
@@ -101,7 +104,10 @@ const StandingsPage = () => {
 							justifyContent: 'center',
 							gap: '0rem',
 						}}>
-						<Box
+						<Grid
+							item
+							xs={3}
+							lg={1}
 							width='100%'
 							sx={{
 								display: 'flex',
@@ -127,8 +133,11 @@ const StandingsPage = () => {
 								secondaryColor={league.nbaBackground}
 								tertiaryColor={league.nbaWhite}
 							/>
-						</Box>
-						<Box
+						</Grid>
+						<Grid
+							item
+							xs={3}
+							lg={1}
 							width='100%'
 							sx={{
 								display: 'flex',
@@ -154,8 +163,11 @@ const StandingsPage = () => {
 								secondaryColor={league.nbaBackground}
 								tertiaryColor={league.nbaWhite}
 							/>
-						</Box>
-						<Box
+						</Grid>
+						<Grid
+							item
+							xs={3}
+							lg={1}
 							width='100%'
 							sx={{
 								display: 'flex',
@@ -181,8 +193,8 @@ const StandingsPage = () => {
 								secondaryColor={league.nbaBackground}
 								tertiaryColor={league.nbaWhite}
 							/>
-						</Box>
-					</Box>
+						</Grid>
+					</Grid>
 				</Suspense>
 			</MainStatsContainer>
 		</Suspense>

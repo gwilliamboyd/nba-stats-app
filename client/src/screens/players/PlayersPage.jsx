@@ -107,6 +107,7 @@ const PlayersPage = () => {
 				<MainStatsBox>
 					<Box
 						sx={{
+							height: '100%',
 							display: 'flex',
 							alignItems: 'baseline',
 							gap: '3rem',

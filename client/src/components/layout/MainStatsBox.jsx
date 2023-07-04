@@ -6,9 +6,13 @@ const MainStatsBox = ({ children }) => {
 		<Box
 			sx={{
 				display: 'flex',
-				justifyContent: 'space-between',
-				margin: '2rem 0 1rem',
+				flexDirection: { xs: 'column', lg: 'row' },
+				justifyContent: { xs: 'center', lg: 'space-between' },
+				alignItems: { xs: 'center', lg: 'baseline' },
+				margin: '2rem 0',
 				width: '82%',
+				// height: '100%',
+				gap: '2rem',
 			}}>
 			{children}
 		</Box>

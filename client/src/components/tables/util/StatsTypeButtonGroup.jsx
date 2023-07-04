@@ -12,11 +12,14 @@ const StatsTypeButtonGroup = ({
 			// variant='text'
 			aria-label='medium button group'
 			// color={'primary'}
-			size='medium'>
+			size='medium'
+			sx={{ alignSelf: 'center' }}>
 			<Button
 				onClick={() => setStatsType('perGame')}
 				sx={{
 					color: tertiaryColor,
+					minHeight: '60px',
+					maxHeight: '70px',
 					'&:hover': { color: secondaryColor },
 				}}>
 				Per-Game
@@ -25,6 +28,8 @@ const StatsTypeButtonGroup = ({
 				onClick={() => setStatsType('total')}
 				sx={{
 					color: tertiaryColor,
+					minHeight: '60px',
+					maxHeight: '70px',
 					'&:hover': { color: secondaryColor },
 				}}>
 				Totals
@@ -33,6 +38,8 @@ const StatsTypeButtonGroup = ({
 				onClick={() => setStatsType('advanced')}
 				sx={{
 					color: tertiaryColor,
+					minHeight: '60px',
+					maxHeight: '70px',
 					'&:hover': { color: secondaryColor },
 				}}>
 				Advanced

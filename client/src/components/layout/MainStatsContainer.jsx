@@ -6,12 +6,13 @@ const MainStatsContainer = ({ children, league }) => {
 		<Container
 			disableGutters
 			maxWidth='100%'
-			style={{
-				height: 'calc(100vh - 100px)',
+			sx={{
+				height: { xs: '100%', lg: 'calc(100vh - 100px)' },
 				backgroundColor: league.nbaBackground,
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
+				// justifyContent: 'flex-end',
 				color: league.nbaWhite,
 			}}>
 			{children}
