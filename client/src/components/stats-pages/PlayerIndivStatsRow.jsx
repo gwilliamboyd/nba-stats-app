@@ -163,85 +163,85 @@ const PlayerIndivStatsRow = ({
 											border: '0',
 											textAlign: 'left',
 										}}>
-										{eval(`${statsType}Statistics.pos`)}
+										{eval(`${statsType}Statistics?.pos`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.age`)}
+										{eval(`${statsType}Statistics?.age`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.g`)}
+										{eval(`${statsType}Statistics?.g`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.gs`)}
+										{eval(`${statsType}Statistics?.gs`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.mp`)}
+										{eval(`${statsType}Statistics?.mp`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.fg`)}
+										{eval(`${statsType}Statistics?.fg`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.fga`)}
+										{eval(`${statsType}Statistics?.fga`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.fgPer`)}
+										{eval(`${statsType}Statistics?.fgPer`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.$3p`)}
+										{eval(`${statsType}Statistics?.$3p`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.$3pA`)}
+										{eval(`${statsType}Statistics?.$3pA`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.$3pPer`)}
+										{eval(`${statsType}Statistics?.$3pPer`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.$2p`)}
+										{eval(`${statsType}Statistics?.$2p`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.$2pA`)}
+										{eval(`${statsType}Statistics?.$2pA`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.$2pPer`)}
+										{eval(`${statsType}Statistics?.$2pPer`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.eFgPer`)}
+										{eval(`${statsType}Statistics?.eFgPer`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.ft`)}
+										{eval(`${statsType}Statistics?.ft`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.fta`)}
+										{eval(`${statsType}Statistics?.fta`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.ftPer`)}
+										{eval(`${statsType}Statistics?.ftPer`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.orb`)}
+										{eval(`${statsType}Statistics?.orb`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.drb`)}
+										{eval(`${statsType}Statistics?.drb`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.trb`)}
+										{eval(`${statsType}Statistics?.trb`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.ast`)}
+										{eval(`${statsType}Statistics?.ast`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.stl`)}
+										{eval(`${statsType}Statistics?.stl`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.blk`)}
+										{eval(`${statsType}Statistics?.blk`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.tov`)}
+										{eval(`${statsType}Statistics?.tov`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.pf`)}
+										{eval(`${statsType}Statistics?.pf`)}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics.pts`)}
+										{eval(`${statsType}Statistics?.pts`)}
 									</TableCell>
 								</TableRow>
 							)}

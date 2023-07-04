@@ -101,7 +101,7 @@ const PlayerIndivPage = () => {
 							gap: '2rem',
 						}}>
 						<img
-							src={`../../public/images/players/${player?.player}.png`}
+							src={`/images/players/${player?.player}.png`}
 							width={200}
 							alt={`${team} logo`}
 							style={{
@@ -153,7 +153,7 @@ const PlayerIndivPage = () => {
 							</Box>
 						</Box>
 						<img
-							src={`../../public/images/svgs/team-logos/${team}.svg`}
+							src={`/images/svgs/team-logos/${team}.svg`}
 							alt={`${team} logo`}
 							width={100}
 							style={{ marginLeft: '-1rem' }}
@@ -235,7 +235,7 @@ const PlayerIndivPage = () => {
 								tertiaryColor={tertiaryColor}
 								statsType={'perGame'}
 								loading={loading}
-								statistics={playerIndivStats && playerIndivStatistics}
+								statistics={playerIndivStatistics}
 							/>
 						</Box>
 						<Box
@@ -259,7 +259,7 @@ const PlayerIndivPage = () => {
 								tertiaryColor={tertiaryColor}
 								statsType={'total'}
 								loading={loading}
-								statistics={playerIndivStats && playerIndivStatistics}
+								statistics={playerIndivStatistics}
 							/>
 						</Box>
 						<Box
@@ -283,7 +283,7 @@ const PlayerIndivPage = () => {
 								tertiaryColor={tertiaryColor}
 								statsType={'advanced'}
 								loading={loading}
-								statistics={playerIndivStats && playerIndivStatistics}
+								statistics={playerIndivStatistics}
 							/>
 						</Box>
 					</Box>
