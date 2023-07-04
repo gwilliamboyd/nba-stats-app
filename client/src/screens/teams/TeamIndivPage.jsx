@@ -184,7 +184,7 @@ const TeamIndivPage = () => {
 							// flex: '1 0 0',
 						}}>
 						<img
-							src={`../../public/images/svgs/team-logos/${team}.svg`}
+							src={`/images/svgs/team-logos/${team}.svg`}
 							width={200}
 							alt={`${team} logo`}
 						/>
