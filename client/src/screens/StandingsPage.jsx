@@ -31,9 +31,12 @@ const StandingsPage = () => {
 	const [loading, setLoading] = useState(true)
 
 	const getLeagueStandings = async () => {
-		const response = await fetch(`http://localhost:5000/standings`, {
-			method: 'GET',
-		})
+		const response = await fetch(
+			`https://nba-stats-app-62o4.onrender.com/standings`,
+			{
+				method: 'GET',
+			}
+		)
 		const data = await response.json()
 		dispatch(setLeagueStandings({ leagueStandings: data }))
 		setLoading(false)
