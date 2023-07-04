@@ -34,10 +34,10 @@ const TeamIndivPage = () => {
 
 	const getTeamIndivStats = async () => {
 		const [teamIndivResponse, quickStatsResponse] = await Promise.all([
-			fetch(`http://localhost:5000/stats/teams/${team}`, {
+			fetch(`https://nba-stats-app-62o4.onrender.com/stats/teams/${team}`, {
 				method: 'GET',
 			}),
-			fetch(`http://localhost:5000/stats/teams/per-game`, {
+			fetch(`https://nba-stats-app-62o4.onrender.com/stats/teams/per-game`, {
 				method: 'GET',
 			}),
 		])
@@ -82,7 +82,7 @@ const TeamIndivPage = () => {
 
 	const getPlayersPerGame = async () => {
 		const response = await fetch(
-			`http://localhost:5000/stats/players/per-game`,
+			`https://nba-stats-app-62o4.onrender.com/stats/players/per-game`,
 			{
 				method: 'GET',
 			}
@@ -92,16 +92,19 @@ const TeamIndivPage = () => {
 		setLoading(false)
 	}
 	const getPlayersTotal = async () => {
-		const response = await fetch(`http://localhost:5000/stats/players/total`, {
-			method: 'GET',
-		})
+		const response = await fetch(
+			`https://nba-stats-app-62o4.onrender.com/stats/players/total`,
+			{
+				method: 'GET',
+			}
+		)
 		const data = await response.json()
 		dispatch(setPlayersTotalStats({ playersTotalStats: data }))
 		setLoading(false)
 	}
 	const getPlayersAdvanced = async () => {
 		const response = await fetch(
-			`http://localhost:5000/stats/players/advanced`,
+			`https://nba-stats-app-62o4.onrender.com/stats/players/advanced`,
 			{
 				method: 'GET',
 			}

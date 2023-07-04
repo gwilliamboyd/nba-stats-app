@@ -9,7 +9,7 @@ const UserAvatar = ({ avatar, dimensions }) => {
 				width={dimensions}
 				height={dimensions}
 				alt='Avatar'
-				src={`https://nba-stats-app-62o4.onrender.com/assets/${avatar}`}
+				src={`/public/assets/${avatar}`}
 			/>
 		</Box>
 	)

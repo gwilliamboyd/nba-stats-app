@@ -35,25 +35,34 @@ const TeamsPage = () => {
 	const [loading, setLoading] = useState(true)
 
 	const getTeamsPerGame = async () => {
-		const response = await fetch(`http://localhost:5000/stats/teams/per-game`, {
-			method: 'GET',
-		})
+		const response = await fetch(
+			`https://nba-stats-app-62o4.onrender.com/stats/teams/per-game`,
+			{
+				method: 'GET',
+			}
+		)
 		const data = await response.json()
 		dispatch(setTeamsPerGameStats({ teamsPerGameStats: data }))
 		setLoading(false)
 	}
 	const getTeamsTotal = async () => {
-		const response = await fetch(`http://localhost:5000/stats/teams/total`, {
-			method: 'GET',
-		})
+		const response = await fetch(
+			`https://nba-stats-app-62o4.onrender.com/stats/teams/total`,
+			{
+				method: 'GET',
+			}
+		)
 		const data = await response.json()
 		dispatch(setTeamsTotalStats({ teamsTotalStats: data }))
 		setLoading(false)
 	}
 	const getTeamsAdvanced = async () => {
-		const response = await fetch(`http://localhost:5000/stats/teams/advanced`, {
-			method: 'GET',
-		})
+		const response = await fetch(
+			`https://nba-stats-app-62o4.onrender.com/stats/teams/advanced`,
+			{
+				method: 'GET',
+			}
+		)
 		const data = await response.json()
 		dispatch(setTeamsAdvancedStats({ teamsAdvancedStats: data }))
 		setLoading(false)
