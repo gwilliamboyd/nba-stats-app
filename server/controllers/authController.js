@@ -51,7 +51,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 	}
 	delete user.password
 
-	const token = jwt.sign({ user }, 'Toolfan123458', { expiresIn: '8h' })
+	const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '8h' })
 
 	res.cookie('token', token, {
 		httpOnly: true,
@@ -62,7 +62,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 		email: user.email,
 		avatar: user.avatar,
 		favoriteTeams: user.favoriteTeams,
-		joinDate: user.joinDate,
+		token: token,
 	})
 	// return res.redirect('/')
 })
