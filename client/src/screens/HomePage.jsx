@@ -2,7 +2,7 @@
 import { Grid, Box, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
-// import backgroundKawhi from '../../public/images/kawhi-leonard.jpg'
+// import backgroundKawhi from '/images/kawhi-leonard.jpg'
 // Getting data from data folder seems easier since I'm only
 // trying to map over them to get the logo images, not any stats
 import teams from '../data/teams-perGame.json'
@@ -89,7 +89,7 @@ const HomePage = () => {
 						league={league}
 						homeHeading={'Team Stats'}
 						linkText={'See All Teams'}
-						backgroundImage={'url(../../public/images/kawhi-leonard.jpg)'}>
+						backgroundImage={'url(/images/kawhi-leonard.jpg)'}>
 						<Grid
 							container
 							columns={10}
@@ -126,9 +126,7 @@ const HomePage = () => {
 						league={league}
 						homeHeading={'Player Stats'}
 						linkText={'See All Players'}
-						backgroundImage={
-							'url(../../public/images/players-home-background.jpg)'
-						}>
+						backgroundImage={'url(/images/players-home-background.jpg)'}>
 						{/* <Typography
 							variant='h4'
 							fontWeight={700}
