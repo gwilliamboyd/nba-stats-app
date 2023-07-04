@@ -39,36 +39,48 @@ const FavoriteTeamsStats = () => {
 
 	// per-game stats
 	const getTeamsPerGame = async () => {
-		const response = await fetch(`http://localhost:5000/stats/teams/per-game`, {
-			method: 'GET',
-		})
+		const response = await fetch(
+			`https://nba-stats-app-62o4.onrender.com/stats/teams/per-game`,
+			{
+				method: 'GET',
+			}
+		)
 		const data = await response.json()
 		dispatch(setTeamsPerGameStats({ teamsPerGameStats: data }))
 		setLoading(false)
 	}
 	// totals stats
 	const getTeamsTotal = async () => {
-		const response = await fetch(`http://localhost:5000/stats/teams/total`, {
-			method: 'GET',
-		})
+		const response = await fetch(
+			`https://nba-stats-app-62o4.onrender.com/stats/teams/total`,
+			{
+				method: 'GET',
+			}
+		)
 		const data = await response.json()
 		dispatch(setTeamsTotalStats({ teamsTotalStats: data }))
 		setLoading(false)
 	}
 	// advanced stats
 	const getTeamsAdvanced = async () => {
-		const response = await fetch(`http://localhost:5000/stats/teams/advanced`, {
-			method: 'GET',
-		})
+		const response = await fetch(
+			`https://nba-stats-app-62o4.onrender.com/stats/teams/advanced`,
+			{
+				method: 'GET',
+			}
+		)
 		const data = await response.json()
 		dispatch(setTeamsAdvancedStats({ teamsAdvancedStats: data }))
 		setLoading(false)
 	}
 	// LEAGUE STANDINGS
 	const getLeagueStandings = async () => {
-		const response = await fetch(`http://localhost:5000/standings`, {
-			method: 'GET',
-		})
+		const response = await fetch(
+			`https://nba-stats-app-62o4.onrender.com/standings`,
+			{
+				method: 'GET',
+			}
+		)
 		const data = await response.json()
 		dispatch(setLeagueStandings({ leagueStandings: data }))
 		setLoading(false)
@@ -98,7 +110,7 @@ const FavoriteTeamsStats = () => {
 	// TEAM OVERVIEW - Use Quick Stats
 	const getTeamIndivStats = async () => {
 		const quickStatsResponse = await fetch(
-			`http://localhost:5000/stats/teams/per-game`,
+			`https://nba-stats-app-62o4.onrender.com/stats/teams/per-game`,
 			{
 				method: 'GET',
 			}
@@ -129,7 +141,7 @@ const FavoriteTeamsStats = () => {
 	const playersPerGameStats = useSelector(state => state.playersPerGameStats)
 	const getPlayersPerGame = async () => {
 		const response = await fetch(
-			`http://localhost:5000/stats/players/per-game`,
+			`https://nba-stats-app-62o4.onrender.com/stats/players/per-game`,
 			{
 				method: 'GET',
 			}

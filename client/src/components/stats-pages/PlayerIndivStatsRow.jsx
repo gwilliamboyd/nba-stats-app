@@ -154,6 +154,96 @@ const PlayerIndivStatsRow = ({
 										{advancedStatistics?.worp}
 									</TableCell>
 								</TableRow>
+							) : statsType === 'perGame' ? (
+								<TableRow>
+									<TableCell
+										sx={{
+											color: tertiaryColor,
+											padding: '2px',
+											border: '0',
+											textAlign: 'left',
+										}}>
+										{perGameStatistics.pos}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.age}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.g}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.gs}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.mp}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.fg}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.fga}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.fgPer}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.$3p}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.$3pA}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.$3pPer}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.$2p}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.$2pA}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.$2pPer}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.eFgPer}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.ft}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.fta}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.ftPer}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.orb}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.drb}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.trb}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.ast}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.stl}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.blk}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.tov}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.pf}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{perGameStatistics.pts}
+									</TableCell>
+								</TableRow>
 							) : (
 								<TableRow>
 									<TableCell
@@ -163,85 +253,83 @@ const PlayerIndivStatsRow = ({
 											border: '0',
 											textAlign: 'left',
 										}}>
-										{eval(`${statsType}Statistics?.pos`)}
+										{totalStatistics.pos}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.age`)}
+										{totalStatistics.age}
+									</TableCell>
+									<TableCell sx={tableCellStyle}>{totalStatistics.g}</TableCell>
+									<TableCell sx={tableCellStyle}>
+										{totalStatistics.gs}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.g`)}
+										{totalStatistics.mp}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.gs`)}
+										{totalStatistics.fg}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.mp`)}
+										{totalStatistics.fga}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.fg`)}
+										{totalStatistics.fgPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.fga`)}
+										{totalStatistics.$3p}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.fgPer`)}
+										{totalStatistics.$3pA}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.$3p`)}
+										{totalStatistics.$3pPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.$3pA`)}
+										{totalStatistics.$2p}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.$3pPer`)}
+										{totalStatistics.$2pA}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.$2p`)}
+										{totalStatistics.$2pPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.$2pA`)}
+										{totalStatistics.eFgPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.$2pPer`)}
+										{totalStatistics.ft}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.eFgPer`)}
+										{totalStatistics.fta}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.ft`)}
+										{totalStatistics.ftPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.fta`)}
+										{totalStatistics.orb}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.ftPer`)}
+										{totalStatistics.drb}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.orb`)}
+										{totalStatistics.trb}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.drb`)}
+										{totalStatistics.ast}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.trb`)}
+										{totalStatistics.stl}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.ast`)}
+										{totalStatistics.blk}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.stl`)}
+										{totalStatistics.tov}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.blk`)}
+										{totalStatistics.pf}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.tov`)}
-									</TableCell>
-									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.pf`)}
-									</TableCell>
-									<TableCell sx={tableCellStyle}>
-										{eval(`${statsType}Statistics?.pts`)}
+										{totalStatistics.pts}
 									</TableCell>
 								</TableRow>
 							)}
