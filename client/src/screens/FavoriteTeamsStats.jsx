@@ -157,15 +157,6 @@ const FavoriteTeamsStats = () => {
 	const sortableStatsThree = [...playersPerGameStatistics]
 	console.log(sortableStatsPts)
 	console.log(sortableStatsThree)
-
-	/* const sortByPoints = t => {
-		const ptsSorted = t.sort((a, b) => b.pts - a.pts)
-		return ptsSorted
-	}
-	const sortBy3PtPer = t => {
-		const $3pSorted = t.sort((a, b) => b.$3pPer - a.$3pPer)
-		return $3pSorted
-	} */
 	const getPointsLeaders = t => {
 		const teamLeaders = sortableStatsPts?.filter(p => p.team === t)
 		return teamLeaders
