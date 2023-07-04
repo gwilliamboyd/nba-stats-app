@@ -82,76 +82,76 @@ const PlayerIndivStatsRow = ({
 											border: '0',
 											textAlign: 'left',
 										}}>
-										{advancedStatistics.pos}
+										{advancedStatistics?.pos}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.age}
+										{advancedStatistics?.age}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.g}
+										{advancedStatistics?.g}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.mp}
+										{advancedStatistics?.mp}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.per}
+										{advancedStatistics?.per}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.tsPer}
+										{advancedStatistics?.tsPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.$3pAr}
+										{advancedStatistics?.$3pAr}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.ftr}
+										{advancedStatistics?.ftr}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.orbPer}
+										{advancedStatistics?.orbPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.drbPer}
+										{advancedStatistics?.drbPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.trbPer}
+										{advancedStatistics?.trbPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.astPer}
+										{advancedStatistics?.astPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.stlPer}
+										{advancedStatistics?.stlPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.blkPer}
+										{advancedStatistics?.blkPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.tovPer}
+										{advancedStatistics?.tovPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.usgPer}
+										{advancedStatistics?.usgPer}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.ows}
+										{advancedStatistics?.ows}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.dws}
+										{advancedStatistics?.dws}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.ws}
+										{advancedStatistics?.ws}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.ws48}
+										{advancedStatistics?.ws48}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.obpm}
+										{advancedStatistics?.obpm}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.dbpm}
+										{advancedStatistics?.dbpm}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.bpm}
+										{advancedStatistics?.bpm}
 									</TableCell>
 									<TableCell sx={tableCellStyle}>
-										{advancedStatistics.worp}
+										{advancedStatistics?.worp}
 									</TableCell>
 								</TableRow>
 							) : (
