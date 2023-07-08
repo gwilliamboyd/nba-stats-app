@@ -31,7 +31,7 @@ import FavoriteTeamsStats from './screens/FavoriteTeamsStats'
 
 function App() {
 	return (
-		<main style={{ backgroundColor: '#0D162C' }}>
+		<main style={{ backgroundColor: '#0D162C', width: 'calc(100vw - 8px)' }}>
 			<BrowserRouter>
 				<CssBaseline />
 				<Navbar />

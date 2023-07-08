@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Grid, Box, Typography } from '@mui/material'
+import { Grid, Box, Typography, Container } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
 // import backgroundKawhi from '/images/kawhi-leonard.jpg'
@@ -74,10 +74,11 @@ const HomePage = () => {
 
 	return (
 		// <Suspense fallback={<LoadingScreen />}>
-		<main
-			style={{
+		<Box
+			// disableGutters
+			sx={{
 				backgroundColor: league.nbaBackground,
-				width: 'calc(100vw - 17px)',
+				width: { xs: '100%', md: 'calc(100vw - 8px)' },
 				padding: '0',
 			}}>
 			<Grid
@@ -139,7 +140,7 @@ const HomePage = () => {
 					</HomePageBox>
 				</Suspense>
 			</Grid>
-		</main>
+		</Box>
 	)
 }
 

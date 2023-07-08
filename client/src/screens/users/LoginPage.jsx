@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLoginMutation } from '../../slices/authentication/usersApiSlice'
 import { setCredentials } from '../../slices/authentication/authSlice'
 // mui
-import { Box, Button, Container, TextField, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import TextFieldContainer from '../../components/layout/users/TextFieldContainer'
 
 const LoginPage = () => {
@@ -123,6 +123,7 @@ const LoginPage = () => {
 						<TextFieldContainer
 							heading={'Password'}
 							onChange={e => setPassword(e.target.value)}
+							type={'password'}
 							value={password}
 							textFieldStyles={textFieldStyles}
 						/>

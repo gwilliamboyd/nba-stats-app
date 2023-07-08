@@ -137,12 +137,14 @@ const RegisterPage = () => {
 						<TextFieldContainer
 							heading={'Password'}
 							onChange={e => setPassword(e.target.value)}
+							type='password'
 							value={password}
 							textFieldStyles={textFieldStyles}
 						/>
 						<TextFieldContainer
 							heading={'Confirm Password'}
 							onChange={e => setConfirmPassword(e.target.value)}
+							type='password'
 							value={confirmPassword}
 							textFieldStyles={textFieldStyles}
 						/>

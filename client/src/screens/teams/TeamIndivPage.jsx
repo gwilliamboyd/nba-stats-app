@@ -164,15 +164,17 @@ const TeamIndivPage = () => {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: '1rem',
+					gap: { xs: '3rem', md: '1rem' },
 				}}>
 				<Box
 					sx={{
-						marginTop: '3rem',
+						marginTop: { xs: '0', md: '3rem' },
 						width: { xs: '95%', lg: '85%' },
 						display: 'flex',
 						flexDirection: { xs: 'column', lg: 'row' },
 						justifyContent: 'space-between',
+						alignItems: { xs: 'center', md: 'flex-start' },
+						gap: { xs: '2rem', md: '0' },
 					}}>
 					<Box
 						sx={{
@@ -180,7 +182,7 @@ const TeamIndivPage = () => {
 							flexDirection: { xs: 'column', md: 'row' },
 							justifyContent: { xs: 'center', lg: 'flex-start' },
 							alignItems: { xs: 'center', md: 'flex-start' },
-							gap: '2rem',
+							gap: { xs: '0.5rem', md: '2rem' },
 							minWidth: { xs: '0px', md: '680px' },
 							// flex: '1 0 0',
 						}}>
@@ -193,7 +195,7 @@ const TeamIndivPage = () => {
 							sx={{
 								display: 'flex',
 								flexDirection: 'column',
-								gap: '16px',
+								gap: { xs: '2rem', md: '1rem' },
 								flex: 1,
 							}}>
 							<Typography
@@ -201,12 +203,17 @@ const TeamIndivPage = () => {
 								fontWeight={800}
 								variant='h3'
 								sx={{
-									marginTop: '2rem',
+									marginTop: { xs: '0', md: '2rem' },
 									letterSpacing: '-2.5px',
+									fontSize: { xs: '38px', md: '52px' },
 								}}>
 								{fullTeamNames(team)}
 							</Typography>
-							<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+							<Box
+								sx={{
+									display: 'flex',
+									justifyContent: { xs: 'space-around', md: 'space-between' },
+								}}>
 								<Box
 									sx={{
 										display: 'flex',
@@ -226,6 +233,7 @@ const TeamIndivPage = () => {
 										variant='h5'
 										sx={{
 											letterSpacing: '-2.5px',
+											fontSize: { xs: '20px', md: '26px' },
 										}}>
 										{home}
 									</Typography>
@@ -244,11 +252,12 @@ const TeamIndivPage = () => {
 										ARENA
 									</Typography>
 									<Typography
+										color={tertiaryColor}
 										fontWeight={600}
 										variant='h5'
 										sx={{
-											color: tertiaryColor,
 											letterSpacing: '-2.5px',
+											fontSize: { xs: '20px', md: '26px' },
 										}}>
 										{arena}
 									</Typography>
@@ -356,10 +365,11 @@ const TeamIndivPage = () => {
 					sx={{
 						width: '75%',
 						display: 'flex',
-						alignItems: 'baseline',
-						justifyContent: 'space-between',
-						gap: '3rem',
-						marginLeft: '5rem',
+						flexDirection: { xs: 'column', md: 'row' },
+						alignItems: { xs: 'center', md: 'baseline' },
+						justifyContent: { xs: 'center', md: 'space-between' },
+						gap: { xs: '1.5rem', md: '3rem' },
+						marginLeft: { xs: '0', md: '5rem' },
 					}}>
 					<Typography
 						color={tertiaryColor}

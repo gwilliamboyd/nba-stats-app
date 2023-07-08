@@ -155,7 +155,8 @@ const UserProfilePage = () => {
 	return (
 		<Container
 			disableGutters
-			maxWidth='100%'>
+			maxWidth='100%'
+			sx={{ height: { xs: '100%', md: 'calc(100vh - 100px)' } }}>
 			<Grid
 				container
 				columns={3}>
@@ -163,24 +164,29 @@ const UserProfilePage = () => {
 					item
 					xs={3}
 					md={1}
-					sx={{ backgroundColor: '#070C17' }}>
+					sx={{
+						backgroundColor: '#070C17',
+						flexDirection: { xs: 'column', md: 'row' },
+					}}>
 					<Box
 						sx={{
-							height: 'calc(100vh - 100px)',
+							height: '100%',
 							display: 'flex',
 							flexDirection: 'column',
 							justifyContent: 'flex-start',
 							alignItems: 'center',
 							color: league.nbaWhite,
-							p: '8rem 0 0',
+							p: { xs: '2rem 0 0', md: '8rem 0 0' },
 						}}>
 						<UserAvatar
 							avatar={userInfo.avatar}
 							dimensions={220}
 						/>
 						<Typography
-							variant='h3'
-							fontWeight={800}>
+							variant={'h3'}
+							fontWeight={800}
+							marginBottom={'2rem'}
+							sx={{ fontSize: { xs: '36px', md: '52px' } }}>
 							{userInfo.name}
 						</Typography>
 					</Box>
@@ -191,21 +197,22 @@ const UserProfilePage = () => {
 					md={2}>
 					<Box
 						sx={{
-							height: 'calc(100vh - 100px)',
+							height: '100%',
 							color: league.nbaWhite,
 							display: 'flex',
 							flexDirection: 'column',
 							justifyContent: 'center',
 							alignItems: 'center',
 							gap: '3rem',
-							p: '0 3rem',
+							p: { xs: '2rem 3rem', md: '0 3rem' },
 						}}>
 						<Box width={'100%'}>
 							<Typography
 								variant='h4'
 								fontWeight={900}
 								alignSelf={'flex-start'}
-								marginBottom={'1rem'}>
+								marginBottom={'1rem'}
+								sx={{ flexDirection: { xs: 'column', md: 'row' } }}>
 								Account Info
 							</Typography>
 							<Grid
@@ -337,7 +344,7 @@ const UserProfilePage = () => {
 											display: 'flex',
 											flexDirection: 'column',
 											justifyContent: 'center',
-											alignContent: 'flex-start',
+											alignContent: { xs: 'center', md: 'flex-start' },
 											gap: '8px',
 										}}>
 										<Typography justifySelf={'flex-start'}>Avatar</Typography>
@@ -370,14 +377,15 @@ const UserProfilePage = () => {
 								sx={{
 									width: '100%',
 									display: 'flex',
-									justifyContent: 'flex-start',
+									justifyContent: { xs: 'space-between', md: 'flex-start' },
 									alignItems: 'baseline',
 									gap: '3rem',
 								}}>
 								<Typography
 									variant='h4'
 									fontWeight={900}
-									marginBottom={'1rem'}>
+									marginBottom={'1rem'}
+									sx={{ fontSize: { xs: '28px', md: '36px' } }}>
 									Favorite Teams
 								</Typography>
 								<Typography
@@ -425,10 +433,10 @@ const UserProfilePage = () => {
 								}}
 								component='section'>
 								<Box
-									width='70%'
-									height='auto'
-									padding='2rem'
+									height='100vh'
 									sx={{
+										p: { xs: '0.5rem', md: '2rem' },
+										width: { xs: '90%', md: '70%' },
 										color: `${league.nbaWhite}`,
 										position: 'absolute',
 										top: '50%',
@@ -441,9 +449,13 @@ const UserProfilePage = () => {
 										gap: '4rem',
 										border: `3px solid ${league.nbaWhite}`,
 										borderRadius: '12px',
+										overflow: { xs: 'scroll', md: 'hidden' },
 									}}>
 									<Button
-										sx={{ alignSelf: 'flex-end', margin: '-1rem 0 -2rem' }}
+										sx={{
+											alignSelf: 'flex-end',
+											margin: { xs: '0 0 -3rem', md: '-1rem 0 -2rem' },
+										}}
 										onClick={handleClose}>
 										Close
 									</Button>
@@ -478,7 +490,8 @@ const UserProfilePage = () => {
 												<Grid
 													key={team.id}
 													item
-													xs={1}
+													xs={2}
+													md={1}
 													sx={{
 														padding: '1rem 0.75rem',
 														borderRadius: '4px',

@@ -2,7 +2,13 @@
 import { Box, TextField, Typography } from '@mui/material'
 
 // eslint-disable-next-line react/prop-types
-const TextFieldContainer = ({ heading, onChange, value, textFieldStyles }) => {
+const TextFieldContainer = ({
+	heading,
+	onChange,
+	type,
+	value,
+	textFieldStyles,
+}) => {
 	return (
 		<Box
 			// width='70%'
@@ -32,7 +38,7 @@ const TextFieldContainer = ({ heading, onChange, value, textFieldStyles }) => {
 				required
 				id='outlined-required'
 				label='Required'
-				type='name'
+				type={type || 'name'}
 				onChange={onChange}
 				placeholder={heading}
 				sx={textFieldStyles}
