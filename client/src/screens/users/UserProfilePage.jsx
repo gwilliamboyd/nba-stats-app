@@ -159,7 +159,8 @@ const UserProfilePage = () => {
 			sx={{ height: { xs: '100%', md: 'calc(100vh - 100px)' } }}>
 			<Grid
 				container
-				columns={3}>
+				columns={3}
+				sx={{ height: { xs: '100%', md: 'calc(100vh - 100px)' } }}>
 				<Grid
 					item
 					xs={3}
