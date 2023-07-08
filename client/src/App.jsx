@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { CssBaseline } from '@mui/material'
+import { Box, CssBaseline } from '@mui/material'
 import Navbar from './components/Navbar'
 import LoadingScreen from './screens/utility/LoadingScreen'
 import HomePage from './screens/HomePage'
@@ -31,7 +31,11 @@ import FavoriteTeamsStats from './screens/FavoriteTeamsStats'
 
 function App() {
 	return (
-		<main style={{ backgroundColor: '#0D162C', width: 'calc(100vw - 8px)' }}>
+		<Box
+			sx={{
+				backgroundColor: '#0D162C',
+				width: { xs: '100vw', md: 'calc(100vw - 8px)' },
+			}}>
 			<BrowserRouter>
 				<CssBaseline />
 				<Navbar />
@@ -80,7 +84,7 @@ function App() {
 					</Routes>
 				</Suspense>
 			</BrowserRouter>
-		</main>
+		</Box>
 	)
 }
 
