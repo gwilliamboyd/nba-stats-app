@@ -85,12 +85,15 @@ export default function EnhancedTable({
 	)
 
 	// styles
-	const tableCellStyles = { color: league.nbaWhite, padding: '2px' }
+	const tableCellStyles = {
+		color: league.nbaWhite,
+		padding: { xs: '4px 8px', md: '2px 6px' },
+	}
 
 	return (
 		<Box
 			sx={{
-				width: '82%',
+				width: { xs: '90%', md: '82%' },
 				backgroundColor: league.nbaBackground,
 			}}>
 			<Paper
@@ -151,8 +154,7 @@ export default function EnhancedTable({
 														}}
 														component='th'
 														id={labelId}
-														scope='row'
-														padding='none'>
+														scope='row'>
 														{fullTeamNames(row.team)}
 													</TableCell>
 													<TableCell

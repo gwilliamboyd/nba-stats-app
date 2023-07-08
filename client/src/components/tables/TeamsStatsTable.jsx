@@ -83,19 +83,14 @@ export default function EnhancedTable({
 
 	const tableCellStyle = {
 		color: league.nbaWhite,
-		padding: { xs: '4px', lg: '2px' },
-		fontSize: {
-			xs: '8px',
-			sm: '12px',
-			md: '14px',
-			lg: theme.typography.fontSize,
-		},
+		padding: { xs: '4px 8px', md: '2px 6px' },
+		fontSize: theme.typography.fontSize,
 	}
 
 	return (
 		<Box
 			sx={{
-				width: '82%',
+				width: { xs: '90%', md: '82%' },
 				backgroundColor: league.nbaBackground,
 			}}>
 			<Paper
@@ -113,7 +108,7 @@ export default function EnhancedTable({
 					}}>
 					<Table
 						sx={{
-							minWidth: { lg: 750 },
+							minWidth: { md: 750 },
 						}}
 						aria-labelledby='tableTitle'
 						size='small'

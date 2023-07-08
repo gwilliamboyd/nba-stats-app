@@ -100,8 +100,9 @@ const TeamsPage = () => {
 					<Box
 						sx={{
 							display: 'flex',
-							alignItems: 'baseline',
-							gap: '3rem',
+							flexDirection: { xs: 'column', md: 'row' },
+							alignItems: { xs: 'flex-start', md: 'baseline' },
+							gap: { xs: '1rem', md: '3rem' },
 						}}>
 						<Typography variant='h3'>Team Stats</Typography>
 						<Typography

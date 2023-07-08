@@ -99,7 +99,7 @@ export default function EnhancedTable({
 	return (
 		<Box
 			sx={{
-				width: '82%',
+				width: { xs: '90%', md: '82%' },
 				backgroundColor: containerBackground || primaryColor,
 			}}>
 			<Paper
