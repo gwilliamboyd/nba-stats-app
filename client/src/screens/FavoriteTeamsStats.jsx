@@ -185,7 +185,7 @@ const FavoriteTeamsStats = () => {
 						display: 'flex',
 						justifyContent: 'center',
 						alignSelf: 'flex-start',
-						margin: '3rem 0 1rem',
+						margin: { xs: '1.5rem 0 1rem', md: '3rem 0 1rem' },
 						width: '100%',
 					}}>
 					<Box
@@ -197,7 +197,8 @@ const FavoriteTeamsStats = () => {
 						}}>
 						<Typography
 							fontWeight={800}
-							variant='h3'>
+							variant='h3'
+							sx={{ fontSize: { xs: '38px', md: '52px' } }}>
 							Favorite Teams
 						</Typography>
 						<Typography variant='h5'>Team-by Team Overview</Typography>
@@ -220,39 +221,53 @@ const FavoriteTeamsStats = () => {
 					})}
 					<Box
 						sx={{
-							width: '75%',
+							width: '100%',
 							display: 'flex',
-							justifyContent: 'space-between',
-							alignItems: 'baseline',
+							flexDirection: 'column',
+							alignItems: 'center',
+							gap: { xs: '1.5rem', md: '0' },
 						}}>
-						<Typography
-							variant='h3'
-							fontWeight={900}
-							m={'3rem 0 2rem'}>
-							Compare Teams
-						</Typography>
-						<StatsTypeButtonGroup
-							league={league}
-							setStatsType={setStatsType}
+						<Box
+							sx={{
+								width: '75%',
+								display: 'flex',
+								flexDirection: { xs: 'column', md: 'row' },
+								justifyContent: 'space-between',
+								alignItems: { xs: 'center', md: 'baseline' },
+								gap: { xs: '1.5rem', md: '0' },
+							}}>
+							<Typography
+								variant='h3'
+								fontWeight={900}
+								sx={{
+									m: { xs: '1.5rem 0 0', md: '3rem 0' },
+									fontSize: { xs: '38px', md: '52px' },
+								}}>
+								Compare Teams
+							</Typography>
+							<StatsTypeButtonGroup
+								league={league}
+								setStatsType={setStatsType}
+							/>
+						</Box>
+						<FavoriteTeamsStatsTable
+							fTeams={fTeams}
+							loading={loading}
+							statsType={statsType}
+							statistics={
+								statsType === 'perGame'
+									? teamsPerGameStatistics
+									: statsType === 'total'
+									? teamsTotalStatistics
+									: statsType === 'advanced'
+									? teamsAdvancedStatistics
+									: null
+							}
+							primaryColor={'#18264a'}
+							secondaryColor={league.nbaBackground}
+							tertiaryColor={league.nbaWhite}
 						/>
 					</Box>
-					<FavoriteTeamsStatsTable
-						fTeams={fTeams}
-						loading={loading}
-						statsType={statsType}
-						statistics={
-							statsType === 'perGame'
-								? teamsPerGameStatistics
-								: statsType === 'total'
-								? teamsTotalStatistics
-								: statsType === 'advanced'
-								? teamsAdvancedStatistics
-								: null
-						}
-						primaryColor={'#18264a'}
-						secondaryColor={league.nbaBackground}
-						tertiaryColor={league.nbaWhite}
-					/>
 				</Suspense>
 			</Container>
 		</Suspense>
