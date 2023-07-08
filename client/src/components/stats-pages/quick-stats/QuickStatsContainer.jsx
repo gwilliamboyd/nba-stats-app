@@ -18,7 +18,10 @@ const QuickStatsContainer = ({
 			columns={6}
 			columnSpacing={4}
 			rowSpacing={2}
-			sx={{ width: '28%', marginTop: '1rem' }}>
+			sx={{
+				width: { xs: '90%', sm: '75%', md: '60%', lg: '35%' },
+				marginTop: '1rem',
+			}}>
 			<QuickStat
 				heading='PTS'
 				featuredStat={statsPts}

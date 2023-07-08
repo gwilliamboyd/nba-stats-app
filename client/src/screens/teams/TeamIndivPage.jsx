@@ -169,18 +169,19 @@ const TeamIndivPage = () => {
 				<Box
 					sx={{
 						marginTop: '3rem',
-						width: '85%',
-
+						width: { xs: '95%', lg: '85%' },
 						display: 'flex',
-						flexDirection: 'row',
+						flexDirection: { xs: 'column', lg: 'row' },
 						justifyContent: 'space-between',
 					}}>
 					<Box
 						sx={{
 							display: 'flex',
-							alignItems: 'flex-start',
+							flexDirection: { xs: 'column', md: 'row' },
+							justifyContent: { xs: 'center', lg: 'flex-start' },
+							alignItems: { xs: 'center', md: 'flex-start' },
 							gap: '2rem',
-							minWidth: '680px',
+							minWidth: { xs: '0px', md: '680px' },
 							// flex: '1 0 0',
 						}}>
 						<img

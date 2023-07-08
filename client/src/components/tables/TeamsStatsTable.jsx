@@ -109,7 +109,7 @@ export default function EnhancedTable({
 					sx={{
 						backgroundColor: '#18264a',
 						p: '0 8px',
-						maxHeight: 680,
+						maxHeight: 630,
 					}}>
 					<Table
 						sx={{

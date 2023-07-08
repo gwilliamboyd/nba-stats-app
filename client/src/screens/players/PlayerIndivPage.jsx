@@ -77,7 +77,7 @@ const PlayerIndivPage = () => {
 			disableGutters
 			maxWidth='100%'
 			sx={{
-				height: 'calc(100vh - 100px)',
+				height: { xs: '100%', lg: 'calc(100vh - 100px)' },
 				backgroundColor: primaryColor,
 			}}>
 			<Box
@@ -110,16 +110,6 @@ const PlayerIndivPage = () => {
 							src={`/images/players/${player?.player}.png`}
 							secondaryColor={secondaryColor}
 						/>
-						{/* <img
-							// width={50}
-							src={`/images/players/${player?.player}.png`}
-							alt={`${team} logo`}
-							style={{
-								border: `2px solid ${secondaryColor}`,
-								borderRadius: '12px',
-								width: '40%',
-							}}
-						/> */}
 						<Box
 							sx={{
 								display: 'flex',

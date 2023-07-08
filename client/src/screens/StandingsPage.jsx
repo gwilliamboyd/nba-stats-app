@@ -80,10 +80,10 @@ const StandingsPage = () => {
 					<Box
 						sx={{
 							display: 'flex',
-							justifySelf: 'center',
-							alignItems: 'baseline',
-							gap: '3rem',
-							// marginLeft: '5rem',
+							flexDirection: { xs: 'column', md: 'row' },
+							justifySelf: { xs: 'baseline', md: 'center' },
+							alignItems: { xs: 'center', md: 'baseline' },
+							gap: { xs: '1rem', md: '3rem' },
 						}}>
 						<Typography variant='h3'>Standings</Typography>
 						<Typography

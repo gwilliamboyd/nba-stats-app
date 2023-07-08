@@ -153,7 +153,8 @@ const Navbar = () => {
 							// onMouseLeave={handleToggle}
 							role={undefined}
 							placement='top'
-							transition>
+							transition
+							sx={{ zIndex: 20 }}>
 							{({ TransitionProps, placement }) => (
 								<Grow
 									{...TransitionProps}
@@ -259,7 +260,8 @@ const Navbar = () => {
 									},
 								},
 							]}
-							transition>
+							transition
+							sx={{ zIndex: 20 }}>
 							{({ TransitionProps, placement }) => (
 								<Grow
 									{...TransitionProps}
@@ -280,7 +282,8 @@ const Navbar = () => {
 												autoFocusItem={open}
 												id='composition-menu'
 												aria-labelledby='composition-button'
-												onKeyDown={handleListKeyDown}>
+												onKeyDown={handleListKeyDown}
+												sx={{ zIndex: 20 }}>
 												<MenuItem
 													onClick={handleCloseSubMenu}
 													sx={{ p: '1rem', fontSize: '2rem' }}>
@@ -475,7 +478,7 @@ const Navbar = () => {
 									</Typography>
 								</Box>
 								<Popper
-									sx={{ display: { xs: 'none', md: 'flex' } }}
+									sx={{ display: { xs: 'none', md: 'flex' }, zIndex: 20 }}
 									open={open}
 									anchorEl={anchorRef.current}
 									// onMouseLeave={handleToggle}

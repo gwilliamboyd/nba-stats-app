@@ -5,27 +5,30 @@ import { Box, TextField, Typography } from '@mui/material'
 const TextFieldContainer = ({ heading, onChange, value, textFieldStyles }) => {
 	return (
 		<Box
-			width='60%'
+			// width='70%'
 			sx={{
 				display: 'flex',
+				flexDirection: { xs: 'column', md: 'row' },
 				justifyContent: 'space-between',
 				alignItems: 'baseline',
 				textAlign: 'right',
+				width: { xs: '90%', md: '70%' },
+				gap: '1rem',
 			}}>
 			<Box
 				sx={{
-					width: '40%',
+					width: { xs: '100%', md: '50%' },
 					display: 'flex',
-					justifyContent: 'flex-end',
+					justifyContent: { xs: 'flex-start', md: 'flex-end' },
 				}}>
 				<Typography
-					textAlign='right'
 					tableCellStyles
 					variant='h6'>
 					{heading}
 				</Typography>
 			</Box>
 			<TextField
+				fullWidth
 				required
 				id='outlined-required'
 				label='Required'

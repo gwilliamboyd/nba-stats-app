@@ -83,8 +83,9 @@ export default function EnhancedTable({
 	return (
 		<Box
 			sx={{
-				width: '90%',
+				width: { xs: '100%', md: '90%' },
 				backgroundColor: league.nbaBackground,
+				zIndex: 1,
 			}}>
 			<Paper
 				sx={{
@@ -99,7 +100,7 @@ export default function EnhancedTable({
 						p: '0 8px',
 						// minHeight: 650,
 						// maxHeight: 670,
-						height: 670,
+						height: 600,
 					}}>
 					<Table
 						aria-labelledby='tableTitle'

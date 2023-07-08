@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Box, TextField, Typography } from '@mui/material'
+import { Box, Button, TextField, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Container } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
@@ -35,14 +35,14 @@ const RegisterPage = () => {
 	const [confirmPassword, setConfirmPassword] = useState('')
 	const [avatar, setAvatar] = useState('')
 
-	const joinDate = new Date()
+	// const joinDate = new Date()
 
 	const [register, { isLoading }] = useRegisterMutation()
 
 	const submitHandler = async e => {
 		e.preventDefault()
 		try {
-			await register({ name, email, password, avatar, joinDate }).unwrap()
+			await register({ name, email, password, avatar }).unwrap()
 			// dispatch(setCredentials({ ...register }))
 			navigate('/')
 		} catch (err) {
@@ -63,92 +63,115 @@ const RegisterPage = () => {
 			disableGutters
 			maxWidth='100%'
 			sx={{
-				height: 'calc(100vh - 100px)',
+				height: { xs: '100%', md: 'calc(100vh - 100px)' },
 				display: 'flex',
 				justifyContent: 'center',
-				backgroundImage: 'url(../../public/images/registration-background.jpg)',
+				backgroundImage: 'url(/images/registration-background.jpg)',
 				backgroundPosition: 'center',
 				backgroundSize: 'cover',
 			}}>
 			<Box
 				sx={{
 					marginTop: '2rem',
-					width: '75%',
+					width: { xs: '95%', lg: '75%' },
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
 					color: league.nbaWhite,
 					gap: '2rem',
+					paddingBottom: { xs: '2rem', md: '0' },
 				}}>
-				<Box sx={{ display: 'flex', alignItems: 'baseline', gap: '2rem' }}>
+				<Box
+					sx={{
+						display: 'flex',
+						flexDirection: { xs: 'column', md: 'row' },
+						alignItems: 'baseline',
+						gap: '2rem',
+					}}>
 					<Typography
 						variant='h3'
 						fontWeight={900}>
 						Register
 					</Typography>
-					<Typography variant='h5'>
+					<Typography
+						sx={{ display: { xs: 'none', md: 'block' } }}
+						variant='h5'>
 						Sign up for an account to follow your favorite teams!
 					</Typography>
 				</Box>
-				<form
-					onSubmit={
-						password === confirmPassword ? submitHandler : passwordMatchHandler
-					}
-					style={{
-						padding: '3rem 0',
-						width: '60%',
+				<Box
+					sx={{
+						width: { xs: '95%', lg: '70%' },
+						height: { xs: 'fit-content', sm: '500px', lg: 'fit-content' },
 						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						gap: '2rem',
-						backgroundColor: 'rgba(37, 59, 115, 0.8)',
-						// border: `2px solid ${league.nbaWhite}`,
+						justifyContent: 'center',
 					}}>
-					<TextFieldContainer
-						heading={'Name'}
-						onChange={e => setName(e.target.value)}
-						value={name}
-						textFieldStyles={textFieldStyles}
-					/>
-					<TextFieldContainer
-						heading={'Email'}
-						onChange={e => setEmail(e.target.value)}
-						value={email}
-						textFieldStyles={textFieldStyles}
-					/>
-					<TextFieldContainer
-						heading={'Password'}
-						onChange={e => setPassword(e.target.value)}
-						value={password}
-						textFieldStyles={textFieldStyles}
-					/>
-					<TextFieldContainer
-						heading={'Confirm Password'}
-						onChange={e => setConfirmPassword(e.target.value)}
-						value={confirmPassword}
-						textFieldStyles={textFieldStyles}
-					/>
-					<Typography>Upload Profile Picture</Typography>
-					<Dropzone
-						onDrop={acceptedFiles => {
-							console.log(acceptedFiles[0].name)
-							setAvatar(acceptedFiles[0].name)
+					<form
+						onSubmit={
+							password === confirmPassword
+								? submitHandler
+								: passwordMatchHandler
+						}
+						style={{
+							padding: '3rem 0',
+							width: '100%',
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center',
+							gap: '2rem',
+							backgroundColor: 'rgba(37, 59, 115, 0.8)',
+							// border: `2px solid ${league.nbaWhite}`,
 						}}>
-						{({ getRootProps, getInputProps }) => (
-							<section
-								style={{
-									border: `2px solid ${league.nbaWhite}`,
-									padding: '0 1rem',
-								}}>
-								<div {...getRootProps()}>
-									<input {...getInputProps()} />
-									<p>Drag image here, or click to select file</p>
-								</div>
-							</section>
-						)}
-					</Dropzone>
-					<button type='submit'>Submit</button>
-				</form>
+						<TextFieldContainer
+							heading={'Name'}
+							onChange={e => setName(e.target.value)}
+							value={name}
+							textFieldStyles={textFieldStyles}
+						/>
+						<TextFieldContainer
+							heading={'Email'}
+							onChange={e => setEmail(e.target.value)}
+							value={email}
+							textFieldStyles={textFieldStyles}
+						/>
+						<TextFieldContainer
+							heading={'Password'}
+							onChange={e => setPassword(e.target.value)}
+							value={password}
+							textFieldStyles={textFieldStyles}
+						/>
+						<TextFieldContainer
+							heading={'Confirm Password'}
+							onChange={e => setConfirmPassword(e.target.value)}
+							value={confirmPassword}
+							textFieldStyles={textFieldStyles}
+						/>
+						<Typography>Upload Profile Picture</Typography>
+						<Dropzone
+							onDrop={acceptedFiles => {
+								console.log(acceptedFiles[0].name)
+								setAvatar(acceptedFiles[0].name)
+							}}>
+							{({ getRootProps, getInputProps }) => (
+								<section
+									style={{
+										border: `2px solid ${league.nbaWhite}`,
+										padding: '0 1rem',
+									}}>
+									<div {...getRootProps()}>
+										<input {...getInputProps()} />
+										<p>Drag image here, or click to select file</p>
+									</div>
+								</section>
+							)}
+						</Dropzone>
+						<Button
+							variant='contained'
+							type='submit'>
+							Submit
+						</Button>
+					</form>
+				</Box>
 			</Box>
 		</Container>
 	)
