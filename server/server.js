@@ -15,11 +15,11 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import playersRoutes from './routes/playersRoutes.js'
 import teamsRoutes from './routes/teamsRoutes.js'
 import standingsRoutes from './routes/standingsRoute.js'
-import registrationRoute from './routes/registrationRoute.js'
+// import registrationRoute from './routes/registrationRoute.js'
 import loginRoute from './routes/loginRoute.js'
 import logoutRoute from './routes/logoutRoute.js'
 import userRoute from './routes/userRoute.js'
-
+import { registerUser } from '../controllers/authController.js'
 // Configure dir/file for image upload
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -56,7 +56,10 @@ const upload = multer({ storage })
 app.use('/stats/players', playersRoutes)
 app.use('/stats/teams', teamsRoutes)
 app.use('/standings', standingsRoutes)
-app.use('/users/register', upload.single('avatar'), registrationRoute)
+// Register from route file
+// app.use('/users/register', upload.single('avatar'), registrationRoute)
+// Putting this in the server file to get multer upload to work
+app.post('/users/register', upload.single('avatar'), registerUser)
 app.use('/users/login', loginRoute)
 app.use('/users/logout', logoutRoute)
 app.use('/users', userRoute)

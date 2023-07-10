@@ -107,6 +107,8 @@ const RegisterPage = () => {
 						justifyContent: 'center',
 					}}>
 					<form
+						method='post'
+						encType='multipart/form-data'
 						onSubmit={
 							password === confirmPassword
 								? submitHandler
