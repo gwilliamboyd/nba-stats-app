@@ -19,7 +19,7 @@ import standingsRoutes from './routes/standingsRoute.js'
 import loginRoute from './routes/loginRoute.js'
 import logoutRoute from './routes/logoutRoute.js'
 import userRoute from './routes/userRoute.js'
-import { registerUser } from '../controllers/authController.js'
+import { registerUser } from './controllers/authController.js'
 // Configure dir/file for image upload
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
