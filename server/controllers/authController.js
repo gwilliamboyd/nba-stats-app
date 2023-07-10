@@ -7,6 +7,7 @@ import asyncHandler from 'express-async-handler'
 export const registerUser = asyncHandler(async (req, res) => {
 	try {
 		const { name, email, password, avatar, favoriteTeams } = req.body
+		console.log(req.file)
 
 		const salt = await bcrypt.genSalt()
 		const passwordHash = await bcrypt.hash(password, salt)
