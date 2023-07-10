@@ -107,6 +107,7 @@ const RegisterPage = () => {
 						justifyContent: 'center',
 					}}>
 					<form
+						// action='/users/register'
 						method='post'
 						encType='multipart/form-data'
 						onSubmit={
@@ -163,7 +164,11 @@ const RegisterPage = () => {
 										padding: '0 1rem',
 									}}>
 									<div {...getRootProps()}>
-										<input {...getInputProps()} />
+										<input
+											type='file'
+											name='avatar'
+											{...getInputProps()}
+										/>
 										<p>Drag image here, or click to select file</p>
 									</div>
 								</section>
