@@ -44,14 +44,14 @@ app.use('/assets', express.static(path.join(__dirname, 'public/assets')))
 // Image upload
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, './assets')
+		cb(null, './uploads')
 	},
 	filename: function (req, file, cb) {
 		cb(null, file.originalname)
 	},
 })
 // const upload = multer({ storage: storage })
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ storage: storage })
 
 // Routes
 app.use('/stats/players', playersRoutes)
