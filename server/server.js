@@ -60,7 +60,7 @@ app.use('/standings', standingsRoutes)
 // Register from route file
 // app.use('/users/register', upload.single('avatar'), registrationRoute)
 // Putting this in the server file to get multer upload to work
-app.post('/users/register', upload.single('avatar'), registerUser)
+app.post('/users/register', upload.single('userAvatar'), registerUser)
 app.use('/users/login', loginRoute)
 app.use('/users/logout', logoutRoute)
 app.use('/users', userRoute)

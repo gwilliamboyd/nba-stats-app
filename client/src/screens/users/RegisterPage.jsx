@@ -34,6 +34,7 @@ const RegisterPage = () => {
 	const [password, setPassword] = useState('')
 	const [confirmPassword, setConfirmPassword] = useState('')
 	const [avatar, setAvatar] = useState('')
+	const [userAvatar, setUserAvatar] = useState('')
 
 	// const joinDate = new Date()
 
@@ -42,7 +43,16 @@ const RegisterPage = () => {
 	const submitHandler = async e => {
 		e.preventDefault()
 		try {
-			await register({ name, email, password, avatar }).unwrap()
+			const formData = new FormData()
+			formData.append('name', name)
+			formData.append('email', email)
+			formData.append('password', password)
+			formData.append('avatar', avatar)
+			formData.append('userAvatar', userAvatar)
+			// formData.append('avatar', e.target.files[0], e.target.files[0].name)
+			console.log(formData)
+			// await register({ name, email, password, avatar }).unwrap()
+			await register(formData)
 			// dispatch(setCredentials({ ...register }))
 			navigate('/')
 		} catch (err) {
@@ -152,28 +162,15 @@ const RegisterPage = () => {
 							textFieldStyles={textFieldStyles}
 						/>
 						<Typography>Upload Profile Picture</Typography>
-						<Dropzone
-							onDrop={acceptedFiles => {
-								console.log(acceptedFiles[0].name)
-								setAvatar(acceptedFiles[0].name)
-							}}>
-							{({ getRootProps, getInputProps }) => (
-								<section
-									style={{
-										border: `2px solid ${league.nbaWhite}`,
-										padding: '0 1rem',
-									}}>
-									<div {...getRootProps()}>
-										<input
-											type='file'
-											name='avatar'
-											{...getInputProps()}
-										/>
-										<p>Drag image here, or click to select file</p>
-									</div>
-								</section>
-							)}
-						</Dropzone>
+						<input
+							type='file'
+							name='avatar'
+							onChange={e => {
+								console.log(e.target.files[0].name)
+								setAvatar(e.target.files[0].name)
+								setUserAvatar(e.target.files[0])
+							}}
+						/>
 						<Button
 							variant='contained'
 							type='submit'>

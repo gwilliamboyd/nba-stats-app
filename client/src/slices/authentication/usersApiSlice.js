@@ -6,6 +6,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
 		register: builder.mutation({
 			query: data => ({
+				// data.append('file', file)
 				url: `${USERS_URL}/register`,
 				method: 'POST',
 				body: data,
