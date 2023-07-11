@@ -44,7 +44,7 @@ app.use('/assets', express.static(path.join(__dirname, 'public/assets')))
 // Image upload
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, process.cwd() + '/uploads/')
+		cb(null, './server/public/assets')
 	},
 	filename: function (req, file, cb) {
 		cb(null, file.originalname)
