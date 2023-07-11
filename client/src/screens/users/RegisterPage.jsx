@@ -1,14 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Box, Button, TextField, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Container } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
-import Dropzone from 'react-dropzone'
+// import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+// import Dropzone from 'react-dropzone'
 import { useRegisterMutation } from '../../slices/authentication/usersApiSlice'
-import { setCredentials } from '../../slices/authentication/authSlice'
+// import { setCredentials } from '../../slices/authentication/authSlice'
 import TextFieldContainer from '../../components/layout/users/TextFieldContainer'
+import Dropzone from 'react-dropzone'
 
 const RegisterPage = () => {
 	const theme = useTheme()
@@ -27,7 +28,7 @@ const RegisterPage = () => {
 
 	const navigate = useNavigate()
 	// redux
-	const dispatch = useDispatch()
+	// const dispatch = useDispatch()
 	// state
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
@@ -49,7 +50,6 @@ const RegisterPage = () => {
 			formData.append('password', password)
 			formData.append('avatar', avatar)
 			formData.append('userAvatar', userAvatar)
-			// formData.append('avatar', e.target.files[0], e.target.files[0].name)
 			console.log(formData)
 			// await register({ name, email, password, avatar }).unwrap()
 			await register(formData)
@@ -162,15 +162,35 @@ const RegisterPage = () => {
 							textFieldStyles={textFieldStyles}
 						/>
 						<Typography>Upload Profile Picture</Typography>
-						<input
-							type='file'
-							name='avatar'
-							onChange={e => {
+						<Dropzone
+							onDrop={acceptedFiles => {
+								console.log(acceptedFiles[0].name)
+								setAvatar(acceptedFiles[0].name)
+								setUserAvatar(acceptedFiles[0])
+							}}>
+							{({ getRootProps, getInputProps }) => (
+								<section
+									style={{
+										border: `2px solid ${league.nbaWhite}`,
+										padding: '0 1rem',
+									}}>
+									<div {...getRootProps()}>
+										<input
+											type='file'
+											name='userAvatar'
+											{...getInputProps()}
+											/* onChange={e => {
 								console.log(e.target.files[0].name)
 								setAvatar(e.target.files[0].name)
 								setUserAvatar(e.target.files[0])
-							}}
-						/>
+							}} */
+										/>
+										<p>Drag image here, or click to select file</p>
+									</div>
+								</section>
+							)}
+						</Dropzone>
+
 						<Button
 							variant='contained'
 							type='submit'>
