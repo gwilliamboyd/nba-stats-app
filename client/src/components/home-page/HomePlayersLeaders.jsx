@@ -3,6 +3,8 @@ import { Box, Grid, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react'
 import PlayerCard from '../PlayerCard'
 import { Link } from 'react-router-dom'
+import { Suspense } from 'react'
+import LoadingScreen from '../../screens/utility/LoadingScreen'
 
 const HomePlayersLeaders = ({ stat, statArray }) => {
 	const theme = useTheme()
@@ -42,59 +44,61 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 	const topFourPlayers = randomTopPlayers?.slice(0, 5)
 
 	return (
-		<Grid
-			container
-			width='100%'
-			justifyContent='center'
-			justifySelf={'center'}
-			columns={10}
-			columnSpacing={{ xs: 8, md: 10, lg: 18 }}>
-			{topFourPlayers?.map(p => {
-				const statValue = `p?.${stat}`
-				return (
-					<Grid
-						key={p?.player}
-						item
-						color={league.nbaWhite}
-						// xs={10}
-						md={5}
-						lg={2}>
-						<Box
-							sx={{
-								width: 'fit-content',
-								height: '100%',
-								display: 'flex',
-								flexDirection: 'column',
-								justifyContent: 'space-between',
-								alignItems: 'center',
-							}}>
-							<Link to={`/stats/players/${p?.id}`}>
-								<PlayerCard
-									width={220}
-									player={p?.player}
-								/>
-							</Link>
+		<Suspense fallback={<LoadingScreen />}>
+			<Grid
+				container
+				width='100%'
+				justifyContent='center'
+				justifySelf={'center'}
+				columns={10}
+				columnSpacing={{ xs: 8, md: 10, lg: 18 }}>
+				{topFourPlayers?.map(p => {
+					const statValue = `p?.${stat}`
+					return (
+						<Grid
+							key={p?.player}
+							item
+							color={league.nbaWhite}
+							// xs={10}
+							md={5}
+							lg={2}>
 							<Box
-								display={'flex'}
-								alignItems={'baseline'}
-								gap={'4px'}>
-								<Typography
-									variant='h6'
-									fontSize={32}
-									fontWeight={800}>
-									{eval(statValue)}
-								</Typography>
-								<Typography
-									variant='h6'
-									color={league.nbaRed}>
-									/Game
-								</Typography>
+								sx={{
+									width: 'fit-content',
+									height: '100%',
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'space-between',
+									alignItems: 'center',
+								}}>
+								<Link to={`/stats/players/${p?.id}`}>
+									<PlayerCard
+										width={220}
+										player={p?.player}
+									/>
+								</Link>
+								<Box
+									display={'flex'}
+									alignItems={'baseline'}
+									gap={'4px'}>
+									<Typography
+										variant='h6'
+										fontSize={32}
+										fontWeight={800}>
+										{eval(statValue)}
+									</Typography>
+									<Typography
+										variant='h6'
+										color={league.nbaRed}>
+										/Game
+									</Typography>
+								</Box>
 							</Box>
-						</Box>
-					</Grid>
-				)
-			})}
-		</Grid>
+						</Grid>
+					)
+				})}
+			</Grid>
+		</Suspense>
 	)
 }
 

@@ -167,52 +167,56 @@ const PlayerIndivPage = () => {
 							/>
 						</Box>
 					</Box>
-					<Grid
-						container
-						columns={6}
-						columnSpacing={4}
-						rowSpacing={2}
-						sx={{
-							width: { xs: '90%', sm: '75%', md: '60%', lg: '35%' },
-							marginTop: '1rem',
-						}}>
-						<QuickStat
-							heading='PTS'
-							featuredStat={statsPts}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='TRB'
-							featuredStat={statsTrb}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='AST'
-							featuredStat={statsAst}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='FG'
-							featuredStat={statsFg}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='FG%'
-							featuredStat={statsFgPer}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-						<QuickStat
-							heading='3P%'
-							featuredStat={stats3pPer}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
-						/>
-					</Grid>
+					{loading ? (
+						<LoadingScreenBlank />
+					) : (
+						<Grid
+							container
+							columns={6}
+							columnSpacing={4}
+							rowSpacing={2}
+							sx={{
+								width: { xs: '90%', sm: '75%', md: '60%', lg: '35%' },
+								marginTop: '1rem',
+							}}>
+							<QuickStat
+								heading='PTS'
+								featuredStat={statsPts}
+								secondaryColor={secondaryColor}
+								tertiaryColor={tertiaryColor}
+							/>
+							<QuickStat
+								heading='TRB'
+								featuredStat={statsTrb}
+								secondaryColor={secondaryColor}
+								tertiaryColor={tertiaryColor}
+							/>
+							<QuickStat
+								heading='AST'
+								featuredStat={statsAst}
+								secondaryColor={secondaryColor}
+								tertiaryColor={tertiaryColor}
+							/>
+							<QuickStat
+								heading='FG'
+								featuredStat={statsFg}
+								secondaryColor={secondaryColor}
+								tertiaryColor={tertiaryColor}
+							/>
+							<QuickStat
+								heading='FG%'
+								featuredStat={statsFgPer}
+								secondaryColor={secondaryColor}
+								tertiaryColor={tertiaryColor}
+							/>
+							<QuickStat
+								heading='3P%'
+								featuredStat={stats3pPer}
+								secondaryColor={secondaryColor}
+								tertiaryColor={tertiaryColor}
+							/>
+						</Grid>
+					)}
 				</Box>
 				{loading ? (
 					<LoadingScreenBlank />

@@ -3,8 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Box, CssBaseline } from '@mui/material'
 import Navbar from './components/Navbar'
 import LoadingScreen from './screens/utility/LoadingScreen'
-import HomePage from './screens/HomePage'
+// import HomePage from './screens/HomePage'
 const [
+	HomePage,
 	TeamsPage,
 	PlayersPage,
 	StandingsPage,
@@ -13,7 +14,9 @@ const [
 	LoginPage,
 	RegisterPage,
 	UserProfilePage,
+	FavoriteTeamsStats,
 ] = [
+	lazy(() => import('./screens/HomePage')),
 	lazy(() => import('./screens/teams/TeamsPage')),
 	lazy(() => import('./screens/players/PlayersPage')),
 	lazy(() => import('./screens/StandingsPage')),
@@ -22,12 +25,13 @@ const [
 	lazy(() => import('./screens/users/LoginPage')),
 	lazy(() => import('./screens/users/RegisterPage')),
 	lazy(() => import('./screens/users/UserProfilePage')),
+	lazy(() => import('./screens/FavoriteTeamsStats')),
 ]
 // import TeamIndivPage from './screens/teams/TeamIndivPage'
 // import LoginPage from './screens/users/LoginPage'
 // import RegisterPage from './screens/users/RegisterPage'
 // import UserProfilePage from './screens/users/UserProfilePage'
-import FavoriteTeamsStats from './screens/FavoriteTeamsStats'
+// import FavoriteTeamsStats from './screens/FavoriteTeamsStats'
 
 function App() {
 	return (

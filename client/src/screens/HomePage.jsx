@@ -10,10 +10,13 @@ import HomeTeamCard from '../components/user-profile/HomeTeamCard'
 import { Suspense, lazy, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPlayersPerGameStats } from '../slices/players-stats/playersPerGameSlice'
-import HomePlayersLeaders from '../components/home-page/HomePlayersLeaders'
+// import HomePlayersLeaders from '../components/home-page/HomePlayersLeaders'
 import LoadingScreen from './utility/LoadingScreen'
 // import HomePageBox from '../components/layout/HomePageBox'
 const HomePageBox = lazy(() => import('../components/layout/HomePageBox'))
+const HomePlayersLeaders = lazy(() =>
+	import('../components/home-page/HomePlayersLeaders')
+)
 
 const HomePage = () => {
 	const theme = useTheme()
@@ -53,22 +56,24 @@ const HomePage = () => {
 		const result = Math.floor(Math.random() * 3)
 		console.log(result)
 		return (
-			<Box justifyContent={'center'}>
-				<Typography
-					variant='h4'
-					fontWeight={700}
-					alignSelf={'flex-start'}>
-					{result === 0
-						? 'Top Scorers'
-						: result === 1
-						? 'Leaders From 3'
-						: 'Total Rebounds Per Game'}
-				</Typography>
-				<HomePlayersLeaders
-					stat={result === 0 ? 'pts' : result === 1 ? '$3p' : 'trb'}
-					statArray={possibleStatCategories[result]}
-				/>
-			</Box>
+			<Suspense fallback={<LoadingScreen />}>
+				<Box justifyContent={'center'}>
+					<Typography
+						variant='h4'
+						fontWeight={700}
+						alignSelf={'flex-start'}>
+						{result === 0
+							? 'Top Scorers'
+							: result === 1
+							? 'Leaders From 3'
+							: 'Total Rebounds Per Game'}
+					</Typography>
+					<HomePlayersLeaders
+						stat={result === 0 ? 'pts' : result === 1 ? '$3p' : 'trb'}
+						statArray={possibleStatCategories[result]}
+					/>
+				</Box>
+			</Suspense>
 		)
 	}
 

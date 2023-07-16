@@ -208,37 +208,47 @@ const Navbar = () => {
 													</MenuItem>
 												) : (
 													<>
-														<MenuItem
-															divider
-															sx={{ p: '1rem', fontSize: '2rem' }}
-															onClick={handleMobileClose}>
-															<Link to={'/login'}>Login</Link>
-														</MenuItem>
-														<MenuItem
-															divider
-															sx={{ p: '1rem', fontSize: '2rem' }}
-															onClick={handleMobileClose}>
-															<Link to={'/register'}>Register</Link>
-														</MenuItem>
+														<Link to={'/login'}>
+															<MenuItem
+																divider
+																sx={{ p: '1rem', fontSize: '2rem' }}
+																onClick={handleMobileClose}>
+																Login
+															</MenuItem>
+														</Link>
+														<Link to={'/register'}>
+															<MenuItem
+																divider
+																sx={{ p: '1rem', fontSize: '2rem' }}
+																onClick={handleMobileClose}>
+																Register
+															</MenuItem>
+														</Link>
 													</>
 												)}
-												<MenuItem
-													divider
-													sx={{ p: '1rem', fontSize: '2rem' }}
-													onClick={handleMobileClose}>
-													<Link to={'/standings'}>Standings</Link>
-												</MenuItem>
-												<MenuItem
-													divider
-													sx={{ p: '1rem', fontSize: '2rem' }}
-													onClick={handleMobileClose}>
-													<Link to={'/stats/teams'}>Teams</Link>
-												</MenuItem>
-												<MenuItem
-													sx={{ p: '1rem', fontSize: '2rem' }}
-													onClick={handleMobileClose}>
-													<Link to={'/stats/players'}>Players</Link>
-												</MenuItem>
+												<Link to={'/standings'}>
+													<MenuItem
+														divider
+														sx={{ p: '1rem', fontSize: '2rem' }}
+														onClick={handleMobileClose}>
+														Standings
+													</MenuItem>
+												</Link>
+												<Link to={'/stats/teams'}>
+													<MenuItem
+														divider
+														sx={{ p: '1rem', fontSize: '2rem' }}
+														onClick={handleMobileClose}>
+														Teams
+													</MenuItem>
+												</Link>
+												<Link to={'/stats/players'}>
+													<MenuItem
+														sx={{ p: '1rem', fontSize: '2rem' }}
+														onClick={handleMobileClose}>
+														Players
+													</MenuItem>
+												</Link>
 											</MenuList>
 										</ClickAwayListener>
 									</Paper>
@@ -284,18 +294,20 @@ const Navbar = () => {
 												aria-labelledby='composition-button'
 												onKeyDown={handleListKeyDown}
 												sx={{ zIndex: 20 }}>
-												<MenuItem
-													onClick={handleCloseSubMenu}
-													sx={{ p: '1rem', fontSize: '2rem' }}>
-													<Link to={'/profile'}>Profile</Link>
-												</MenuItem>
-												<MenuItem
-													onClick={handleCloseSubMenu}
-													sx={{ p: '1rem', fontSize: '2rem' }}>
-													<Link to={'/stats/teams/favorite-teams'}>
+												<Link to={'/profile'}>
+													<MenuItem
+														onClick={handleCloseSubMenu}
+														sx={{ p: '1rem', fontSize: '2rem' }}>
+														Profile
+													</MenuItem>
+												</Link>
+												<Link to={'/stats/teams/favorite-teams'}>
+													<MenuItem
+														onClick={handleCloseSubMenu}
+														sx={{ p: '1rem', fontSize: '2rem' }}>
 														Favorite Teams
-													</Link>
-												</MenuItem>
+													</MenuItem>
+												</Link>
 												<MenuItem
 													onClick={() => {
 														handleClose()
@@ -311,94 +323,6 @@ const Navbar = () => {
 								</Grow>
 							)}
 						</Popper>
-						{/* {userInfo ? (
-							<Box
-								sx={{
-									position: 'relative',
-									display: 'flex',
-									alignItems: 'center',
-									gap: '20px',
-								}}>
-								<UserAvatar
-									avatar={userInfo.avatar}
-									dimensions={50}
-								/>
-								<Box
-									ref={anchorRef}
-									sx={{
-										p: '4px 8px',
-										borderRadius: '6px',
-										'&:hover': {
-											cursor: 'pointer',
-										},
-									}}>
-									<Typography onClick={handleToggle}>
-										{userInfo.name}
-									</Typography>
-								</Box>
-								<Popper
-									open={open}
-									anchorEl={anchorRef.current}
-									// onMouseLeave={handleToggle}
-									role={undefined}
-									placement='bottom-start'
-									transition>
-									{({ TransitionProps, placement }) => (
-										<Grow
-											{...TransitionProps}
-											style={{
-												transformOrigin:
-													placement === 'bottom-start'
-														? 'left top'
-														: 'left bottom',
-											}}>
-											<Paper
-												sx={{
-													// border: `1px solid ${league.nbaWhite}`,
-													width: '140px',
-													boxShadow: '0px 2px 8px black',
-													backgroundColor: league.nbaBlue,
-													color: league.nbaWhite,
-												}}>
-												<ClickAwayListener onClickAway={handleClose}>
-													<MenuList
-														autoFocusItem={open}
-														id='composition-menu'
-														aria-labelledby='composition-button'
-														onKeyDown={handleListKeyDown}
-														sx={{ zIndex: 20 }}>
-														<MenuItem onClick={handleClose}>
-															<Link to={'/profile'}>Profile</Link>
-														</MenuItem>
-														<MenuItem onClick={handleClose}>
-															<Link to={'/stats/teams/favorite-teams'}>
-																Favorite Teams
-															</Link>
-														</MenuItem>
-														<MenuItem
-															onClick={() => {
-																handleClose()
-																logoutHandler()
-															}}>
-															Logout
-														</MenuItem>
-													</MenuList>
-												</ClickAwayListener>
-											</Paper>
-										</Grow>
-									)}
-								</Popper>
-							</Box>
-						) : (
-							<>
-								<Link to='/login'>
-									<Typography>Login</Typography>
-								</Link>
-								<Link to='/register'>
-									<Typography>Register</Typography>
-								</Link>
-							</>
-						)} */}
 					</Box>
 				</Box>
 			</Container>
@@ -509,14 +433,14 @@ const Navbar = () => {
 														aria-labelledby='composition-button'
 														onKeyDown={handleListKeyDown}
 														sx={{ zIndex: 20 }}>
-														<MenuItem onClick={handleClose}>
-															<Link to={'/profile'}>Profile</Link>
-														</MenuItem>
-														<MenuItem onClick={handleClose}>
-															<Link to={'/stats/teams/favorite-teams'}>
+														<Link to={'/profile'}>
+															<MenuItem onClick={handleClose}>Profile</MenuItem>
+														</Link>
+														<Link to={'/stats/teams/favorite-teams'}>
+															<MenuItem onClick={handleClose}>
 																Favorite Teams
-															</Link>
-														</MenuItem>
+															</MenuItem>
+														</Link>
 														<MenuItem
 															onClick={() => {
 																handleClose()

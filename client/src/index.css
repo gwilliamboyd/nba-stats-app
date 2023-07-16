@@ -49,3 +49,13 @@ a {
 	height: 14px;
 	margin-right: 0px;
 }
+
+.basicLink {
+	text-decoration: underline;
+}
+.basicLink:hover {
+	color: #b52532;
+}
+.navbarLink:hover {
+	color: #b52532;
+}
