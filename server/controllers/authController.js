@@ -26,7 +26,6 @@ export const registerUser = asyncHandler(async (req, res) => {
 				name: newUser.name,
 				email: newUser.email,
 				avatar: newUser.avatar,
-				joinDate: new Date(),
 			})
 		} else {
 			res.status(400)
