@@ -33,9 +33,9 @@ const FavoriteTeamOverview = ({
 	const statsFgPer = team.fgPer
 	const stats3pPer = team.$3pPer
 
-	const primaryColor = eval(`theme.palette.teams.${team.team}.primary`)
-	const secondaryColor = eval(`theme.palette.teams.${team.team}.secondary`)
-	const tertiaryColor = eval(`theme.palette.teams.${team.team}.tertiary`)
+	const primaryColor = eval(`theme.palette.teams.${team?.team}.primary`)
+	const secondaryColor = eval(`theme.palette.teams.${team?.team}.secondary`)
+	const tertiaryColor = eval(`theme.palette.teams.${team?.team}.tertiary`)
 
 	// STAT RANKINGS LEAGUE-WIDE
 	const sortByPoints = t => {
