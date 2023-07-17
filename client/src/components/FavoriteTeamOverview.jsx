@@ -28,7 +28,9 @@ const FavoriteTeamOverview = ({
 	console.log(team)
 	// theme
 	// const theme = useTheme()
-	console.log(primaryColor)
+	console.log(`Primary Color is: ${primaryColor}`)
+	console.log(`Secondary Color is: ${secondaryColor}`)
+	console.log(`Tertiary Color is: ${tertiaryColor}`)
 
 	// Quick stats overview
 	const statsPts = team.pts
