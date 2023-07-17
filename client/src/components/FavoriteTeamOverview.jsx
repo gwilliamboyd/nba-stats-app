@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useTheme } from '@mui/material/styles'
 import { Box, Container, Grid, Typography } from '@mui/material'
 import fullTeamNames from '../hooks/fullTeamNames'
@@ -33,10 +34,21 @@ const FavoriteTeamOverview = ({
 	const statsFgPer = team.fgPer
 	const stats3pPer = team.$3pPer
 
-	const primaryColor = eval(`theme.palette.teams.${team?.team}.primary`)
+	const teamName = team.team
+	console.log(teamName)
+
+	const primaryColor = eval(`theme.palette.teams.${teamName}.primary`)
+	// const primaryColor = theme.palette.teams.teamName.primary
 	console.log(primaryColor)
-	const secondaryColor = eval(`theme.palette.teams.${team?.team}.secondary`)
-	const tertiaryColor = eval(`theme.palette.teams.${team?.team}.tertiary`)
+	const secondaryColor = eval(`theme.palette.teams.${teamName}.secondary`)
+	const tertiaryColor = eval(`theme.palette.teams.${teamName}.tertiary`)
+
+	/* 	const determineColors = teamName => {
+		const primaryColor = `theme.palette.teams.${teamName}.primary`
+	}
+	useEffect(() => {
+		determineColors(team.team)
+	}, []) */
 
 	// STAT RANKINGS LEAGUE-WIDE
 	const sortByPoints = t => {
