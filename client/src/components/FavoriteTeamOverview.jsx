@@ -1,4 +1,4 @@
-import { useTheme } from '@emotion/react'
+import { useTheme } from '@mui/material/styles'
 import { Box, Container, Grid, Typography } from '@mui/material'
 import fullTeamNames from '../hooks/fullTeamNames'
 import TeamIndivStatsRow from './stats-pages/TeamIndivStatsRow'
@@ -21,7 +21,7 @@ const FavoriteTeamOverview = ({
 	leagueStandings = Object.values(leagueStandings)[0]
 	console.log(ptsLeaders)
 	console.log(threePLeaders)
-
+	console.log(team)
 	// theme
 	const theme = useTheme()
 
@@ -34,6 +34,7 @@ const FavoriteTeamOverview = ({
 	const stats3pPer = team.$3pPer
 
 	const primaryColor = eval(`theme.palette.teams.${team?.team}.primary`)
+	console.log(primaryColor)
 	const secondaryColor = eval(`theme.palette.teams.${team?.team}.secondary`)
 	const tertiaryColor = eval(`theme.palette.teams.${team?.team}.tertiary`)
 
