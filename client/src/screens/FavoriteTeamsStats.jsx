@@ -234,6 +234,15 @@ const FavoriteTeamsStats = () => {
 						{teamOverviewStats.map(team => {
 							const ptsLeaders = getPointsLeaders(team.team)
 							const threePLeaders = get3PLeaders(team.team)
+							const primaryColor = eval(
+								`theme.palette.teams.${team.team}.primary`
+							)
+							const secondaryColor = eval(
+								`theme.palette.teams.${team.team}.secondary`
+							)
+							const tertiaryColor = eval(
+								`theme.palette.teams.${team.team}.tertiary`
+							)
 							return (
 								<FavoriteTeamOverview
 									key={team}
@@ -242,6 +251,9 @@ const FavoriteTeamsStats = () => {
 									leagueStandings={leagueStandings}
 									ptsLeaders={ptsLeaders}
 									threePLeaders={threePLeaders}
+									primaryColor={primaryColor}
+									secondaryColor={secondaryColor}
+									tertiaryColor={tertiaryColor}
 								/>
 							)
 						})}

@@ -17,6 +17,9 @@ const FavoriteTeamOverview = ({
 	leagueStandings,
 	ptsLeaders,
 	threePLeaders,
+	primaryColor,
+	secondaryColor,
+	tertiaryColor,
 }) => {
 	// extract array of team objects from passed-in standings object
 	leagueStandings = Object.values(leagueStandings)[0]
@@ -24,7 +27,8 @@ const FavoriteTeamOverview = ({
 	console.log(threePLeaders)
 	console.log(team)
 	// theme
-	const theme = useTheme()
+	// const theme = useTheme()
+	console.log(primaryColor)
 
 	// Quick stats overview
 	const statsPts = team.pts
@@ -37,11 +41,9 @@ const FavoriteTeamOverview = ({
 	const teamName = team.team
 	console.log(teamName)
 
-	const primaryColor = eval(`theme.palette.teams.${teamName}.primary`)
-	// const primaryColor = theme.palette.teams.teamName.primary
-	console.log(primaryColor)
-	const secondaryColor = eval(`theme.palette.teams.${teamName}.secondary`)
-	const tertiaryColor = eval(`theme.palette.teams.${teamName}.tertiary`)
+	// const primaryColor = eval(`theme.palette.teams.${teamName}.primary`)
+	// const secondaryColor = eval(`theme.palette.teams.${teamName}.secondary`)
+	// const tertiaryColor = eval(`theme.palette.teams.${teamName}.tertiary`)
 
 	/* 	const determineColors = teamName => {
 		const primaryColor = `theme.palette.teams.${teamName}.primary`
