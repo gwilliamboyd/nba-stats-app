@@ -80,96 +80,97 @@ const PlayerIndivPage = () => {
 				height: { xs: '100%', lg: 'calc(100vh - 100px)' },
 				backgroundColor: primaryColor,
 			}}>
-			<Box
-				sx={{
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					gap: '1rem',
-				}}>
+			{loading ? (
+				<LoadingScreenBlank />
+			) : (
 				<Box
 					sx={{
-						marginTop: '3rem',
-						width: { xs: '95%', lg: '75%' },
 						display: 'flex',
-						flexDirection: { xs: 'column', lg: 'row' },
-						justifyContent: 'space-between',
+						flexDirection: 'column',
 						alignItems: 'center',
+						gap: '1rem',
 					}}>
 					<Box
 						sx={{
-							width: '100%',
+							marginTop: '3rem',
+							width: { xs: '95%', lg: '75%' },
 							display: 'flex',
-							flexDirection: { xs: 'column', md: 'row' },
-							justifyContent: { xs: 'center', lg: 'flex-start' },
-							alignItems: { xs: 'center', md: 'flex-start' },
-							gap: '2rem',
+							flexDirection: { xs: 'column', lg: 'row' },
+							justifyContent: 'space-between',
+							alignItems: 'center',
 						}}>
-						<PlayerAvatar
-							team={team}
-							src={`/images/players/${player?.player}.png`}
-							secondaryColor={secondaryColor}
-						/>
 						<Box
 							sx={{
+								width: '100%',
 								display: 'flex',
-								flexDirection: 'column',
+								flexDirection: { xs: 'column', md: 'row' },
+								justifyContent: { xs: 'center', lg: 'flex-start' },
 								alignItems: { xs: 'center', md: 'flex-start' },
-								justifyContent: { xs: 'center', md: 'flex-start' },
-								gap: '16px',
+								gap: '2rem',
 							}}>
-							<Typography
-								color={tertiaryColor}
-								fontWeight={800}
-								variant='h3'
-								sx={{
-									fontSize: { xs: '2.5rem', md: '3.2rem' },
-									marginTop: { xs: '0', md: '2rem' },
-									letterSpacing: '-2.5px',
-								}}>
-								{player?.player}
-							</Typography>
+							<PlayerAvatar
+								team={team}
+								src={`/images/players/${player?.player}.png`}
+								secondaryColor={secondaryColor}
+							/>
 							<Box
 								sx={{
 									display: 'flex',
-									alignItems: 'baseline',
-									gap: '12px',
+									flexDirection: 'column',
+									alignItems: { xs: 'center', md: 'flex-start' },
+									justifyContent: { xs: 'center', md: 'flex-start' },
+									gap: '16px',
 								}}>
 								<Typography
-									color={secondaryColor}
-									marginLeft={'0.2rem'}
-									variant='h5'
-									fontWeight={700}>
-									{fullTeamNames(team)}
-								</Typography>
-								<Typography
-									variant='h5'
-									fontWeight={700}
-									color={tertiaryColor}>
-									|
-								</Typography>
-								<Typography
 									color={tertiaryColor}
-									variant='h5'
-									fontWeight={700}>
-									{player?.pos}
+									fontWeight={800}
+									variant='h3'
+									sx={{
+										fontSize: { xs: '2.5rem', md: '3.2rem' },
+										marginTop: { xs: '0', md: '2rem' },
+										letterSpacing: '-2.5px',
+									}}>
+									{player?.player}
 								</Typography>
+								<Box
+									sx={{
+										display: 'flex',
+										alignItems: 'baseline',
+										gap: '12px',
+									}}>
+									<Typography
+										color={secondaryColor}
+										marginLeft={'0.2rem'}
+										variant='h5'
+										fontWeight={700}>
+										{fullTeamNames(team)}
+									</Typography>
+									<Typography
+										variant='h5'
+										fontWeight={700}
+										color={tertiaryColor}>
+										|
+									</Typography>
+									<Typography
+										color={tertiaryColor}
+										variant='h5'
+										fontWeight={700}>
+										{player?.pos}
+									</Typography>
+								</Box>
+							</Box>
+							<Box sx={{ display: { xs: 'none', md: 'block' } }}>
+								<img
+									src={`/images/svgs/team-logos/${team}.svg`}
+									alt={`${team} logo`}
+									width={100}
+									style={{
+										marginLeft: '-1rem',
+									}}
+								/>
 							</Box>
 						</Box>
-						<Box sx={{ display: { xs: 'none', md: 'block' } }}>
-							<img
-								src={`/images/svgs/team-logos/${team}.svg`}
-								alt={`${team} logo`}
-								width={100}
-								style={{
-									marginLeft: '-1rem',
-								}}
-							/>
-						</Box>
-					</Box>
-					{loading ? (
-						<LoadingScreenBlank />
-					) : (
+
 						<Grid
 							container
 							columns={6}
@@ -216,94 +217,95 @@ const PlayerIndivPage = () => {
 								tertiaryColor={tertiaryColor}
 							/>
 						</Grid>
+					</Box>
+
+					{loading ? (
+						<LoadingScreenBlank />
+					) : (
+						<Box
+							sx={{
+								width: '80%',
+								display: 'flex',
+								flexDirection: 'column',
+								justifyContent: 'center',
+								gap: '2rem',
+							}}>
+							<Box
+								sx={{
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'center',
+									gap: '0.5rem',
+								}}>
+								<Typography
+									variant='h5'
+									fontWeight={700}
+									color={tertiaryColor}
+									sx={{ alignSelf: 'flex-start' }}>
+									Per-Game
+								</Typography>
+								<PlayerIndivStatsRow
+									team={team}
+									primaryColor={primaryColor}
+									secondaryColor={secondaryColor}
+									tertiaryColor={tertiaryColor}
+									statsType={'perGame'}
+									loading={loading}
+									statistics={playerIndivStatistics}
+								/>
+							</Box>
+							<Box
+								sx={{
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'center',
+									gap: '0.5rem',
+								}}>
+								<Typography
+									variant='h5'
+									fontWeight={700}
+									color={tertiaryColor}
+									sx={{ alignSelf: 'flex-start' }}>
+									Totals
+								</Typography>
+								<PlayerIndivStatsRow
+									team={team}
+									primaryColor={primaryColor}
+									secondaryColor={secondaryColor}
+									tertiaryColor={tertiaryColor}
+									statsType={'total'}
+									loading={loading}
+									statistics={playerIndivStatistics}
+								/>
+							</Box>
+							<Box
+								sx={{
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'center',
+									gap: '0.5rem',
+								}}>
+								<Typography
+									variant='h5'
+									fontWeight={700}
+									color={tertiaryColor}
+									sx={{ alignSelf: 'flex-start' }}>
+									Advanced
+								</Typography>
+								<PlayerIndivStatsRow
+									team={team}
+									primaryColor={primaryColor}
+									secondaryColor={secondaryColor}
+									tertiaryColor={tertiaryColor}
+									statsType={'advanced'}
+									loading={loading}
+									statistics={playerIndivStatistics}
+								/>
+							</Box>
+						</Box>
 					)}
 				</Box>
-				{loading ? (
-					<LoadingScreenBlank />
-				) : (
-					<Box
-						sx={{
-							width: '80%',
-							display: 'flex',
-							flexDirection: 'column',
-							justifyContent: 'center',
-							gap: '2rem',
-						}}>
-						<Box
-							sx={{
-								display: 'flex',
-								flexDirection: 'column',
-								justifyContent: 'center',
-								gap: '0.5rem',
-							}}>
-							<Typography
-								variant='h5'
-								fontWeight={700}
-								color={tertiaryColor}
-								sx={{ alignSelf: 'flex-start' }}>
-								Per-Game
-							</Typography>
-							<PlayerIndivStatsRow
-								team={team}
-								primaryColor={primaryColor}
-								secondaryColor={secondaryColor}
-								tertiaryColor={tertiaryColor}
-								statsType={'perGame'}
-								loading={loading}
-								statistics={playerIndivStatistics}
-							/>
-						</Box>
-						<Box
-							sx={{
-								display: 'flex',
-								flexDirection: 'column',
-								justifyContent: 'center',
-								gap: '0.5rem',
-							}}>
-							<Typography
-								variant='h5'
-								fontWeight={700}
-								color={tertiaryColor}
-								sx={{ alignSelf: 'flex-start' }}>
-								Totals
-							</Typography>
-							<PlayerIndivStatsRow
-								team={team}
-								primaryColor={primaryColor}
-								secondaryColor={secondaryColor}
-								tertiaryColor={tertiaryColor}
-								statsType={'total'}
-								loading={loading}
-								statistics={playerIndivStatistics}
-							/>
-						</Box>
-						<Box
-							sx={{
-								display: 'flex',
-								flexDirection: 'column',
-								justifyContent: 'center',
-								gap: '0.5rem',
-							}}>
-							<Typography
-								variant='h5'
-								fontWeight={700}
-								color={tertiaryColor}
-								sx={{ alignSelf: 'flex-start' }}>
-								Advanced
-							</Typography>
-							<PlayerIndivStatsRow
-								team={team}
-								primaryColor={primaryColor}
-								secondaryColor={secondaryColor}
-								tertiaryColor={tertiaryColor}
-								statsType={'advanced'}
-								loading={loading}
-								statistics={playerIndivStatistics}
-							/>
-						</Box>
-					</Box>
-				)}
-			</Box>
+			)}
 		</Container>
 	)
 }
