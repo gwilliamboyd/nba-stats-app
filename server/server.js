@@ -51,6 +51,7 @@ const storage = multer.diskStorage({
 	},
 })
 // const upload = multer({ storage: storage })
+// test 1 2 3
 const upload = multer({ storage: storage })
 
 // Routes
