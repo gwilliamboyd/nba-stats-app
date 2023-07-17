@@ -4,7 +4,7 @@ import { Box, Grid, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react'
 import PlayerCard from '../PlayerCard'
 import { Link } from 'react-router-dom'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 
 const HomePlayersLeaders = ({ stat, statArray }) => {
 	const theme = useTheme()
@@ -29,6 +29,37 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 		.sort((a, b) => a.sort - b.sort)
 		.map(({ v }) => v)
 		.slice(0, 5)
+	/* let topFivePlayers = sortByPoints => {
+		for (let i = sortByPoints.length - 1; i > 0; i--) {
+			const j = (Math.floor(Math.random() * (i + 1))[
+				(sortByPoints[i], sortByPoints[j])
+			] = [sortByPoints[j], sortByPoints[i]])
+		}
+	}
+	console.log(topFivePlayers) */
+	/* const numArray = [0, 1, 2, 3, 4]
+	function shuffleArray(array) {
+		for (let i = array.length - 1; i > 0; i--) {
+			let j = Math.floor(Math.random() * (i + 1))
+			let temp = array[i]
+			array[i] = array[j]
+			array[j] = temp
+		}
+		return array.slice(0, 5)
+	}
+	useEffect(() => {
+		console.log(shuffleArray(sortByPoints))
+	}, [sortByPoints]) */
+	/* const topFivePlayers = useMemo(() => {
+		for (let i = sortByPoints.length - 1; i > 0; i--) {
+			let j = Math.floor(Math.random() * (i + 1))
+			let temp = sortByPoints[i]
+			sortByPoints[i] = sortByPoints[j]
+			sortByPoints[j] = temp
+		}
+		return sortByPoints.slice(0, 5)
+	}, [sortByPoints])
+	console.log(topFivePlayers) */
 
 	return (
 		<Grid

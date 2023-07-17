@@ -2,24 +2,24 @@
 import { Grid, Box, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
-// import backgroundKawhi from '/images/kawhi-leonard.jpg'
 // Getting data from data folder seems easier since I'm only
 // trying to map over them to get the logo images, not any stats
 import teams from '../data/teams-perGame.json'
 import HomeTeamCard from '../components/user-profile/HomeTeamCard'
-import { Suspense, lazy, useEffect, useMemo } from 'react'
+import { Suspense, lazy, /* memo, */ useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPlayersPerGameStats } from '../slices/players-stats/playersPerGameSlice'
-// import HomePlayersLeaders from '../components/home-page/HomePlayersLeaders'
 import LoadingScreen from './utility/LoadingScreen'
 import LoadingScreenBlank from './utility/LoadingScreenBlank'
-// import HomePageBox from '../components/layout/HomePageBox'
 const HomePageBox = lazy(() => import('../components/layout/HomePageBox'))
 const HomePlayersLeaders = lazy(() =>
 	import('../components/home-page/HomePlayersLeaders')
 )
 
 const HomePage = () => {
+	// memo components
+	// const MemoHomePageBox = memo(HomePageBox)
+
 	const theme = useTheme()
 	const { league } = theme.palette
 
@@ -53,24 +53,13 @@ const HomePage = () => {
 		sortableStats$3p,
 		sortableStatsTrb,
 	]
-	/* const getRandomStatsLeader = () => {
-		const result = Math.floor(Math.random() * 3)
-		// console.log(result)
-		return result
-	} */
 	const getRandomStatsLeader = useMemo(() => {
 		const result = Math.floor(Math.random() * 3)
-		// console.log(result)
 		return result
 	}, [])
-	/* useEffect(() => {
-		console.log(getRandomStatsLeader())
-	}, []) */
 
 	return (
-		// <Suspense fallback={<LoadingScreen />}>
 		<Box
-			// disableGutters
 			sx={{
 				backgroundColor: league.nbaBackground,
 				width: { xs: '100%', md: 'calc(100vw - 8px)' },

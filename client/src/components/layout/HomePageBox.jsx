@@ -12,6 +12,7 @@ const HomePageBox = ({
 	return (
 		<Box
 			width='100%'
+			height='100%'
 			color={league.nbaWhite}
 			sx={{
 				padding: '2rem 0 4rem',
