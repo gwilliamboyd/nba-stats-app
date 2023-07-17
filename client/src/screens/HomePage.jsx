@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Grid, Box, Typography, Container } from '@mui/material'
+import { Grid, Box, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
 // import backgroundKawhi from '/images/kawhi-leonard.jpg'
@@ -7,11 +7,12 @@ import { Link } from 'react-router-dom'
 // trying to map over them to get the logo images, not any stats
 import teams from '../data/teams-perGame.json'
 import HomeTeamCard from '../components/user-profile/HomeTeamCard'
-import { Suspense, lazy, useEffect } from 'react'
+import { Suspense, lazy, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPlayersPerGameStats } from '../slices/players-stats/playersPerGameSlice'
 // import HomePlayersLeaders from '../components/home-page/HomePlayersLeaders'
 import LoadingScreen from './utility/LoadingScreen'
+import LoadingScreenBlank from './utility/LoadingScreenBlank'
 // import HomePageBox from '../components/layout/HomePageBox'
 const HomePageBox = lazy(() => import('../components/layout/HomePageBox'))
 const HomePlayersLeaders = lazy(() =>
@@ -52,30 +53,19 @@ const HomePage = () => {
 		sortableStats$3p,
 		sortableStatsTrb,
 	]
-	const getRandomStatsLeader = () => {
+	/* const getRandomStatsLeader = () => {
 		const result = Math.floor(Math.random() * 3)
-		console.log(result)
-		return (
-			<Suspense fallback={<LoadingScreen />}>
-				<Box justifyContent={'center'}>
-					<Typography
-						variant='h4'
-						fontWeight={700}
-						alignSelf={'flex-start'}>
-						{result === 0
-							? 'Top Scorers'
-							: result === 1
-							? 'Leaders From 3'
-							: 'Total Rebounds Per Game'}
-					</Typography>
-					<HomePlayersLeaders
-						stat={result === 0 ? 'pts' : result === 1 ? '$3p' : 'trb'}
-						statArray={possibleStatCategories[result]}
-					/>
-				</Box>
-			</Suspense>
-		)
-	}
+		// console.log(result)
+		return result
+	} */
+	const getRandomStatsLeader = useMemo(() => {
+		const result = Math.floor(Math.random() * 3)
+		// console.log(result)
+		return result
+	}, [])
+	/* useEffect(() => {
+		console.log(getRandomStatsLeader())
+	}, []) */
 
 	return (
 		// <Suspense fallback={<LoadingScreen />}>
@@ -129,7 +119,7 @@ const HomePage = () => {
 						</Grid>
 					</HomePageBox>
 				</Suspense>
-				<Suspense fallback={<LoadingScreen />}>
+				<Suspense fallback={<LoadingScreenBlank />}>
 					<HomePageBox
 						league={league}
 						homeHeading={'Player Stats'}
@@ -141,7 +131,28 @@ const HomePage = () => {
 							alignSelf={'flex-start'}>
 							Top Scorers
 						</Typography> */}
-						{getRandomStatsLeader()}
+						<Box justifyContent={'center'}>
+							<Typography
+								variant='h4'
+								fontWeight={700}
+								alignSelf={'flex-start'}>
+								{getRandomStatsLeader === 0
+									? 'Top Scorers'
+									: getRandomStatsLeader === 1
+									? 'Leaders From 3'
+									: 'Total Rebounds Per Game'}
+							</Typography>
+							<HomePlayersLeaders
+								stat={
+									getRandomStatsLeader === 0
+										? 'pts'
+										: getRandomStatsLeader === 1
+										? '$3p'
+										: 'trb'
+								}
+								statArray={possibleStatCategories[getRandomStatsLeader]}
+							/>
+						</Box>
 					</HomePageBox>
 				</Suspense>
 			</Grid>

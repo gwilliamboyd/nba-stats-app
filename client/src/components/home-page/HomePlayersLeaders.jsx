@@ -1,104 +1,89 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { Box, Grid, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react'
 import PlayerCard from '../PlayerCard'
 import { Link } from 'react-router-dom'
-import { Suspense } from 'react'
-import LoadingScreen from '../../screens/utility/LoadingScreen'
+import { useMemo } from 'react'
 
 const HomePlayersLeaders = ({ stat, statArray }) => {
 	const theme = useTheme()
 	const { league } = theme.palette
 
-	// console.log(statArray)
-
 	const sortOperation = `b.${stat} - a.${stat}`
 
 	// PTS PER GAME
-	const sortByPoints = t => {
+	const sortByPoints = useMemo(() => {
 		// not actually an error
 		// a and b are reflected in sort operation
 		// which is being evaluated
-		const ptsSorted = t?.sort((a, b) => eval(sortOperation))
+		const ptsSorted = statArray
+			?.sort((a, b) => eval(sortOperation))
+			.slice(0, 10)
+		console.log(ptsSorted)
 		return ptsSorted
-	}
-	const sortedStats = sortByPoints(statArray)
-	// console.log(sortedStats)
+	}, [statArray])
 
-	// Don't delete yet
-	const createTopTen = array => {
-		let topTen = []
-		for (let i = 0; i < 10; i++) {
-			topTen?.push(array[i])
-		}
-		return topTen
-	}
-	const topTen = createTopTen(sortedStats)
-	// console.log(topTen)
-
-	let randomTopPlayers = topTen
+	let topFivePlayers = sortByPoints
 		?.map(v => ({ v, sort: Math.random() }))
 		.sort((a, b) => a.sort - b.sort)
 		.map(({ v }) => v)
-	// console.log(randomTopPlayers)
-	const topFourPlayers = randomTopPlayers?.slice(0, 5)
+		.slice(0, 5)
 
 	return (
-		<Suspense fallback={<LoadingScreen />}>
-			<Grid
-				container
-				width='100%'
-				justifyContent='center'
-				justifySelf={'center'}
-				columns={10}
-				columnSpacing={{ xs: 8, md: 10, lg: 18 }}>
-				{topFourPlayers?.map(p => {
-					const statValue = `p?.${stat}`
-					return (
-						<Grid
-							key={p?.player}
-							item
-							color={league.nbaWhite}
-							// xs={10}
-							md={5}
-							lg={2}>
+		<Grid
+			container
+			width='100%'
+			justifyContent='center'
+			justifySelf={'center'}
+			columns={10}
+			columnSpacing={{ xs: 8, md: 10, lg: 18 }}>
+			{topFivePlayers?.map(p => {
+				const statValue = `p?.${stat}`
+				return (
+					<Grid
+						key={p?.player}
+						item
+						color={league.nbaWhite}
+						// xs={10}
+						md={5}
+						lg={2}>
+						<Box
+							sx={{
+								width: 'fit-content',
+								height: '100%',
+								display: 'flex',
+								flexDirection: 'column',
+								justifyContent: 'space-between',
+								alignItems: 'center',
+							}}>
+							<Link to={`/stats/players/${p?.id}`}>
+								<PlayerCard
+									width={220}
+									player={p?.player}
+								/>
+							</Link>
 							<Box
-								sx={{
-									width: 'fit-content',
-									height: '100%',
-									display: 'flex',
-									flexDirection: 'column',
-									justifyContent: 'space-between',
-									alignItems: 'center',
-								}}>
-								<Link to={`/stats/players/${p?.id}`}>
-									<PlayerCard
-										width={220}
-										player={p?.player}
-									/>
-								</Link>
-								<Box
-									display={'flex'}
-									alignItems={'baseline'}
-									gap={'4px'}>
-									<Typography
-										variant='h6'
-										fontSize={32}
-										fontWeight={800}>
-										{eval(statValue)}
-									</Typography>
-									<Typography
-										variant='h6'
-										color={league.nbaRed}>
-										/Game
-									</Typography>
-								</Box>
+								display={'flex'}
+								alignItems={'baseline'}
+								gap={'4px'}>
+								<Typography
+									variant='h6'
+									fontSize={32}
+									fontWeight={800}>
+									{eval(statValue)}
+								</Typography>
+								<Typography
+									variant='h6'
+									color={league.nbaRed}>
+									/Game
+								</Typography>
 							</Box>
-						</Grid>
-					)
-				})}
-			</Grid>
-		</Suspense>
+						</Box>
+					</Grid>
+				)
+			})}
+		</Grid>
 	)
 }
 
