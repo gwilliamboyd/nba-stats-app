@@ -54,7 +54,8 @@ export const loginUser = asyncHandler(async (req, res) => {
 	const token = jwt.sign({ user }, 'Toolfan123458', { expiresIn: '2d' })
 
 	res.cookie('token', token, {
-		// domain: 'https://nba-stats-app-62o4.onrender.com',
+		domain: 'https://nba-stats-app-62o4.onrender.com',
+		path: '/',
 		httpOnly: true,
 		secure: true,
 		sameSite: 'none',
