@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Box, CssBaseline } from '@mui/material'
 import Navbar from './components/Navbar'
 import LoadingScreen from './screens/utility/LoadingScreen'
+import ErrorPage from './screens/ErrorPage'
 // import HomePage from './screens/HomePage'
 const [
 	HomePage,
@@ -84,6 +85,10 @@ function App() {
 						<Route
 							path={`/profile`}
 							element={<UserProfilePage />}
+						/>
+						<Route
+							path={`/*`}
+							element={<ErrorPage />}
 						/>
 					</Routes>
 				</Suspense>

@@ -186,7 +186,7 @@ const FavoriteTeamsStats = () => {
 						display: 'flex',
 						justifyContent: 'center',
 						alignSelf: 'flex-start',
-						margin: { xs: '1.5rem 0 1rem', md: '3rem 0 1rem' },
+						margin: { xs: '1.5rem 0 1rem', md: '2rem 0' },
 						width: '100%',
 					}}>
 					<Box

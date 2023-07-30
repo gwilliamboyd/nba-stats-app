@@ -1,11 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useTheme } from '@mui/material/styles'
 import { Box, Container, Grid, Typography } from '@mui/material'
 import fullTeamNames from '../hooks/fullTeamNames'
-import TeamIndivStatsRow from './stats-pages/TeamIndivStatsRow'
-import QuickStat from './stats-pages/quick-stats/QuickStat'
-import { useEffect } from 'react'
-import allTeams from '../data/teams-perGame.json'
 import SlashIcon from '../../public/images/svgs/SlashIcon'
 import PlayerCard from './PlayerCard'
 import { Link } from 'react-router-dom'
@@ -405,7 +400,9 @@ const FavoriteTeamOverview = ({
 						</Typography>
 						<Grid
 							container
-							columns={2}>
+							columns={2}
+							rowGap={4}
+							paddingTop={'0.75rem'}>
 							<Grid
 								item
 								xs={1}>

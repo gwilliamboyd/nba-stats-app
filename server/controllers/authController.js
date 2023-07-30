@@ -49,9 +49,9 @@ export const loginUser = asyncHandler(async (req, res) => {
 	if (!isMatch) {
 		return res.status(400).json({ message: 'Invalid email or password' })
 	}
-	delete user.password
+	// delete user.password
 
-	const token = jwt.sign({ user }, 'Toolfan123458', { expiresIn: '8h' })
+	const token = jwt.sign({ user }, 'Toolfan123458', { expiresIn: '2d' })
 
 	res.cookie('token', token, {
 		// domain: 'https://nba-stats-app-62o4.onrender.com',
@@ -67,11 +67,17 @@ export const loginUser = asyncHandler(async (req, res) => {
 		favoriteTeams: user.favoriteTeams,
 		token: token,
 	})
-	// return res.redirect('/')
 })
 
 export const logoutUser = (req, res) => {
-	res.cookie('jwt', '', { httpOnly: true, expires: new Date(0) })
+	console.log('log out')
+	res.cookie('token', '', {
+		httpOnly: true,
+		secure: true,
+		sameSite: 'none',
+		expires: new Date(0),
+	})
+
 	res.status(200).json({ message: 'Logged out successfully' })
 }
 export const getUser = asyncHandler(async (req, res) => {
@@ -83,16 +89,7 @@ export const getUser = asyncHandler(async (req, res) => {
 		avatar: req.user.avatar,
 		favoriteTeams: req.user.favoriteTeams,
 	}
-	// console.log(req)
 	res.status(200).json(user)
-	// ED ROH METHOD
-	/* try {
-		const { id } = req.params
-		const user = await User.findById(id)
-		res.status(200).json(user)
-	} catch (err) {
-		res.status(404).json({ message: err.message })
-	} */
 })
 
 export const updateUser = asyncHandler(async (req, res) => {
