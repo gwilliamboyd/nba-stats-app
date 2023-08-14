@@ -9,8 +9,7 @@ export const getUser = asyncHandler(async (req, res) => {
 		avatar: req.user.avatar,
 		favoriteTeams: req.user.favoriteTeams,
 	}
-	console.log(req)
-	// res.status(200).json(user)
+	res.status(200).json(user)
 })
 
 export const updateUser = asyncHandler(async (req, res) => {

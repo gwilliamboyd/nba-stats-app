@@ -28,13 +28,32 @@ const [
 	lazy(() => import('./screens/users/UserProfilePage')),
 	lazy(() => import('./screens/FavoriteTeamsStats')),
 ]
-// import TeamIndivPage from './screens/teams/TeamIndivPage'
-// import LoginPage from './screens/users/LoginPage'
-// import RegisterPage from './screens/users/RegisterPage'
-// import UserProfilePage from './screens/users/UserProfilePage'
-// import FavoriteTeamsStats from './screens/FavoriteTeamsStats'
+// Logout imports
+import { useDispatch } from 'react-redux'
+import { logout } from './slices/authentication/authSlice'
+import { useLogoutMutation } from './slices/authentication/usersApiSlice'
 
 function App() {
+	/* handle logout when user closes browser
+		JWT is already destroyed anyhow
+	*/
+	// util
+	const dispatch = useDispatch()
+
+	// Logout mutation
+	const [logoutApiCall] = useLogoutMutation()
+
+	const logoutHandler = async () => {
+		try {
+			await logoutApiCall().unwrap()
+			dispatch(logout())
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
+	// call logout on window close
+	window.addEventListener('beforeunload', logoutHandler)
 	return (
 		<Box
 			sx={{

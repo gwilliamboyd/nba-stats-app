@@ -4,13 +4,11 @@ import {
 	Box,
 	Typography,
 	MenuItem,
-	Menu,
 	Grow,
 	Paper,
 	MenuList,
 	ClickAwayListener,
 	Popper,
-	Button,
 	IconButton,
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
@@ -21,7 +19,7 @@ import { useNavigate } from 'react-router-dom'
 import { logout } from '../slices/authentication/authSlice'
 import { useLogoutMutation } from '../slices/authentication/usersApiSlice'
 // Images
-import nbaLogoSrc from '../../public/images/svgs/logo-nba.svg'
+// import nbaLogoSrc from '../../public/images/svgs/logo-nba.svg'
 import nbaLogoPng from '../../public/images/svgs/nba-logo.png'
 import UserAvatar from './UserAvatar'
 
@@ -67,12 +65,12 @@ const Navbar = () => {
 		setMobileOpen(false)
 	}
 
-	const handleOpen = () => {
+	/* const handleOpen = () => {
 		setOpen(true)
 	}
 	const handleMobileOpen = () => {
 		setMobileOpen(true)
-	}
+	} */
 	const handleMobileClose = () => {
 		setMobileOpen(false)
 	}
@@ -454,11 +452,6 @@ const Navbar = () => {
 										</Grow>
 									)}
 								</Popper>
-								{/* <Link
-								to='/logout'
-								onClick={logoutHandler}>
-								<Typography>Logout</Typography>
-							</Link> */}
 							</Box>
 						) : (
 							<>
