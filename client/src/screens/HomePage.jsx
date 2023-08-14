@@ -6,6 +6,7 @@ import {
 	Snackbar,
 	Button,
 	IconButton,
+	Alert,
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
@@ -34,24 +35,25 @@ const HomePage = () => {
 	const theme = useTheme()
 	const { league } = theme.palette
 
+	const { snackbarIsOpen } = useSelector(state => state.auth)
+
 	// snackbar notif
 	const [snackbarOpen, setSnackbarOpen] = useState(false)
+	const [logoutSnackbarOpen, setLogoutSnackbarOpen] = useState(false)
 
-	const { state } = useLocation()
-	const navigate = useNavigate()
-
-	const { fromLoginPage } = state || {}
+	// Check if user just logged in, and display snackbar
+	const checkLoggedIn = () => {
+		if (snackbarIsOpen === 'true') {
+			setSnackbarOpen(true)
+		} else if (snackbarIsOpen === 'logged out') {
+			console.log('logged out')
+			setLogoutSnackbarOpen(true)
+		} else return
+	}
 
 	useEffect(() => {
 		checkLoggedIn()
-	}, [])
-
-	const checkLoggedIn = () => {
-		if (fromLoginPage) {
-			setSnackbarOpen(true)
-			console.log('you logged in')
-		} else return
-	}
+	}, [snackbarIsOpen])
 
 	const dispatch = useDispatch()
 
@@ -92,7 +94,7 @@ const HomePage = () => {
 	const snackbarAction = (
 		<>
 			<Button
-				color='secondary'
+				color='primary'
 				size='small'
 				onClick={() => setSnackbarOpen(false)}>
 				UNDO
@@ -116,17 +118,43 @@ const HomePage = () => {
 			}}>
 			<Snackbar
 				open={snackbarOpen}
+				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 				autoHideDuration={5000}
 				onClose={() => setSnackbarOpen(false)}
-				message='You are logged in!'
+				// message='You are logged in!'
 				action={snackbarAction}
-			/>
+				sx={{ backgroundColor: league.nbaBackground, margin: '84px 7% 0 0' }}>
+				<Alert
+					variant='filled'
+					onClose={() => setSnackbarOpen(false)}
+					severity='success'
+					sx={{ width: '100%' }}>
+					You are logged in!
+				</Alert>
+			</Snackbar>
+			<Snackbar
+				open={logoutSnackbarOpen}
+				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+				autoHideDuration={5000}
+				onClose={() => setLogoutSnackbarOpen(false)}
+				// message='Logged out successfully!'
+				action={snackbarAction}
+				sx={{ backgroundColor: league.nbaBackground, margin: '84px 7% 0 0' }}>
+				<Alert
+					variant='filled'
+					onClose={() => setLogoutSnackbarOpen(false)}
+					severity='success'
+					sx={{ width: '100%' }}>
+					Logged out successfully!
+				</Alert>
+			</Snackbar>
 			<Grid
 				container
 				columns={6}
 				height='100%'>
 				<Suspense fallback={<LoadingScreen />}>
-					<Button onClick={() => setSnackbarOpen(true)}>Snackbar</Button>
+					{/* for testing purposes */}
+					{/* <Button onClick={() => setLogoutSnackbarOpen(true)}>Snackbar</Button> */}
 					<HomePageBox
 						league={league}
 						homeHeading={'Team Stats'}
