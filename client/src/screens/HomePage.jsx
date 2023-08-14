@@ -7,6 +7,7 @@ import {
 	Button,
 	IconButton,
 	Alert,
+	Fade,
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
@@ -40,6 +41,10 @@ const HomePage = () => {
 	// snackbar notif
 	const [snackbarOpen, setSnackbarOpen] = useState(false)
 	const [logoutSnackbarOpen, setLogoutSnackbarOpen] = useState(false)
+	// fade in effect
+	const [fadeIn, setFadeIn] = useState(false)
+	// load random player leaders
+	const [loading, setLoading] = useState(true)
 
 	// Check if user just logged in, and display snackbar
 	const checkLoggedIn = () => {
@@ -54,6 +59,11 @@ const HomePage = () => {
 	useEffect(() => {
 		checkLoggedIn()
 	}, [snackbarIsOpen])
+
+	// fade in effect on load
+	useEffect(() => {
+		setFadeIn(true)
+	}, [])
 
 	const dispatch = useDispatch()
 
@@ -155,49 +165,55 @@ const HomePage = () => {
 				<Suspense fallback={<LoadingScreen />}>
 					{/* for testing purposes */}
 					{/* <Button onClick={() => setLogoutSnackbarOpen(true)}>Snackbar</Button> */}
-					<HomePageBox
-						league={league}
-						homeHeading={'Team Stats'}
-						linkText={'See All Teams'}
-						backgroundImage={'url(/images/kawhi-leonard.jpg)'}>
-						<Grid
-							container
-							columns={10}
-							columnSpacing={6}
-							rowSpacing={4}
-							justify='center'
-							// alignItems='center'
-						>
-							{sortedTeams.map(team => {
-								return (
-									<Grid
-										p={0}
-										key={team.id}
-										item
-										alignSelf='center'
-										xs={5}
-										md={3}
-										lg={1}
-										sx={{
-											justifySelf: 'center',
-											/* transition: 'all 0.3s ease-out',
+					<Fade
+						in={fadeIn}
+						timeout={600}>
+						<Box>
+							<HomePageBox
+								league={league}
+								homeHeading={'Team Stats'}
+								linkText={'See All Teams'}
+								backgroundImage={'url(/images/kawhi-leonard.jpg)'}>
+								<Grid
+									container
+									columns={10}
+									columnSpacing={6}
+									rowSpacing={4}
+									justify='center'
+									// alignItems='center'
+								>
+									{sortedTeams.map(team => {
+										return (
+											<Grid
+												p={0}
+												key={team.id}
+												item
+												alignSelf='center'
+												xs={5}
+												md={3}
+												lg={1}
+												sx={{
+													justifySelf: 'center',
+													/* transition: 'all 0.3s ease-out',
 											'&:hover': {
 												transform: 'scale(1.05)',
 											}, */
-										}}>
-										<Link to={`/stats/teams/${team.team}`}>
-											<HomeTeamCard
-												width={120}
-												team={team.team}
-											/>
-										</Link>
-									</Grid>
-								)
-							})}
-						</Grid>
-					</HomePageBox>
+												}}>
+												<Link to={`/stats/teams/${team.team}`}>
+													<HomeTeamCard
+														width={120}
+														team={team.team}
+													/>
+												</Link>
+											</Grid>
+										)
+									})}
+								</Grid>
+							</HomePageBox>
+						</Box>
+					</Fade>
 				</Suspense>
-				<Suspense fallback={<LoadingScreenBlank />}>
+				<Suspense fallback={<LoadingScreen />}>
 					<HomePageBox
 						league={league}
 						homeHeading={'Player Stats'}
@@ -221,6 +237,8 @@ const HomePage = () => {
 									: 'Total Rebounds Per Game'}
 							</Typography>
 							<HomePlayersLeaders
+								loading={loading}
+								setLoading={setLoading}
 								stat={
 									getRandomStatsLeader === 0
 										? 'pts'
