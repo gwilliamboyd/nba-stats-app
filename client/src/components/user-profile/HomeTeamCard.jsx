@@ -7,6 +7,8 @@ const HomeTeamCard = ({ team, width }) => {
 	const { league } = theme.palette
 	return (
 		<Box
+			// referenced in css file to enable zoom effect
+			className='homeTeamCardImg'
 			sx={{
 				margin: '0',
 				display: 'flex',
@@ -14,6 +16,10 @@ const HomeTeamCard = ({ team, width }) => {
 				alignItems: 'center',
 				gap: '4px',
 				textAlign: 'center',
+				transition: 'all 0.3s ease-out',
+				'&:hover': {
+					transform: 'scale(1.1)',
+				},
 			}}>
 			<img
 				src={`/images/svgs/team-logos/${team}.svg`}

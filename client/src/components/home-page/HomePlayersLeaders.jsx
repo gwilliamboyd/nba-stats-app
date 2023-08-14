@@ -20,7 +20,7 @@ const HomePlayersLeaders = ({ stat, statArray }) => {
 		const ptsSorted = statArray
 			?.sort((a, b) => eval(sortOperation))
 			.slice(0, 10)
-		console.log(ptsSorted)
+		// console.log(ptsSorted)
 		return ptsSorted
 	}, [statArray])
 

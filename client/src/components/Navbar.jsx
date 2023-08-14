@@ -11,6 +11,7 @@ import {
 	Popper,
 	IconButton,
 } from '@mui/material'
+import { desktopLinksStyles } from '../hooks/desktopLinksStyles'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Link } from 'react-router-dom'
 import { useTheme } from '@mui/material/styles'
@@ -357,13 +358,25 @@ const Navbar = () => {
 						</Link>
 						<Box sx={{ display: 'flex', gap: '36px' }}>
 							<Link to='/standings'>
-								<Typography variant='h6'>Standings</Typography>
+								<Typography
+									variant='h6'
+									sx={desktopLinksStyles}>
+									Standings
+								</Typography>
 							</Link>
 							<Link to='/stats/teams'>
-								<Typography variant='h6'>Teams</Typography>
+								<Typography
+									variant='h6'
+									sx={desktopLinksStyles}>
+									Teams
+								</Typography>
 							</Link>
 							<Link to='/stats/players'>
-								<Typography variant='h6'>Players</Typography>
+								<Typography
+									variant='h6'
+									sx={desktopLinksStyles}>
+									Players
+								</Typography>
 							</Link>
 						</Box>
 					</Box>
@@ -456,10 +469,10 @@ const Navbar = () => {
 						) : (
 							<>
 								<Link to='/login'>
-									<Typography>Login</Typography>
+									<Typography sx={desktopLinksStyles}>Login</Typography>
 								</Link>
 								<Link to='/register'>
-									<Typography>Register</Typography>
+									<Typography sx={desktopLinksStyles}>Register</Typography>
 								</Link>
 							</>
 						)}

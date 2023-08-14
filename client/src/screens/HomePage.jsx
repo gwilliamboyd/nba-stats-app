@@ -1,13 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Grid, Box, Typography } from '@mui/material'
+import {
+	Grid,
+	Box,
+	Typography,
+	Snackbar,
+	Button,
+	IconButton,
+} from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
 // Getting data from data folder seems easier since I'm only
 // trying to map over them to get the logo images, not any stats
 import teams from '../data/teams-perGame.json'
 import HomeTeamCard from '../components/user-profile/HomeTeamCard'
-import { Suspense, lazy, /* memo, */ useEffect, useMemo } from 'react'
+import { Suspense, lazy, /* memo, */ useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { setPlayersPerGameStats } from '../slices/players-stats/playersPerGameSlice'
 import LoadingScreen from './utility/LoadingScreen'
 import LoadingScreenBlank from './utility/LoadingScreenBlank'
@@ -16,12 +24,34 @@ const HomePlayersLeaders = lazy(() =>
 	import('../components/home-page/HomePlayersLeaders')
 )
 
+// close icon
+import CloseIcon from '@mui/icons-material/Close'
+
 const HomePage = () => {
 	// memo components
 	// const MemoHomePageBox = memo(HomePageBox)
 
 	const theme = useTheme()
 	const { league } = theme.palette
+
+	// snackbar notif
+	const [snackbarOpen, setSnackbarOpen] = useState(false)
+
+	const { state } = useLocation()
+	const navigate = useNavigate()
+
+	const { fromLoginPage } = state || {}
+
+	useEffect(() => {
+		checkLoggedIn()
+	}, [])
+
+	const checkLoggedIn = () => {
+		if (fromLoginPage) {
+			setSnackbarOpen(true)
+			console.log('you logged in')
+		} else return
+	}
 
 	const dispatch = useDispatch()
 
@@ -58,6 +88,25 @@ const HomePage = () => {
 		return result
 	}, [])
 
+	// snackbar element
+	const snackbarAction = (
+		<>
+			<Button
+				color='secondary'
+				size='small'
+				onClick={() => setSnackbarOpen(false)}>
+				UNDO
+			</Button>
+			<IconButton
+				size='small'
+				aria-label='close'
+				color='inherit'
+				onClick={() => setSnackbarOpen(false)}>
+				<CloseIcon fontSize='small' />
+			</IconButton>
+		</>
+	)
+
 	return (
 		<Box
 			sx={{
@@ -65,11 +114,19 @@ const HomePage = () => {
 				width: { xs: '100%', md: 'calc(100vw - 8px)' },
 				padding: '0',
 			}}>
+			<Snackbar
+				open={snackbarOpen}
+				autoHideDuration={5000}
+				onClose={() => setSnackbarOpen(false)}
+				message='You are logged in!'
+				action={snackbarAction}
+			/>
 			<Grid
 				container
 				columns={6}
 				height='100%'>
 				<Suspense fallback={<LoadingScreen />}>
+					<Button onClick={() => setSnackbarOpen(true)}>Snackbar</Button>
 					<HomePageBox
 						league={league}
 						homeHeading={'Team Stats'}
@@ -95,6 +152,10 @@ const HomePage = () => {
 										lg={1}
 										sx={{
 											justifySelf: 'center',
+											/* transition: 'all 0.3s ease-out',
+											'&:hover': {
+												transform: 'scale(1.05)',
+											}, */
 										}}>
 										<Link to={`/stats/teams/${team.team}`}>
 											<HomeTeamCard

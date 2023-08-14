@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Box, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { desktopLinksStyles } from '../../hooks/desktopLinksStyles'
 
 const HomePageBox = ({
 	league,
@@ -48,7 +49,8 @@ const HomePageBox = ({
 					<Link to='/stats/players'>
 						<Typography
 							variant='h6'
-							fontWeight={400}>
+							fontWeight={400}
+							sx={desktopLinksStyles}>
 							{linkText}
 						</Typography>
 					</Link>
