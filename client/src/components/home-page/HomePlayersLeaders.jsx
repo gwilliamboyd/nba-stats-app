@@ -13,17 +13,6 @@ const HomePlayersLeaders = ({ loading, stat, statArray }) => {
 
 	const sortOperation = `b.${stat} - a.${stat}`
 
-	/* const sortByPoints = useMemo(() => {
-		// not actually an error
-		// a and b are reflected in sort operation
-		// which is being evaluated
-		const ptsSorted = statArray
-			?.sort((a, b) => eval(sortOperation))
-			.slice(0, 10)
-		// console.log(ptsSorted)
-		return ptsSorted
-	}, [statArray]) */
-
 	const topFivePlayers = () => {
 		// not actually an error
 		// a and b are reflected in sort operation
