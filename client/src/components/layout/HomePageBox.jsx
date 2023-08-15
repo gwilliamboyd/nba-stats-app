@@ -17,7 +17,10 @@ const HomePageBox = ({
 			color={league.nbaWhite}
 			sx={{
 				padding: '2rem 0 4rem',
-				backgroundImage: { xs: 'none', md: backgroundImage },
+				// backgroundImage: { xs: 'none', md: backgroundImage },
+				// background: `linear-gradient(to top, ${league.nbaBlue} 95%, ${league.nbaBackground})`,
+				// background: `radial-gradient(circle, rgba(37,59,115,1) 0%, rgba(13,22,44,1) 100%)`,
+				backgroundColor: league.nbaBackground,
 				backgroundPosition: 'center',
 				backgroundSize: 'cover',
 				display: 'flex',

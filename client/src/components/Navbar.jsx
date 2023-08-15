@@ -329,6 +329,7 @@ const Navbar = () => {
 				sx={{
 					display: { xs: 'none', md: 'flex' },
 					justifyContent: 'center',
+					// background: `linear-gradient(to top, ${league.nbaBlue} 60%,  ${league.nbaBackground})`,
 					backgroundColor: league.nbaBlue,
 					color: league.nbaWhite,
 					height: '100px',
@@ -337,7 +338,7 @@ const Navbar = () => {
 				<Box
 					sx={{
 						width: '85%',
-						backgroundColor: league.nbaBlue,
+						// backgroundColor: league.nbaBlue,
 						height: '100px',
 						display: 'flex',
 						justifyContent: 'space-between',

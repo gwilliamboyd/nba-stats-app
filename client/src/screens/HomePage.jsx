@@ -180,6 +180,12 @@ const HomePage = () => {
 									columnSpacing={6}
 									rowSpacing={4}
 									justify='center'
+									/* sx={{
+										padding: '1rem 3rem 4rem 0',
+										background:
+											'radial-gradient(circle, rgba(13,22,44,1) 0%, rgba(37,59,115,1) 100%)',
+										borderRadius: '4px',
+									}} */
 									// alignItems='center'
 								>
 									{sortedTeams.map(team => {

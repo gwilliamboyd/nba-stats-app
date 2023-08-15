@@ -13,7 +13,7 @@ const HomePlayersLeaders = ({ loading, stat, statArray }) => {
 
 	const sortOperation = `b.${stat} - a.${stat}`
 
-	const sortByPoints = useMemo(() => {
+	/* const sortByPoints = useMemo(() => {
 		// not actually an error
 		// a and b are reflected in sort operation
 		// which is being evaluated
@@ -22,18 +22,29 @@ const HomePlayersLeaders = ({ loading, stat, statArray }) => {
 			.slice(0, 10)
 		// console.log(ptsSorted)
 		return ptsSorted
-	}, [statArray])
+	}, [statArray]) */
 
-	let topFivePlayers = sortByPoints
-		?.map(v => ({ v, sort: Math.random() }))
-		.sort((a, b) => a.sort - b.sort)
-		.map(({ v }) => v)
-		.slice(0, 5)
+	const topFivePlayers = () => {
+		// not actually an error
+		// a and b are reflected in sort operation
+		// which is being evaluated
+		const ptsSorted = statArray
+			?.sort((a, b) => eval(sortOperation))
+			.slice(0, 10)
+		console.log(ptsSorted)
+		const result = ptsSorted
+			?.map(v => ({ v, sort: Math.random() }))
+			.sort((a, b) => a.sort - b.sort)
+			.map(({ v }) => v)
+		/* .slice(0, 5) */
+		return result
+	}
 
 	useEffect(() => {
+		statArray = topFivePlayers()
 		// loading = false
 		console.log('top five players')
-	}, [topFivePlayers])
+	}, [topFivePlayers()])
 
 	return (
 		<Grid
@@ -43,7 +54,7 @@ const HomePlayersLeaders = ({ loading, stat, statArray }) => {
 			justifySelf={'center'}
 			columns={10}
 			columnSpacing={{ xs: 8, md: 10, lg: 18 }}>
-			{topFivePlayers?.map(p => {
+			{statArray?.slice(0, 5)?.map(p => {
 				const statValue = `p?.${stat}`
 				return (
 					<Grid
