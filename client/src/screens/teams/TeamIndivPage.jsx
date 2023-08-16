@@ -14,7 +14,7 @@ import { setPlayersAdvancedStats } from '../../slices/players-stats/playersAdvan
 import StatsTypeButtonGroup from '../../components/tables/util/StatsTypeButtonGroup'
 import QuickStatsContainer from '../../components/stats-pages/quick-stats/QuickStatsContainer'
 const PlayersStatsTable = lazy(() =>
-	testDelay(import('../../components/tables/PlayersStatsTable'))
+	import('../../components/tables/PlayersStatsTable')
 )
 
 const TeamIndivPage = () => {
@@ -159,16 +159,16 @@ const TeamIndivPage = () => {
 
 	return (
 		<Suspense fallback={<LoadingScreen />}>
-			<Container
-				disableGutters
-				maxWidth='100%'
-				sx={{
-					// height: 'calc(100vh - 100px)',
-					backgroundColor: primaryColor,
-				}}>
-				<Fade
-					in={fadeIn}
-					timeout={600}>
+			<Fade
+				in={fadeIn}
+				timeout={600}>
+				<Container
+					disableGutters
+					maxWidth='100%'
+					sx={{
+						// height: 'calc(100vh - 100px)',
+						backgroundColor: primaryColor,
+					}}>
 					<Box
 						sx={{
 							display: 'flex',
@@ -422,16 +422,16 @@ const TeamIndivPage = () => {
 							playersPerPage={25}
 						/>
 					</Box>
-				</Fade>
-			</Container>
+				</Container>
+			</Fade>
 		</Suspense>
 	)
 }
 
 export default TeamIndivPage
-const testDelay = async promise => {
+/* const testDelay = async promise => {
 	await new Promise(resolve => {
 		setTimeout(resolve, 1000)
 	})
 	return promise
-}
+} */

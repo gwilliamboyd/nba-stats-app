@@ -17,10 +17,9 @@ import teams from '../data/teams-perGame.json'
 import HomeTeamCard from '../components/user-profile/HomeTeamCard'
 import { Suspense, lazy, /* memo, */ useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useNavigate } from 'react-router-dom'
 import { setPlayersPerGameStats } from '../slices/players-stats/playersPerGameSlice'
 import LoadingScreen from './utility/LoadingScreen'
-import LoadingScreenBlank from './utility/LoadingScreenBlank'
+// import LoadingScreenBlank from './utility/LoadingScreenBlank'
 const HomePageBox = lazy(() => import('../components/layout/HomePageBox'))
 const HomePlayersLeaders = lazy(() =>
 	import('../components/home-page/HomePlayersLeaders')

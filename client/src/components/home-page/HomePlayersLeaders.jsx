@@ -1,22 +1,20 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { Box, Grid, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react'
 import PlayerCard from '../PlayerCard'
 import { Link } from 'react-router-dom'
-import { useEffect, useMemo, useState } from 'react'
-import LoadingScreen from '../../screens/utility/LoadingScreen'
+import { useEffect } from 'react'
+// import LoadingScreen from '../../screens/utility/LoadingScreen'
 
-const HomePlayersLeaders = ({ loading, stat, statArray }) => {
+const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 	const theme = useTheme()
 	const { league } = theme.palette
 
 	const sortOperation = `b.${stat} - a.${stat}`
 
 	const topFivePlayers = () => {
-		// not actually an error
-		// a and b are reflected in sort operation
-		// which is being evaluated
 		const ptsSorted = statArray
 			?.sort((a, b) => eval(sortOperation))
 			.slice(0, 10)
