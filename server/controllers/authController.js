@@ -49,7 +49,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 	if (!isMatch) {
 		return res.status(400).json({ message: 'Invalid email or password' })
 	}
-	// delete user.password
+	delete user.password
 
 	const token = jwt.sign({ user }, 'Toolfan123458', { expiresIn: '2d' })
 
