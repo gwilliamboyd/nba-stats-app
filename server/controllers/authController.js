@@ -9,13 +9,14 @@ export const registerUser = asyncHandler(async (req, res) => {
 		const { name, email, password, avatar, favoriteTeams } = req.body
 		console.log(req.file)
 
-		const salt = await bcrypt.genSalt()
-		const passwordHash = await bcrypt.hash(password, salt)
+		// const salt = await bcrypt.genSalt()
+		// const passwordHash = await bcrypt.hash(password, salt)
 
 		const newUser = new User({
 			name,
 			email,
-			password: passwordHash,
+			password,
+			// password: passwordHash,
 			avatar,
 			favoriteTeams,
 		})
@@ -32,6 +33,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 			throw new Error('Invalid user data')
 		}
 		const savedUser = await newUser.save()
+		res.send(savedUser)
 	} catch (err) {
 		res.status(500).json({ message: err.message })
 	}
@@ -44,11 +46,12 @@ export const loginUser = asyncHandler(async (req, res) => {
 	if (!user) {
 		return res.status(400).json({ message: 'User does not exist' })
 	}
+	await user.matchPassword(password)
 
-	const isMatch = await bcrypt.compare(password, user.password)
+	/* const isMatch = await bcrypt.compare(password, user.password)
 	if (!isMatch) {
 		return res.status(400).json({ message: 'Invalid email or password' })
-	}
+	} */
 	delete user.password
 
 	const token = jwt.sign({ user }, 'Toolfan123458', { expiresIn: '2d' })
@@ -58,7 +61,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 		secure: true,
 		sameSite: 'none',
 	})
-	res.status(200).json({
+	res.status(201).json({
 		_id: user._id,
 		name: user.name,
 		email: user.email,
