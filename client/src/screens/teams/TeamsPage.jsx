@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, lazy, Suspense } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -25,70 +26,43 @@ const TeamsPage = () => {
 	// not sure if user info will be necessary after all
 	// const { userInfo } = useSelector(state => state.auth)
 
-	// state
 	const dispatch = useDispatch()
+	const [statsType, setStatsType] = useState('perGame')
+	const [loading, setLoading] = useState(true)
+
+	const getTeamsStats = async () => {
+		// urls we're fetching from
+		const statsUrls = [
+			`https://nba-stats-app-62o4.onrender.com/stats/teams/per-game`,
+			`https://nba-stats-app-62o4.onrender.com/stats/teams/total`,
+			`https://nba-stats-app-62o4.onrender.com/stats/teams/advanced`,
+		]
+		// fetch all simultaneously
+		const responses = await Promise.all(
+			statsUrls.map(stat => fetch(stat, { method: 'GET' }))
+		)
+		// convert res to JSON
+		const perGameData = await responses[0].json()
+		const totalData = await responses[1].json()
+		const advancedData = await responses[2].json()
+		// set redux state
+		dispatch(setTeamsPerGameStats({ teamsPerGameStats: perGameData }))
+		dispatch(setTeamsTotalStats({ teamsTotalStats: totalData }))
+		dispatch(setTeamsAdvancedStats({ teamsAdvancedStats: advancedData }))
+		// disable loading
+		setLoading(false)
+	}
+
+	useEffect(() => {
+		getTeamsStats()
+	}, [])
+
+	// grab redux state
 	const teamsPerGameStats = useSelector(state => state.teamsPerGameStats)
 	const teamsTotalStats = useSelector(state => state.teamsTotalStats)
 	const teamsAdvancedStats = useSelector(state => state.teamsAdvancedStats)
 
-	const [statsType, setStatsType] = useState('perGame')
-	const [loading, setLoading] = useState(true)
-
-	const getTeamsPerGame = async () => {
-		const response = await fetch(
-			`https://nba-stats-app-62o4.onrender.com/stats/teams/per-game`,
-			{
-				method: 'GET',
-			}
-		)
-		const data = await response.json()
-		dispatch(setTeamsPerGameStats({ teamsPerGameStats: data }))
-		setLoading(false)
-	}
-	const getTeamsTotal = async () => {
-		const response = await fetch(
-			`https://nba-stats-app-62o4.onrender.com/stats/teams/total`,
-			{
-				method: 'GET',
-			}
-		)
-		const data = await response.json()
-		dispatch(setTeamsTotalStats({ teamsTotalStats: data }))
-		setLoading(false)
-	}
-	const getTeamsAdvanced = async () => {
-		const response = await fetch(
-			`https://nba-stats-app-62o4.onrender.com/stats/teams/advanced`,
-			{
-				method: 'GET',
-			}
-		)
-		const data = await response.json()
-		dispatch(setTeamsAdvancedStats({ teamsAdvancedStats: data }))
-		setLoading(false)
-	}
-
-	const getStatsType = statsType => {
-		switch (statsType) {
-			case 'perGame':
-				getTeamsPerGame()
-				console.log('Per Game')
-				break
-			case 'total':
-				getTeamsTotal()
-				console.log('Total')
-				break
-			case 'advanced':
-				getTeamsAdvanced()
-				console.log('Advanced')
-				break
-		}
-	}
-
-	useEffect(() => {
-		getStatsType(statsType)
-	}, [statsType])
-
+	// extract stat array from redux state
 	const teamsPerGameStatistics = Object.values(teamsPerGameStats)[0]
 	const teamsTotalStatistics = Object.values(teamsTotalStats)[0]
 	const teamsAdvancedStatistics = Object.values(teamsAdvancedStats)[0]

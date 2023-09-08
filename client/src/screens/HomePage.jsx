@@ -234,7 +234,8 @@ const HomePage = () => {
 							<Typography
 								variant='h4'
 								fontWeight={700}
-								alignSelf={'flex-start'}>
+								alignSelf={'flex-start'}
+								marginBottom={'2rem'}>
 								{getRandomStatsLeader === 0
 									? 'Top Scorers'
 									: getRandomStatsLeader === 1

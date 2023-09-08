@@ -14,7 +14,7 @@ import {
 	TablePagination,
 } from '@mui/material'
 import { useTheme } from '@emotion/react'
-import HeadCellsTeams from './HeadCellsTeams'
+import HeadCellsPlayers from './HeadCellsPlayers'
 import {
 	playersAdvancedHeadCells,
 	playersPerGameHeadCells,
@@ -122,7 +122,7 @@ export default function EnhancedTable({
 						aria-labelledby='tableTitle'
 						size='small'
 						stickyHeader>
-						<HeadCellsTeams
+						<HeadCellsPlayers
 							headCells={
 								statsType === 'advanced'
 									? playersAdvancedHeadCells
@@ -132,7 +132,7 @@ export default function EnhancedTable({
 							orderBy={orderBy}
 							onRequestSort={handleRequestSort}
 							backgroundColor={primaryColor}
-							fontColor={secondaryColor}
+							fontColor='#B52532'
 						/>
 						<TableBody>
 							{statsType === 'advanced'
