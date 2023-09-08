@@ -46,7 +46,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 	if (!user) {
 		return res.status(400).json({ message: 'User does not exist' })
 	}
-	await user.matchPassword(password)
+	await user.matchPasswords(password)
 
 	/* const isMatch = await bcrypt.compare(password, user.password)
 	if (!isMatch) {
