@@ -81,63 +81,32 @@ const TeamIndivPage = () => {
 	// const [includePagination, setIncludePagination] = useState(false)
 	const includePagination = false
 
-	const getPlayersPerGame = async () => {
-		const response = await fetch(
-			`https://nba-stats-app-62o4.onrender.com/stats/players/per-game`,
-			{
+	const getPlayersStats = async () => {
+		const [perGameRes, totalRes, advancedRes] = await Promise.all([
+			fetch(`https://nba-stats-app-62o4.onrender.com/stats/players/per-game`, {
 				method: 'GET',
-			}
-		)
-		const data = await response.json()
-		dispatch(setPlayersPerGameStats({ playersPerGameStats: data }))
-		setLoading(false)
-	}
-	const getPlayersTotal = async () => {
-		const response = await fetch(
-			`https://nba-stats-app-62o4.onrender.com/stats/players/total`,
-			{
+			}),
+			fetch(`https://nba-stats-app-62o4.onrender.com/stats/players/total`, {
 				method: 'GET',
-			}
-		)
-		const data = await response.json()
-		dispatch(setPlayersTotalStats({ playersTotalStats: data }))
-		setLoading(false)
-	}
-	const getPlayersAdvanced = async () => {
-		const response = await fetch(
-			`https://nba-stats-app-62o4.onrender.com/stats/players/advanced`,
-			{
+			}),
+			fetch(`https://nba-stats-app-62o4.onrender.com/stats/players/advanced`, {
 				method: 'GET',
-			}
-		)
-		const data = await response.json()
-		dispatch(setPlayersAdvancedStats({ playersAdvancedStats: data }))
+			}),
+		])
+		const perGameData = await perGameRes.json()
+		const totalData = await totalRes.json()
+		const advancedData = await advancedRes.json()
+		// set redux state
+		dispatch(setPlayersPerGameStats({ playersPerGameStats: perGameData }))
+		dispatch(setPlayersTotalStats({ playersTotalStats: totalData }))
+		dispatch(setPlayersAdvancedStats({ playersAdvancedStats: advancedData }))
+		// disable loading
 		setLoading(false)
-	}
-
-	const getStatsType = statsType => {
-		switch (statsType) {
-			case 'perGame':
-				getPlayersPerGame()
-				console.log('Per Game')
-				break
-			case 'total':
-				getPlayersTotal()
-				console.log('Total')
-				break
-			case 'advanced':
-				getPlayersAdvanced()
-				console.log('Advanced')
-				break
-		}
 	}
 
 	useEffect(() => {
-		getStatsType(statsType)
-	}, [statsType])
-
-	// Test loading components
-	// setTimeout(getTeamsPerGame, 5000)
+		getPlayersStats()
+	}, [])
 
 	const playersPerGameStatistics = Object.values(playersPerGameStats)[0]
 	const filteredPerGameStatistics = playersPerGameStatistics.filter(

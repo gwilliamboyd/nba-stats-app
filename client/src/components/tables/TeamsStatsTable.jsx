@@ -123,7 +123,7 @@ export default function EnhancedTable({
 							orderBy={orderBy}
 							onRequestSort={handleRequestSort}
 							backgroundColor='#18264a'
-							fontColor='#B52532'
+							fontColor='#FFF'
 						/>
 						<TableBody>
 							{statsType === 'advanced'

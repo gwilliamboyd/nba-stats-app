@@ -32,11 +32,15 @@ const PlayerIndivStatsRow = ({
 
 	const tableCellStyle = {
 		color: tertiaryColor,
+		fontWeight: '300',
 		padding: '2px',
+		// padding: '2px 4px 2px 2px',
 		border: '0',
 		textAlign: 'right',
 		// flex: 1,
-		minWidth: '47px',
+		// minWidth: '40px',
+		// maxWidth: '50px',
+		width: 'fit-content',
 	}
 
 	return (

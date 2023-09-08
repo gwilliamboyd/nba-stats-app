@@ -90,7 +90,7 @@ export default function EnhancedTable({
 
 	// table cell style object
 	const tableCellStyle = {
-		color: league.nbaWhite,
+		color: tertiaryColor,
 		padding: '2px',
 		minWidth: '47px',
 		// textAlign: 'right',
@@ -132,7 +132,7 @@ export default function EnhancedTable({
 							orderBy={orderBy}
 							onRequestSort={handleRequestSort}
 							backgroundColor={primaryColor}
-							fontColor='#B52532'
+							fontColor={secondaryColor}
 						/>
 						<TableBody>
 							{statsType === 'advanced'

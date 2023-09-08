@@ -31,20 +31,21 @@ const TeamsPage = () => {
 	const [loading, setLoading] = useState(true)
 
 	const getTeamsStats = async () => {
-		// urls we're fetching from
-		const statsUrls = [
-			`https://nba-stats-app-62o4.onrender.com/stats/teams/per-game`,
-			`https://nba-stats-app-62o4.onrender.com/stats/teams/total`,
-			`https://nba-stats-app-62o4.onrender.com/stats/teams/advanced`,
-		]
-		// fetch all simultaneously
-		const responses = await Promise.all(
-			statsUrls.map(stat => fetch(stat, { method: 'GET' }))
-		)
+		const [perGameRes, totalRes, advancedRes] = await Promise.all([
+			fetch(`https://nba-stats-app-62o4.onrender.com/stats/teams/per-game`, {
+				method: 'GET',
+			}),
+			fetch(`https://nba-stats-app-62o4.onrender.com/stats/teams/total`, {
+				method: 'GET',
+			}),
+			fetch(`https://nba-stats-app-62o4.onrender.com/stats/teams/advanced`, {
+				method: 'GET',
+			}),
+		])
 		// convert res to JSON
-		const perGameData = await responses[0].json()
-		const totalData = await responses[1].json()
-		const advancedData = await responses[2].json()
+		const perGameData = await perGameRes.json()
+		const totalData = await totalRes.json()
+		const advancedData = await advancedRes.json()
 		// set redux state
 		dispatch(setTeamsPerGameStats({ teamsPerGameStats: perGameData }))
 		dispatch(setTeamsTotalStats({ teamsTotalStats: totalData }))
