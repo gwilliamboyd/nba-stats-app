@@ -18,7 +18,7 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 		const ptsSorted = statArray
 			?.sort((a, b) => eval(sortOperation))
 			.slice(0, 10)
-		console.log(ptsSorted)
+		// console.log(ptsSorted)
 		const result = ptsSorted
 			?.map(v => ({ v, sort: Math.random() }))
 			.sort((a, b) => a.sort - b.sort)
@@ -30,7 +30,7 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 	useEffect(() => {
 		statArray = topFivePlayers()
 		// loading = false
-		console.log('top five players')
+		// console.log('top five players')
 	}, [topFivePlayers()])
 
 	return (

@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
 	snackbarState: {
 		snackbarOpen: false,
-		snackbarType: 'success',
+		snackbarType: '',
+		alertType: 'success',
 		snackbarMessage: '',
 	},
 }
@@ -13,9 +14,7 @@ const snackbarStateSlice = createSlice({
 	initialState,
 	reducers: {
 		setSnackbarState: (state, action) => {
-			const { snackbarOpen, snackbarType, snackbarMessage } =
-				initialState.snackbarState
-			state.snackbarState = action.payload.snackbarState
+			state.snackbarState = { ...state.snackbarState, ...action.payload }
 		},
 	},
 })

@@ -13,6 +13,8 @@ import playerIndivReducer from './slices/players-stats/playerIndivSlice'
 import leagueStandingsReducer from './slices/standingsSlice'
 import authReducer from './slices/authentication/authSlice'
 import { apiSlice } from './slices/authentication/apiSlice'
+// snackbar
+import snackbarReducer from './slices/snackbarSlice'
 
 const store = configureStore({
 	reducer: {
@@ -31,6 +33,8 @@ const store = configureStore({
 		// users/authentication
 		auth: authReducer,
 		[apiSlice.reducerPath]: apiSlice.reducer,
+		// snackbar feedback
+		snackbarState: snackbarReducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware().concat(apiSlice.middleware),

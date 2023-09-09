@@ -4,7 +4,11 @@ import { useTheme } from '@emotion/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useLoginMutation } from '../../slices/authentication/usersApiSlice'
-import { setCredentials } from '../../slices/authentication/authSlice'
+import {
+	setCredentials,
+	setSnackbar,
+} from '../../slices/authentication/authSlice'
+import { setSnackbarState } from '../../slices/snackbarSlice'
 // mui
 import {
 	Box,
@@ -44,7 +48,9 @@ const LoginPage = () => {
 		try {
 			const res = await login({ email, password }).unwrap()
 			dispatch(setCredentials({ ...res }))
-			navigate('/', { state: { fromLoginPage: true } })
+			dispatch(setSnackbar(true))
+			// dispatch(setSnackbarState(true))
+			navigate('/', { state: { page: 'login' } })
 			// setSnackbarOpen(true)
 		} catch (err) {
 			console.log(err?.data.message || err?.error)

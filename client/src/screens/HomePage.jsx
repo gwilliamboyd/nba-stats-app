@@ -18,6 +18,8 @@ import HomeTeamCard from '../components/user-profile/HomeTeamCard'
 import { Suspense, lazy, /* memo, */ useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPlayersPerGameStats } from '../slices/players-stats/playersPerGameSlice'
+import { setSnackbar } from '../slices/authentication/authSlice'
+// import { setSnackbarState } from '../slices/snackbarSlice'
 import LoadingScreen from './utility/LoadingScreen'
 // import LoadingScreenBlank from './utility/LoadingScreenBlank'
 const HomePageBox = lazy(() => import('../components/layout/HomePageBox'))
@@ -35,36 +37,31 @@ const HomePage = () => {
 	const theme = useTheme()
 	const { league } = theme.palette
 
+	const dispatch = useDispatch()
+
+	// const { snackbarState } = useSelector(state => state.snackbarState)
+	const { userInfo } = useSelector(state => state.auth)
 	const { snackbarIsOpen } = useSelector(state => state.auth)
+	// console.log(userInfo)
 
 	// snackbar notif
-	const [snackbarOpen, setSnackbarOpen] = useState(false)
+	// const [snackbarOpen, setSnackbarOpen] = useState(false)
 	const [logoutSnackbarOpen, setLogoutSnackbarOpen] = useState(false)
 	// fade in effect
 	const [fadeIn, setFadeIn] = useState(false)
 	// load random player leaders
 	const [loading, setLoading] = useState(true)
-
-	// Check if user just logged in, and display snackbar
-	const checkLoggedIn = () => {
-		if (snackbarIsOpen === 'true') {
-			setSnackbarOpen(true)
-		} else if (snackbarIsOpen === 'logged out') {
-			console.log('logged out')
-			setLogoutSnackbarOpen(true)
-		} else return
-	}
-
+	// check if logged in
+	// const [loggedInClient, setLoggedInClient] = useState(false)
 	useEffect(() => {
-		checkLoggedIn()
-	}, [snackbarIsOpen])
+		console.log(`Snackbar Is Open: ${snackbarIsOpen}`)
+		// console.log(`Logged In Client: ${loggedInClient}`)
+	}, [])
 
 	// fade in effect on load
 	useEffect(() => {
 		setFadeIn(true)
 	}, [])
-
-	const dispatch = useDispatch()
 
 	const playersPerGameStats = useSelector(state => state.playersPerGameStats)
 
@@ -105,14 +102,14 @@ const HomePage = () => {
 			<Button
 				color='primary'
 				size='small'
-				onClick={() => setSnackbarOpen(false)}>
+				onClick={() => dispatch(setSnackbar(false))}>
 				UNDO
 			</Button>
 			<IconButton
 				size='small'
 				aria-label='close'
 				color='inherit'
-				onClick={() => setSnackbarOpen(false)}>
+				onClick={() => dispatch(setSnackbar(false))}>
 				<CloseIcon fontSize='small' />
 			</IconButton>
 		</>
@@ -126,16 +123,16 @@ const HomePage = () => {
 				padding: '0',
 			}}>
 			<Snackbar
-				open={snackbarOpen}
+				open={snackbarIsOpen}
 				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-				autoHideDuration={5000}
-				onClose={() => setSnackbarOpen(false)}
+				autoHideDuration={3000}
+				onClose={() => dispatch(setSnackbar(false))}
 				// message='You are logged in!'
 				action={snackbarAction}
 				sx={{ backgroundColor: league.nbaBackground, margin: '84px 7% 0 0' }}>
 				<Alert
 					variant='filled'
-					onClose={() => setSnackbarOpen(false)}
+					onClose={() => dispatch(setSnackbar(false))}
 					severity='success'
 					sx={{ width: '100%' }}>
 					You are logged in!
