@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -19,7 +20,6 @@ import {
 	setCredentials,
 	setSnackbar,
 } from '../../slices/authentication/authSlice'
-import fullTeamNames from '../../hooks/fullTeamNames'
 import Dropzone from 'react-dropzone'
 import SuccessSnackbar from '../../components/snackbars/SuccessSnackbar'
 
@@ -32,63 +32,6 @@ const UserProfilePage = () => {
 
 	// sort teams alphabetically
 	const sortedTeams = teams.sort((a, b) => a.team.localeCompare(b.team))
-	// console.log(sortedTeams)
-	/* 	const sortByPoints = t => {
-		const ptsSorted = t.sort((a, b) => b.pts - a.pts)
-		console.log(ptsSorted)
-		return ptsSorted
-	}
-	const sortByTotalRebounds = t => {
-		const trbSorted = t.sort((a, b) => b.trb - a.trb)
-		console.log(trbSorted)
-		return trbSorted
-	}
-	const sortByFieldGoalPer = t => {
-		const astSorted = t.sort((a, b) => b.fgPer - a.fgPer)
-		console.log(astSorted)
-		return astSorted
-	}
-	const sortBy3PtPer = t => {
-		const $3pSorted = t.sort((a, b) => b.$3pPer - a.$3pPer)
-		console.log($3pSorted)
-		return $3pSorted
-	}
-
-	const findRanking = (team, sortingFunction) => {
-		// get proper suffix when printing final result
-		const getNumericalSuffix = a => {
-			let b = a % 10
-			let c = a % 100
-
-			if (b == 1 && c != 11) {
-				return a + 'st'
-			}
-			if (b == 2 && c != 12) {
-				return a + 'nd'
-			}
-			if (b == 3 && c != 13) {
-				return a + 'rd'
-			}
-			return a + 'th'
-		}
-		// finds passed-in team name in sorting function of choice
-		const rankingMatch = sortingFunction => sortingFunction.team === team
-		// get ranking (index)
-		const ranking = sortingFunction.findIndex(rankingMatch)
-		console.log(ranking)
-		// add 1 to index to get true ranking
-		let finalRanking = ranking + 1
-		// test log
-		console.log(
-			`The ${fullTeamNames(team)} are ${getNumericalSuffix(
-				finalRanking
-			)} in the NBA in this stat.`
-		)
-		return finalRanking
-	}
-	useEffect(() => {
-		findRanking('mem', sortByTotalRebounds(sortedTeams))
-	}, [sortedTeams]) */
 
 	// redux state
 	const { userInfo } = useSelector(state => state.auth)
@@ -104,7 +47,6 @@ const UserProfilePage = () => {
 	const [avatar, setAvatar] = useState('')
 	const [favTeams, setFavTeams] = useState([])
 	const [activeFavTeams, setActiveFavTeams] = useState(false)
-	const [showSaveButton, setShowSaveButton] = useState(false)
 	const [textFieldChanged, setTextFieldChanged] = useState(false)
 
 	// open and close modal
@@ -234,7 +176,8 @@ const UserProfilePage = () => {
 					md={2}>
 					<Box
 						sx={{
-							height: '100%',
+							minHeight: '100%',
+							height: 'fit-content',
 							color: league.nbaWhite,
 							display: 'flex',
 							flexDirection: 'column',
@@ -242,6 +185,7 @@ const UserProfilePage = () => {
 							alignItems: 'center',
 							gap: '3rem',
 							p: { xs: '2rem 3rem', md: '0 3rem' },
+							overflowY: 'scroll',
 						}}>
 						<Box width={'100%'}>
 							<Typography
@@ -414,7 +358,7 @@ const UserProfilePage = () => {
 								</Grid>
 							</Grid>
 						</Box>
-						<Box width={'100%'}>
+						<Box sx={{ width: '100%', height: 'fit-content' }}>
 							<Box
 								sx={{
 									width: '100%',
@@ -475,7 +419,8 @@ const UserProfilePage = () => {
 								}}
 								component='section'>
 								<Box
-									height='88vh'
+									maxHeight={'92vh'}
+									height='fit-content'
 									sx={{
 										p: { xs: '0.5rem', md: '2rem' },
 										width: { xs: '90%', md: '64%' },
@@ -526,64 +471,71 @@ const UserProfilePage = () => {
 											<span style={{ fontWeight: 700 }}>Favorite Teams</span>
 										</Typography> */}
 									</div>
-									<Grid
-										container
-										width={'90%'}
-										columns={6}
-										columnSpacing={0}
-										rowSpacing={2}
-										marginTop={'0.5rem'}>
-										{sortedTeams.map(team => {
-											if (favTeams.includes(team.team)) {
-												isOutlined = true
-											} else isOutlined = false
-											return (
-												<Grid
-													key={team.id}
-													item
-													xs={2}
-													md={1}
-													sx={{
-														padding: '1.5rem 0.5rem',
-														borderRadius: '4px',
-														outline: isOutlined
-															? `2px solid ${league.nbaRed}`
-															: 'none',
+									<Box
+										sx={{
+											display: 'flex',
+											flexDirection: 'column',
+											alignItems: 'center',
+											gap: '2rem',
+										}}>
+										<Grid
+											container
+											width={'90%'}
+											columns={6}
+											columnSpacing={0}
+											rowSpacing={2}
+											marginTop={'0.5rem'}>
+											{sortedTeams.map(team => {
+												if (favTeams.includes(team.team)) {
+													isOutlined = true
+												} else isOutlined = false
+												return (
+													<Grid
+														key={team.id}
+														item
+														xs={2}
+														md={1}
+														sx={{
+															padding: '1.5rem 0.5rem',
+															borderRadius: '4px',
+															outline: isOutlined
+																? `2px solid ${league.nbaRed}`
+																: 'none',
 
-														outlineOffset: '-2px',
-														'&:hover': {
-															outline: '2px solid white',
-															boxShadow: '0px 0px 20px black',
-															cursor: 'pointer',
-														},
-														maxWidth: '120px',
-													}}>
-													<Box
-														onClick={() => {
-															if (favTeams.includes(team.team)) {
-																removeFavoriteTeam(team)
-															} else {
-																addFavoriteTeam(team)
-															}
-															handleTeamSelectOutline(team)
+															outlineOffset: '-2px',
+															'&:hover': {
+																outline: '2px solid white',
+																boxShadow: '0px 0px 20px black',
+																cursor: 'pointer',
+															},
+															maxWidth: '120px',
 														}}>
-														<HomeTeamCard
-															width={60}
-															team={team.team}
-														/>
-													</Box>
-												</Grid>
-											)
-										})}
-									</Grid>
-									<Button
-										onClick={() => {
-											saveProfileUpdate()
-											handleClose()
-										}}
-										sx={{ margin: '-1rem 0 0' }}>
-										Save Favorite Teams
-									</Button>
+														<Box
+															onClick={() => {
+																if (favTeams.includes(team.team)) {
+																	removeFavoriteTeam(team)
+																} else {
+																	addFavoriteTeam(team)
+																}
+																handleTeamSelectOutline(team)
+															}}>
+															<HomeTeamCard
+																width={60}
+																team={team.team}
+															/>
+														</Box>
+													</Grid>
+												)
+											})}
+										</Grid>
+										<Button
+											onClick={() => {
+												saveProfileUpdate()
+												handleClose()
+											}}>
+											Save
+										</Button>
+									</Box>
 								</Box>
 							</Modal>
 						</Box>

@@ -73,11 +73,6 @@ const RegisterPage = () => {
 		e.preventDefault()
 		console.log("Passwords don't match")
 		dispatch(setSnackbar({ passwordMismatchSnackbar: true }))
-		return (
-			<Box>
-				<Typography>Passwords don't match</Typography>
-			</Box>
-		)
 	}
 
 	return (

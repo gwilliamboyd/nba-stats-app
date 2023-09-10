@@ -38,7 +38,10 @@ export const loginUser = asyncHandler(async (req, res) => {
 	if (!user) {
 		return res.status(400).json({ message: 'User does not exist' })
 	}
-	await user.matchPasswords(password)
+	const passwordCheck = await user.matchPasswords(password)
+	if (!passwordCheck) {
+		return res.status(403).json({ message: 'Incorrect email or password' })
+	}
 	delete user.password
 
 	const token = jwt.sign({ user }, 'Toolfan123458', { expiresIn: '2d' })

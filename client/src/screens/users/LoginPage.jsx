@@ -36,21 +36,21 @@ const LoginPage = () => {
 	const { userInfo } = useSelector(state => state.auth)
 
 	// Navigate to home if logged in after clicking Login screen
-	useEffect(() => {
+	/* useEffect(() => {
 		if (userInfo) {
 			navigate('/')
 		}
-	}, [navigate, userInfo])
+	}, [navigate, userInfo]) */
 
 	const submitHandler = async e => {
 		e.preventDefault()
+
 		try {
 			const res = await login({ email, password }).unwrap()
 			dispatch(setCredentials({ ...res }))
 			dispatch(setSnackbar({ loginSnackbar: true }))
-			// dispatch(setSnackbarState(true))
-			navigate('/', { state: { page: 'login' } })
-			// setSnackbarOpen(true)
+			// navigate('/', { state: { page: 'login' } })
+			console.log(`Password: ${password}`)
 		} catch (err) {
 			console.log(err?.data.message || err?.error)
 		}
