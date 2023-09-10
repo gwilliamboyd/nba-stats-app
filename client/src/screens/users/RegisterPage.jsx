@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Box, Button, Typography } from '@mui/material'
+// import LoadingButton from '@mui/lab/LoadingButton'
 import { useTheme } from '@mui/material/styles'
 import { Container } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
@@ -36,12 +37,15 @@ const RegisterPage = () => {
 	const [confirmPassword, setConfirmPassword] = useState('')
 	const [avatar, setAvatar] = useState('')
 	const [userAvatar, setUserAvatar] = useState('')
+	// loading button state
+	const [loading, setLoading] = useState(false)
 
 	// const joinDate = new Date()
 
 	const [register, { isLoading }] = useRegisterMutation()
 
 	const submitHandler = async e => {
+		setLoading(true)
 		e.preventDefault()
 		try {
 			const formData = new FormData()
@@ -54,6 +58,7 @@ const RegisterPage = () => {
 			// await register({ name, email, password, avatar }).unwrap()
 			await register(formData)
 			// dispatch(setCredentials({ ...register }))
+			setLoading(false)
 			navigate('/')
 		} catch (err) {
 			console.log(err?.data.message || err?.error)
@@ -192,6 +197,8 @@ const RegisterPage = () => {
 						</Dropzone>
 
 						<Button
+							// loading={loading}
+							// loadingPosition='end'
 							variant='contained'
 							type='submit'>
 							Submit
