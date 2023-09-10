@@ -182,7 +182,7 @@ const TeamIndivPage = () => {
 										variant='h3'
 										sx={{
 											marginTop: { xs: '0', md: '2rem' },
-											letterSpacing: '-2.5px',
+											letterSpacing: '-1.5px',
 											fontSize: { xs: '38px', md: '52px' },
 										}}>
 										{fullTeamNames(team)}
@@ -213,7 +213,7 @@ const TeamIndivPage = () => {
 												fontWeight={600}
 												variant='h5'
 												sx={{
-													letterSpacing: '-2.5px',
+													letterSpacing: '-1.5px',
 													fontSize: { xs: '20px', md: '26px' },
 												}}>
 												{home}
@@ -236,7 +236,7 @@ const TeamIndivPage = () => {
 												fontWeight={600}
 												variant='h5'
 												sx={{
-													letterSpacing: '-2.5px',
+													letterSpacing: '-1.5px',
 													fontSize: { xs: '20px', md: '26px' },
 												}}>
 												{arena}
@@ -277,7 +277,7 @@ const TeamIndivPage = () => {
 									<Typography
 										variant='h5'
 										fontWeight={700}
-										color={tertiaryColor}
+										color={secondaryColor}
 										sx={{ alignSelf: 'flex-start' }}>
 										Per-Game
 									</Typography>
@@ -301,7 +301,7 @@ const TeamIndivPage = () => {
 									<Typography
 										variant='h5'
 										fontWeight={700}
-										color={tertiaryColor}
+										color={secondaryColor}
 										sx={{ alignSelf: 'flex-start' }}>
 										Totals
 									</Typography>
@@ -325,7 +325,7 @@ const TeamIndivPage = () => {
 									<Typography
 										variant='h5'
 										fontWeight={700}
-										color={tertiaryColor}
+										color={secondaryColor}
 										sx={{ alignSelf: 'flex-start' }}>
 										Advanced
 									</Typography>
@@ -343,13 +343,13 @@ const TeamIndivPage = () => {
 						)}
 						<Box
 							sx={{
-								width: '75%',
+								width: '1300px',
 								display: 'flex',
 								flexDirection: { xs: 'column', md: 'row' },
 								alignItems: { xs: 'center', md: 'baseline' },
 								justifyContent: { xs: 'center', md: 'space-between' },
 								gap: { xs: '1.5rem', md: '3rem' },
-								marginLeft: { xs: '0', md: '5rem' },
+								// marginLeft: { xs: '0', md: '5rem' },
 							}}>
 							<Typography
 								color={secondaryColor}

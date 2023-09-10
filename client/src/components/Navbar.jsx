@@ -226,14 +226,14 @@ const Navbar = () => {
 														</Link>
 													</>
 												)}
-												<Link to={'/standings'}>
+												{/* <Link to={'/standings'}>
 													<MenuItem
 														divider
 														sx={{ p: '1rem', fontSize: '2rem' }}
 														onClick={handleMobileClose}>
 														Standings
 													</MenuItem>
-												</Link>
+												</Link> */}
 												<Link to={'/stats/teams'}>
 													<MenuItem
 														divider
@@ -359,13 +359,13 @@ const Navbar = () => {
 							/>
 						</Link>
 						<Box sx={{ display: 'flex', gap: '36px' }}>
-							<Link to='/standings'>
+							{/* <Link to='/standings'>
 								<Typography
 									variant='h6'
 									sx={desktopLinksStyles}>
 									Standings
 								</Typography>
-							</Link>
+							</Link> */}
 							<Link to='/stats/teams'>
 								<Typography
 									variant='h6'

@@ -105,6 +105,7 @@ const UserProfilePage = () => {
 	const [favTeams, setFavTeams] = useState([])
 	const [activeFavTeams, setActiveFavTeams] = useState(false)
 	const [showSaveButton, setShowSaveButton] = useState(false)
+	const [textFieldChanged, setTextFieldChanged] = useState(false)
 
 	// open and close modal
 	const [modalOpen, setModalOpen] = useState(false)
@@ -129,13 +130,22 @@ const UserProfilePage = () => {
 		userInfo.favoriteTeams.includes(e)
 	}
 
+	// set text fields to updated data when changed
 	useEffect(() => {
 		setName(userInfo.name)
 		setEmail(userInfo.email)
 		setAvatar(userInfo.avatar)
 		setFavTeams(userInfo.favoriteTeams)
+		setTextFieldChanged(false)
 	}, [userInfo.name, userInfo.email, userInfo.avatar, userInfo.favoriteTeams])
 
+	// reset password on page
+	useEffect(() => {
+		setPassword('')
+		setConfirmPassword('')
+	}, [])
+
+	// submit profile update
 	const saveProfileUpdate = async () => {
 		try {
 			const res = await updateUser({
@@ -162,6 +172,10 @@ const UserProfilePage = () => {
 		label: { color: '#FFF' },
 		fieldset: { borderColor: 'lightgray' },
 	}
+
+	useEffect(() => {
+		console.log(textFieldChanged)
+	}, [textFieldChanged])
 
 	return (
 		<Container
@@ -205,7 +219,7 @@ const UserProfilePage = () => {
 							sx={{ fontSize: { xs: '36px', md: '52px' } }}>
 							{userInfo.name}
 						</Typography>
-						{showSaveButton && (
+						{textFieldChanged && (
 							<Button
 								sx={buttonStyles}
 								onClick={saveProfileUpdate}>
@@ -266,11 +280,12 @@ const UserProfilePage = () => {
 													id='outlined'
 													type='name'
 													onChange={e => {
+														setTextFieldChanged(true)
 														setName(e.target.value)
-														if (e.target.value === name) {
-															setShowSaveButton(false)
+
+														if (e.target.value === userInfo.name) {
+															setTextFieldChanged(false)
 														}
-														setShowSaveButton(true)
 													}}
 													placeholder='Name'
 													sx={textFieldStyles}
@@ -293,11 +308,11 @@ const UserProfilePage = () => {
 													id='outlined'
 													type='email'
 													onChange={e => {
+														setTextFieldChanged(true)
 														setEmail(e.target.value)
-														if (e.target.value === email) {
-															setShowSaveButton(false)
+														if (e.target.value === userInfo.email) {
+															setTextFieldChanged(false)
 														}
-														setShowSaveButton(true)
 													}}
 													placeholder='Email'
 													sx={textFieldStyles}
@@ -320,8 +335,11 @@ const UserProfilePage = () => {
 													id='outlined'
 													type='password'
 													onChange={e => {
+														setTextFieldChanged(true)
 														setPassword(e.target.value)
-														setShowSaveButton(true)
+														if (e.target.value === '') {
+															setTextFieldChanged(false)
+														}
 													}}
 													placeholder='Password'
 													sx={textFieldStyles}
@@ -344,8 +362,11 @@ const UserProfilePage = () => {
 													id='outlined'
 													type='password'
 													onChange={e => {
+														setTextFieldChanged(true)
 														setConfirmPassword(e.target.value)
-														setShowSaveButton(true)
+														if (e.target.value === '') {
+															setTextFieldChanged(false)
+														}
 													}}
 													placeholder='Confirm Password'
 													sx={textFieldStyles}
@@ -454,10 +475,10 @@ const UserProfilePage = () => {
 								}}
 								component='section'>
 								<Box
-									height='100vh'
+									height='88vh'
 									sx={{
 										p: { xs: '0.5rem', md: '2rem' },
-										width: { xs: '90%', md: '70%' },
+										width: { xs: '90%', md: '64%' },
 										color: `${league.nbaWhite}`,
 										position: 'absolute',
 										top: '50%',
@@ -467,42 +488,51 @@ const UserProfilePage = () => {
 										display: 'flex',
 										flexDirection: 'column',
 										alignItems: 'center',
-										gap: '4rem',
+										gap: '2rem',
 										border: `3px solid ${league.nbaWhite}`,
 										borderRadius: '12px',
-										overflow: { xs: 'scroll', md: 'hidden' },
+										overflow: { xs: 'scroll', lg: 'hidden' },
 									}}>
-									<Button
-										sx={{
-											alignSelf: 'flex-end',
-											margin: { xs: '0 0 -3rem', md: '-1rem 0 -2rem' },
-										}}
-										onClick={handleClose}>
-										Close
-									</Button>
-									<Box
-										sx={{
-											width: '80%',
-											display: 'flex',
-											flexDirection: 'column',
-											alignItems: 'center',
+									<div
+										style={{
+											width: '100%',
+											display: 'grid',
+											gridTemplateRows: '1fr',
+											gridTemplateColumns: '1fr 1fr 1fr',
+											justifyItems: 'space-between',
 											gap: '20px',
 										}}>
+										<Box></Box>
 										<Typography
 											variant='h4'
-											fontWeight={900}>
+											fontWeight={900}
+											justifySelf={'center'}
+											// marginTop={'-2rem'}
+										>
 											Add Teams
 										</Typography>
-										<Typography>
+										<Button
+											sx={{
+												width: 'fit-content',
+												justifySelf: 'flex-end',
+												// margin: { xs: '0 0 -3rem', md: '-1rem 0 -2rem' },
+											}}
+											onClick={handleClose}>
+											Close
+										</Button>
+
+										{/* <Typography>
 											Click a team to add it to your{' '}
 											<span style={{ fontWeight: 700 }}>Favorite Teams</span>
-										</Typography>
-									</Box>
+										</Typography> */}
+									</div>
 									<Grid
 										container
+										width={'90%'}
 										columns={6}
 										columnSpacing={0}
-										rowSpacing={0}>
+										rowSpacing={2}
+										marginTop={'0.5rem'}>
 										{sortedTeams.map(team => {
 											if (favTeams.includes(team.team)) {
 												isOutlined = true
@@ -514,7 +544,7 @@ const UserProfilePage = () => {
 													xs={2}
 													md={1}
 													sx={{
-														padding: '1rem 0.75rem',
+														padding: '1.5rem 0.5rem',
 														borderRadius: '4px',
 														outline: isOutlined
 															? `2px solid ${league.nbaRed}`
@@ -526,6 +556,7 @@ const UserProfilePage = () => {
 															boxShadow: '0px 0px 20px black',
 															cursor: 'pointer',
 														},
+														maxWidth: '120px',
 													}}>
 													<Box
 														onClick={() => {
@@ -550,7 +581,7 @@ const UserProfilePage = () => {
 											saveProfileUpdate()
 											handleClose()
 										}}
-										sx={{ margin: '-3rem 0 0' }}>
+										sx={{ margin: '-1rem 0 0' }}>
 										Save Favorite Teams
 									</Button>
 								</Box>
