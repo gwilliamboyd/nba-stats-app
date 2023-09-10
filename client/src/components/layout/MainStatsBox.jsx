@@ -10,7 +10,7 @@ const MainStatsBox = ({ children }) => {
 				justifyContent: { xs: 'center', lg: 'space-between' },
 				alignItems: { xs: 'center', lg: 'baseline' },
 				margin: '2rem 0',
-				width: '82%',
+				width: { sm: '540px', md: '750px', lg: '1200px', xl: '1300px' },
 				// height: '100%',
 				gap: '2rem',
 			}}>

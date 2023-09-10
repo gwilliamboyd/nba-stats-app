@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import React from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
 	Box,
@@ -62,11 +63,10 @@ export default function EnhancedTable({
 	const theme = useTheme()
 	const { league } = theme.palette
 	// component state
-	const [order, setOrder] = React.useState('asc')
-	const [orderBy, setOrderBy] = React.useState('calories')
-	const [page, setPage] = React.useState(0)
-	// eslint-disable-next-line no-unused-vars
-	const [rowsPerPage, setRowsPerPage] = React.useState(playersPerPage)
+	const [order, setOrder] = useState('asc')
+	const [orderBy, setOrderBy] = useState('default')
+	const [page, setPage] = useState(0)
+	const [rowsPerPage, setRowsPerPage] = useState(playersPerPage)
 
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === 'asc'
@@ -92,14 +92,15 @@ export default function EnhancedTable({
 	const tableCellStyle = {
 		color: tertiaryColor,
 		padding: '2px',
-		minWidth: '47px',
-		// textAlign: 'right',
+		fontSize: '12px',
 	}
 
 	return (
 		<Box
 			sx={{
-				width: { xs: '90%', md: '82%' },
+				// hard values to avoid resizing table
+				// percentages are xs: 90% and md: 82%
+				width: { xs: '540px', md: '984px', lg: '1200px', xl: '1300px' },
 				backgroundColor: containerBackground || primaryColor,
 			}}>
 			<Paper
@@ -130,6 +131,7 @@ export default function EnhancedTable({
 							}
 							order={order}
 							orderBy={orderBy}
+							setOrderBy={setOrderBy}
 							onRequestSort={handleRequestSort}
 							backgroundColor={primaryColor}
 							fontColor={secondaryColor}
@@ -145,7 +147,7 @@ export default function EnhancedTable({
 												tabIndex={-1}
 												key={row.player}
 												sx={{ cursor: 'pointer' }}>
-												<TableCell sx={{ padding: '4px' }}>
+												<TableCell sx={{ padding: '4px', width: '64px' }}>
 													<img
 														src={`/images/svgs/team-logos/${row.team}.svg`}
 														alt={`${row.team} logo`}
@@ -154,139 +156,133 @@ export default function EnhancedTable({
 												</TableCell>
 												<TableCell
 													sx={{
-														color: tertiaryColor,
+														color: league.nbaWhite,
 														padding: '2px',
-														fontSize: '16px',
-													}}
-													component='th'
-													id={labelId}
-													scope='row'
-													padding='none'>
-													{row.player}
+														fontSize: '14px',
+														width: '166px',
+													}}>
+													<Link to={`/stats/players/${row.id}`}>
+														{row.player}
+													</Link>
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.pos}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.age}
 												</TableCell>
-												{/* <TableCell
-													sx={tableCellStyle}
-													align='right'>
-													{row.team.toUpperCase()}
-												</TableCell> */}
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.g}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.mp}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.per}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.tsPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.$3pAr}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.ftr}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.orbPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.drbPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.trbPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.astPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.stlPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.blkPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.tovPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.usgPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.ows}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.dws}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.ws}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.ws48}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.obpm}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.dbpm}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.bpm}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.worp}
 												</TableCell>
 											</TableRow>
@@ -310,7 +306,7 @@ export default function EnhancedTable({
 												tabIndex={-1}
 												key={row.player}
 												sx={{ cursor: 'pointer' }}>
-												<TableCell sx={{ padding: '4px' }}>
+												<TableCell sx={{ padding: '4px', width: '64px' }}>
 													<img
 														src={`/images/svgs/team-logos/${row.team}.svg`}
 														alt={`${row.team} logo`}
@@ -321,154 +317,155 @@ export default function EnhancedTable({
 													sx={{
 														color: league.nbaWhite,
 														padding: '2px',
-														fontSize: '16px',
+														fontSize: '14px',
+														width: '166px',
 													}}
-													component='th'
-													id={labelId}
-													scope='row'
+													// component='th'
+													// id={labelId}
+													// scope='row'
 													padding='none'>
 													<Link to={`/stats/players/${row.id}`}>
 														{row.player}
 													</Link>
 												</TableCell>
 												<TableCell
-													align='right'
+													align='center'
 													sx={tableCellStyle}>
 													{row.pos}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.age}
 												</TableCell>
 												{/* <TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.team.toUpperCase()}
 												</TableCell> */}
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.g}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.gs}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.mp}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.fg}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.fga}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.fgPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.$3p}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.$3pA}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.$3pPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.$2p}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.$2pA}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.$2pPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.eFgPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.ft}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.fta}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.ftPer}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.orb}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.drb}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.trb}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.ast}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.stl}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.blk}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.tov}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.pf}
 												</TableCell>
 												<TableCell
 													sx={tableCellStyle}
-													align='right'>
+													align='center'>
 													{row.pts}
 												</TableCell>
 											</TableRow>
