@@ -4,19 +4,15 @@ const initialState = {
 	userInfo: localStorage.getItem('userInfo')
 		? JSON.parse(localStorage.getItem('userInfo'))
 		: null,
-	// snackbarIsOpen: false,
 	snackbarIsOpen: {
 		// success
 		loginSnackbar: false,
 		registerSnackbar: false,
 		logoutSnackbar: false,
+		profileUpdateSnackbar: false,
 		// error
 		passwordMismatchSnackbar: false,
 	},
-	/* loginSnackbar: false,
-		registerSnackbar: false,
-		logoutSnackbar: false
-	*/
 }
 
 const authSlice = createSlice({
@@ -26,8 +22,6 @@ const authSlice = createSlice({
 		setCredentials: (state, action) => {
 			state.userInfo = action.payload
 			localStorage.setItem('userInfo', JSON.stringify(action.payload))
-			// state.snackbarIsOpen = 'true'
-			// state.snackbarIsOpen = false
 		},
 		setSnackbar: (state, action) => {
 			state.snackbarIsOpen = action.payload
@@ -36,8 +30,6 @@ const authSlice = createSlice({
 			// Clears credentials
 			state.userInfo = null
 			localStorage.removeItem('userInfo')
-			// state.snackbarIsOpen = 'logged out'
-			// state.snackbarIsOpen = false
 		},
 	},
 })

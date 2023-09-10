@@ -12,12 +12,16 @@ import {
 import { useTheme } from '@mui/material/styles'
 import UserAvatar from '../../components/UserAvatar'
 import HomeTeamCard from '../../components/user-profile/HomeTeamCard'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import teams from '../../data/teams-perGame.json'
 import { useUpdateUserMutation } from '../../slices/authentication/usersApiSlice'
-import { setCredentials } from '../../slices/authentication/authSlice'
+import {
+	setCredentials,
+	setSnackbar,
+} from '../../slices/authentication/authSlice'
 import fullTeamNames from '../../hooks/fullTeamNames'
 import Dropzone from 'react-dropzone'
+import SuccessSnackbar from '../../components/snackbars/SuccessSnackbar'
 
 const UserProfilePage = () => {
 	// theme
@@ -28,8 +32,8 @@ const UserProfilePage = () => {
 
 	// sort teams alphabetically
 	const sortedTeams = teams.sort((a, b) => a.team.localeCompare(b.team))
-	console.log(sortedTeams)
-	const sortByPoints = t => {
+	// console.log(sortedTeams)
+	/* 	const sortByPoints = t => {
 		const ptsSorted = t.sort((a, b) => b.pts - a.pts)
 		console.log(ptsSorted)
 		return ptsSorted
@@ -84,10 +88,14 @@ const UserProfilePage = () => {
 	}
 	useEffect(() => {
 		findRanking('mem', sortByTotalRebounds(sortedTeams))
-	}, [sortedTeams])
+	}, [sortedTeams]) */
 
 	// redux state
 	const { userInfo } = useSelector(state => state.auth)
+	const { snackbarIsOpen } = useSelector(state => state.auth)
+
+	const navigate = useNavigate()
+
 	// component state
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
@@ -96,6 +104,7 @@ const UserProfilePage = () => {
 	const [avatar, setAvatar] = useState('')
 	const [favTeams, setFavTeams] = useState([])
 	const [activeFavTeams, setActiveFavTeams] = useState(false)
+	const [showSaveButton, setShowSaveButton] = useState(false)
 
 	// open and close modal
 	const [modalOpen, setModalOpen] = useState(false)
@@ -106,7 +115,7 @@ const UserProfilePage = () => {
 	const [updateUser, { isLoading }] = useUpdateUserMutation()
 
 	// favorite teams
-	const favoriteTeams = userInfo.favoriteTeams
+	const favoriteTeams = userInfo?.favoriteTeams
 
 	const addFavoriteTeam = e => {
 		setFavTeams([...favTeams, e.team])
@@ -138,6 +147,8 @@ const UserProfilePage = () => {
 				favoriteTeams: favTeams,
 			}).unwrap()
 			dispatch(setCredentials({ ...res }))
+			dispatch(setSnackbar({ profileUpdateSnackbar: true }))
+			navigate('/profile')
 		} catch (err) {
 			console.log(err?.data?.message || err.error)
 		}
@@ -161,6 +172,10 @@ const UserProfilePage = () => {
 				container
 				columns={3}
 				sx={{ height: { xs: '100%', md: 'calc(100vh - 100px)' } }}>
+				<SuccessSnackbar
+					open={snackbarIsOpen.profileUpdateSnackbar}
+					message={'Profile updated!'}
+				/>
 				<Grid
 					item
 					xs={3}
@@ -190,6 +205,13 @@ const UserProfilePage = () => {
 							sx={{ fontSize: { xs: '36px', md: '52px' } }}>
 							{userInfo.name}
 						</Typography>
+						{showSaveButton && (
+							<Button
+								sx={buttonStyles}
+								onClick={saveProfileUpdate}>
+								Save Profile Info
+							</Button>
+						)}
 					</Box>
 				</Grid>
 				<Grid
@@ -243,16 +265,17 @@ const UserProfilePage = () => {
 												<TextField
 													id='outlined'
 													type='name'
-													onChange={e => setName(e.target.value)}
+													onChange={e => {
+														setName(e.target.value)
+														if (e.target.value === name) {
+															setShowSaveButton(false)
+														}
+														setShowSaveButton(true)
+													}}
 													placeholder='Name'
 													sx={textFieldStyles}
 													value={name}
 												/>
-												<Button
-													sx={buttonStyles}
-													onClick={saveProfileUpdate}>
-													Save
-												</Button>
 											</Box>
 										</Grid>
 										<Grid
@@ -269,16 +292,17 @@ const UserProfilePage = () => {
 												<TextField
 													id='outlined'
 													type='email'
-													onChange={e => setEmail(e.target.value)}
+													onChange={e => {
+														setEmail(e.target.value)
+														if (e.target.value === email) {
+															setShowSaveButton(false)
+														}
+														setShowSaveButton(true)
+													}}
 													placeholder='Email'
 													sx={textFieldStyles}
 													value={email}
 												/>
-												<Button
-													sx={buttonStyles}
-													onClick={saveProfileUpdate}>
-													Save
-												</Button>
 											</Box>
 										</Grid>
 										<Grid
@@ -295,16 +319,14 @@ const UserProfilePage = () => {
 												<TextField
 													id='outlined'
 													type='password'
-													onChange={e => setPassword(e.target.value)}
+													onChange={e => {
+														setPassword(e.target.value)
+														setShowSaveButton(true)
+													}}
 													placeholder='Password'
 													sx={textFieldStyles}
 													value={password}
 												/>
-												<Button
-													sx={buttonStyles}
-													onClick={saveProfileUpdate}>
-													Save
-												</Button>
 											</Box>
 										</Grid>
 										<Grid
@@ -321,16 +343,14 @@ const UserProfilePage = () => {
 												<TextField
 													id='outlined'
 													type='password'
-													onChange={e => setConfirmPassword(e.target.value)}
+													onChange={e => {
+														setConfirmPassword(e.target.value)
+														setShowSaveButton(true)
+													}}
 													placeholder='Confirm Password'
 													sx={textFieldStyles}
 													value={confirmPassword}
 												/>
-												<Button
-													sx={buttonStyles}
-													onClick={saveProfileUpdate}>
-													Save
-												</Button>
 											</Box>
 										</Grid>
 									</Grid>

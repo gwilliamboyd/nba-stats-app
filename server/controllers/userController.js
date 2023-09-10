@@ -24,14 +24,16 @@ export const updateUser = asyncHandler(async (req, res) => {
 		user.favoriteTeams = req.body.favoriteTeams || user.favoriteTeams
 		const updatedUser = await user.save()
 
-		res.status(200).json({
+		res.status(204).json({
 			_id: updatedUser._id,
 			name: updatedUser.name,
 			email: updatedUser.email,
+			password: updateUser.password,
+			favoriteTeams: updateUser.favoriteTeams,
 		})
 	} else {
 		res.status(404)
 		throw new Error('User not found')
 	}
-	res.status(200).json({ message: 'Updated profile' })
+	res.status(204).json({ message: 'Updated profile' })
 })
