@@ -27,8 +27,8 @@ const TeamIndivPage = () => {
 	const teamsPerGameStats = useSelector(state => state.teamsPerGameStats)
 	const team = window.location.href.slice(-3)
 	const primaryColor = eval(`theme.palette.teams.${team}.primary`)
-	const secondaryColor = eval(`theme.palette.teams.${team}.secondary`)
-	const tertiaryColor = eval(`theme.palette.teams.${team}.tertiary`)
+	const secondaryColor = eval(`theme.palette.teams.${team}.tertiary`)
+	const tertiaryColor = eval(`theme.palette.teams.${team}.secondary`)
 
 	const [loading, setLoading] = useState(true)
 	const [fadeIn, setFadeIn] = useState(false)
@@ -163,7 +163,6 @@ const TeamIndivPage = () => {
 									alignItems: { xs: 'center', md: 'flex-start' },
 									gap: { xs: '0.5rem', md: '2rem' },
 									minWidth: { xs: '0px', md: '680px' },
-									// flex: '1 0 0',
 								}}>
 								<img
 									src={`/images/svgs/team-logos/${team}.svg`}
@@ -178,7 +177,7 @@ const TeamIndivPage = () => {
 										flex: 1,
 									}}>
 									<Typography
-										color={tertiaryColor}
+										color={secondaryColor}
 										fontWeight={800}
 										variant='h3'
 										sx={{
@@ -203,14 +202,14 @@ const TeamIndivPage = () => {
 												// gap: '6px',
 											}}>
 											<Typography
-												color={secondaryColor}
+												color={tertiaryColor}
 												marginLeft={'0.2rem'}
 												variant='body2'
 												fontWeight={700}>
 												HOMETOWN
 											</Typography>
 											<Typography
-												color={tertiaryColor}
+												color={secondaryColor}
 												fontWeight={600}
 												variant='h5'
 												sx={{
@@ -224,17 +223,16 @@ const TeamIndivPage = () => {
 											sx={{
 												display: 'flex',
 												flexDirection: 'column',
-												// gap: '6px',
 											}}>
 											<Typography
-												color={secondaryColor}
+												color={tertiaryColor}
 												marginLeft={'0.2rem'}
 												variant='body2'
 												fontWeight={700}>
 												ARENA
 											</Typography>
 											<Typography
-												color={tertiaryColor}
+												color={secondaryColor}
 												fontWeight={600}
 												variant='h5'
 												sx={{
@@ -254,8 +252,8 @@ const TeamIndivPage = () => {
 								statsFg={statsFg}
 								statsFgPer={statsFgPer}
 								stats3pPer={stats3pPer}
-								secondaryColor={secondaryColor}
-								tertiaryColor={tertiaryColor}
+								secondaryColor={tertiaryColor}
+								tertiaryColor={secondaryColor}
 							/>
 						</Box>
 						{loading ? (
@@ -286,8 +284,8 @@ const TeamIndivPage = () => {
 									<TeamIndivStatsRow
 										team={team}
 										primaryColor={primaryColor}
-										secondaryColor={secondaryColor}
-										tertiaryColor={tertiaryColor}
+										secondaryColor={tertiaryColor}
+										tertiaryColor={secondaryColor}
 										statsType={'perGame'}
 										loading={loading}
 										statistics={teamIndivStats && teamIndivStatistics[0]}
@@ -310,8 +308,8 @@ const TeamIndivPage = () => {
 									<TeamIndivStatsRow
 										team={team}
 										primaryColor={primaryColor}
-										secondaryColor={secondaryColor}
-										tertiaryColor={tertiaryColor}
+										secondaryColor={tertiaryColor}
+										tertiaryColor={secondaryColor}
 										statsType={'total'}
 										loading={loading}
 										statistics={teamIndivStats && teamIndivStatistics[1]}
@@ -334,8 +332,8 @@ const TeamIndivPage = () => {
 									<TeamIndivStatsRow
 										team={team}
 										primaryColor={primaryColor}
-										secondaryColor={secondaryColor}
-										tertiaryColor={tertiaryColor}
+										secondaryColor={tertiaryColor}
+										tertiaryColor={secondaryColor}
 										statsType={'advanced'}
 										loading={loading}
 										statistics={teamIndivStats && teamIndivStatistics[2]}
@@ -354,16 +352,10 @@ const TeamIndivPage = () => {
 								marginLeft: { xs: '0', md: '5rem' },
 							}}>
 							<Typography
-								color={tertiaryColor}
+								color={secondaryColor}
 								variant='h3'>
 								Player Stats
 							</Typography>
-							{/* <Typography
-						color={secondaryColor}
-						variant='h5'
-						sx={{ fontWeight: '600', opacity: '90%' }}>
-						2022-23 Season
-					</Typography> */}
 
 							<StatsTypeButtonGroup
 								league={league}
@@ -398,9 +390,3 @@ const TeamIndivPage = () => {
 }
 
 export default TeamIndivPage
-/* const testDelay = async promise => {
-	await new Promise(resolve => {
-		setTimeout(resolve, 1000)
-	})
-	return promise
-} */

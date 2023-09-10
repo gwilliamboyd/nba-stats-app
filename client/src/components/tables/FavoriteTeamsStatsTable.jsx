@@ -25,8 +25,8 @@ export default function EnhancedTable({
 	statsType,
 	statistics,
 	// primaryColor,
-	// secondaryColor,
-	// tertiaryColor,
+	secondaryColor,
+	tertiaryColor,
 }) {
 	// set up sorting
 	function descendingComparator(a, b, orderBy) {
@@ -64,7 +64,7 @@ export default function EnhancedTable({
 
 	// component state
 	const [order, setOrder] = useState('asc')
-	const [orderBy, setOrderBy] = useState('calories')
+	const [orderBy, setOrderBy] = useState('default')
 	const page = 0
 	const rowsPerPage = 30
 
@@ -124,8 +124,11 @@ export default function EnhancedTable({
 							}
 							order={order}
 							orderBy={orderBy}
+							setOrderBy={setOrderBy}
 							onRequestSort={handleRequestSort}
 							backgroundColor='#18264a'
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
 							fontColor='#B52532'
 						/>
 						<TableBody>

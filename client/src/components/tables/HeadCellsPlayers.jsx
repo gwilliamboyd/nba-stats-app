@@ -9,6 +9,8 @@ const HeadCellsPlayers = ({
 	setOrderBy,
 	onRequestSort,
 	headCells,
+	secondaryColor,
+	tertiaryColor,
 	backgroundColor,
 }) => {
 	const [sortId, setSortId] = useState('default')
@@ -34,8 +36,8 @@ const HeadCellsPlayers = ({
 	// Change header styles if sortId is active
 	const handleSortColor = headCellId => {
 		return headCellId === sortId
-			? eval(`league.nbaWhite`)
-			: eval(`league.nbaRed`)
+			? eval(`secondaryColor`)
+			: eval(`tertiaryColor`)
 	}
 	const handleSortFontWeight = headCellId => {
 		return headCellId === sortId ? '600' : '400'
@@ -52,7 +54,7 @@ const HeadCellsPlayers = ({
 				marginBottom: '2px',
 				// can't call MUI theme here
 				// this is league.nbaRed typed manually
-				backgroundColor: '#B52532',
+				backgroundColor: tertiaryColor,
 			}
 		} else {
 			return null

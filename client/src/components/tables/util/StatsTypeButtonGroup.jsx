@@ -17,30 +17,30 @@ const StatsTypeButtonGroup = ({
 			<Button
 				onClick={() => setStatsType('perGame')}
 				sx={{
-					color: tertiaryColor,
+					color: secondaryColor,
 					minHeight: '60px',
 					maxHeight: '70px',
-					'&:hover': { color: secondaryColor },
+					'&:hover': { color: tertiaryColor },
 				}}>
 				Per-Game
 			</Button>
 			<Button
 				onClick={() => setStatsType('total')}
 				sx={{
-					color: tertiaryColor,
+					color: secondaryColor,
 					minHeight: '60px',
 					maxHeight: '70px',
-					'&:hover': { color: secondaryColor },
+					'&:hover': { color: tertiaryColor },
 				}}>
 				Totals
 			</Button>
 			<Button
 				onClick={() => setStatsType('advanced')}
 				sx={{
-					color: tertiaryColor,
+					color: secondaryColor,
 					minHeight: '60px',
 					maxHeight: '70px',
-					'&:hover': { color: secondaryColor },
+					'&:hover': { color: tertiaryColor },
 				}}>
 				Advanced
 			</Button>

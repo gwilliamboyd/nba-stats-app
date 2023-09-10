@@ -19,14 +19,14 @@ import {
 	teamsAdvancedHeadCells,
 	teamsPerGameHeadCells,
 } from '../../data/headCells/teamsHeadCells'
-// import teamLogo from `../../public/images/svgs/team-logos/${row.team}.svg`
 
 export default function EnhancedTable({
 	statsType,
 	statistics,
 	// primaryColor,
-	// secondaryColor,
-	// tertiaryColor,
+	secondaryColor,
+	tertiaryColor,
+	// borderColor,
 }) {
 	function descendingComparator(a, b, orderBy) {
 		if (b[orderBy] < a[orderBy]) {
@@ -59,10 +59,7 @@ export default function EnhancedTable({
 	const { league } = theme.palette
 
 	const [order, setOrder] = useState('asc')
-	const [orderBy, setOrderBy] = useState('calories')
-	// const [page, setPage] = useState(0)
-	// const [rowsPerPage, setRowsPerPage] = useState(30)
-	// no pagination necessary, so setting values manually
+	const [orderBy, setOrderBy] = useState('default')
 	const page = 0
 	const rowsPerPage = 30
 
@@ -121,8 +118,11 @@ export default function EnhancedTable({
 							}
 							order={order}
 							orderBy={orderBy}
+							setOrderBy={setOrderBy}
 							onRequestSort={handleRequestSort}
 							backgroundColor='#18264a'
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
 							fontColor='#FFF'
 						/>
 						<TableBody>

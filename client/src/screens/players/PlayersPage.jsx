@@ -11,9 +11,8 @@ import LoadingScreen from '../utility/LoadingScreen'
 import StatsTypeButtonGroup from '../../components/tables/util/StatsTypeButtonGroup'
 import MainStatsContainer from '../../components/layout/MainStatsContainer'
 import MainStatsBox from '../../components/layout/MainStatsBox'
-// import LoadingScreenBlank from './LoadingScreenBlank'
 const PlayersStatsTable = lazy(() =>
-	testDelay(import('../../components/tables/PlayersStatsTable'))
+	import('../../components/tables/PlayersStatsTable')
 )
 
 const PlayersPage = () => {
@@ -75,7 +74,6 @@ const PlayersPage = () => {
 							display: 'flex',
 							alignItems: 'baseline',
 							gap: '3rem',
-							// marginLeft: '5rem',
 						}}>
 						<Typography variant='h3'>Player Stats</Typography>
 						<Typography
@@ -105,7 +103,8 @@ const PlayersPage = () => {
 						containerBackground={league.nbaBackground}
 						primaryColor={'#18264a'}
 						secondaryColor={league.nbaWhite}
-						tertiaryColor={league.nbaWhite}
+						tertiaryColor={league.nbaRed}
+						borderColor={league.nbaWhite}
 						includePagination={includePagination}
 						playersPerPage={10}
 					/>
@@ -116,9 +115,3 @@ const PlayersPage = () => {
 }
 
 export default PlayersPage
-const testDelay = async promise => {
-	await new Promise(resolve => {
-		setTimeout(resolve, 1000)
-	})
-	return promise
-}

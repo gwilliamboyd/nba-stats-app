@@ -88,8 +88,8 @@ const TeamsPage = () => {
 					</Box>
 					<StatsTypeButtonGroup
 						league={league}
-						secondaryColor={league.nbaRed}
-						tertiaryColor={league.nbaWhite}
+						secondaryColor={league.nbaWhite}
+						tertiaryColor={league.nbaRed}
 						setStatsType={setStatsType}
 					/>
 				</MainStatsBox>
@@ -107,8 +107,9 @@ const TeamsPage = () => {
 								: null
 						}
 						primaryColor={'#18264a'}
-						secondaryColor={league.nbaBackground}
-						tertiaryColor={league.nbaWhite}
+						secondaryColor={league.nbaWhite}
+						tertiaryColor={league.nbaRed}
+						borderColor={league.nbaWhite}
 					/>
 				</Suspense>
 			</MainStatsContainer>

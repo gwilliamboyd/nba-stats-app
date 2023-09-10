@@ -28,6 +28,7 @@ export default function EnhancedTable({
 	primaryColor,
 	secondaryColor,
 	tertiaryColor,
+	borderColor,
 	includePagination,
 	playersPerPage,
 }) {
@@ -90,7 +91,7 @@ export default function EnhancedTable({
 
 	// table cell style object
 	const tableCellStyle = {
-		color: tertiaryColor,
+		color: secondaryColor,
 		padding: '2px',
 		fontSize: '12px',
 	}
@@ -101,13 +102,14 @@ export default function EnhancedTable({
 				// hard values to avoid resizing table
 				// percentages are xs: 90% and md: 82%
 				width: { xs: '540px', md: '984px', lg: '1200px', xl: '1300px' },
+				// backgroundColor: containerBackground || primaryColor,
 				backgroundColor: containerBackground || primaryColor,
 			}}>
 			<Paper
 				sx={{
 					width: '100%',
 					mb: 2,
-					border: `2px solid ${secondaryColor}`,
+					border: `2px solid ${borderColor || tertiaryColor}`,
 					overflow: 'hidden',
 				}}>
 				<TableContainer
@@ -134,6 +136,8 @@ export default function EnhancedTable({
 							setOrderBy={setOrderBy}
 							onRequestSort={handleRequestSort}
 							backgroundColor={primaryColor}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
 							fontColor={secondaryColor}
 						/>
 						<TableBody>
@@ -490,7 +494,7 @@ export default function EnhancedTable({
 						rowsPerPage={rowsPerPage}
 						page={page}
 						onPageChange={handleChangePage}
-						sx={{ backgroundColor: primaryColor, color: tertiaryColor }}
+						sx={{ backgroundColor: primaryColor, color: secondaryColor }}
 					/>
 				)}
 			</Paper>

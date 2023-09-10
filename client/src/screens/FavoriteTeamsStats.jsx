@@ -181,7 +181,7 @@ const FavoriteTeamsStats = () => {
 					color: league.nbaWhite,
 					paddingBottom: '3rem',
 				}}>
-				<Box
+				{/* <Box
 					sx={{
 						display: 'flex',
 						justifyContent: 'center',
@@ -204,7 +204,7 @@ const FavoriteTeamsStats = () => {
 						</Typography>
 						<Typography variant='h5'>Team-by Team Overview</Typography>
 					</Box>
-				</Box>
+				</Box> */}
 				{fTeams.length === 0 ? (
 					<Suspense fallback={<LoadingScreen />}>
 						<Box
@@ -302,8 +302,8 @@ const FavoriteTeamsStats = () => {
 										: null
 								}
 								primaryColor={'#18264a'}
-								secondaryColor={league.nbaBackground}
-								tertiaryColor={league.nbaWhite}
+								secondaryColor={league.nbaWhite}
+								tertiaryColor={league.nbaRed}
 							/>
 						</Box>
 					</Suspense>
