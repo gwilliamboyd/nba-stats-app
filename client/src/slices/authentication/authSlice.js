@@ -11,6 +11,7 @@ const initialState = {
 		logoutSnackbar: false,
 		profileUpdateSnackbar: false,
 		// error
+		incorrectPasswordSnackbar: false,
 		passwordMismatchSnackbar: false,
 	},
 }

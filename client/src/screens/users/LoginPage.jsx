@@ -18,6 +18,7 @@ import {
 	Typography,
 } from '@mui/material'
 import TextFieldContainer from '../../components/layout/users/TextFieldContainer'
+import ErrorSnackbar from '../../components/snackbars/ErrorSnackbar'
 
 const LoginPage = () => {
 	//theme
@@ -34,6 +35,7 @@ const LoginPage = () => {
 	const [login, { isLoading }] = useLoginMutation()
 	// Get user info
 	const { userInfo } = useSelector(state => state.auth)
+	const { snackbarIsOpen } = useSelector(state => state.auth)
 
 	// Navigate to home if logged in after clicking Login screen
 	/* useEffect(() => {
@@ -53,15 +55,13 @@ const LoginPage = () => {
 			console.log(`Password: ${password}`)
 		} catch (err) {
 			console.log(err?.data.message || err?.error)
+			if (err.status === 403 || err.status === 400) {
+				handleIncorrectPassword()
+			}
 		}
 	}
-	const passwordMatchHandler = async e => {
-		e.preventDefault()
-		return (
-			<Box>
-				<Typography>Passwords don't match</Typography>
-			</Box>
-		)
+	const handleIncorrectPassword = async () => {
+		dispatch(setSnackbar({ incorrectPasswordSnackbar: true }))
 	}
 	// style rules for text fields
 	const textFieldStyles = {
@@ -97,6 +97,10 @@ const LoginPage = () => {
 					color: league.nbaWhite,
 					gap: '2rem',
 				}}>
+				<ErrorSnackbar
+					open={snackbarIsOpen.incorrectPasswordSnackbar}
+					message={'Incorrect email or password'}
+				/>
 				<Box
 					sx={{
 						display: 'flex',
