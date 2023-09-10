@@ -1,14 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-	Grid,
-	Box,
-	Typography,
-	Snackbar,
-	Button,
-	IconButton,
-	Alert,
-	Fade,
-} from '@mui/material'
+import { Grid, Box, Typography, Fade } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
 // Getting data from data folder seems easier since I'm only
@@ -18,45 +9,26 @@ import HomeTeamCard from '../components/user-profile/HomeTeamCard'
 import { Suspense, lazy, /* memo, */ useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPlayersPerGameStats } from '../slices/players-stats/playersPerGameSlice'
-import { setSnackbar } from '../slices/authentication/authSlice'
-// import { setSnackbarState } from '../slices/snackbarSlice'
 import LoadingScreen from './utility/LoadingScreen'
-// import LoadingScreenBlank from './utility/LoadingScreenBlank'
 const HomePageBox = lazy(() => import('../components/layout/HomePageBox'))
 const HomePlayersLeaders = lazy(() =>
 	import('../components/home-page/HomePlayersLeaders')
 )
-
-// close icon
-import CloseIcon from '@mui/icons-material/Close'
+import SuccessSnackbar from '../components/snackbars/SuccessSnackbar'
 
 const HomePage = () => {
-	// memo components
-	// const MemoHomePageBox = memo(HomePageBox)
-
 	const theme = useTheme()
 	const { league } = theme.palette
 
 	const dispatch = useDispatch()
-
-	// const { snackbarState } = useSelector(state => state.snackbarState)
-	const { userInfo } = useSelector(state => state.auth)
 	const { snackbarIsOpen } = useSelector(state => state.auth)
-	// console.log(userInfo)
-
-	// snackbar notif
-	// const [snackbarOpen, setSnackbarOpen] = useState(false)
-	const [logoutSnackbarOpen, setLogoutSnackbarOpen] = useState(false)
 	// fade in effect
 	const [fadeIn, setFadeIn] = useState(false)
 	// load random player leaders
 	const [loading, setLoading] = useState(true)
-	// check if logged in
-	// const [loggedInClient, setLoggedInClient] = useState(false)
-	useEffect(() => {
-		console.log(`Snackbar Is Open: ${snackbarIsOpen}`)
-		// console.log(`Logged In Client: ${loggedInClient}`)
-	}, [])
+	/* useEffect(() => {
+		console.log(`Snackbar Is Open: ${snackbarIsOpen.loginSnackbar}`)
+	}, []) */
 
 	// fade in effect on load
 	useEffect(() => {
@@ -96,25 +68,6 @@ const HomePage = () => {
 		return result
 	}, [])
 
-	// snackbar element
-	const snackbarAction = (
-		<>
-			<Button
-				color='primary'
-				size='small'
-				onClick={() => dispatch(setSnackbar(false))}>
-				UNDO
-			</Button>
-			<IconButton
-				size='small'
-				aria-label='close'
-				color='inherit'
-				onClick={() => dispatch(setSnackbar(false))}>
-				<CloseIcon fontSize='small' />
-			</IconButton>
-		</>
-	)
-
 	return (
 		<Box
 			sx={{
@@ -122,38 +75,18 @@ const HomePage = () => {
 				width: { xs: '100%', md: 'calc(100vw - 8px)' },
 				padding: '0',
 			}}>
-			<Snackbar
-				open={snackbarIsOpen}
-				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-				autoHideDuration={3000}
-				onClose={() => dispatch(setSnackbar(false))}
-				// message='You are logged in!'
-				action={snackbarAction}
-				sx={{ backgroundColor: league.nbaBackground, margin: '84px 7% 0 0' }}>
-				<Alert
-					variant='filled'
-					onClose={() => dispatch(setSnackbar(false))}
-					severity='success'
-					sx={{ width: '100%' }}>
-					You are logged in!
-				</Alert>
-			</Snackbar>
-			<Snackbar
-				open={logoutSnackbarOpen}
-				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-				autoHideDuration={5000}
-				onClose={() => setLogoutSnackbarOpen(false)}
-				// message='Logged out successfully!'
-				action={snackbarAction}
-				sx={{ backgroundColor: league.nbaBackground, margin: '84px 7% 0 0' }}>
-				<Alert
-					variant='filled'
-					onClose={() => setLogoutSnackbarOpen(false)}
-					severity='success'
-					sx={{ width: '100%' }}>
-					Logged out successfully!
-				</Alert>
-			</Snackbar>
+			<SuccessSnackbar
+				open={snackbarIsOpen.loginSnackbar}
+				message={'Logged in successfully!'}
+			/>
+			<SuccessSnackbar
+				open={snackbarIsOpen.logoutSnackbar}
+				message={'Logged out successfully!'}
+			/>
+			<SuccessSnackbar
+				open={snackbarIsOpen.registerSnackbar}
+				message={'Registered successfully!'}
+			/>
 			<Grid
 				container
 				columns={6}

@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { logout } from '../slices/authentication/authSlice'
+import { logout, setSnackbar } from '../slices/authentication/authSlice'
 import { useLogoutMutation } from '../slices/authentication/usersApiSlice'
 // Images
 // import nbaLogoSrc from '../../public/images/svgs/logo-nba.svg'
@@ -89,6 +89,7 @@ const Navbar = () => {
 		try {
 			await logoutApiCall().unwrap()
 			dispatch(logout())
+			dispatch(setSnackbar({ logoutSnackbar: true }))
 			navigate('/')
 		} catch (err) {
 			console.log(err)

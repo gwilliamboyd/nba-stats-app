@@ -11,6 +11,8 @@ import { useRegisterMutation } from '../../slices/authentication/usersApiSlice'
 // import { setCredentials } from '../../slices/authentication/authSlice'
 import TextFieldContainer from '../../components/layout/users/TextFieldContainer'
 import Dropzone from 'react-dropzone'
+import { useDispatch } from 'react-redux'
+import { setSnackbar } from '../../slices/authentication/authSlice'
 
 const RegisterPage = () => {
 	const theme = useTheme()
@@ -29,7 +31,7 @@ const RegisterPage = () => {
 
 	const navigate = useNavigate()
 	// redux
-	// const dispatch = useDispatch()
+	const dispatch = useDispatch()
 	// state
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
@@ -58,6 +60,7 @@ const RegisterPage = () => {
 			// await register({ name, email, password, avatar }).unwrap()
 			await register(formData)
 			// dispatch(setCredentials({ ...register }))
+			dispatch(setSnackbar({ registerSnackbar: true }))
 			setLoading(false)
 			navigate('/')
 		} catch (err) {

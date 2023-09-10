@@ -4,7 +4,12 @@ const initialState = {
 	userInfo: localStorage.getItem('userInfo')
 		? JSON.parse(localStorage.getItem('userInfo'))
 		: null,
-	snackbarIsOpen: false,
+	// snackbarIsOpen: false,
+	snackbarIsOpen: {
+		loginSnackbar: false,
+		registerSnackbar: false,
+		logoutSnackbar: false,
+	},
 	/* loginSnackbar: false,
 		registerSnackbar: false,
 		logoutSnackbar: false

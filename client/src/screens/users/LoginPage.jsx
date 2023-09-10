@@ -8,7 +8,6 @@ import {
 	setCredentials,
 	setSnackbar,
 } from '../../slices/authentication/authSlice'
-import { setSnackbarState } from '../../slices/snackbarSlice'
 // mui
 import {
 	Box,
@@ -48,7 +47,7 @@ const LoginPage = () => {
 		try {
 			const res = await login({ email, password }).unwrap()
 			dispatch(setCredentials({ ...res }))
-			dispatch(setSnackbar(true))
+			dispatch(setSnackbar({ loginSnackbar: true }))
 			// dispatch(setSnackbarState(true))
 			navigate('/', { state: { page: 'login' } })
 			// setSnackbarOpen(true)
