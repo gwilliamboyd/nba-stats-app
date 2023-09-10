@@ -6,9 +6,12 @@ const initialState = {
 		: null,
 	// snackbarIsOpen: false,
 	snackbarIsOpen: {
+		// success
 		loginSnackbar: false,
 		registerSnackbar: false,
 		logoutSnackbar: false,
+		// error
+		passwordMismatchSnackbar: false,
 	},
 	/* loginSnackbar: false,
 		registerSnackbar: false,

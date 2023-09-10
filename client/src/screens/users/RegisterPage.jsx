@@ -11,8 +11,9 @@ import { useRegisterMutation } from '../../slices/authentication/usersApiSlice'
 // import { setCredentials } from '../../slices/authentication/authSlice'
 import TextFieldContainer from '../../components/layout/users/TextFieldContainer'
 import Dropzone from 'react-dropzone'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setSnackbar } from '../../slices/authentication/authSlice'
+import ErrorSnackbar from '../../components/snackbars/ErrorSnackbar'
 
 const RegisterPage = () => {
 	const theme = useTheme()
@@ -32,6 +33,7 @@ const RegisterPage = () => {
 	const navigate = useNavigate()
 	// redux
 	const dispatch = useDispatch()
+	const { snackbarIsOpen } = useSelector(state => state.auth)
 	// state
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
@@ -69,6 +71,8 @@ const RegisterPage = () => {
 	}
 	const passwordMatchHandler = async e => {
 		e.preventDefault()
+		console.log("Passwords don't match")
+		dispatch(setSnackbar({ passwordMismatchSnackbar: true }))
 		return (
 			<Box>
 				<Typography>Passwords don't match</Typography>
@@ -99,6 +103,10 @@ const RegisterPage = () => {
 					gap: '2rem',
 					paddingBottom: { xs: '2rem', md: '0' },
 				}}>
+				<ErrorSnackbar
+					open={snackbarIsOpen.passwordMismatchSnackbar}
+					message={"Passwords don't match"}
+				/>
 				<Box
 					sx={{
 						display: 'flex',

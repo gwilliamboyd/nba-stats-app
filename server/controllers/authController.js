@@ -1,27 +1,19 @@
-import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import User from '../models/userModel.js'
-import generateToken from '../utils/generateToken.js'
 import asyncHandler from 'express-async-handler'
 
 export const registerUser = asyncHandler(async (req, res) => {
 	try {
 		const { name, email, password, avatar, favoriteTeams } = req.body
-		console.log(req.file)
-
-		// const salt = await bcrypt.genSalt()
-		// const passwordHash = await bcrypt.hash(password, salt)
 
 		const newUser = new User({
 			name,
 			email,
 			password,
-			// password: passwordHash,
 			avatar,
 			favoriteTeams,
 		})
 		if (newUser) {
-			// generateToken(res, newUser._id)
 			res.status(201).json({
 				_id: newUser._id,
 				name: newUser.name,
@@ -47,11 +39,6 @@ export const loginUser = asyncHandler(async (req, res) => {
 		return res.status(400).json({ message: 'User does not exist' })
 	}
 	await user.matchPasswords(password)
-
-	/* const isMatch = await bcrypt.compare(password, user.password)
-	if (!isMatch) {
-		return res.status(400).json({ message: 'Invalid email or password' })
-	} */
 	delete user.password
 
 	const token = jwt.sign({ user }, 'Toolfan123458', { expiresIn: '2d' })
