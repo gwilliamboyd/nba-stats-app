@@ -10,6 +10,13 @@ const theme = createTheme({
 		fontWeightMedium: 500,
 		fontWeightBold: 700,
 	},
+	// loading buttons
+	MuiDisabled: {
+		color: 'green',
+	},
+	MuiLoadingButton: {
+		color: 'green',
+	},
 	palette: {
 		league: {
 			nbaBlue: '#253B73',

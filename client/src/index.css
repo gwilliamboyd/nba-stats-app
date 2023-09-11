@@ -66,3 +66,44 @@ a {
 .snackbarSuccess {
 	background-color: blue;
 }
+
+/* Loading buttons */
+.Mui-disabled {
+	color: green;
+}
+.MuiLoadingButton-root {
+	color: green;
+}
+
+.MuiLoadingButton-contained.Mui-disabled {
+	color: green;
+}
+.MuiLoadingButton-root {
+	background-color: #fff;
+}
+.MuiLoadingButton-contained {
+	background-color: green;
+}
+.css-o219am-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root.Mui-disabled {
+	background-color: green;
+}
+.MuiButtonBase-root
+	MuiButton-root
+	MuiLoadingButton-root
+	MuiLoadingButton-loading
+	MuiButton-contained
+	MuiButton-containedPrimary
+	MuiButton-sizeMedium
+	MuiButton-containedSizeMedium
+	Mui-disabled
+	MuiButton-root
+	MuiLoadingButton-root
+	MuiLoadingButton-loading
+	MuiButton-contained
+	MuiButton-containedPrimary
+	MuiButton-sizeMedium
+	MuiButton-containedSizeMedium
+	MuiLoadingButton-contained
+	css-o219am-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root {
+	background-color: green;
+}

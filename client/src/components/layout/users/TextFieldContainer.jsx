@@ -3,7 +3,9 @@ import { Box, TextField, Typography } from '@mui/material'
 
 // eslint-disable-next-line react/prop-types
 const TextFieldContainer = ({
+	icon,
 	heading,
+	fontSize,
 	onChange,
 	type,
 	value,
@@ -13,25 +15,35 @@ const TextFieldContainer = ({
 		<Box
 			// width='70%'
 			sx={{
-				display: 'flex',
+				display: 'grid',
 				flexDirection: { xs: 'column', md: 'row' },
+				gridTemplateColumns: '1fr 3fr',
+				gridTemplateRows: '1fr',
 				justifyContent: 'space-between',
 				alignItems: 'baseline',
 				textAlign: 'right',
-				width: { xs: '90%', md: '70%' },
+				width: { xs: '90%', md: '80%' },
 				gap: '1rem',
 			}}>
 			<Box
 				sx={{
-					width: { xs: '100%', md: '50%' },
-					display: 'flex',
-					justifyContent: { xs: 'flex-start', md: 'flex-end' },
+					width: { xs: '100%', md: '100%' },
+					justifySelf: { xs: 'flex-start', md: 'flex-end' },
 				}}>
-				<Typography
-					tableCellStyles
-					variant='h6'>
-					{heading}
-				</Typography>
+				<Box
+					sx={{
+						display: 'flex',
+						justifyContent: 'flex-end',
+						alignItems: 'center',
+						gap: '12px',
+					}}>
+					<Box marginTop={'4px'}>{icon}</Box>
+					<Typography
+						sx={{ fontSize: fontSize }}
+						variant='h6'>
+						{heading}
+					</Typography>
+				</Box>
 			</Box>
 			<TextField
 				fullWidth

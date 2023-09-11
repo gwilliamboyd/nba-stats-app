@@ -19,6 +19,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { logout, setSnackbar } from '../slices/authentication/authSlice'
 import { useLogoutMutation } from '../slices/authentication/usersApiSlice'
+// icons
+import LoginIcon from '@mui/icons-material/Login'
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 // Images
 // import nbaLogoSrc from '../../public/images/svgs/logo-nba.svg'
 import nbaLogoPng from '../../public/images/svgs/nba-logo.png'
@@ -470,12 +473,34 @@ const Navbar = () => {
 							</Box>
 						) : (
 							<>
-								<Link to='/login'>
-									<Typography sx={desktopLinksStyles}>Login</Typography>
-								</Link>
-								<Link to='/register'>
-									<Typography sx={desktopLinksStyles}>Register</Typography>
-								</Link>
+								<Box
+									sx={{
+										display: 'flex',
+										justifyContent: 'flex-end',
+										alignItems: 'center',
+										gap: '12px',
+									}}>
+									<Box marginTop={'4px'}>
+										<LoginIcon />
+									</Box>
+									<Link to='/login'>
+										<Typography sx={desktopLinksStyles}>Login</Typography>
+									</Link>
+								</Box>
+								<Box
+									sx={{
+										display: 'flex',
+										justifyContent: 'flex-end',
+										alignItems: 'center',
+										gap: '12px',
+									}}>
+									<Box marginTop={'4px'}>
+										<AppRegistrationIcon />
+									</Box>
+									<Link to='/register'>
+										<Typography sx={desktopLinksStyles}>Register</Typography>
+									</Link>
+								</Box>
 							</>
 						)}
 					</Box>

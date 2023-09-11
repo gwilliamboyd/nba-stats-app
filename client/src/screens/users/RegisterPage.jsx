@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Typography } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
 // import LoadingButton from '@mui/lab/LoadingButton'
 import { useTheme } from '@mui/material/styles'
 import { Container } from '@mui/material'
@@ -14,25 +15,19 @@ import Dropzone from 'react-dropzone'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSnackbar } from '../../slices/authentication/authSlice'
 import ErrorSnackbar from '../../components/snackbars/ErrorSnackbar'
+// icons
+import BadgeIcon from '@mui/icons-material/Badge'
+import EmailIcon from '@mui/icons-material/Email'
+import KeyIcon from '@mui/icons-material/Key'
+import ShieldIcon from '@mui/icons-material/Shield'
 
 const RegisterPage = () => {
 	const theme = useTheme()
 	const { league } = theme.palette
 
-	const textFieldStyles = {
-		input: { color: '#FFF' },
-		label: { color: '#FFF' },
-		fieldset: { borderColor: 'lightgray' },
-		'& .MuiOutlinedInput-root:hover': {
-			'& > fieldset': {
-				borderColor: 'white',
-			},
-		},
-	}
-
-	const navigate = useNavigate()
 	// redux
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const { snackbarIsOpen } = useSelector(state => state.auth)
 	// state
 	const [name, setName] = useState('')
@@ -43,8 +38,6 @@ const RegisterPage = () => {
 	const [userAvatar, setUserAvatar] = useState('')
 	// loading button state
 	const [loading, setLoading] = useState(false)
-
-	// const joinDate = new Date()
 
 	const [register, { isLoading }] = useRegisterMutation()
 
@@ -59,9 +52,7 @@ const RegisterPage = () => {
 			formData.append('avatar', avatar)
 			formData.append('userAvatar', userAvatar)
 			console.log(formData)
-			// await register({ name, email, password, avatar }).unwrap()
 			await register(formData)
-			// dispatch(setCredentials({ ...register }))
 			dispatch(setSnackbar({ registerSnackbar: true }))
 			setLoading(false)
 			navigate('/')
@@ -73,6 +64,19 @@ const RegisterPage = () => {
 		e.preventDefault()
 		console.log("Passwords don't match")
 		dispatch(setSnackbar({ passwordMismatchSnackbar: true }))
+	}
+
+	const textFieldStyles = {
+		justifySelf: 'flex-start',
+		width: { xs: '300px', md: '450px' },
+		input: { color: '#FFF' },
+		label: { color: '#FFF' },
+		fieldset: { borderColor: 'lightgray' },
+		'& .MuiOutlinedInput-root:hover': {
+			'& > fieldset': {
+				borderColor: 'white',
+			},
+		},
 	}
 
 	return (
@@ -123,7 +127,7 @@ const RegisterPage = () => {
 				<Box
 					sx={{
 						width: { xs: '95%', lg: '70%' },
-						height: { xs: 'fit-content', sm: '500px', lg: 'fit-content' },
+						height: 'fit-content',
 						display: 'flex',
 						justifyContent: 'center',
 					}}>
@@ -147,32 +151,42 @@ const RegisterPage = () => {
 							// border: `2px solid ${league.nbaWhite}`,
 						}}>
 						<TextFieldContainer
+							icon={<BadgeIcon fontSize='medium' />}
 							heading={'Name'}
+							fontSize={'21px'}
 							onChange={e => setName(e.target.value)}
 							value={name}
 							textFieldStyles={textFieldStyles}
 						/>
 						<TextFieldContainer
+							icon={<EmailIcon fontSize='medium' />}
 							heading={'Email'}
+							fontSize={'21px'}
 							onChange={e => setEmail(e.target.value)}
 							value={email}
 							textFieldStyles={textFieldStyles}
 						/>
 						<TextFieldContainer
+							icon={<KeyIcon fontSize='medium' />}
 							heading={'Password'}
+							fontSize={'21px'}
 							onChange={e => setPassword(e.target.value)}
 							type='password'
 							value={password}
 							textFieldStyles={textFieldStyles}
 						/>
 						<TextFieldContainer
+							icon={<ShieldIcon fontSize='medium' />}
 							heading={'Confirm Password'}
+							fontSize={'19px'}
 							onChange={e => setConfirmPassword(e.target.value)}
 							type='password'
 							value={confirmPassword}
 							textFieldStyles={textFieldStyles}
 						/>
-						<Typography>Upload Profile Picture</Typography>
+						<Typography sx={{ fontWeight: '500' }}>
+							Upload Profile Picture
+						</Typography>
 						<Dropzone
 							onDrop={acceptedFiles => {
 								console.log(acceptedFiles[0].name)
@@ -190,11 +204,6 @@ const RegisterPage = () => {
 											type='file'
 											name='userAvatar'
 											{...getInputProps()}
-											/* onChange={e => {
-								console.log(e.target.files[0].name)
-								setAvatar(e.target.files[0].name)
-								setUserAvatar(e.target.files[0])
-							}} */
 										/>
 										<p>Drag image here, or click to select file</p>
 									</div>
@@ -203,8 +212,15 @@ const RegisterPage = () => {
 						</Dropzone>
 
 						<Button
+							// className='MuiLoadingButton-contained'
 							// loading={loading}
 							// loadingPosition='end'
+							/* loadingIndicator={
+								<CircularProgress
+									color='white'
+									size={16}
+								/>
+							} */
 							variant='contained'
 							type='submit'>
 							Submit

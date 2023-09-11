@@ -9,16 +9,12 @@ import {
 	setSnackbar,
 } from '../../slices/authentication/authSlice'
 // mui
-import {
-	Box,
-	Button,
-	Container,
-	/* IconButton,
-	Snackbar, */
-	Typography,
-} from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import TextFieldContainer from '../../components/layout/users/TextFieldContainer'
 import ErrorSnackbar from '../../components/snackbars/ErrorSnackbar'
+// icons
+import EmailIcon from '@mui/icons-material/Email'
+import KeyIcon from '@mui/icons-material/Key'
 
 const LoginPage = () => {
 	//theme
@@ -37,12 +33,9 @@ const LoginPage = () => {
 	const { userInfo } = useSelector(state => state.auth)
 	const { snackbarIsOpen } = useSelector(state => state.auth)
 
-	// Navigate to home if logged in after clicking Login screen
-	/* useEffect(() => {
-		if (userInfo) {
-			navigate('/')
-		}
-	}, [navigate, userInfo]) */
+	const handleIncorrectPassword = async () => {
+		dispatch(setSnackbar({ incorrectPasswordSnackbar: true }))
+	}
 
 	const submitHandler = async e => {
 		e.preventDefault()
@@ -51,8 +44,7 @@ const LoginPage = () => {
 			const res = await login({ email, password }).unwrap()
 			dispatch(setCredentials({ ...res }))
 			dispatch(setSnackbar({ loginSnackbar: true }))
-			// navigate('/', { state: { page: 'login' } })
-			console.log(`Password: ${password}`)
+			navigate('/', { state: { page: 'login' } })
 		} catch (err) {
 			console.log(err?.data.message || err?.error)
 			if (err.status === 403 || err.status === 400) {
@@ -60,11 +52,18 @@ const LoginPage = () => {
 			}
 		}
 	}
-	const handleIncorrectPassword = async () => {
-		dispatch(setSnackbar({ incorrectPasswordSnackbar: true }))
-	}
+
+	// Navigate to home if logged in after clicking Login screen
+	useEffect(() => {
+		if (userInfo) {
+			navigate('/')
+		}
+	}, [navigate, userInfo])
+
 	// style rules for text fields
 	const textFieldStyles = {
+		justifySelf: 'flex-start',
+		width: { xs: '300px', md: '300px' },
 		input: { color: '#FFF' },
 		label: { color: '#FFF' },
 		fieldset: { borderColor: 'lightgray' },
@@ -90,7 +89,7 @@ const LoginPage = () => {
 			<Box
 				sx={{
 					marginTop: '3rem',
-					width: { xs: '95%', lg: '75%' },
+					width: { xs: '95%', sm: '80%', lg: '75%' },
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
@@ -133,13 +132,17 @@ const LoginPage = () => {
 							backgroundColor: 'rgba(37, 59, 115, 0.8)',
 						}}>
 						<TextFieldContainer
+							icon={<EmailIcon fontSize='medium' />}
 							heading={'Email'}
+							fontSize={'21px'}
 							onChange={e => setEmail(e.target.value)}
 							value={email}
 							textFieldStyles={textFieldStyles}
 						/>
 						<TextFieldContainer
+							icon={<KeyIcon fontSize='medium' />}
 							heading={'Password'}
+							fontSize={'21px'}
 							onChange={e => setPassword(e.target.value)}
 							type={'password'}
 							value={password}
