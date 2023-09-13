@@ -3,6 +3,7 @@ import { Box, TextField, Typography } from '@mui/material'
 
 // eslint-disable-next-line react/prop-types
 const TextFieldContainer = ({
+	width,
 	icon,
 	heading,
 	fontSize,
@@ -17,12 +18,18 @@ const TextFieldContainer = ({
 			sx={{
 				display: 'grid',
 				flexDirection: { xs: 'column', md: 'row' },
-				gridTemplateColumns: '1fr 3fr',
-				gridTemplateRows: '1fr',
+				gridTemplateColumns: {
+					xs: '100%',
+					sm: '150px 350px',
+					md: '280px 520px',
+					lg: '200px 440px',
+					xl: '150px 350px',
+				},
+				gridTemplateRows: { xs: '1fr 2fr', sm: '1fr' },
 				justifyContent: 'space-between',
 				alignItems: 'baseline',
 				textAlign: 'right',
-				width: { xs: '90%', md: '80%' },
+				width: { sm: '520px', md: '820px', lg: '640px', xl: '500px' },
 				gap: '1rem',
 			}}>
 			<Box
@@ -33,7 +40,7 @@ const TextFieldContainer = ({
 				<Box
 					sx={{
 						display: 'flex',
-						justifyContent: 'flex-end',
+						justifyContent: { xs: 'flex-start', sm: 'flex-end' },
 						alignItems: 'center',
 						gap: '12px',
 					}}>
@@ -46,7 +53,7 @@ const TextFieldContainer = ({
 				</Box>
 			</Box>
 			<TextField
-				fullWidth
+				width={width}
 				required
 				id='outlined-required'
 				label='Required'

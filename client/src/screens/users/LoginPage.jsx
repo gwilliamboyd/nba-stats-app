@@ -114,8 +114,12 @@ const LoginPage = () => {
 				</Box>
 				<Box
 					sx={{
-						width: { xs: '95%', lg: '40%' },
-						height: { xs: 'fit-content', sm: '500px', lg: 'fit-content' },
+						width: { xs: '95%', sm: '520px', md: '820px', lg: '640px' },
+						height: {
+							xs: 'fit-content',
+							sm: '400px',
+							lg: 'fit-content',
+						},
 						display: 'flex',
 						justifyContent: 'center',
 					}}>
@@ -128,10 +132,12 @@ const LoginPage = () => {
 							display: 'flex',
 							flexDirection: 'column',
 							alignItems: 'center',
+							justifyContent: 'center',
 							gap: '2rem',
 							backgroundColor: 'rgba(37, 59, 115, 0.8)',
 						}}>
 						<TextFieldContainer
+							width={'300px'}
 							icon={<EmailIcon fontSize='medium' />}
 							heading={'Email'}
 							fontSize={'21px'}
@@ -140,6 +146,7 @@ const LoginPage = () => {
 							textFieldStyles={textFieldStyles}
 						/>
 						<TextFieldContainer
+							width={'300px'}
 							icon={<KeyIcon fontSize='medium' />}
 							heading={'Password'}
 							fontSize={'21px'}
