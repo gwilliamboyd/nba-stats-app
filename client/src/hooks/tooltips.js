@@ -97,7 +97,7 @@ export const getAdvancedTooltips = label => {
 			return 'Defensive Four Factors - Turnover %'
 		case 'd-DRB%':
 			return 'Defensive Four Factors - Defensive Rebound %'
-		case 'd-FT/FGA%':
+		case 'd-FT/FGA':
 			return 'Defensive Four Factors - Free Throws Per Field Goal Attempt'
 	}
 }
