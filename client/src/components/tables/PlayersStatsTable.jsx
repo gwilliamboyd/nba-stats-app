@@ -101,7 +101,13 @@ export default function EnhancedTable({
 			sx={{
 				// hard values to avoid resizing table
 				// percentages are xs: 90% and md: 82%
-				width: { xs: '540px', md: '984px', lg: '1200px', xl: '1300px' },
+				width: {
+					xs: '300px',
+					sm: '540px',
+					md: '984px',
+					lg: '1200px',
+					xl: '1300px',
+				},
 				// backgroundColor: containerBackground || primaryColor,
 				backgroundColor: containerBackground || primaryColor,
 			}}>
@@ -120,12 +126,13 @@ export default function EnhancedTable({
 					}}>
 					<Table
 						sx={{
-							minWidth: 750,
+							minWidth: { md: 750 },
 						}}
 						aria-labelledby='tableTitle'
 						size='small'
 						stickyHeader>
 						<HeadCellsPlayers
+							statsType={statsType}
 							headCells={
 								statsType === 'advanced'
 									? playersAdvancedHeadCells
@@ -293,16 +300,7 @@ export default function EnhancedTable({
 										)
 								  })
 								: visibleRows.map((row, index) => {
-										const labelId = `enhanced-table-checkbox-${index}`
-										// const playerImgSrc = `/images/players/${row.player}.png`
-
-										/* const determineImageSrc = () => {
-											let imageSrc
-											playerImgSrc == undefined
-												? imageSrc ===
-												  `/images/players/player-placeholder.png`
-												: imageSrc === playerImgSrc
-										} */
+										// const labelId = `enhanced-table-checkbox-${index}`
 
 										return (
 											<TableRow
@@ -324,9 +322,6 @@ export default function EnhancedTable({
 														fontSize: '14px',
 														width: '166px',
 													}}
-													// component='th'
-													// id={labelId}
-													// scope='row'
 													padding='none'>
 													<Link to={`/stats/players/${row.id}`}>
 														{row.player}

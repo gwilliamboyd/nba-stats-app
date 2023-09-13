@@ -1,9 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react'
-import { TableCell, TableHead, TableRow } from '@mui/material'
+import { TableCell, TableHead, TableRow, Tooltip } from '@mui/material'
 import { useTheme } from '@emotion/react'
+import {
+	getStandardTooltips,
+	getAdvancedPlayerTooltips,
+} from '../../hooks/tooltips'
 
 const HeadCellsPlayers = ({
+	statsType,
 	order,
 	orderBy,
 	setOrderBy,
@@ -71,30 +76,37 @@ const HeadCellsPlayers = ({
 						opacity: '1',
 					}}></TableCell>
 				{headCells.map(headCell => (
-					<TableCell
+					<Tooltip
 						key={headCell.id}
-						color={handleSortColor(headCell.id)}
-						align={headCell.numeric ? 'center' : 'left'}
-						padding={headCell.disablePadding ? 'none' : 'normal'}
-						sortDirection={orderBy === headCell.id ? order : false}
-						sx={{
-							position: 'relative',
-							fontSize: {
-								sm: '14px',
-								lg: '12px',
-							},
-							color: handleSortColor(headCell.id),
-							fontWeight: handleSortFontWeight(headCell.id),
-							p: '2px',
-							paddingBottom: '0.2rem',
-							backgroundColor: backgroundColor,
-							'&:hover': { cursor: 'pointer' },
-							'&:focus': { color: league.nbaRed },
-							'&::before': handleSortUnderline(headCell.id),
-						}}
-						onClick={createSortHandler(headCell.id)}>
-						{headCell.label}
-					</TableCell>
+						title={
+							statsType === 'advanced'
+								? getAdvancedPlayerTooltips(headCell.label)
+								: getStandardTooltips(headCell.label)
+						}>
+						<TableCell
+							color={handleSortColor(headCell.id)}
+							align={headCell.numeric ? 'center' : 'left'}
+							padding={headCell.disablePadding ? 'none' : 'normal'}
+							sortDirection={orderBy === headCell.id ? order : false}
+							sx={{
+								position: 'relative',
+								fontSize: {
+									sm: '14px',
+									lg: '12px',
+								},
+								color: handleSortColor(headCell.id),
+								fontWeight: handleSortFontWeight(headCell.id),
+								p: '2px',
+								paddingBottom: '0.2rem',
+								backgroundColor: backgroundColor,
+								'&:hover': { cursor: 'pointer' },
+								'&:focus': { color: league.nbaRed },
+								'&::before': handleSortUnderline(headCell.id),
+							}}
+							onClick={createSortHandler(headCell.id)}>
+							{headCell.label}
+						</TableCell>
+					</Tooltip>
 				))}
 			</TableRow>
 		</TableHead>

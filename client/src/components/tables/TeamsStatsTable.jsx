@@ -63,10 +63,6 @@ export default function EnhancedTable({
 	const page = 0
 	const rowsPerPage = 30
 
-	useEffect(() => {
-		console.log(statsType)
-	}, [statsType])
-
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === 'asc'
 		setOrder(isAsc ? 'desc' : 'asc')
@@ -91,7 +87,13 @@ export default function EnhancedTable({
 	return (
 		<Box
 			sx={{
-				width: { xs: '90%', md: '82%' },
+				width: {
+					xs: '300px',
+					sm: '540px',
+					md: '984px',
+					lg: '1200px',
+					xl: '1300px',
+				},
 				backgroundColor: league.nbaBackground,
 			}}>
 			<Paper
