@@ -1,17 +1,10 @@
 /* eslint-disable react/prop-types */
-import {
-	Box,
-	TableCell,
-	TableHead,
-	TableRow,
-	TableSortLabel,
-	Tooltip,
-} from '@mui/material'
-import { visuallyHidden } from '@mui/utils'
+import { TableCell, TableHead, TableRow, Tooltip } from '@mui/material'
 import { useTheme } from '@emotion/react'
 import { useEffect, useState } from 'react'
 
 const HeadCellsTeams = ({
+	statsType,
 	order,
 	orderBy,
 	setOrderBy,
@@ -35,6 +28,7 @@ const HeadCellsTeams = ({
 	const theme = useTheme()
 	const { league } = theme.palette
 
+	// turns off sorting on 3rd click
 	useEffect(() => {
 		if (clicksSortActive > 2) {
 			setClicksSortActive(0)
@@ -42,6 +36,9 @@ const HeadCellsTeams = ({
 			setOrderBy('default')
 		}
 	}, [clicksSortActive, setOrderBy])
+	useEffect(() => {
+		console.log(`Head Cells: ${headCells}`)
+	}, [])
 
 	// Change header styles if sortId is active
 	const handleSortColor = headCellId => {
@@ -71,18 +68,6 @@ const HeadCellsTeams = ({
 		}
 	}
 
-	// styles
-	/* const headCellsStyles = {
-		fontSize: {
-			sm: '14px',
-			lg: '18px',
-		},
-		fontWeight: '500',
-		color: fontColor,
-		p: '2px',
-		backgroundColor: backgroundColor,
-	} */
-
 	// TOOLTIPS
 
 	// per-game and total stats
@@ -99,41 +84,41 @@ const HeadCellsTeams = ({
 			case 'FG%':
 				return 'Field Goal %'
 			case '3P':
-				return '3 Pointers Per Game'
+				return '3 Pointers'
 			case '3PA':
-				return '3 Pointers Attempted Per Game'
+				return '3 Pointers Attempted'
 			case '3P%':
 				return '3 Pointers Made Against Attempts'
 			case '2P':
-				return '2 Pointers Per Game'
+				return '2 Pointers'
 			case '2PA':
-				return '2 Pointers Attempted Per Game'
+				return '2 Pointers Attempted'
 			case '2P%':
 				return '2 Pointers Made Against Attempts'
 			case 'FT':
-				return 'Free Throws Per Game'
+				return 'Free Throws'
 			case 'FTA':
-				return 'Free Throws Attempted Per Game'
+				return 'Free Throws Attempted'
 			case 'FT%':
 				return 'Free Throws Made Against Attempts'
 			case 'ORB':
-				return 'Offensive Rebounds Per Game'
+				return 'Offensive Rebounds'
 			case 'DRB':
-				return 'Defensive Rebounds Per Game'
+				return 'Defensive Rebounds'
 			case 'TRB':
-				return 'Total Rebounds Per Game'
+				return 'Total Rebounds'
 			case 'AST':
-				return 'Assists Per Game'
+				return 'Assists'
 			case 'STL':
-				return 'Steals Per Game'
+				return 'Steals'
 			case 'BLK':
-				return 'Blocks Per Game'
+				return 'Blocks'
 			case 'TOV':
-				return 'Turnovers Per Game'
+				return 'Turnovers'
 			case 'PF':
-				return 'Personal Fouls Per Game'
+				return 'Personal Fouls'
 			case 'PTS':
-				return 'Points Per Game'
+				return 'Points'
 		}
 	}
 
@@ -176,7 +161,7 @@ const HeadCellsTeams = ({
 				return 'Offensive Four Factors - Turnover %'
 			case 'o-ORB%':
 				return 'Offensive Four Factors - Offensive Rebound %'
-			case 'o-FT/FGA%':
+			case 'o-FT/FGA':
 				return 'Offensive Four Factors - Free Throws Per Field Goal Attempt'
 			case 'd-EFG%':
 				return 'Defensive Four Factors - Effective Field Goal %'
@@ -199,67 +184,37 @@ const HeadCellsTeams = ({
 						opacity: '1',
 					}}></TableCell>
 				{headCells.map(headCell => (
-					<TableCell
+					<Tooltip
 						key={headCell.id}
-						color={handleSortColor(headCell.id)}
-						align={headCell.numeric ? 'center' : 'left'}
-						padding={headCell.disablePadding ? 'none' : 'normal'}
-						sortDirection={orderBy === headCell.id ? order : false}
-						onClick={createSortHandler(headCell.id)}
-						sx={{
-							position: 'relative',
-							fontSize: {
-								sm: '14px',
-								lg: '12px',
-							},
-							color: handleSortColor(headCell.id),
-							fontWeight: handleSortFontWeight(headCell.id),
-							p: '2px',
-							paddingBottom: '0.2rem',
-							backgroundColor: backgroundColor,
-							'&:hover': { cursor: 'pointer' },
-							'&:focus': { color: league.nbaRed },
-							'&::before': handleSortUnderline(headCell.id),
-						}}>
-						{/* <Tooltip
-							title={
-								headCells === 'advanced'
-									? getAdvancedTooltips(headCell.label)
-									: getStandardTooltips(headCell.label)
-							}> */}
-						{headCell.label}
-						{/* <TableSortLabel
-								active={orderBy === headCell.id}
-								direction={orderBy === headCell.id ? order : 'asc'}
-								hideSortIcon
-								onClick={createSortHandler(headCell.id)}
-								sx={{
-									width: '100%',
-									'&.MuiTableSortLabel-root': {
-										color: fontColor,
-									},
-									'&.MuiTableSortLabel-root:hover': {
-										color: league.nbaWhite,
-									},
-									'&.Mui-active': {
-										color: league.nbaWhite,
-									},
-									'& .MuiTableSortLabel-icon': {
-										color: `${league.nbaWhite} !important`,
-									},
-								}}>
-								{orderBy === headCell.id ? (
-									<Box
-										component='span'
-										sx={visuallyHidden}>
-										{order === 'desc'
-											? 'sorted descending'
-											: 'sorted ascending'}
-									</Box>
-								) : null}
-							</TableSortLabel> */}
-						{/* </Tooltip> */}
-					</TableCell>
+						title={
+							statsType === 'advanced'
+								? getAdvancedTooltips(headCell.label)
+								: getStandardTooltips(headCell.label)
+						}>
+						<TableCell
+							color={handleSortColor(headCell.id)}
+							align={headCell.numeric ? 'center' : 'left'}
+							padding={headCell.disablePadding ? 'none' : 'normal'}
+							sortDirection={orderBy === headCell.id ? order : false}
+							onClick={createSortHandler(headCell.id)}
+							sx={{
+								position: 'relative',
+								fontSize: {
+									sm: '14px',
+									lg: '12px',
+								},
+								color: handleSortColor(headCell.id),
+								fontWeight: handleSortFontWeight(headCell.id),
+								p: '2px',
+								paddingBottom: '0.2rem',
+								backgroundColor: backgroundColor,
+								'&:hover': { cursor: 'pointer' },
+								'&:focus': { color: league.nbaRed },
+								'&::before': handleSortUnderline(headCell.id),
+							}}>
+							{headCell.label}
+						</TableCell>
+					</Tooltip>
 				))}
 			</TableRow>
 		</TableHead>

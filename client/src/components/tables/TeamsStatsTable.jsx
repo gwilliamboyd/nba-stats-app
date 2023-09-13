@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
 	Box,
@@ -63,6 +63,10 @@ export default function EnhancedTable({
 	const page = 0
 	const rowsPerPage = 30
 
+	useEffect(() => {
+		console.log(statsType)
+	}, [statsType])
+
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === 'asc'
 		setOrder(isAsc ? 'desc' : 'asc')
@@ -111,6 +115,7 @@ export default function EnhancedTable({
 						size='small'
 						stickyHeader>
 						<HeadCellsTeams
+							statsType={statsType}
 							headCells={
 								statsType === 'advanced'
 									? teamsAdvancedHeadCells
@@ -151,7 +156,7 @@ export default function EnhancedTable({
 													sx={{
 														color: league.nbaWhite,
 														padding: '2px',
-														fontSize: '16px',
+														fontSize: '14px',
 													}}
 													component='th'
 													id={labelId}
@@ -304,7 +309,7 @@ export default function EnhancedTable({
 													sx={{
 														color: league.nbaWhite,
 														padding: '2px',
-														fontSize: '16px',
+														fontSize: '14px',
 													}}
 													component='th'
 													id={labelId}
