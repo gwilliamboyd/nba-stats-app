@@ -149,6 +149,7 @@ const TeamIndivPage = () => {
 							sx={{
 								marginTop: { xs: '0', md: '3rem' },
 								width: { xs: '95%', lg: '85%' },
+								maxWidth: '1434px',
 								display: 'flex',
 								flexDirection: { xs: 'column', lg: 'row' },
 								justifyContent: 'space-between',
@@ -262,6 +263,7 @@ const TeamIndivPage = () => {
 							<Box
 								sx={{
 									width: { xs: '90%', md: '80%' },
+									maxWidth: '1434px',
 									display: 'flex',
 									flexDirection: 'column',
 									justifyContent: 'center',
@@ -271,7 +273,7 @@ const TeamIndivPage = () => {
 									sx={{
 										display: 'flex',
 										flexDirection: 'column',
-										justifyContent: 'center',
+										alignItems: 'center',
 										gap: '0.5rem',
 									}}>
 									<Typography
@@ -295,7 +297,7 @@ const TeamIndivPage = () => {
 									sx={{
 										display: 'flex',
 										flexDirection: 'column',
-										justifyContent: 'center',
+										alignItems: 'center',
 										gap: '0.5rem',
 									}}>
 									<Typography
@@ -319,7 +321,7 @@ const TeamIndivPage = () => {
 									sx={{
 										display: 'flex',
 										flexDirection: 'column',
-										justifyContent: 'center',
+										alignItems: 'center',
 										gap: '0.5rem',
 									}}>
 									<Typography

@@ -36,7 +36,7 @@ const PlayerIndivStatsRow = ({
 		padding: '2px',
 		// padding: '2px 4px 2px 2px',
 		border: '0',
-		textAlign: 'right',
+		textAlign: 'center',
 		// flex: 1,
 		// minWidth: '40px',
 		// maxWidth: '50px',
@@ -46,8 +46,16 @@ const PlayerIndivStatsRow = ({
 	return (
 		<Box
 			sx={{
-				width: '100%',
+				width: {
+					xs: '300px',
+					sm: '540px',
+					md: '984px',
+					lg: '1434px',
+					xl: '1434px',
+				},
 				backgroundColor: primaryColor,
+				display: 'flex',
+				justifyContent: 'center',
 			}}>
 			<Paper
 				sx={{
@@ -63,7 +71,7 @@ const PlayerIndivStatsRow = ({
 						// border: '1px solid white',
 					}}>
 					<Table
-						sx={{ minWidth: 750 }}
+						// sx={{ minWidth: 750 }}
 						aria-labelledby='tableTitle'
 						size='small'>
 						<HeadCellsPlayersIndivRow

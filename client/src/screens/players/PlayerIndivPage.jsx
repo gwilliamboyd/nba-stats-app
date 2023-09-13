@@ -224,10 +224,10 @@ const PlayerIndivPage = () => {
 					) : (
 						<Box
 							sx={{
-								width: '80%',
+								width: '100%',
 								display: 'flex',
 								flexDirection: 'column',
-								justifyContent: 'center',
+								alignItems: 'center',
 								gap: '2rem',
 							}}>
 							<Box
@@ -258,7 +258,7 @@ const PlayerIndivPage = () => {
 								sx={{
 									display: 'flex',
 									flexDirection: 'column',
-									justifyContent: 'center',
+									alignItems: 'center',
 									gap: '0.5rem',
 								}}>
 								<Typography
@@ -282,7 +282,7 @@ const PlayerIndivPage = () => {
 								sx={{
 									display: 'flex',
 									flexDirection: 'column',
-									justifyContent: 'center',
+									alignItems: 'center',
 									gap: '0.5rem',
 								}}>
 								<Typography

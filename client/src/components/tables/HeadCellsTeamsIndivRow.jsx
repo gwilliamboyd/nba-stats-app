@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
-import { TableCell, TableHead, TableRow } from '@mui/material'
+import { TableCell, TableHead, TableRow, Tooltip } from '@mui/material'
+// tooltip hooks
+import { getStandardTooltips, getAdvancedTooltips } from '../../hooks/tooltips'
 
 const HeadCellsTeamsIndivRow = ({
 	statsType,
@@ -11,24 +13,30 @@ const HeadCellsTeamsIndivRow = ({
 		<TableHead>
 			<TableRow>
 				{headCells.map(headCell => (
-					<TableCell
+					<Tooltip
 						key={headCell.id}
-						// align={'right'}
-						align={headCell.numeric ? 'right' : 'left'}
-						padding={'normal'}
-						sx={{
-							fontWeight: '500',
-							...(statsType === 'advanced'
-								? { fontSize: '16px' }
-								: { fontSize: '16px' }),
-							color: fontColor,
-							p: '2px',
-							backgroundColor: backgroundColor,
-							border: 0,
-							width: 'auto',
-						}}>
-						{headCell.label}
-					</TableCell>
+						title={
+							statsType === 'advanced'
+								? getAdvancedTooltips(headCell.label)
+								: getStandardTooltips(headCell.label)
+						}>
+						<TableCell
+							align={headCell.numeric ? 'center' : 'left'}
+							padding={'normal'}
+							sx={{
+								fontWeight: '500',
+								...(statsType === 'advanced'
+									? { fontSize: '14px' }
+									: { fontSize: '12px' }),
+								color: fontColor,
+								p: '2px',
+								backgroundColor: backgroundColor,
+								border: 0,
+								width: 'auto',
+							}}>
+							{headCell.label}
+						</TableCell>
+					</Tooltip>
 				))}
 			</TableRow>
 		</TableHead>
