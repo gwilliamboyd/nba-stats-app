@@ -136,7 +136,7 @@ const HomePage = () => {
 												}}>
 												<Link to={`/stats/teams/${team.team}`}>
 													<HomeTeamCard
-														width={120}
+														width={100}
 														team={team.team}
 													/>
 												</Link>
