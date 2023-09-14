@@ -13,6 +13,7 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 	const { league } = theme.palette
 
 	// const [graphicOn, setGraphicOn] = useState(false)
+	const [oldUI, setOldUI] = useState(false)
 
 	/* const evaluateGraphic = state => {
 		switch (state) {
@@ -45,43 +46,45 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 	}, [topFivePlayers()])
 
 	return (
-		<Grid
-			container
-			width='100%'
-			justifyContent='center'
-			justifySelf={'center'}
-			columns={10}
-			columnSpacing={{ xs: 8, md: 10, lg: 16 }}>
-			{statArray?.slice(0, 5)?.map(p => {
-				const statValue = `p?.${stat}`
-				return (
-					<Grid
-						key={p?.player}
-						item
-						color={league.nbaWhite}
-						// xs={10}
-						md={5}
-						lg={2}>
-						<Box
-							sx={{
-								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'center',
-							}}>
-							<Box
-								sx={{
-									boxSizing: 'border-box',
-									position: 'relative',
-									width: 'fit-content',
-									height: '100%',
-									display: 'flex',
-									flexDirection: 'column',
-									justifyContent: 'space-between',
-									alignItems: 'center',
-									zIndex: '2',
-									// padding: '1rem',
-								}}>
-								{/* <Box
+		<>
+			{oldUI && (
+				<Grid
+					container
+					width='100%'
+					justifyContent='center'
+					justifySelf={'center'}
+					columns={10}
+					columnSpacing={{ xs: 8, md: 10, lg: 16 }}>
+					{statArray?.slice(0, 5)?.map(p => {
+						const statValue = `p?.${stat}`
+						return (
+							<Grid
+								key={p?.player}
+								item
+								color={league.nbaWhite}
+								// xs={10}
+								md={5}
+								lg={2}>
+								<Box
+									sx={{
+										display: 'flex',
+										justifyContent: 'center',
+										alignItems: 'center',
+									}}>
+									<Box
+										sx={{
+											boxSizing: 'border-box',
+											position: 'relative',
+											width: 'fit-content',
+											height: '100%',
+											display: 'flex',
+											flexDirection: 'column',
+											justifyContent: 'space-between',
+											alignItems: 'center',
+											zIndex: '2',
+											// padding: '1rem',
+										}}>
+										{/* <Box
 								sx={{
 									position: 'absolute',
 									zIndex: '1',
@@ -98,39 +101,120 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 									src='/images/player-home-graphic.png'
 								/>
 							</Box> */}
-								<Link
-									// sx={{ zIndex: '2' }}
-									/* onMouseEnter={() => setGraphicOn(true)}
+										<Link
+											// sx={{ zIndex: '2' }}
+											/* onMouseEnter={() => setGraphicOn(true)}
 								onMouseLeave={() => setGraphicOn(false)} */
-									to={`/stats/players/${p?.id}`}>
-									<PlayerCard
-										width={220}
-										player={p?.player}
-									/>
-								</Link>
-								<Box
-									display={'flex'}
-									alignItems={'baseline'}
-									gap={'4px'}
-									zIndex={'3'}>
-									<Typography
-										variant='h6'
-										fontSize={32}
-										fontWeight={800}>
-										{eval(statValue)}
-									</Typography>
-									<Typography
-										variant='h6'
-										color={league.nbaRed}>
-										/Game
-									</Typography>
+											to={`/stats/players/${p?.id}`}>
+											<PlayerCard
+												width={220}
+												player={p?.player}
+											/>
+										</Link>
+										<Box
+											display={'flex'}
+											alignItems={'baseline'}
+											gap={'4px'}
+											zIndex={'3'}>
+											<Typography
+												variant='h6'
+												fontSize={32}
+												fontWeight={800}>
+												{eval(statValue)}
+											</Typography>
+											<Typography
+												variant='h6'
+												color={league.nbaRed}>
+												/Game
+											</Typography>
+										</Box>
+									</Box>
 								</Box>
+							</Grid>
+						)
+					})}
+				</Grid>
+			)}
+			<Box
+				// container
+				// columnSpacing={{ xs: 8, md: 10, lg: 16 }}
+				// width='100%'
+				sx={{
+					width: '100%',
+					display: 'grid',
+					justifySelf: 'center',
+					justifyItems: 'space-between',
+					gridTemplateColumns: 'repeat(5, 1fr)',
+					gridTemplateRows: '1fr',
+					columnGap: '4rem',
+				}}>
+				{statArray?.slice(0, 5)?.map(p => {
+					const statValue = `p?.${stat}`
+					return (
+						<Box
+							key={p?.player}
+							color={league.nbaWhite}
+							sx={{
+								boxSizing: 'border-box',
+								position: 'relative',
+								width: 'fit-content',
+								height: '100%',
+								display: 'flex',
+								flexDirection: 'column',
+								justifyContent: 'space-between',
+								alignItems: 'center',
+								zIndex: '2',
+								padding: '1rem',
+							}}>
+							{/* <Box
+								sx={{
+									position: 'absolute',
+									zIndex: '1',
+									top: '0',
+									left: '0',
+									display: graphicOn ? 'block' : 'none',
+									width: '220px',
+									height: '332px',
+									// backgroundImage: 'url(/images/player-home-graphic.png)',
+								}}>
+									<img
+										width={220}
+										height={332}
+										src='/images/player-home-graphic.png'
+									/>
+								</Box> */}
+							<Link
+								// sx={{ zIndex: '2' }}
+								/* onMouseEnter={() => setGraphicOn(true)}
+								onMouseLeave={() => setGraphicOn(false)} */
+								to={`/stats/players/${p?.id}`}>
+								<PlayerCard
+									width={220}
+									player={p?.player}
+								/>
+							</Link>
+							<Box
+								display={'flex'}
+								alignItems={'baseline'}
+								gap={'4px'}
+								zIndex={'3'}>
+								<Typography
+									variant='h6'
+									fontSize={32}
+									fontWeight={800}>
+									{eval(statValue)}
+								</Typography>
+								<Typography
+									variant='h6'
+									color={league.nbaRed}>
+									/Game
+								</Typography>
 							</Box>
 						</Box>
-					</Grid>
-				)
-			})}
-		</Grid>
+					)
+				})}
+			</Box>
+		</>
 	)
 }
 

@@ -27,8 +27,8 @@ const PlayerCard = ({ player, width }) => {
 						top: '0',
 						left: '0',
 						display: graphicOn ? 'flex' : 'flex',
-						width: '220px',
-						height: '332px',
+						width: '252px',
+						height: '365px',
 						overflow: 'hidden',
 						// backgroundImage: 'url(/images/player-home-graphic.png)',
 					}}>
@@ -44,28 +44,26 @@ const PlayerCard = ({ player, width }) => {
 							top: '0',
 							left: '0',
 							display: graphicOn ? 'flex' : 'flex',
-							width: '220px',
-							height: '332px',
+							width: '252px',
+							height: '365px',
 							transform: 'translateX(-50px)',
 						}}
 					/>
 
-					{/* <motion.div
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							exit={{ opacity: 0 }}
-							transition={{ ease: 'easeOut', duration: 0.3 }}
-							style={{
-								position: 'absolute',
-								zIndex: '2',
-								top: '0',
-								left: '0',
-								width: '220px',
-								height: '332px',
-								backgroundColor: league.nbaBlue,
-								display: graphicOn ? 'block' : 'none',
-							}}
-						/> */}
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						style={{
+							position: 'absolute',
+							zIndex: '2',
+							top: '0',
+							left: '0',
+							width: '252px',
+							height: '365px',
+							backgroundColor: league.nbaBlue,
+							display: graphicOn ? 'block' : 'none',
+						}}
+					/>
 				</Box>
 			)}
 			<Box
