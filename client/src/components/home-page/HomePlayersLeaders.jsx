@@ -14,6 +14,7 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 
 	// const [graphicOn, setGraphicOn] = useState(false)
 	const [oldUI, setOldUI] = useState(false)
+	const [zoomIn, setZoomIn] = useState(false)
 
 	/* const evaluateGraphic = state => {
 		switch (state) {
@@ -136,9 +137,6 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 				</Grid>
 			)}
 			<Box
-				// container
-				// columnSpacing={{ xs: 8, md: 10, lg: 16 }}
-				// width='100%'
 				sx={{
 					width: '100%',
 					display: 'grid',
@@ -152,44 +150,32 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 					const statValue = `p?.${stat}`
 					return (
 						<Box
+							onMouseEnter={() => setZoomIn(true)}
+							onMouseLeave={() => setZoomIn(false)}
 							key={p?.player}
 							color={league.nbaWhite}
 							sx={{
 								boxSizing: 'border-box',
 								position: 'relative',
 								width: 'fit-content',
-								height: '100%',
+								// height: '100%',
 								display: 'flex',
 								flexDirection: 'column',
 								justifyContent: 'space-between',
 								alignItems: 'center',
 								zIndex: '2',
 								padding: '1rem',
+								/* transform: 'scale(1)',
+								transition: 'ease-out all 0.35s',
+								'&:hover': {
+									transform: 'scale(1.05)',
+								}, */
 							}}>
-							{/* <Box
-								sx={{
-									position: 'absolute',
-									zIndex: '1',
-									top: '0',
-									left: '0',
-									display: graphicOn ? 'block' : 'none',
-									width: '220px',
-									height: '332px',
-									// backgroundImage: 'url(/images/player-home-graphic.png)',
-								}}>
-									<img
-										width={220}
-										height={332}
-										src='/images/player-home-graphic.png'
-									/>
-								</Box> */}
-							<Link
-								// sx={{ zIndex: '2' }}
-								/* onMouseEnter={() => setGraphicOn(true)}
-								onMouseLeave={() => setGraphicOn(false)} */
-								to={`/stats/players/${p?.id}`}>
+							<Link to={`/stats/players/${p?.id}`}>
 								<PlayerCard
-									width={220}
+									// graphicOn={graphicOn}
+									// setGraphicOn={setGraphicOn}
+									width={zoomIn ? 240 : 220}
 									player={p?.player}
 								/>
 							</Link>

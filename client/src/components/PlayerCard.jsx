@@ -4,7 +4,7 @@ import { Typography, Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const PlayerCard = ({ player, width }) => {
+const PlayerCard = ({ /* graphicOn, setGraphicOn, */ player, width }) => {
 	const theme = useTheme()
 	const { league } = theme.palette
 	// state
@@ -28,16 +28,17 @@ const PlayerCard = ({ player, width }) => {
 						left: '0',
 						display: graphicOn ? 'flex' : 'flex',
 						width: '252px',
-						height: '365px',
+						height: '360px',
 						overflow: 'hidden',
 						// backgroundImage: 'url(/images/player-home-graphic.png)',
 					}}>
 					<motion.img
-						initial={{ opacity: 0, x: -220 }}
+						initial={{ opacity: 0, x: -252 }}
 						animate={{ opacity: 1, x: 0 }}
+						transition={{ ease: 'easeOut', duration: 0.3 }}
 						width={220}
 						height={332}
-						src='/images/player-home-graphic-2.png'
+						src='/images/player-home-graphic-red.png'
 						style={{
 							position: 'absolute',
 							zIndex: '3',
@@ -45,12 +46,30 @@ const PlayerCard = ({ player, width }) => {
 							left: '0',
 							display: graphicOn ? 'flex' : 'flex',
 							width: '252px',
-							height: '365px',
-							transform: 'translateX(-50px)',
+							height: '360px',
+							// transform: 'translateX(-50px)',
+						}}
+					/>
+					<motion.img
+						initial={{ opacity: 0, x: 252 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ ease: 'easeOut', duration: 0.3 }}
+						width={220}
+						height={332}
+						src='/images/player-home-graphic-gray.png'
+						style={{
+							position: 'absolute',
+							zIndex: '3',
+							top: '0',
+							left: '0',
+							display: graphicOn ? 'flex' : 'flex',
+							width: '252px',
+							height: '360px',
+							// transform: 'translateX(-50px)',
 						}}
 					/>
 
-					<motion.div
+					{/* <motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						style={{
@@ -59,11 +78,11 @@ const PlayerCard = ({ player, width }) => {
 							top: '0',
 							left: '0',
 							width: '252px',
-							height: '365px',
+							height: '360px',
 							backgroundColor: league.nbaBlue,
 							display: graphicOn ? 'block' : 'none',
 						}}
-					/>
+					/> */}
 				</Box>
 			)}
 			<Box
