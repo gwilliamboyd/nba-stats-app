@@ -1,23 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useTheme } from '@emotion/react'
 import { Typography, Box } from '@mui/material'
-import { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 // p not used is not an error - used in an eval()
-const PlayerCard = ({ width, stat, player }) => {
+const PlayerCard = ({ width, player }) => {
 	// console.log(showPerGame)
 	const theme = useTheme()
 	const { league } = theme.palette
 	// state
 	const [graphicOn, setGraphicOn] = useState(false)
-
-	const statValue = `p?.${stat}`
-	console.log(stat)
-
-	useEffect(() => {
-		console.log(`Graphic On: ${graphicOn}`)
-	}, [graphicOn])
 	// dynamically get player image
 	const playerImgSrc = `"/images/players/${player}.png"`
 
@@ -50,7 +43,6 @@ const PlayerCard = ({ width, stat, player }) => {
 							display: graphicOn ? 'flex' : 'flex',
 							width: '252px',
 							height: '360px',
-							// transform: 'translateX(-50px)',
 						}}
 					/>
 					<motion.img
@@ -68,7 +60,6 @@ const PlayerCard = ({ width, stat, player }) => {
 							display: graphicOn ? 'flex' : 'flex',
 							width: '252px',
 							height: '360px',
-							// transform: 'translateX(-50px)',
 						}}
 					/>
 
@@ -98,18 +89,12 @@ const PlayerCard = ({ width, stat, player }) => {
 					alignItems: 'center',
 					gap: '8px',
 					textAlign: 'center',
-					// '&:hover': () => setGraphicOn(true),
 				}}>
 				<Box
-					// initial={{ scale: 1 }}
-					// animate={{ scale: 1.03 }}
-					// transition={{ ease: 'easeOut', duration: 0.3 }}
 					sx={{
 						zIndex: '4',
 						width: width,
 						height: width,
-						// width: graphicOn ? '230px' : '220px',
-						// height: graphicOn ? '230px' : '220px',
 						border: `2px solid ${league.nbaWhite}`,
 						borderRadius: '100%',
 						backgroundImage: `url(${playerImgSrc})`,

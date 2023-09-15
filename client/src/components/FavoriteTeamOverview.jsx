@@ -2,13 +2,13 @@
 import { Box, Container, Grid, Typography } from '@mui/material'
 import fullTeamNames from '../hooks/fullTeamNames'
 import SlashIcon from '../../public/images/svgs/SlashIcon'
-import PlayerCard from './PlayerCard'
+import PlayerCardFavorites from './PlayerCardFavorites'
 import { Link } from 'react-router-dom'
 
 /* eslint-disable react/prop-types */
 const FavoriteTeamOverview = ({
 	team,
-	allTeams,
+	// allTeams,
 	leagueStandings,
 	ptsLeaders,
 	threePLeaders,
@@ -30,8 +30,8 @@ const FavoriteTeamOverview = ({
 	// Quick stats overview
 	const statsPts = team.pts
 	const statsTrb = team.trb
-	const statsAst = team.ast
-	const statsFg = team.fg
+	// const statsAst = team.ast
+	// const statsFg = team.fg
 	const statsFgPer = team.fgPer
 	const stats3pPer = team.$3pPer
 
@@ -326,8 +326,7 @@ const FavoriteTeamOverview = ({
 									Top Scorer
 								</Typography>
 								<Link to={`/stats/players/${topScorer?.id}`}>
-									<PlayerCard
-										// showPerGame={false}
+									<PlayerCardFavorites
 										player={topScorer?.player}
 										width={150}
 									/>
@@ -357,8 +356,7 @@ const FavoriteTeamOverview = ({
 									Leader From 3
 								</Typography>
 								<Link to={`/stats/players/${topThreePts?.id}`}>
-									<PlayerCard
-										// showPerGame={false}
+									<PlayerCardFavorites
 										player={topThreePts?.player}
 										width={150}
 									/>
