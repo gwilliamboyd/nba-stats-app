@@ -27,6 +27,7 @@ const HomePageBox = ({
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
+				overflowY: 'hidden',
 			}}>
 			<Box
 				width='80%'
@@ -43,10 +44,13 @@ const HomePageBox = ({
 						display: 'flex',
 						flexDirection: { xs: 'column', md: 'row' },
 						gap: { xs: '1.5rem', md: '3rem' },
-						alignSelf: { xs: 'center', md: 'flex-start' },
+						alignSelf: 'flex-start',
+						// width: '150%',
 					}}>
 					<Typography
 						fontWeight={900}
+						// display={'flex'}
+						// justifySelf={'flex-start'}
 						variant={'h3'}>
 						{homeHeading}
 					</Typography>

@@ -62,21 +62,6 @@ const PlayerCard = ({ width, player }) => {
 							height: '360px',
 						}}
 					/>
-
-					{/* <motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						style={{
-							position: 'absolute',
-							zIndex: '2',
-							top: '0',
-							left: '0',
-							width: '252px',
-							height: '360px',
-							backgroundColor: league.nbaBlue,
-							display: graphicOn ? 'block' : 'none',
-						}}
-					/> */}
 				</Box>
 			)}
 			<Box
@@ -109,33 +94,6 @@ const PlayerCard = ({ width, player }) => {
 					zIndex={'3'}>
 					{player}
 				</Typography>
-				{/* <motion.h6
-					style={{
-						fontSize: '1rem',
-						fontWeight: '700',
-						lineHeight: '1.25',
-						color: league.nbaWhite,
-						zIndex: '3',
-					}}></motion.h6> */}
-				{/* {showPerGame && (
-					<Box
-						display={'flex'}
-						alignItems={'baseline'}
-						gap={'4px'}
-						zIndex={'3'}>
-						<Typography
-							variant='h6'
-							fontSize={32}
-							fontWeight={800}>
-							{eval(statValue)}
-						</Typography>
-						<Typography
-							variant='h6'
-							color={league.nbaRed}>
-							/Game
-						</Typography>
-					</Box>
-				)} */}
 			</Box>
 		</>
 	)

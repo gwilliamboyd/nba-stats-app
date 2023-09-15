@@ -141,9 +141,19 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 					width: '100%',
 					display: 'grid',
 					justifySelf: 'center',
-					justifyItems: 'space-between',
-					gridTemplateColumns: 'repeat(5, 1fr)',
-					gridTemplateRows: '1fr',
+					justifyItems: { xs: 'center', sm: 'space-between' },
+					gridTemplateColumns: {
+						xs: '1fr',
+						sm: 'repeat(2, 1fr)',
+						md: 'repeat(3, 1fr)',
+						xl: 'repeat(5, 1fr)',
+					},
+					gridTemplateRows: {
+						xs: 'repeat(5, 1fr)',
+						sm: 'repeat(3, 1fr)',
+						md: '1fr 1fr',
+						xl: '1fr',
+					},
 					columnGap: '4rem',
 				}}>
 				{statArray?.slice(0, 5)?.map(p => {
@@ -176,7 +186,7 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 									// showPerGame={true}
 									// p={p}
 									// stat={stat}
-									width={220}
+									width={{ xs: 220, sm: 190, lg: 220 }}
 									player={p?.player}
 								/>
 							</Link>
