@@ -147,18 +147,16 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 					columnGap: '4rem',
 				}}>
 				{statArray?.slice(0, 5)?.map(p => {
-					const statValue = `p?.${stat}`
+					// const statValue = `p?.${stat}`
 					return (
 						<Box
-							onMouseEnter={() => setZoomIn(true)}
-							onMouseLeave={() => setZoomIn(false)}
 							key={p?.player}
 							color={league.nbaWhite}
 							sx={{
 								boxSizing: 'border-box',
 								position: 'relative',
-								width: 'fit-content',
-								// height: '100%',
+								// width: 'fit-content',
+								width: '252px',
 								display: 'flex',
 								flexDirection: 'column',
 								justifyContent: 'space-between',
@@ -175,11 +173,13 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 								<PlayerCard
 									// graphicOn={graphicOn}
 									// setGraphicOn={setGraphicOn}
-									width={zoomIn ? 240 : 220}
+									p={p}
+									stat={stat}
+									// width={zoomIn ? 220 : 220}
 									player={p?.player}
 								/>
 							</Link>
-							<Box
+							{/* <Box
 								display={'flex'}
 								alignItems={'baseline'}
 								gap={'4px'}
@@ -195,7 +195,7 @@ const HomePlayersLeaders = ({ /* loading,  */ stat, statArray }) => {
 									color={league.nbaRed}>
 									/Game
 								</Typography>
-							</Box>
+							</Box> */}
 						</Box>
 					)
 				})}

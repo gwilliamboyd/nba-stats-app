@@ -4,11 +4,15 @@ import { Typography, Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const PlayerCard = ({ /* graphicOn, setGraphicOn, */ player, width }) => {
+// p not used is not an error - used in an eval()
+const PlayerCard = ({ p, stat, player }) => {
 	const theme = useTheme()
 	const { league } = theme.palette
 	// state
 	const [graphicOn, setGraphicOn] = useState(false)
+
+	const statValue = `p?.${stat}`
+	console.log(stat)
 
 	useEffect(() => {
 		console.log(`Graphic On: ${graphicOn}`)
@@ -20,7 +24,6 @@ const PlayerCard = ({ /* graphicOn, setGraphicOn, */ player, width }) => {
 		<>
 			{graphicOn && (
 				<Box
-					// transition={{ ease: 'easeOut', duration: 0.61 }}
 					sx={{
 						position: 'absolute',
 						zIndex: '3',
@@ -30,7 +33,6 @@ const PlayerCard = ({ /* graphicOn, setGraphicOn, */ player, width }) => {
 						width: '252px',
 						height: '360px',
 						overflow: 'hidden',
-						// backgroundImage: 'url(/images/player-home-graphic.png)',
 					}}>
 					<motion.img
 						initial={{ opacity: 0, x: -252 }}
@@ -98,10 +100,15 @@ const PlayerCard = ({ /* graphicOn, setGraphicOn, */ player, width }) => {
 					// '&:hover': () => setGraphicOn(true),
 				}}>
 				<Box
+					// initial={{ scale: 1 }}
+					// animate={{ scale: 1.03 }}
+					// transition={{ ease: 'easeOut', duration: 0.3 }}
 					sx={{
 						zIndex: '4',
-						width: width,
-						height: width,
+						width: '220px',
+						height: '220px',
+						// width: graphicOn ? '230px' : '220px',
+						// height: graphicOn ? '230px' : '220px',
 						border: `2px solid ${league.nbaWhite}`,
 						borderRadius: '100%',
 						backgroundImage: `url(${playerImgSrc})`,
@@ -116,6 +123,31 @@ const PlayerCard = ({ /* graphicOn, setGraphicOn, */ player, width }) => {
 					zIndex={'3'}>
 					{player}
 				</Typography>
+				{/* <motion.h6
+					style={{
+						fontSize: '1rem',
+						fontWeight: '700',
+						lineHeight: '1.25',
+						color: league.nbaWhite,
+						zIndex: '3',
+					}}></motion.h6> */}
+				<Box
+					display={'flex'}
+					alignItems={'baseline'}
+					gap={'4px'}
+					zIndex={'3'}>
+					<Typography
+						variant='h6'
+						fontSize={32}
+						fontWeight={800}>
+						{eval(statValue)}
+					</Typography>
+					<Typography
+						variant='h6'
+						color={league.nbaRed}>
+						/Game
+					</Typography>
+				</Box>
 			</Box>
 		</>
 	)
