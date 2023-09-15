@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 // p not used is not an error - used in an eval()
-const PlayerCard = ({ p, stat, player }) => {
+const PlayerCard = ({ width, stat, player }) => {
+	// console.log(showPerGame)
 	const theme = useTheme()
 	const { league } = theme.palette
 	// state
@@ -105,8 +106,8 @@ const PlayerCard = ({ p, stat, player }) => {
 					// transition={{ ease: 'easeOut', duration: 0.3 }}
 					sx={{
 						zIndex: '4',
-						width: '220px',
-						height: '220px',
+						width: width,
+						height: width,
 						// width: graphicOn ? '230px' : '220px',
 						// height: graphicOn ? '230px' : '220px',
 						border: `2px solid ${league.nbaWhite}`,
@@ -131,23 +132,25 @@ const PlayerCard = ({ p, stat, player }) => {
 						color: league.nbaWhite,
 						zIndex: '3',
 					}}></motion.h6> */}
-				<Box
-					display={'flex'}
-					alignItems={'baseline'}
-					gap={'4px'}
-					zIndex={'3'}>
-					<Typography
-						variant='h6'
-						fontSize={32}
-						fontWeight={800}>
-						{eval(statValue)}
-					</Typography>
-					<Typography
-						variant='h6'
-						color={league.nbaRed}>
-						/Game
-					</Typography>
-				</Box>
+				{/* {showPerGame && (
+					<Box
+						display={'flex'}
+						alignItems={'baseline'}
+						gap={'4px'}
+						zIndex={'3'}>
+						<Typography
+							variant='h6'
+							fontSize={32}
+							fontWeight={800}>
+							{eval(statValue)}
+						</Typography>
+						<Typography
+							variant='h6'
+							color={league.nbaRed}>
+							/Game
+						</Typography>
+					</Box>
+				)} */}
 			</Box>
 		</>
 	)

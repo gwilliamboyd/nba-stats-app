@@ -327,6 +327,7 @@ const FavoriteTeamOverview = ({
 								</Typography>
 								<Link to={`/stats/players/${topScorer?.id}`}>
 									<PlayerCard
+										// showPerGame={false}
 										player={topScorer?.player}
 										width={150}
 									/>
@@ -357,6 +358,7 @@ const FavoriteTeamOverview = ({
 								</Typography>
 								<Link to={`/stats/players/${topThreePts?.id}`}>
 									<PlayerCard
+										// showPerGame={false}
 										player={topThreePts?.player}
 										width={150}
 									/>
