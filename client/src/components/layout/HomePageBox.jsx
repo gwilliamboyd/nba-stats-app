@@ -7,7 +7,7 @@ const HomePageBox = ({
 	league,
 	homeHeading,
 	linkText,
-	backgroundImage,
+	// backgroundImage,
 	children,
 }) => {
 	return (
@@ -20,8 +20,6 @@ const HomePageBox = ({
 				padding: '2rem 0 4rem',
 				backgroundColor: league.nbaBackground,
 				// backgroundImage: { xs: 'none', md: backgroundImage },
-				// background: `linear-gradient(to top, ${league.nbaBlue} 95%, ${league.nbaBackground})`,
-				// background: `radial-gradient(circle, rgba(37,59,115,1) 0%, rgba(13,22,44,1) 100%)`,
 				backgroundPosition: 'center',
 				backgroundSize: 'cover',
 				display: 'flex',
@@ -38,19 +36,15 @@ const HomePageBox = ({
 					gap: { xs: '1.5rem', md: '3.5rem' },
 				}}>
 				<Box
-					// alignSelf='flex-start'
 					alignItems='baseline'
 					sx={{
 						display: 'flex',
 						flexDirection: { xs: 'column', md: 'row' },
 						gap: { xs: '1.5rem', md: '3rem' },
 						alignSelf: 'flex-start',
-						// width: '150%',
 					}}>
 					<Typography
 						fontWeight={900}
-						// display={'flex'}
-						// justifySelf={'flex-start'}
 						variant={'h3'}>
 						{homeHeading}
 					</Typography>

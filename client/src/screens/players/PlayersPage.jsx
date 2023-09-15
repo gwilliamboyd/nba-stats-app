@@ -70,22 +70,49 @@ const PlayersPage = () => {
 				<MainStatsBox>
 					<Box
 						sx={{
+							width: {
+								xs: '300px',
+								sm: '540px',
+								md: '984px',
+								lg: '1200px',
+								xl: '1300px',
+							},
 							height: '100%',
 							display: 'flex',
-							alignItems: 'baseline',
-							gap: '3rem',
+							flexDirection: { xs: 'column', md: 'row' },
+							justifyContent: { xs: 'center', md: 'space-between' },
+							alignItems: { xs: 'center', md: 'baseline' },
+							gap: { xs: '1rem', md: '3rem' },
 						}}>
-						<Typography variant='h3'>Player Stats</Typography>
-						<Typography
-							variant='h5'
-							sx={{ fontWeight: '600', opacity: '90%' }}>
-							2022-23 Season
-						</Typography>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: { xs: 'column', md: 'row' },
+								alignItems: 'baseline',
+								gap: { xs: '1rem', md: '3rem' },
+							}}>
+							<Typography
+								variant={'h3'}
+								sx={{ fontSize: { xs: '36px', lg: '51px' } }}>
+								Player Stats
+							</Typography>
+							<Typography
+								variant='h5'
+								sx={{
+									fontWeight: '600',
+									opacity: '90%',
+									fontSize: { xs: '22px', lg: '25px' },
+								}}>
+								2022-23 Season
+							</Typography>
+						</Box>
+						<Box>
+							<StatsTypeButtonGroup
+								league={league}
+								setStatsType={setStatsType}
+							/>
+						</Box>
 					</Box>
-					<StatsTypeButtonGroup
-						league={league}
-						setStatsType={setStatsType}
-					/>
 				</MainStatsBox>
 				<Suspense fallback={<LoadingScreen />}>
 					<PlayersStatsTable

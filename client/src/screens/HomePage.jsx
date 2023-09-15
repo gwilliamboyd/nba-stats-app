@@ -108,15 +108,7 @@ const HomePage = () => {
 									columns={10}
 									columnSpacing={6}
 									rowSpacing={4}
-									justify='center'
-									/* sx={{
-										padding: '1rem 3rem 4rem 0',
-										background:
-											'radial-gradient(circle, rgba(13,22,44,1) 0%, rgba(37,59,115,1) 100%)',
-										borderRadius: '4px',
-									}} */
-									// alignItems='center'
-								>
+									justify='center'>
 									{sortedTeams.map(team => {
 										return (
 											<Grid
@@ -129,10 +121,6 @@ const HomePage = () => {
 												lg={1}
 												sx={{
 													justifySelf: 'center',
-													/* transition: 'all 0.3s ease-out',
-											'&:hover': {
-												transform: 'scale(1.05)',
-											}, */
 												}}>
 												<Link to={`/stats/teams/${team.team}`}>
 													<HomeTeamCard
@@ -154,12 +142,6 @@ const HomePage = () => {
 						homeHeading={'Player Stats'}
 						linkText={'See All Players'}
 						backgroundImage={'url(/images/players-home-background.jpg)'}>
-						{/* <Typography
-							variant='h4'
-							fontWeight={700}
-							alignSelf={'flex-start'}>
-							Top Scorers
-						</Typography> */}
 						<Box justifyContent={'center'}>
 							<Typography
 								variant='h4'

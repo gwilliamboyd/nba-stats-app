@@ -7,7 +7,7 @@ const MainStatsContainer = ({ children, league }) => {
 			disableGutters
 			maxWidth='100%'
 			sx={{
-				height: { xs: '100%', lg: 'calc(100vh - 100px)' },
+				height: { xs: '100%', md: 'calc(100vh - 100px)' },
 				backgroundColor: league.nbaBackground,
 				display: 'flex',
 				flexDirection: 'column',

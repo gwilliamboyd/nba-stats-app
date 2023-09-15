@@ -17,6 +17,10 @@ const StatsTypeButtonGroup = ({
 			<Button
 				onClick={() => setStatsType('perGame')}
 				sx={{
+					fontSize: {
+						xs: '12px',
+						sm: '15px',
+					},
 					color: secondaryColor,
 					minHeight: '60px',
 					maxHeight: '70px',
@@ -27,6 +31,10 @@ const StatsTypeButtonGroup = ({
 			<Button
 				onClick={() => setStatsType('total')}
 				sx={{
+					fontSize: {
+						xs: '12px',
+						sm: '15px',
+					},
 					color: secondaryColor,
 					minHeight: '60px',
 					maxHeight: '70px',
@@ -37,6 +45,10 @@ const StatsTypeButtonGroup = ({
 			<Button
 				onClick={() => setStatsType('advanced')}
 				sx={{
+					fontSize: {
+						xs: '12px',
+						sm: '15px',
+					},
 					color: secondaryColor,
 					minHeight: '60px',
 					maxHeight: '70px',
