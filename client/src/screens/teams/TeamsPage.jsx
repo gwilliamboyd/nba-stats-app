@@ -10,12 +10,9 @@ import { useTheme } from '@mui/material/styles'
 import LoadingScreen from '../utility/LoadingScreen'
 import StatsTypeButtonGroup from '../../components/tables/util/StatsTypeButtonGroup'
 import MainStatsContainer from '../../components/layout/MainStatsContainer'
-/* const MainStatsContainer = lazy(() =>
-	testDelay(import('../../components/layout/MainStatsContainer'))
-) */
 import MainStatsBox from '../../components/layout/MainStatsBox'
 const TeamsStatsTable = lazy(() =>
-	testDelay(import('../../components/tables/TeamsStatsTable'))
+	import('../../components/tables/TeamsStatsTable')
 )
 
 const TeamsPage = () => {
