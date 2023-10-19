@@ -113,12 +113,16 @@ const FavoriteTeamOverview = ({
 	const topThreePts = sortBy3Pts(threePLeaders)[0]
 
 	return (
-		<Container
-			disableGutters
-			maxWidth='100%'
+		<Box
 			sx={{
+				marginTop: '3rem',
+				width: '70%',
 				backgroundColor: primaryColor,
 				paddingBottom: '3rem',
+				borderRadius: '8px',
+				boxShadow: '0px 10px 10px #0B0B0B',
+				// backgroundColor: primaryColor,
+				// paddingBottom: '3rem',
 			}}>
 			<Box
 				sx={{
@@ -139,12 +143,12 @@ const FavoriteTeamOverview = ({
 						sx={{
 							display: 'flex',
 							flexDirection: { xs: 'column', md: 'row' },
-							alignItems: 'center',
+							alignItems: { xs: 'center', md: 'flex-end' },
 							gap: { xs: '0', md: '2rem' },
 							minWidth: { xs: '0', md: '680px' },
 							// flex: '1 0 0',
 						}}>
-						<Box sx={{ width: { xs: '200px', md: '320px' } }}>
+						<Box sx={{ width: { xs: '180px', md: '220px' } }}>
 							<img
 								src={`/images/svgs/team-logos/${team.team}.svg`}
 								width={'100%'}
@@ -164,9 +168,9 @@ const FavoriteTeamOverview = ({
 								fontWeight={800}
 								variant='h2'
 								sx={{
-									marginTop: { xs: '0', md: '6rem' },
+									marginTop: { xs: '0', md: '3rem' },
 									letterSpacing: '-2.5px',
-									fontSize: { xs: '50px', md: '64px' },
+									fontSize: { xs: '36px', md: '42px' },
 									textAlign: { xs: 'center', md: 'left' },
 								}}>
 								{fullTeamNames(team.team)}
@@ -190,18 +194,19 @@ const FavoriteTeamOverview = ({
 										color={secondaryColor}
 										variant='body2'
 										fontWeight={900}
+										letterSpacing={'0px'}
 										// sx={{ fontSize: { xs: '12px', md: '15px' } }}
 									>
 										WINS
 									</Typography>
 									<Typography
 										variant='h4'
-										sx={{ fontSize: { xs: '28px', md: '36px' } }}>
+										sx={{ fontSize: { xs: '25px', md: '28px' } }}>
 										{foundTeam?.w}
 									</Typography>
 								</Box>
 								<SlashIcon
-									height={72}
+									height={60}
 									fill={secondaryColor}
 								/>
 								{/* LOSSES */}
@@ -222,12 +227,12 @@ const FavoriteTeamOverview = ({
 									</Typography>
 									<Typography
 										variant='h4'
-										sx={{ fontSize: { xs: '28px', md: '36px' } }}>
+										sx={{ fontSize: { xs: '25px', md: '28px' } }}>
 										{foundTeam?.l}
 									</Typography>
 								</Box>
 								<SlashIcon
-									height={72}
+									height={60}
 									fill={secondaryColor}
 								/>
 								<Box
@@ -247,12 +252,12 @@ const FavoriteTeamOverview = ({
 									</Typography>
 									<Typography
 										variant='h4'
-										sx={{ fontSize: { xs: '28px', md: '36px' } }}>
+										sx={{ fontSize: { xs: '25px', md: '28px' } }}>
 										{rankByWinsConference()}
 									</Typography>
 								</Box>
 								<SlashIcon
-									height={72}
+									height={60}
 									fill={secondaryColor}
 								/>
 								<Box
@@ -272,7 +277,7 @@ const FavoriteTeamOverview = ({
 									</Typography>
 									<Typography
 										variant='h4'
-										sx={{ fontSize: { xs: '28px', md: '36px' } }}>
+										sx={{ fontSize: { xs: '25px', md: '28px' } }}>
 										{rankByWinsLeague()}
 									</Typography>
 								</Box>
@@ -302,7 +307,7 @@ const FavoriteTeamOverview = ({
 							color={secondaryColor}
 							variant='h2'
 							fontWeight={900}
-							sx={{ fontSize: { xs: '50px', md: '64px' } }}>
+							sx={{ fontSize: { xs: '36px', md: '42px' } }}>
 							Leaders
 						</Typography>
 						<Box
@@ -328,7 +333,7 @@ const FavoriteTeamOverview = ({
 								<Link to={`/stats/players/${topScorer?.id}`}>
 									<PlayerCardFavorites
 										player={topScorer?.player}
-										width={150}
+										width={120}
 									/>
 								</Link>
 								<Box
@@ -337,12 +342,14 @@ const FavoriteTeamOverview = ({
 									<Typography
 										variant='h4'
 										fontWeight={900}
+										fontSize={'29px'}
 										color={secondaryColor}>
 										{topScorer?.pts}
 									</Typography>
 									<Typography
 										variant='h5'
 										fontWeight={500}
+										fontSize={'26px'}
 										color={tertiaryColor}>
 										/ Game
 									</Typography>
@@ -358,7 +365,7 @@ const FavoriteTeamOverview = ({
 								<Link to={`/stats/players/${topThreePts?.id}`}>
 									<PlayerCardFavorites
 										player={topThreePts?.player}
-										width={150}
+										width={120}
 									/>
 								</Link>
 								<Box
@@ -367,12 +374,14 @@ const FavoriteTeamOverview = ({
 									<Typography
 										variant='h4'
 										fontWeight={900}
+										fontSize={'29px'}
 										color={secondaryColor}>
 										{topThreePts?.$3p}
 									</Typography>
 									<Typography
 										variant='h5'
 										fontWeight={500}
+										fontSize={'26px'}
 										color={tertiaryColor}>
 										/ Game
 									</Typography>
@@ -393,7 +402,7 @@ const FavoriteTeamOverview = ({
 							variant='h2'
 							fontWeight={900}
 							sx={{
-								fontSize: { xs: '50px', md: '64px' },
+								fontSize: { xs: '36px', md: '42px' },
 								textAlign: { xs: 'center', md: 'left' },
 							}}>
 							Team Breakdown
@@ -401,7 +410,7 @@ const FavoriteTeamOverview = ({
 						<Grid
 							container
 							columns={2}
-							rowGap={4}
+							rowGap={6}
 							paddingTop={'0.75rem'}>
 							<Grid
 								item
@@ -411,11 +420,12 @@ const FavoriteTeamOverview = ({
 										display: 'flex',
 										flexDirection: 'column',
 										alignItems: 'center',
+										letterSpacing: '0px',
 									}}>
 									<Typography
 										variant='h2'
 										fontWeight={800}
-										sx={{ fontSize: { xs: '50px', md: '64px' } }}>
+										sx={{ fontSize: { xs: '30px', md: '36px' } }}>
 										{statsPts}
 									</Typography>
 									<Typography
@@ -439,7 +449,7 @@ const FavoriteTeamOverview = ({
 									<Typography
 										variant='h2'
 										fontWeight={800}
-										sx={{ fontSize: { xs: '50px', md: '64px' } }}>
+										sx={{ fontSize: { xs: '30px', md: '36px' } }}>
 										{stats3pPer}
 									</Typography>
 									<Typography
@@ -463,7 +473,7 @@ const FavoriteTeamOverview = ({
 									<Typography
 										variant='h2'
 										fontWeight={800}
-										sx={{ fontSize: { xs: '50px', md: '64px' } }}>
+										sx={{ fontSize: { xs: '30px', md: '36px' } }}>
 										{statsTrb}
 									</Typography>
 									<Typography
@@ -487,7 +497,7 @@ const FavoriteTeamOverview = ({
 									<Typography
 										variant='h2'
 										fontWeight={800}
-										sx={{ fontSize: { xs: '50px', md: '64px' } }}>
+										sx={{ fontSize: { xs: '30px', md: '36px' } }}>
 										{statsFgPer}
 									</Typography>
 									<Typography
@@ -503,7 +513,7 @@ const FavoriteTeamOverview = ({
 					</Box>
 				</Box>
 			</Box>
-		</Container>
+		</Box>
 	)
 }
 

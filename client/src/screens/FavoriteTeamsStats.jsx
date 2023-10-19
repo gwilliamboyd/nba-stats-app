@@ -178,136 +178,127 @@ const FavoriteTeamsStats = () => {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
+					// gap: '3rem',
 					color: league.nbaWhite,
 					paddingBottom: '3rem',
 				}}>
-				{/* <Box
+				<Box
 					sx={{
-						display: 'flex',
-						justifyContent: 'center',
-						alignSelf: 'flex-start',
-						margin: { xs: '1.5rem 0 1rem', md: '2rem 0' },
+						marginTop: '3rem',
 						width: '100%',
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
 					}}>
-					<Box
-						sx={{
-							display: 'flex',
-							flexDirection: 'column',
-							alignItems: 'center',
-							gap: '12px',
-						}}>
-						<Typography
-							fontWeight={800}
-							variant='h3'
-							sx={{ fontSize: { xs: '38px', md: '52px' } }}>
-							Favorite Teams
-						</Typography>
-						<Typography variant='h5'>Team-by Team Overview</Typography>
-					</Box>
-				</Box> */}
-				{fTeams.length === 0 ? (
-					<Suspense fallback={<LoadingScreen />}>
-						<Box
-							sx={{
-								height: 'calc(100vh - 100px)',
-								display: 'flex',
-								flexDirection: 'column',
-								alignItems: 'center',
-								gap: '1rem',
-							}}>
-							<Typography>
-								Looks like you haven't added any favorite teams yet!
-							</Typography>
-							<Typography>
-								Head on over to your{' '}
-								<Link
-									to='/profile'
-									className='basicLink'>
-									Profile
-								</Link>{' '}
-								to select your favorite teams!
-							</Typography>
-						</Box>
-					</Suspense>
-				) : (
-					<Suspense fallback={<LoadingScreen />}>
-						{teamOverviewStats.map(team => {
-							const ptsLeaders = getPointsLeaders(team.team)
-							const threePLeaders = get3PLeaders(team.team)
-							const primaryColor = eval(
-								`theme.palette.teams.${team.team}.primary`
-							)
-							const secondaryColor = eval(
-								`theme.palette.teams.${team.team}.secondary`
-							)
-							const tertiaryColor = eval(
-								`theme.palette.teams.${team.team}.tertiary`
-							)
-							return (
-								<FavoriteTeamOverview
-									key={team}
-									team={team}
-									allTeams={teamsPerGameStatistics}
-									leagueStandings={leagueStandings}
-									ptsLeaders={ptsLeaders}
-									threePLeaders={threePLeaders}
-									primaryColor={primaryColor}
-									secondaryColor={secondaryColor}
-									tertiaryColor={tertiaryColor}
-								/>
-							)
-						})}
-						<Box
-							sx={{
-								width: '100%',
-								display: 'flex',
-								flexDirection: 'column',
-								alignItems: 'center',
-								gap: { xs: '1.5rem', md: '0' },
-							}}>
+					<Typography
+						variant='h2'
+						fontWeight={800}>
+						Your Feed
+					</Typography>
+					{fTeams.length === 0 ? (
+						<Suspense fallback={<LoadingScreen />}>
 							<Box
 								sx={{
-									width: '75%',
+									height: 'calc(100vh - 100px)',
 									display: 'flex',
-									flexDirection: { xs: 'column', md: 'row' },
-									justifyContent: 'space-between',
-									alignItems: { xs: 'center', md: 'baseline' },
+									flexDirection: 'column',
+									alignItems: 'center',
+									gap: '1rem',
+								}}>
+								<Typography>
+									Looks like you haven't added any favorite teams yet!
+								</Typography>
+								<Typography>
+									Head on over to your{' '}
+									<Link
+										to='/profile'
+										className='basicLink'>
+										Profile
+									</Link>{' '}
+									to select your favorite teams!
+								</Typography>
+							</Box>
+						</Suspense>
+					) : (
+						<Suspense fallback={<LoadingScreen />}>
+							{teamOverviewStats.map(team => {
+								const ptsLeaders = getPointsLeaders(team.team)
+								const threePLeaders = get3PLeaders(team.team)
+								const primaryColor = eval(
+									`theme.palette.teams.${team.team}.primary`
+								)
+								const secondaryColor = eval(
+									`theme.palette.teams.${team.team}.secondary`
+								)
+								const tertiaryColor = eval(
+									`theme.palette.teams.${team.team}.tertiary`
+								)
+								return (
+									<FavoriteTeamOverview
+										key={team}
+										team={team}
+										allTeams={teamsPerGameStatistics}
+										leagueStandings={leagueStandings}
+										ptsLeaders={ptsLeaders}
+										threePLeaders={threePLeaders}
+										primaryColor={primaryColor}
+										secondaryColor={secondaryColor}
+										tertiaryColor={tertiaryColor}
+									/>
+								)
+							})}
+							<Box
+								sx={{
+									width: '100%',
+									display: 'flex',
+									flexDirection: 'column',
+									alignItems: 'center',
 									gap: { xs: '1.5rem', md: '0' },
 								}}>
-								<Typography
-									variant='h3'
-									fontWeight={900}
+								<Box
 									sx={{
-										m: { xs: '1.5rem 0 0', md: '3rem 0' },
-										fontSize: { xs: '38px', md: '52px' },
+										width: '75%',
+										display: 'flex',
+										flexDirection: { xs: 'column', md: 'row' },
+										justifyContent: 'space-between',
+										alignItems: { xs: 'center', md: 'baseline' },
+										gap: { xs: '1.5rem', md: '0' },
 									}}>
-									Compare Teams
-								</Typography>
-								<StatsTypeButtonGroup
-									league={league}
-									setStatsType={setStatsType}
+									<Typography
+										variant='h3'
+										fontWeight={900}
+										sx={{
+											m: { xs: '1.5rem 0 0', md: '3rem 0' },
+											fontSize: { xs: '38px', md: '52px' },
+										}}>
+										Compare Teams
+									</Typography>
+									<StatsTypeButtonGroup
+										league={league}
+										setStatsType={setStatsType}
+									/>
+								</Box>
+								<FavoriteTeamsStatsTable
+									fTeams={fTeams}
+									loading={loading}
+									statsType={statsType}
+									statistics={
+										statsType === 'perGame'
+											? teamsPerGameStatistics
+											: statsType === 'total'
+											? teamsTotalStatistics
+											: statsType === 'advanced'
+											? teamsAdvancedStatistics
+											: null
+									}
+									primaryColor={league.nbaTableBackground}
+									secondaryColor={league.nbaWhite}
+									tertiaryColor={league.nbaRed}
 								/>
 							</Box>
-							<FavoriteTeamsStatsTable
-								fTeams={fTeams}
-								loading={loading}
-								statsType={statsType}
-								statistics={
-									statsType === 'perGame'
-										? teamsPerGameStatistics
-										: statsType === 'total'
-										? teamsTotalStatistics
-										: statsType === 'advanced'
-										? teamsAdvancedStatistics
-										: null
-								}
-								primaryColor={'#18264a'}
-								secondaryColor={league.nbaWhite}
-								tertiaryColor={league.nbaRed}
-							/>
-						</Box>
-					</Suspense>
-				)}
+						</Suspense>
+					)}
+				</Box>
 			</Container>
 		</Suspense>
 	)

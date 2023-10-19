@@ -24,7 +24,7 @@ export default function EnhancedTable({
 	fTeams,
 	statsType,
 	statistics,
-	// primaryColor,
+	primaryColor,
 	secondaryColor,
 	tertiaryColor,
 }) {
@@ -88,6 +88,7 @@ export default function EnhancedTable({
 	const tableCellStyles = {
 		color: league.nbaWhite,
 		padding: { xs: '4px 8px', md: '2px 6px' },
+		borderBottom: 0,
 	}
 
 	return (
@@ -105,7 +106,7 @@ export default function EnhancedTable({
 				}}>
 				<TableContainer
 					sx={{
-						backgroundColor: '#18264a',
+						backgroundColor: primaryColor,
 						p: '0 8px',
 						maxHeight: 680,
 					}}>
@@ -126,7 +127,7 @@ export default function EnhancedTable({
 							orderBy={orderBy}
 							setOrderBy={setOrderBy}
 							onRequestSort={handleRequestSort}
-							backgroundColor='#18264a'
+							backgroundColor={primaryColor}
 							secondaryColor={secondaryColor}
 							tertiaryColor={tertiaryColor}
 							fontColor='#B52532'
@@ -142,7 +143,7 @@ export default function EnhancedTable({
 													tabIndex={-1}
 													key={row.team}
 													sx={{ cursor: 'pointer' }}>
-													<TableCell sx={{ padding: '4px' }}>
+													<TableCell sx={{ padding: '4px', borderBottom: 0 }}>
 														<img
 															src={`/images/svgs/team-logos/${row.team}.svg`}
 															alt={`${row.team} logo`}
@@ -154,6 +155,8 @@ export default function EnhancedTable({
 															color: league.nbaWhite,
 															padding: '2px',
 															fontSize: '16px',
+															fontWeight: 700,
+															borderBottom: 0,
 														}}
 														component='th'
 														id={labelId}
@@ -234,6 +237,7 @@ export default function EnhancedTable({
 														sx={{
 															color: league.nbaWhite,
 															padding: '2px',
+															borderBottom: 0,
 														}}
 														align='right'>
 														{row.tsPer}
@@ -277,6 +281,7 @@ export default function EnhancedTable({
 														sx={{
 															color: league.nbaWhite,
 															padding: '2px 4px 2px 2px',
+															borderBottom: 0,
 														}}
 														align='right'>
 														{row.dffftFGA}
@@ -294,7 +299,7 @@ export default function EnhancedTable({
 													tabIndex={-1}
 													key={row.team}
 													sx={{ cursor: 'pointer' }}>
-													<TableCell sx={{ padding: '4px' }}>
+													<TableCell sx={{ padding: '4px', borderBottom: 0 }}>
 														<img
 															src={`/images/svgs/team-logos/${row.team}.svg`}
 															alt={`${row.team} logo`}
@@ -306,6 +311,8 @@ export default function EnhancedTable({
 															color: league.nbaWhite,
 															padding: '2px',
 															fontSize: '16px',
+															fontWeight: 700,
+															borderBottom: 0,
 														}}
 														component='th'
 														id={labelId}
@@ -389,6 +396,7 @@ export default function EnhancedTable({
 														sx={{
 															color: league.nbaWhite,
 															padding: '2px',
+															borderBottom: 0,
 														}}
 														align='right'>
 														{row.orb}
@@ -432,6 +440,7 @@ export default function EnhancedTable({
 														sx={{
 															color: league.nbaWhite,
 															padding: '2px',
+															borderBottom: 0,
 														}}
 														align='right'>
 														{row.pts}
