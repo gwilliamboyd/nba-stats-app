@@ -75,6 +75,7 @@ const HeadCellsTeams = ({
 						p: '4px',
 						backgroundColor: backgroundColor,
 						opacity: '1',
+						borderBottom: '#BABABA 2px solid',
 					}}></TableCell>
 				{headCells.map(headCell => (
 					<Tooltip
@@ -100,6 +101,7 @@ const HeadCellsTeams = ({
 								fontWeight: handleSortFontWeight(headCell.id),
 								p: '2px',
 								paddingBottom: '0.2rem',
+								borderBottom: '#BABABA 2px solid',
 								backgroundColor: backgroundColor,
 								'&:hover': { cursor: 'pointer' },
 								'&:focus': { color: league.nbaRed },

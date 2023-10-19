@@ -23,7 +23,7 @@ import {
 export default function EnhancedTable({
 	statsType,
 	statistics,
-	// primaryColor,
+	primaryColor,
 	secondaryColor,
 	tertiaryColor,
 	// borderColor,
@@ -81,7 +81,8 @@ export default function EnhancedTable({
 	const tableCellStyle = {
 		color: league.nbaWhite,
 		padding: { xs: '4px 8px', md: '2px 6px' },
-		fontSize: theme.typography.fontSize,
+		fontSize: '14px',
+		borderBottom: 'none',
 	}
 
 	return (
@@ -92,7 +93,7 @@ export default function EnhancedTable({
 					sm: '540px',
 					md: '984px',
 					lg: '1200px',
-					xl: '1300px',
+					xl: '1420px',
 				},
 				backgroundColor: league.nbaBackground,
 			}}>
@@ -105,7 +106,7 @@ export default function EnhancedTable({
 				}}>
 				<TableContainer
 					sx={{
-						backgroundColor: '#18264a',
+						backgroundColor: primaryColor,
 						p: '0 8px',
 						maxHeight: 630,
 					}}>
@@ -127,7 +128,7 @@ export default function EnhancedTable({
 							orderBy={orderBy}
 							setOrderBy={setOrderBy}
 							onRequestSort={handleRequestSort}
-							backgroundColor='#18264a'
+							backgroundColor={primaryColor}
 							secondaryColor={secondaryColor}
 							tertiaryColor={tertiaryColor}
 							fontColor='#FFF'
@@ -140,25 +141,27 @@ export default function EnhancedTable({
 
 										return (
 											<TableRow
-												hover
 												// onClick={event => handleClick(event, row.team)}
 												// aria-checked={isItemSelected}
 												tabIndex={-1}
 												key={row.team}
 												// selected={isItemSelected}
-												sx={{ cursor: 'pointer' }}>
-												<TableCell sx={{ padding: '4px' }}>
+												sx={{ border: 0 }}>
+												<TableCell
+													sx={{ padding: '8px 4px', borderBottom: 'none' }}>
 													<img
 														src={`/images/svgs/team-logos/${row.team}.svg`}
 														alt={`${row.team} logo`}
-														width={30}
+														width={36}
 													/>
 												</TableCell>
 												<TableCell
 													sx={{
 														color: league.nbaWhite,
 														padding: '2px',
-														fontSize: '14px',
+														fontSize: '15px',
+														fontWeight: 600,
+														borderBottom: 'none',
 													}}
 													component='th'
 													id={labelId}
@@ -280,6 +283,7 @@ export default function EnhancedTable({
 													sx={{
 														color: league.nbaWhite,
 														padding: '2px 4px 2px 2px',
+														borderBottom: 'none',
 													}}
 													align='right'>
 													{row.dffftFGA}
@@ -293,25 +297,27 @@ export default function EnhancedTable({
 
 										return (
 											<TableRow
-												hover
 												// onClick={event => handleClick(event, row.team)}
 												// aria-checked={isItemSelected}
 												tabIndex={-1}
 												key={row.team}
 												// selected={isItemSelected}
-												sx={{ cursor: 'pointer' }}>
-												<TableCell sx={{ padding: '4px' }}>
+												sx={{ border: 0 }}>
+												<TableCell
+													sx={{ padding: '8px 4px', borderBottom: 'none' }}>
 													<img
 														src={`/images/svgs/team-logos/${row.team}.svg`}
 														alt={`${row.team} logo`}
-														width={30}
+														width={36}
 													/>
 												</TableCell>
 												<TableCell
 													sx={{
 														color: league.nbaWhite,
 														padding: '2px',
-														fontSize: '14px',
+														fontSize: '15px',
+														fontWeight: 600,
+														borderBottom: 'none',
 													}}
 													component='th'
 													id={labelId}

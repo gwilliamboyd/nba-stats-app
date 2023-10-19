@@ -15,6 +15,7 @@ import {
 	teamsAdvancedHeadCells,
 } from '../../data/headCells/teamsHeadCellsIndivRow'
 import HeadCellsTeamsIndivRow from '../tables/HeadCellsTeamsIndivRow'
+import { useTheme } from '@emotion/react'
 
 const TeamIndivStatsRow = ({
 	primaryColor,
@@ -24,6 +25,9 @@ const TeamIndivStatsRow = ({
 	loading,
 	statistics,
 }) => {
+	const theme = useTheme()
+	const { league } = theme.palette
+
 	const tableCellStyles = {
 		color: tertiaryColor,
 		padding: '2px 6px',
@@ -52,14 +56,15 @@ const TeamIndivStatsRow = ({
 			}}>
 			<Paper
 				sx={{
+					padding: '0.35rem 0.5rem',
 					width: '100%',
 					mb: 2,
 					border: `2px solid ${secondaryColor}`,
-					backgroundColor: primaryColor,
+					backgroundColor: league.nbaTeamIndivTableBackground,
 				}}>
 				<TableContainer
 					sx={{
-						backgroundColor: primaryColor,
+						backgroundColor: league.nbaTeamIndivTableBackground,
 						p: '0 8px',
 						// border: '1px solid white',
 					}}>

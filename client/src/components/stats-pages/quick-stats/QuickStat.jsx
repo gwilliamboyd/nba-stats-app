@@ -13,12 +13,13 @@ const QuickStat = ({
 			xs={3}>
 			<Box
 				sx={{
-					borderBottom: `3px solid ${secondaryColor}`,
+					// borderBottom: `3px solid ${secondaryColor}`,
 					display: 'flex',
 					justifyContent: 'space-between',
+					letterSpacing: '0px',
 				}}>
 				<Typography
-					variant='h6'
+					variant='overline'
 					fontWeight={700}
 					color={secondaryColor}>
 					{heading}

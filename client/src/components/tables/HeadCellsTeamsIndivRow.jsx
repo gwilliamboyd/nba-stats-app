@@ -2,6 +2,7 @@
 import { TableCell, TableHead, TableRow, Tooltip } from '@mui/material'
 // tooltip hooks
 import { getStandardTooltips, getAdvancedTooltips } from '../../hooks/tooltips'
+import { useTheme } from '@emotion/react'
 
 const HeadCellsTeamsIndivRow = ({
 	statsType,
@@ -9,6 +10,9 @@ const HeadCellsTeamsIndivRow = ({
 	backgroundColor,
 	fontColor,
 }) => {
+	const theme = useTheme()
+	const { league } = theme.palette
+
 	return (
 		<TableHead>
 			<TableRow>
@@ -30,7 +34,7 @@ const HeadCellsTeamsIndivRow = ({
 									: { fontSize: '12px' }),
 								color: fontColor,
 								p: '2px',
-								backgroundColor: backgroundColor,
+								backgroundColor: league.nbaTeamIndivTableBackground,
 								border: 0,
 								width: 'auto',
 							}}>

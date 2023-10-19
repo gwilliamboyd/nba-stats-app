@@ -93,7 +93,8 @@ export default function EnhancedTable({
 	const tableCellStyle = {
 		color: secondaryColor,
 		padding: '2px',
-		fontSize: '12px',
+		fontSize: '14px',
+		borderBottom: 'none',
 	}
 
 	return (
@@ -106,7 +107,7 @@ export default function EnhancedTable({
 					sm: '540px',
 					md: '984px',
 					lg: '1200px',
-					xl: '1300px',
+					xl: '1420px',
 				},
 				// backgroundColor: containerBackground || primaryColor,
 				backgroundColor: containerBackground || primaryColor,
@@ -158,11 +159,16 @@ export default function EnhancedTable({
 												tabIndex={-1}
 												key={row.player}
 												sx={{ cursor: 'pointer' }}>
-												<TableCell sx={{ padding: '4px', width: '64px' }}>
+												<TableCell
+													sx={{
+														padding: '8px 4px',
+														width: '64px',
+														borderBottom: 'none',
+													}}>
 													<img
 														src={`/images/svgs/team-logos/${row.team}.svg`}
 														alt={`${row.team} logo`}
-														width={30}
+														width={36}
 													/>
 												</TableCell>
 												<TableCell
@@ -170,7 +176,9 @@ export default function EnhancedTable({
 														color: league.nbaWhite,
 														padding: '2px',
 														fontSize: '14px',
+														fontWeight: 600,
 														width: '166px',
+														borderBottom: 'none',
 													}}>
 													<Link to={`/stats/players/${row.id}`}>
 														{row.player}
@@ -308,11 +316,16 @@ export default function EnhancedTable({
 												tabIndex={-1}
 												key={row.player}
 												sx={{ cursor: 'pointer' }}>
-												<TableCell sx={{ padding: '4px', width: '64px' }}>
+												<TableCell
+													sx={{
+														padding: '8px 4px',
+														width: '64px',
+														borderBottom: 'none',
+													}}>
 													<img
 														src={`/images/svgs/team-logos/${row.team}.svg`}
 														alt={`${row.team} logo`}
-														width={40}
+														width={36}
 													/>
 												</TableCell>
 												<TableCell
@@ -320,7 +333,9 @@ export default function EnhancedTable({
 														color: league.nbaWhite,
 														padding: '2px',
 														fontSize: '14px',
+														fontWeight: 600,
 														width: '166px',
+														borderBottom: 'none',
 													}}
 													padding='none'>
 													<Link to={`/stats/players/${row.id}`}>
@@ -489,7 +504,7 @@ export default function EnhancedTable({
 						rowsPerPage={rowsPerPage}
 						page={page}
 						onPageChange={handleChangePage}
-						sx={{ backgroundColor: primaryColor, color: secondaryColor }}
+						sx={{ backgroundColor: '#0B1122', color: secondaryColor }}
 					/>
 				)}
 			</Paper>

@@ -21,9 +21,13 @@ const theme = createTheme({
 		league: {
 			nbaBlue: '#253B73',
 			nbaRed: '#B52532',
-			nbaBackground: '#0D162C',
+			// nbaBackground: '#0D162C',
+			// nbaBackground: '#060B15',
+			nbaBackground: '#04070D',
 			nbaWhite: '#FFFFFF',
 			nbaBlack: '#000000',
+			nbaTableBackground: '#111A32',
+			nbaTeamIndivTableBackground: '#0E1529',
 		},
 		button: {
 			nbaWhite: '#FFFFFF',

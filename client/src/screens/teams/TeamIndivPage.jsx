@@ -26,9 +26,10 @@ const TeamIndivPage = () => {
 	const teamIndivStats = useSelector(state => state.teamIndivStats)
 	const teamsPerGameStats = useSelector(state => state.teamsPerGameStats)
 	const team = window.location.href.slice(-3)
-	const primaryColor = eval(`theme.palette.teams.${team}.primary`)
-	const secondaryColor = eval(`theme.palette.teams.${team}.tertiary`)
-	const tertiaryColor = eval(`theme.palette.teams.${team}.secondary`)
+	// const primaryColor = eval(`theme.palette.teams.${team}.primary`)
+	let primaryColor = league.nbaBackground
+	let secondaryColor = eval(`theme.palette.teams.${team}.secondary`)
+	let tertiaryColor = eval(`theme.palette.teams.${team}.tertiary`)
 
 	const [loading, setLoading] = useState(true)
 	const [fadeIn, setFadeIn] = useState(false)
@@ -178,7 +179,7 @@ const TeamIndivPage = () => {
 										flex: 1,
 									}}>
 									<Typography
-										color={secondaryColor}
+										color={league.nbaWhite}
 										fontWeight={800}
 										variant='h3'
 										sx={{
@@ -203,14 +204,14 @@ const TeamIndivPage = () => {
 												// gap: '6px',
 											}}>
 											<Typography
-												color={tertiaryColor}
+												color={secondaryColor}
 												marginLeft={'0.2rem'}
 												variant='body2'
 												fontWeight={700}>
 												HOMETOWN
 											</Typography>
 											<Typography
-												color={secondaryColor}
+												color={league.nbaWhite}
 												fontWeight={600}
 												variant='h5'
 												sx={{
@@ -226,14 +227,14 @@ const TeamIndivPage = () => {
 												flexDirection: 'column',
 											}}>
 											<Typography
-												color={tertiaryColor}
+												color={secondaryColor}
 												marginLeft={'0.2rem'}
 												variant='body2'
 												fontWeight={700}>
 												ARENA
 											</Typography>
 											<Typography
-												color={secondaryColor}
+												color={league.nbaWhite}
 												fontWeight={600}
 												variant='h5'
 												sx={{
@@ -253,8 +254,8 @@ const TeamIndivPage = () => {
 								statsFg={statsFg}
 								statsFgPer={statsFgPer}
 								stats3pPer={stats3pPer}
-								secondaryColor={tertiaryColor}
-								tertiaryColor={secondaryColor}
+								secondaryColor={secondaryColor}
+								tertiaryColor={tertiaryColor}
 							/>
 						</Box>
 						{loading ? (
@@ -279,15 +280,15 @@ const TeamIndivPage = () => {
 									<Typography
 										variant='h5'
 										fontWeight={700}
-										color={secondaryColor}
+										color={league.nbaWhite}
 										sx={{ alignSelf: 'flex-start' }}>
 										Per-Game
 									</Typography>
 									<TeamIndivStatsRow
 										team={team}
 										primaryColor={primaryColor}
-										secondaryColor={tertiaryColor}
-										tertiaryColor={secondaryColor}
+										secondaryColor={secondaryColor}
+										tertiaryColor={league.nbaWhite}
 										statsType={'perGame'}
 										loading={loading}
 										statistics={teamIndivStats && teamIndivStatistics[0]}
@@ -303,15 +304,15 @@ const TeamIndivPage = () => {
 									<Typography
 										variant='h5'
 										fontWeight={700}
-										color={secondaryColor}
+										color={league.nbaWhite}
 										sx={{ alignSelf: 'flex-start' }}>
 										Totals
 									</Typography>
 									<TeamIndivStatsRow
 										team={team}
 										primaryColor={primaryColor}
-										secondaryColor={tertiaryColor}
-										tertiaryColor={secondaryColor}
+										secondaryColor={secondaryColor}
+										tertiaryColor={league.nbaWhite}
 										statsType={'total'}
 										loading={loading}
 										statistics={teamIndivStats && teamIndivStatistics[1]}
@@ -327,15 +328,15 @@ const TeamIndivPage = () => {
 									<Typography
 										variant='h5'
 										fontWeight={700}
-										color={secondaryColor}
+										color={league.nbaWhite}
 										sx={{ alignSelf: 'flex-start' }}>
 										Advanced
 									</Typography>
 									<TeamIndivStatsRow
 										team={team}
 										primaryColor={primaryColor}
-										secondaryColor={tertiaryColor}
-										tertiaryColor={secondaryColor}
+										secondaryColor={secondaryColor}
+										tertiaryColor={league.nbaWhite}
 										statsType={'advanced'}
 										loading={loading}
 										statistics={teamIndivStats && teamIndivStatistics[2]}
@@ -354,14 +355,14 @@ const TeamIndivPage = () => {
 								// marginLeft: { xs: '0', md: '5rem' },
 							}}>
 							<Typography
-								color={secondaryColor}
+								color={league.nbaWhite}
 								variant='h3'>
 								Player Stats
 							</Typography>
 
 							<StatsTypeButtonGroup
 								league={league}
-								secondaryColor={secondaryColor}
+								secondaryColor={'#FFF'}
 								tertiaryColor={tertiaryColor}
 								setStatsType={setStatsType}
 							/>
@@ -378,9 +379,9 @@ const TeamIndivPage = () => {
 									? filteredAdvancedStatistics
 									: null
 							}
-							primaryColor={primaryColor}
-							secondaryColor={secondaryColor}
-							tertiaryColor={tertiaryColor}
+							primaryColor={league.nbaTeamIndivTableBackground}
+							secondaryColor={'#FFF'}
+							tertiaryColor={secondaryColor}
 							includePagination={includePagination}
 							playersPerPage={25}
 						/>

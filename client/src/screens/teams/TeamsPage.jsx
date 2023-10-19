@@ -130,7 +130,7 @@ const TeamsPage = () => {
 								? teamsAdvancedStatistics
 								: null
 						}
-						primaryColor={'#18264a'}
+						primaryColor={league.nbaTableBackground}
 						secondaryColor={league.nbaWhite}
 						tertiaryColor={league.nbaRed}
 						borderColor={league.nbaWhite}

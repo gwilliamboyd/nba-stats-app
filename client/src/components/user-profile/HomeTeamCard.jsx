@@ -16,6 +16,7 @@ const HomeTeamCard = ({ team, width }) => {
 				alignItems: 'center',
 				gap: '4px',
 				textAlign: 'center',
+				letterSpacing: '0',
 				transition: 'all 0.3s ease-out',
 				'&:hover': {
 					transform: 'scale(1.1)',
@@ -27,10 +28,10 @@ const HomeTeamCard = ({ team, width }) => {
 				width={width}
 			/>
 			<Typography
-				variant='overline'
+				variant='h6'
 				fontWeight={400}
 				lineHeight={1.5}
-				fontSize={11}
+				fontSize={13}
 				color={league.nbaWhite}>
 				{fullTeamNames(team)}
 			</Typography>
