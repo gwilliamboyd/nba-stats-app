@@ -149,7 +149,7 @@ const TeamIndivPage = () => {
 						<Box
 							sx={{
 								marginTop: { xs: '0', md: '3rem' },
-								width: { xs: '95%', lg: '85%' },
+								width: { xs: '95%', lg: '100%' },
 								maxWidth: '1434px',
 								display: 'flex',
 								flexDirection: { xs: 'column', lg: 'row' },

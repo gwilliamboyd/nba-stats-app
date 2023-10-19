@@ -11,6 +11,7 @@ import PlayerIndivStatsRow from '../../components/stats-pages/PlayerIndivStatsRo
 import LoadingScreenBlank from '../utility/LoadingScreenBlank'
 import QuickStat from '../../components/stats-pages/quick-stats/QuickStat'
 import PlayerAvatar from '../../components/stats-pages/PlayerAvatar'
+import QuickStatsContainer from '../../components/stats-pages/quick-stats/QuickStatsContainer'
 
 const PlayerIndivPage = () => {
 	// not an error, eslint doesn't recognize the theme
@@ -78,7 +79,7 @@ const PlayerIndivPage = () => {
 			maxWidth='100%'
 			sx={{
 				height: { xs: '100%', lg: 'calc(100vh - 100px)' },
-				backgroundColor: primaryColor,
+				backgroundColor: league.nbaBackground,
 			}}>
 			{loading ? (
 				<LoadingScreenBlank />
@@ -93,7 +94,8 @@ const PlayerIndivPage = () => {
 					<Box
 						sx={{
 							marginTop: '3rem',
-							width: { xs: '95%', lg: '75%' },
+							width: { xs: '95%', lg: '90%' },
+							maxWidth: '1434px',
 							display: 'flex',
 							flexDirection: { xs: 'column', lg: 'row' },
 							justifyContent: 'space-between',
@@ -101,7 +103,7 @@ const PlayerIndivPage = () => {
 						}}>
 						<Box
 							sx={{
-								width: '100%',
+								width: 'fit-content',
 								display: 'flex',
 								flexDirection: { xs: 'column', md: 'row' },
 								justifyContent: { xs: 'center', lg: 'flex-start' },
@@ -115,6 +117,7 @@ const PlayerIndivPage = () => {
 							/>
 							<Box
 								sx={{
+									width: 'fit-content',
 									display: 'flex',
 									flexDirection: 'column',
 									alignItems: { xs: 'center', md: 'flex-start' },
@@ -171,52 +174,16 @@ const PlayerIndivPage = () => {
 							</Box>
 						</Box>
 
-						<Grid
-							container
-							columns={6}
-							columnSpacing={4}
-							rowSpacing={2}
-							sx={{
-								width: { xs: '90%', sm: '75%', md: '60%', lg: '35%' },
-								marginTop: '1rem',
-							}}>
-							<QuickStat
-								heading='PTS'
-								featuredStat={statsPts}
-								secondaryColor={secondaryColor}
-								tertiaryColor={tertiaryColor}
-							/>
-							<QuickStat
-								heading='TRB'
-								featuredStat={statsTrb}
-								secondaryColor={secondaryColor}
-								tertiaryColor={tertiaryColor}
-							/>
-							<QuickStat
-								heading='AST'
-								featuredStat={statsAst}
-								secondaryColor={secondaryColor}
-								tertiaryColor={tertiaryColor}
-							/>
-							<QuickStat
-								heading='FG'
-								featuredStat={statsFg}
-								secondaryColor={secondaryColor}
-								tertiaryColor={tertiaryColor}
-							/>
-							<QuickStat
-								heading='FG%'
-								featuredStat={statsFgPer}
-								secondaryColor={secondaryColor}
-								tertiaryColor={tertiaryColor}
-							/>
-							<QuickStat
-								heading='3P%'
-								featuredStat={stats3pPer}
-								secondaryColor={secondaryColor}
-								tertiaryColor={tertiaryColor}
-							/>
-						</Grid>
+						<QuickStatsContainer
+							statsPts={statsPts}
+							statsTrb={statsTrb}
+							statsAst={statsAst}
+							statsFg={statsFg}
+							statsFgPer={statsFgPer}
+							stats3pPer={stats3pPer}
+							secondaryColor={secondaryColor}
+							tertiaryColor={tertiaryColor}
+						/>
 					</Box>
 
 					{loading ? (

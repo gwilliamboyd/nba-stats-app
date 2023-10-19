@@ -61,6 +61,7 @@ const TeamIndivStatsRow = ({
 					mb: 2,
 					border: `2px solid ${secondaryColor}`,
 					backgroundColor: league.nbaTeamIndivTableBackground,
+					boxShadow: '0px 10px 10px black',
 				}}>
 				<TableContainer
 					sx={{

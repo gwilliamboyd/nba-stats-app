@@ -15,6 +15,7 @@ import {
 } from '../../data/headCells/playersHeadCellsIndivRow'
 // import HeadCellsPlayers from '../tables/HeadCellsPlayers'
 import HeadCellsPlayersIndivRow from '../tables/HeadCellsTeamsIndivRow'
+import { useTheme } from '@emotion/react'
 
 const PlayerIndivStatsRow = ({
 	primaryColor,
@@ -23,6 +24,8 @@ const PlayerIndivStatsRow = ({
 	statsType,
 	statistics,
 }) => {
+	const theme = useTheme()
+	const { league } = theme.palette
 	// not an error, used in eval()
 	// eslint-disable-next-line no-unused-vars
 	const perGameStatistics = statistics[0]
@@ -31,7 +34,7 @@ const PlayerIndivStatsRow = ({
 	const advancedStatistics = statistics[2]
 
 	const tableCellStyle = {
-		color: tertiaryColor,
+		color: '#FFFFFF',
 		fontWeight: '300',
 		padding: '2px',
 		// padding: '2px 4px 2px 2px',
@@ -53,20 +56,22 @@ const PlayerIndivStatsRow = ({
 					lg: '1434px',
 					xl: '1434px',
 				},
-				backgroundColor: primaryColor,
+				backgroundColor: league.nbaBackground,
 				display: 'flex',
 				justifyContent: 'center',
 			}}>
 			<Paper
 				sx={{
+					padding: '0.35rem 0.5rem',
 					width: '100%',
 					mb: 2,
 					border: `2px solid ${secondaryColor}`,
-					backgroundColor: primaryColor,
+					backgroundColor: league.nbaTeamIndivTableBackground,
+					boxShadow: '0px 10px 10px black',
 				}}>
 				<TableContainer
 					sx={{
-						backgroundColor: primaryColor,
+						backgroundColor: league.nbaTeamIndivTableBackground,
 						p: '0 8px',
 						// border: '1px solid white',
 					}}>
@@ -81,15 +86,15 @@ const PlayerIndivStatsRow = ({
 									? playersAdvancedHeadCells
 									: playersPerGameHeadCells
 							}
-							backgroundColor={primaryColor}
-							fontColor={secondaryColor}
+							backgroundColor={league.nbaTeamIndivTableBackground}
+							fontColor={tertiaryColor}
 						/>
 						<TableBody>
 							{statsType === 'advanced' ? (
 								<TableRow>
 									<TableCell
 										sx={{
-											color: tertiaryColor,
+											color: '#FFFFFF',
 											padding: '2px',
 											border: '0',
 											textAlign: 'left',
@@ -170,7 +175,7 @@ const PlayerIndivStatsRow = ({
 								<TableRow>
 									<TableCell
 										sx={{
-											color: tertiaryColor,
+											color: '#FFFFFF',
 											padding: '2px',
 											border: '0',
 											textAlign: 'left',
@@ -260,7 +265,7 @@ const PlayerIndivStatsRow = ({
 								<TableRow>
 									<TableCell
 										sx={{
-											color: tertiaryColor,
+											color: '#FFFFFF',
 											padding: '2px',
 											border: '0',
 											textAlign: 'left',
