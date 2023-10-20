@@ -28,6 +28,7 @@ const HeadCellsTeamsIndivRow = ({
 							align={headCell.numeric ? 'center' : 'left'}
 							padding={'normal'}
 							sx={{
+								lineHeight: '1rem',
 								fontWeight: '500',
 								...(statsType === 'advanced'
 									? { fontSize: '14px' }

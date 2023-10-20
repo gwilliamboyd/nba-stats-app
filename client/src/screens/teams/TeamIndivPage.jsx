@@ -149,7 +149,7 @@ const TeamIndivPage = () => {
 						<Box
 							sx={{
 								marginTop: { xs: '0', md: '3rem' },
-								width: { xs: '95%', lg: '100%' },
+								width: { xs: '100%', lg: '100%' },
 								maxWidth: '1434px',
 								display: 'flex',
 								flexDirection: { xs: 'column', lg: 'row' },
@@ -159,23 +159,28 @@ const TeamIndivPage = () => {
 							}}>
 							<Box
 								sx={{
+									width: '100%',
 									display: 'flex',
-									flexDirection: { xs: 'column', md: 'row' },
+									// flexDirection: { xs: 'column', md: 'row' },
+									flexDirection: 'row',
 									justifyContent: { xs: 'center', lg: 'flex-start' },
-									alignItems: { xs: 'center', md: 'flex-start' },
-									gap: { xs: '0.5rem', md: '2rem' },
+									// alignItems: { xs: 'center', md: 'flex-start' },
+									alignItems: 'flex-start',
+									gap: { xs: '1rem', md: '2rem' },
 									minWidth: { xs: '0px', md: '680px' },
 								}}>
-								<img
-									src={`/images/svgs/team-logos/${team}.svg`}
-									width={200}
-									alt={`${team} logo`}
-								/>
+								<Box sx={{ width: { xs: '184px', md: '200px' } }}>
+									<img
+										src={`/images/svgs/team-logos/${team}.svg`}
+										style={{ width: '100%' }}
+										alt={`${team} logo`}
+									/>
+								</Box>
 								<Box
 									sx={{
 										display: 'flex',
 										flexDirection: 'column',
-										gap: { xs: '2rem', md: '1rem' },
+										gap: { xs: '1rem', md: '1rem' },
 										flex: 1,
 									}}>
 									<Typography
@@ -183,19 +188,22 @@ const TeamIndivPage = () => {
 										fontWeight={800}
 										variant='h3'
 										sx={{
-											marginTop: { xs: '0', md: '2rem' },
-											letterSpacing: '-1.5px',
-											fontSize: { xs: '38px', md: '52px' },
+											marginTop: { xs: '1rem', md: '2rem' },
+											letterSpacing: { xs: '0px', md: '-1.5px' },
+											fontSize: { xs: '27px', md: '52px' },
 										}}>
 										{fullTeamNames(team)}
 									</Typography>
 									<Box
 										sx={{
 											display: 'flex',
+											flexDirection: { xs: 'column', md: 'row' },
 											justifyContent: {
 												xs: 'space-around',
-												md: 'space-between',
+												md: 'flex-start',
 											},
+											alignItems: 'flex-start',
+											gap: { xs: '0.5rem', md: '0rem' },
 										}}>
 										<Box
 											sx={{
@@ -216,7 +224,7 @@ const TeamIndivPage = () => {
 												variant='h5'
 												sx={{
 													letterSpacing: '-1.5px',
-													fontSize: { xs: '20px', md: '26px' },
+													fontSize: { xs: '22px', md: '26px' },
 												}}>
 												{home}
 											</Typography>
@@ -239,7 +247,7 @@ const TeamIndivPage = () => {
 												variant='h5'
 												sx={{
 													letterSpacing: '-1.5px',
-													fontSize: { xs: '20px', md: '26px' },
+													fontSize: { xs: '22px', md: '26px' },
 												}}>
 												{arena}
 											</Typography>
@@ -346,7 +354,7 @@ const TeamIndivPage = () => {
 						)}
 						<Box
 							sx={{
-								width: '1300px',
+								width: { xs: '350px', xl: '1300px' },
 								display: 'flex',
 								flexDirection: { xs: 'column', md: 'row' },
 								alignItems: { xs: 'center', md: 'baseline' },

@@ -30,14 +30,14 @@ const TeamIndivStatsRow = ({
 
 	const tableCellStyles = {
 		color: tertiaryColor,
-		padding: '2px 6px',
+		padding: '2px 14px',
 		border: '0',
 		fontSize: '14px',
 	}
 
 	const tableCellStylesAdv = {
 		color: tertiaryColor,
-		padding: '2px',
+		padding: { xs: '2px, 5px', md: '2px' },
 		border: '0',
 		fontSize: '14px',
 	}
@@ -46,17 +46,27 @@ const TeamIndivStatsRow = ({
 		<Box
 			sx={{
 				width: {
-					xs: '300px',
+					xs: '350px',
 					sm: '540px',
 					md: '984px',
 					lg: '1434px',
 					xl: '1434px',
 				},
 				backgroundColor: primaryColor,
+				// hide horizontal scrollbar on mobile
+				/* '::-webkit-scrollbar': {
+					height: '0',
+					width: '0',
+					display: 'none',
+				},
+
+				'&::-webkit-scrollbar-thumb:horizontal': {
+					display: 'none',
+				}, */
 			}}>
 			<Paper
 				sx={{
-					padding: '0.35rem 0.5rem',
+					padding: { xs: '0.5rem 0.35rem', md: '0.35rem 0.5rem' },
 					width: '100%',
 					mb: 2,
 					border: `2px solid ${secondaryColor}`,
@@ -66,7 +76,7 @@ const TeamIndivStatsRow = ({
 				<TableContainer
 					sx={{
 						backgroundColor: league.nbaTeamIndivTableBackground,
-						p: '0 8px',
+						p: { xs: '0', md: '0 8px' },
 						// border: '1px solid white',
 					}}>
 					<Table

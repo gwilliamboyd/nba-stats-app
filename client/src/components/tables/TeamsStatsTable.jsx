@@ -146,9 +146,13 @@ export default function EnhancedTable({
 												tabIndex={-1}
 												key={row.team}
 												// selected={isItemSelected}
-												sx={{ border: 0 }}>
+												sx={{ border: 0, position: 'sticky' }}>
 												<TableCell
-													sx={{ padding: '8px 4px', borderBottom: 'none' }}>
+													sx={{
+														padding: '8px 4px',
+														borderBottom: 'none',
+														position: 'sticky',
+													}}>
 													<img
 														src={`/images/svgs/team-logos/${row.team}.svg`}
 														alt={`${row.team} logo`}
@@ -162,6 +166,7 @@ export default function EnhancedTable({
 														fontSize: '15px',
 														fontWeight: 600,
 														borderBottom: 'none',
+														position: 'sticky',
 													}}
 													component='th'
 													id={labelId}

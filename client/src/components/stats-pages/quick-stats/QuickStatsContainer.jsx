@@ -10,7 +10,7 @@ const QuickStatsContainer = ({
 	statsFgPer,
 	stats3pPer,
 	secondaryColor,
-	tertiaryColor,
+	// tertiaryColor,
 }) => {
 	return (
 		<Box
@@ -23,8 +23,8 @@ const QuickStatsContainer = ({
 				border: `1px solid ${secondaryColor}`,
 				boxShadow: '0px 10px 10px black',
 				display: 'grid',
-				gridTemplateColumns: '1fr 1fr',
-				gridTemplateRows: 'repeat(3, 1fr)',
+				gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+				gridTemplateRows: { xs: 'repeat(6, 1fr)', md: 'repeat(3, 1fr)' },
 				columnGap: '2rem',
 				rowGap: '1rem',
 			}}>

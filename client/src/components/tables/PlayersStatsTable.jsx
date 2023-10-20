@@ -92,7 +92,7 @@ export default function EnhancedTable({
 	// table cell style object
 	const tableCellStyle = {
 		color: secondaryColor,
-		padding: '2px',
+		padding: { xs: '2px, 6px', md: '2px' },
 		fontSize: '14px',
 		borderBottom: 'none',
 	}
@@ -103,7 +103,7 @@ export default function EnhancedTable({
 				// hard values to avoid resizing table
 				// percentages are xs: 90% and md: 82%
 				width: {
-					xs: '300px',
+					xs: '350px',
 					sm: '540px',
 					md: '984px',
 					lg: '1200px',
