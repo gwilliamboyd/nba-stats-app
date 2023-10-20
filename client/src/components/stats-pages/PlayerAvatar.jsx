@@ -11,8 +11,8 @@ const PlayerAvatar = ({ secondaryColor, team, src, width }) => {
 				src={src}
 				alt={`${team} logo`}
 				style={{
-					border: `2px solid ${secondaryColor}`,
-					borderRadius: '12px',
+					border: `1px solid ${secondaryColor}`,
+					borderRadius: '10px',
 					width: '100%',
 				}}
 			/>

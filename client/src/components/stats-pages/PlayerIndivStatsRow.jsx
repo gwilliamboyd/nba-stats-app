@@ -36,7 +36,7 @@ const PlayerIndivStatsRow = ({
 	const tableCellStyle = {
 		color: '#FFFFFF',
 		fontWeight: '300',
-		padding: '2px',
+		padding: '2px 12px',
 		// padding: '2px 4px 2px 2px',
 		border: '0',
 		textAlign: 'center',
@@ -50,7 +50,7 @@ const PlayerIndivStatsRow = ({
 		<Box
 			sx={{
 				width: {
-					xs: '300px',
+					xs: '350px',
 					sm: '540px',
 					md: '984px',
 					lg: '1434px',
@@ -62,17 +62,17 @@ const PlayerIndivStatsRow = ({
 			}}>
 			<Paper
 				sx={{
-					padding: '0.35rem 0.5rem',
+					padding: { xs: '0.5rem 0.35rem', md: '0.35rem 0.5rem' },
 					width: '100%',
 					mb: 2,
-					border: `2px solid ${secondaryColor}`,
+					border: `1px solid ${secondaryColor}`,
 					backgroundColor: league.nbaTeamIndivTableBackground,
 					boxShadow: '0px 10px 10px black',
 				}}>
 				<TableContainer
 					sx={{
 						backgroundColor: league.nbaTeamIndivTableBackground,
-						p: '0 8px',
+						p: { xs: '0', md: '0 8px' },
 						// border: '1px solid white',
 					}}>
 					<Table
@@ -87,7 +87,7 @@ const PlayerIndivStatsRow = ({
 									: playersPerGameHeadCells
 							}
 							backgroundColor={league.nbaTeamIndivTableBackground}
-							fontColor={tertiaryColor}
+							fontColor={'#de2f3e'}
 						/>
 						<TableBody>
 							{statsType === 'advanced' ? (

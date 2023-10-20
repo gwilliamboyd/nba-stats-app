@@ -53,16 +53,6 @@ const TeamIndivStatsRow = ({
 					xl: '1434px',
 				},
 				backgroundColor: primaryColor,
-				// hide horizontal scrollbar on mobile
-				/* '::-webkit-scrollbar': {
-					height: '0',
-					width: '0',
-					display: 'none',
-				},
-
-				'&::-webkit-scrollbar-thumb:horizontal': {
-					display: 'none',
-				}, */
 			}}>
 			<Paper
 				sx={{

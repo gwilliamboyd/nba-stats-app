@@ -48,8 +48,15 @@ const PlayerIndivPage = () => {
 		dispatch(setPlayersPerGameStats({ playersPerGameStats: quickData }))
 		setLoading(false)
 	}
+
+	// fetch quick stats
 	useEffect(() => {
 		getPlayerIndivStats()
+	}, [])
+
+	// scroll to top on load
+	useEffect(() => {
+		window.scrollTo(0, 0)
 	}, [])
 	const playerIndivStatistics = Object.values(playerIndivStats)[0]
 	const player = playerIndivStatistics[0]
@@ -113,7 +120,7 @@ const PlayerIndivPage = () => {
 							<PlayerAvatar
 								team={team}
 								src={`/images/players/${player?.player}.png`}
-								secondaryColor={secondaryColor}
+								secondaryColor={league.nbaRed}
 							/>
 							<Box
 								sx={{
@@ -125,7 +132,7 @@ const PlayerIndivPage = () => {
 									gap: '16px',
 								}}>
 								<Typography
-									color={tertiaryColor}
+									color={league.nbaWhite}
 									fontWeight={800}
 									variant='h3'
 									sx={{
@@ -138,28 +145,48 @@ const PlayerIndivPage = () => {
 								<Box
 									sx={{
 										display: 'flex',
-										alignItems: 'baseline',
+										alignItems: 'center',
 										gap: '12px',
 									}}>
-									<Typography
-										color={secondaryColor}
-										marginLeft={'0.2rem'}
-										variant='h5'
-										fontWeight={700}>
-										{fullTeamNames(team)}
-									</Typography>
-									<Typography
-										variant='h5'
-										fontWeight={700}
-										color={tertiaryColor}>
-										|
-									</Typography>
-									<Typography
-										color={tertiaryColor}
-										variant='h5'
-										fontWeight={700}>
-										{player?.pos}
-									</Typography>
+									<Box
+										sx={{
+											width: { xs: '70px', md: '200px' },
+											display: { xs: 'block', md: 'none' },
+										}}>
+										<img
+											src={`/images/svgs/team-logos/${team}.svg`}
+											style={{ width: '100%' }}
+											alt={`${team} logo`}
+										/>
+									</Box>
+									<Box
+										sx={{
+											display: 'flex',
+											flexDirection: { xs: 'column', md: 'row' },
+										}}>
+										<Typography
+											color={league.nbaWhite}
+											marginLeft={'0.2rem'}
+											variant='h5'
+											fontWeight={700}
+											sx={{ width: 'fit-content' }}>
+											{fullTeamNames(team)}
+										</Typography>
+										<Typography
+											variant='h5'
+											fontWeight={700}
+											color={league.nbaWhite}
+											sx={{ display: { xs: 'none', md: 'block' } }}>
+											|
+										</Typography>
+										<Typography
+											color={{ xs: league.nbaRed, md: league.nbaWhite }}
+											variant='h5'
+											fontWeight={700}
+											sx={{ filter: { xs: 'brightness(90%)', md: 'none' } }}>
+											{player?.pos}
+										</Typography>
+									</Box>
 								</Box>
 							</Box>
 							<Box sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -181,7 +208,7 @@ const PlayerIndivPage = () => {
 							statsFg={statsFg}
 							statsFgPer={statsFgPer}
 							stats3pPer={stats3pPer}
-							secondaryColor={secondaryColor}
+							secondaryColor={'#de2f3e'}
 							tertiaryColor={tertiaryColor}
 						/>
 					</Box>
@@ -207,15 +234,15 @@ const PlayerIndivPage = () => {
 								<Typography
 									variant='h5'
 									fontWeight={700}
-									color={tertiaryColor}
+									color={league.nbaWhite}
 									sx={{ alignSelf: 'flex-start' }}>
 									Per-Game
 								</Typography>
 								<PlayerIndivStatsRow
 									team={team}
 									primaryColor={primaryColor}
-									secondaryColor={secondaryColor}
-									tertiaryColor={tertiaryColor}
+									secondaryColor={league.nbaRed}
+									tertiaryColor={league.nbaRed}
 									statsType={'perGame'}
 									loading={loading}
 									statistics={playerIndivStatistics}
@@ -231,15 +258,15 @@ const PlayerIndivPage = () => {
 								<Typography
 									variant='h5'
 									fontWeight={700}
-									color={tertiaryColor}
+									color={league.nbaWhite}
 									sx={{ alignSelf: 'flex-start' }}>
 									Totals
 								</Typography>
 								<PlayerIndivStatsRow
 									team={team}
 									primaryColor={primaryColor}
-									secondaryColor={secondaryColor}
-									tertiaryColor={tertiaryColor}
+									secondaryColor={league.nbaRed}
+									tertiaryColor={league.nbaRed}
 									statsType={'total'}
 									loading={loading}
 									statistics={playerIndivStatistics}
@@ -255,15 +282,15 @@ const PlayerIndivPage = () => {
 								<Typography
 									variant='h5'
 									fontWeight={700}
-									color={tertiaryColor}
+									color={league.nbaWhite}
 									sx={{ alignSelf: 'flex-start' }}>
 									Advanced
 								</Typography>
 								<PlayerIndivStatsRow
 									team={team}
 									primaryColor={primaryColor}
-									secondaryColor={secondaryColor}
-									tertiaryColor={tertiaryColor}
+									secondaryColor={league.nbaRed}
+									tertiaryColor={league.nbaRed}
 									statsType={'advanced'}
 									loading={loading}
 									statistics={playerIndivStatistics}
