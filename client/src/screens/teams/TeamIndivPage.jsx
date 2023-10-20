@@ -104,9 +104,13 @@ const TeamIndivPage = () => {
 		// disable loading
 		setLoading(false)
 	}
-
+	// fetch player stats
 	useEffect(() => {
 		getPlayersStats()
+	}, [])
+	// scroll to top of screen on load
+	useEffect(() => {
+		window.scrollTo(0, 0)
 	}, [])
 
 	const playersPerGameStatistics = Object.values(playersPerGameStats)[0]
@@ -159,7 +163,7 @@ const TeamIndivPage = () => {
 							}}>
 							<Box
 								sx={{
-									width: '100%',
+									width: '92%',
 									display: 'flex',
 									// flexDirection: { xs: 'column', md: 'row' },
 									flexDirection: 'row',
@@ -168,8 +172,9 @@ const TeamIndivPage = () => {
 									alignItems: 'flex-start',
 									gap: { xs: '1rem', md: '2rem' },
 									minWidth: { xs: '0px', md: '680px' },
+									maxWidth: { xs: '600px', md: '720px' },
 								}}>
-								<Box sx={{ width: { xs: '184px', md: '200px' } }}>
+								<Box sx={{ width: { xs: '170px', md: '200px' } }}>
 									<img
 										src={`/images/svgs/team-logos/${team}.svg`}
 										style={{ width: '100%' }}
@@ -200,7 +205,7 @@ const TeamIndivPage = () => {
 											flexDirection: { xs: 'column', md: 'row' },
 											justifyContent: {
 												xs: 'space-around',
-												md: 'flex-start',
+												md: 'space-between',
 											},
 											alignItems: 'flex-start',
 											gap: { xs: '0.5rem', md: '0rem' },
@@ -212,7 +217,7 @@ const TeamIndivPage = () => {
 												// gap: '6px',
 											}}>
 											<Typography
-												color={secondaryColor}
+												color={league.nbaRed}
 												marginLeft={'0.2rem'}
 												variant='body2'
 												fontWeight={700}>
@@ -235,7 +240,7 @@ const TeamIndivPage = () => {
 												flexDirection: 'column',
 											}}>
 											<Typography
-												color={secondaryColor}
+												color={league.nbaRed}
 												marginLeft={'0.2rem'}
 												variant='body2'
 												fontWeight={700}>
@@ -262,7 +267,7 @@ const TeamIndivPage = () => {
 								statsFg={statsFg}
 								statsFgPer={statsFgPer}
 								stats3pPer={stats3pPer}
-								secondaryColor={secondaryColor}
+								secondaryColor={league.nbaRed}
 								tertiaryColor={tertiaryColor}
 							/>
 						</Box>
@@ -295,7 +300,7 @@ const TeamIndivPage = () => {
 									<TeamIndivStatsRow
 										team={team}
 										primaryColor={primaryColor}
-										secondaryColor={secondaryColor}
+										secondaryColor={league.nbaRed}
 										tertiaryColor={league.nbaWhite}
 										statsType={'perGame'}
 										loading={loading}
@@ -319,7 +324,7 @@ const TeamIndivPage = () => {
 									<TeamIndivStatsRow
 										team={team}
 										primaryColor={primaryColor}
-										secondaryColor={secondaryColor}
+										secondaryColor={league.nbaRed}
 										tertiaryColor={league.nbaWhite}
 										statsType={'total'}
 										loading={loading}
@@ -343,7 +348,7 @@ const TeamIndivPage = () => {
 									<TeamIndivStatsRow
 										team={team}
 										primaryColor={primaryColor}
-										secondaryColor={secondaryColor}
+										secondaryColor={league.nbaRed}
 										tertiaryColor={league.nbaWhite}
 										statsType={'advanced'}
 										loading={loading}
@@ -389,7 +394,7 @@ const TeamIndivPage = () => {
 							}
 							primaryColor={league.nbaTeamIndivTableBackground}
 							secondaryColor={'#FFF'}
-							tertiaryColor={secondaryColor}
+							tertiaryColor={league.nbaRed}
 							includePagination={includePagination}
 							playersPerPage={25}
 						/>

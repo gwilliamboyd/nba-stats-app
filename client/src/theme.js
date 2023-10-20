@@ -102,9 +102,8 @@ const theme = createTheme({
 			},
 			// logo blends in to background
 			hou: {
-				// primary: '#CE1141',
-				primary: '#000000',
-				secondary: '#CE1141',
+				primary: '#CE1141',
+				secondary: '#000000',
 				tertiary: '#C4CED4',
 			},
 			ind: {
@@ -210,8 +209,8 @@ const theme = createTheme({
 				but flipping it around makes the page
 				look much better, and provides 
 				better contrast */
-				primary: '#000000',
-				secondary: '#CE1141',
+				primary: '#CE1141',
+				secondary: '#000000',
 				// lightened the silver a little bit
 				// original silver: A1A1A4
 				tertiary: '#c5c5c9',
