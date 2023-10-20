@@ -18,7 +18,7 @@ const QuickStatsContainer = ({
 				width: { xs: '90%', sm: '75%', md: '60%', lg: '35%' },
 				marginTop: '1rem',
 				padding: '1rem',
-				backgroundColor: '#11182E',
+				backgroundColor: { xs: '#1e2b52', md: '#11182E' },
 				borderRadius: '6px',
 				border: `1px solid ${secondaryColor}`,
 				boxShadow: '0px 10px 10px black',

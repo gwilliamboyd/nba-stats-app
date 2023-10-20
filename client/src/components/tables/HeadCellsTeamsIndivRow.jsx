@@ -35,7 +35,7 @@ const HeadCellsTeamsIndivRow = ({
 									: { fontSize: '12px' }),
 								color: fontColor,
 								p: '2px',
-								backgroundColor: league.nbaTeamIndivTableBackground,
+								backgroundColor: { xs: '#1e2b52', md: '#11182E' },
 								border: 0,
 								width: 'auto',
 							}}>

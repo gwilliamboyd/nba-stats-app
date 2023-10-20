@@ -66,12 +66,12 @@ const PlayerIndivStatsRow = ({
 					width: '100%',
 					mb: 2,
 					border: `1px solid ${secondaryColor}`,
-					backgroundColor: league.nbaTeamIndivTableBackground,
+					backgroundColor: { xs: '#1e2b52', md: '#11182E' },
 					boxShadow: '0px 10px 10px black',
 				}}>
 				<TableContainer
 					sx={{
-						backgroundColor: league.nbaTeamIndivTableBackground,
+						backgroundColor: { xs: '#1e2b52', md: '#11182E' },
 						p: { xs: '0', md: '0 8px' },
 						// border: '1px solid white',
 					}}>
@@ -86,7 +86,7 @@ const PlayerIndivStatsRow = ({
 									? playersAdvancedHeadCells
 									: playersPerGameHeadCells
 							}
-							backgroundColor={league.nbaTeamIndivTableBackground}
+							backgroundColor={{ xs: '#1e2b52', md: '#11182E' }}
 							fontColor={'#de2f3e'}
 						/>
 						<TableBody>
