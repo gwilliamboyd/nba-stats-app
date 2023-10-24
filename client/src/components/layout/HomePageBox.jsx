@@ -48,7 +48,10 @@ const HomePageBox = ({
 						variant={'h3'}>
 						{homeHeading}
 					</Typography>
-					<Link to='/stats/players'>
+					<Link
+						to={
+							linkText === 'See All Teams' ? '/stats/teams' : '/stats/players'
+						}>
 						<Typography
 							variant='h6'
 							fontWeight={400}
