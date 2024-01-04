@@ -7,108 +7,109 @@
 isn't readily available online or from Google Fonts */
 /* Originally found it in Figma */
 body {
-	letter-spacing: -1px;
+  letter-spacing: -1px;
 }
 
 /* CHROME/SAFARI Scrollbar */
 ::-webkit-scrollbar {
-	width: 0.5em;
+  width: 0.5rem;
+  height: 4px;
 }
 ::-webkit-scrollbar-track {
-	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #999;
-	outline: 1px solid #999;
-	border-radius: 6px;
+  background-color: #999;
+  outline: 1px solid #999;
+  border-radius: 6px;
 }
 /* FIREFOX Scrollbar */
 body {
-	scrollbar-color: #999 #555;
-	scrollbar-width: thin;
+  scrollbar-color: #999 #555;
+  scrollbar-width: thin;
 }
 
 /* Remove default link styling */
 a {
-	text-decoration: none;
-	color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 @media screen and (max-width: 768px) {
-	::-webkit-scrollbar {
-		display: none;
-	}
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Hides sort arrow when sorting team stats table */
 #root
-	> main
-	> div.MuiContainer-root.MuiContainer-maxWidth100\%.MuiContainer-disableGutters.css-tco0qi-MuiContainer-root
-	> div.MuiBox-root.css-105xb36
-	> div
-	> div
-	> table
-	> thead
-	> tr
-	> th
-	> span
-	> svg {
-	width: 14px;
-	height: 14px;
-	margin-right: 0px;
+  > main
+  > div.MuiContainer-root.MuiContainer-maxWidth100\%.MuiContainer-disableGutters.css-tco0qi-MuiContainer-root
+  > div.MuiBox-root.css-105xb36
+  > div
+  > div
+  > table
+  > thead
+  > tr
+  > th
+  > span
+  > svg {
+  width: 14px;
+  height: 14px;
+  margin-right: 0px;
 }
 
 .basicLink {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 .basicLink:hover {
-	color: #b52532;
+  color: #b52532;
 }
 .navbarLink:hover {
-	color: #b52532;
+  color: #b52532;
 }
 
 .snackbarSuccess {
-	background-color: blue;
+  background-color: blue;
 }
 
 /* Loading buttons */
 .Mui-disabled {
-	color: green;
+  color: green;
 }
 .MuiLoadingButton-root {
-	color: green;
+  color: green;
 }
 
 .MuiLoadingButton-contained.Mui-disabled {
-	color: green;
+  color: green;
 }
 .MuiLoadingButton-root {
-	background-color: #fff;
+  background-color: #fff;
 }
 .MuiLoadingButton-contained {
-	background-color: green;
+  background-color: green;
 }
 .css-o219am-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root.Mui-disabled {
-	background-color: green;
+  background-color: green;
 }
 .MuiButtonBase-root
-	MuiButton-root
-	MuiLoadingButton-root
-	MuiLoadingButton-loading
-	MuiButton-contained
-	MuiButton-containedPrimary
-	MuiButton-sizeMedium
-	MuiButton-containedSizeMedium
-	Mui-disabled
-	MuiButton-root
-	MuiLoadingButton-root
-	MuiLoadingButton-loading
-	MuiButton-contained
-	MuiButton-containedPrimary
-	MuiButton-sizeMedium
-	MuiButton-containedSizeMedium
-	MuiLoadingButton-contained
-	css-o219am-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root {
-	background-color: green;
+  MuiButton-root
+  MuiLoadingButton-root
+  MuiLoadingButton-loading
+  MuiButton-contained
+  MuiButton-containedPrimary
+  MuiButton-sizeMedium
+  MuiButton-containedSizeMedium
+  Mui-disabled
+  MuiButton-root
+  MuiLoadingButton-root
+  MuiLoadingButton-loading
+  MuiButton-contained
+  MuiButton-containedPrimary
+  MuiButton-sizeMedium
+  MuiButton-containedSizeMedium
+  MuiLoadingButton-contained
+  css-o219am-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root {
+  background-color: green;
 }
